@@ -16,14 +16,14 @@ function addUtilsReplace(plugins) {
 
     // Remove the buffer check from BN.js
     plugins.push(replace({
-        "require('buffer')": "/*RicMoo:ethers:require(buffer)*/(null)",
+        "require('buffer')": "/*RicMoo:vapors:require(buffer)*/(null)",
         include: "**/lib/bn.js",
         delimiters: [ '', '' ]
     }));
 
     // Remove the util from inhjerits (forces browser inherits)
     plugins.push(replace({
-        "require('util')": "/*RicMoo:ethers:require(util)*/(null)",
+        "require('util')": "/*RicMoo:vapors:require(util)*/(null)",
         include: "**/inherits/inherits.js",
         delimiters: [ '', '' ]
     }));
@@ -35,7 +35,7 @@ function addEllipticReplace(plugins) {
 
     // Replace the package.json in elliptic
     plugins.push(replace({
-        "require('../package.json')": `/*RicMoo:ethers*/{ version: "${ elliptic.version }" }`,
+        "require('../package.json')": `/*RicMoo:vapors*/{ version: "${ elliptic.version }" }`,
         include: "**/lib/elliptic.js",
         delimiters: [ '', '' ]
     }));
@@ -56,7 +56,7 @@ function addEllipticReplace(plugins) {
             include: `**/${ filename }`,
             delimiters: [ '', '' ]
         };
-        replacement[`require('${ name }')`] = `/*RicMoo:ethers:require(${ name })*/${ text }`,
+        replacement[`require('${ name }')`] = `/*RicMoo:vapors:require(${ name })*/${ text }`,
         plugins.push(replace(replacement));
     });
 
@@ -77,11 +77,11 @@ function getUmdConfig() {
     plugins.push(commonjs({ }));
 
     return {
-        input: `packages/ethers/lib/index.js`,
+        input: `packages/vapors/lib/index.js`,
         output: {
-            file: `packages/ethers/dist/ethers.umd.js`,
+            file: `packages/vapors/dist/vapors.umd.js`,
             format: "umd",
-            name: "ethers",
+            name: "vapors",
             sourcemap: true
         },
         context: "window",
@@ -104,9 +104,9 @@ function getEsmConfig() {
     plugins.push(commonjs({ }));
 
     return {
-        input: `packages/ethers/lib.esm/index.js`,
+        input: `packages/vapors/lib.esm/index.js`,
         output: {
-            file: `packages/ethers/dist/ethers.esm.js`,
+            file: `packages/vapors/dist/vapors.esm.js`,
             format: "esm",
             sourcemap: true
         },
@@ -122,7 +122,7 @@ function getConfig() {
 
     // Remove the buffer check from BN.js
     plugins.push(replace({
-        "require('buffer')": "/ * RicMoo:ethers * /(null)",
+        "require('buffer')": "/ * RicMoo:vapors * /(null)",
         include: "* * / lib/bn.js",
         delimiters: [ '', '' ]
     }));
@@ -132,12 +132,12 @@ function getConfig() {
     plugins.push(commonjs({ }));
 
     return {
-        input: `packages/ethers/lib.esm/index.js`,
+        input: `packages/vapors/lib.esm/index.js`,
         output: {
-            file: `packages/ethers/dist/test-esm.js`,
+            file: `packages/vapors/dist/test-esm.js`,
             //preserveModules: true,
             format: "esm",
-            //name: `ethers`,
+            //name: `vapors`,
             sourcemap: true,
             exports: "named"
         },

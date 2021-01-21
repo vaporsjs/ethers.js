@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -10,7 +10,7 @@ Logging
 Logger
 ------
 
-#### **new ***ethers* . *utils* . **Logger**( version )
+#### **new ***vapors* . *utils* . **Logger**( version )
 
 Create a new logger which will include *version* in all errors thrown.
 
@@ -163,7 +163,7 @@ An object is a Class, but is now being called with `new`.
 Too many parameters we passed into a function.
 
 
-### Ethereum Error Codes
+### Vapory Error Codes
 
 #### *Logger* . *errors* . **CALL_EXCEPTION**
 
@@ -179,7 +179,7 @@ A sending account must have enough ether to pay for the value, the gas limit (at
 
 #### *Logger* . *errors* . **NETWORK_ERROR**
 
-An Ethereum network validation error, such as an invalid chain ID.
+An Vapory network validation error, such as an invalid chain ID.
 
 
 #### *Logger* . *errors* . **NONCE_EXPIRED**

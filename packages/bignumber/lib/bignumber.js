@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 var bn_js_1 = __importDefault(require("bn.js"));
 var BN = bn_js_1.default.BN;
-var bytes_1 = require("@ethersproject/bytes");
-var logger_1 = require("@ethersproject/logger");
+var bytes_1 = require("@vaporsproject/bytes");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 var logger = new logger_1.Logger(_version_1.version);
 var _constructorGuard = {};

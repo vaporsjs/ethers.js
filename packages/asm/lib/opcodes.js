@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 // Yellow Paper
-//   See: https://ethereum.github.io/yellowpaper/paper.pdf
+//   See: https://vapory.github.io/yellowpaper/paper.pdf
 // SHL / SHR / SAR:
-//   See: https://eips.ethereum.org/EIPS/eip-145
+//   See: https://eips.vapory.org/EIPS/eip-145
 // CREATE2:
-//   See: https://eips.ethereum.org/EIPS/eip-1014
+//   See: https://eips.vapory.org/EIPS/eip-1014
 // EXTCODEHASH
-//   See: https://eips.ethereum.org/EIPS/eip-1052
-var ethers_1 = require("ethers");
+//   See: https://eips.vapory.org/EIPS/eip-1052
+var vapors_1 = require("vapors");
 var OpcodeMemoryAccess;
 (function (OpcodeMemoryAccess) {
     OpcodeMemoryAccess["write"] = "write";
@@ -18,11 +18,11 @@ var OpcodeMemoryAccess;
 ;
 var Opcode = /** @class */ (function () {
     function Opcode(mnemonic, value, delta, alpha, doc) {
-        ethers_1.ethers.utils.defineReadOnly(this, "mnemonic", mnemonic);
-        ethers_1.ethers.utils.defineReadOnly(this, "value", value);
-        ethers_1.ethers.utils.defineReadOnly(this, "delta", delta);
-        ethers_1.ethers.utils.defineReadOnly(this, "alpha", alpha);
-        ethers_1.ethers.utils.defineReadOnly(this, "doc", doc || null);
+        vapors_1.vapors.utils.defineReadOnly(this, "mnemonic", mnemonic);
+        vapors_1.vapors.utils.defineReadOnly(this, "value", value);
+        vapors_1.vapors.utils.defineReadOnly(this, "delta", delta);
+        vapors_1.vapors.utils.defineReadOnly(this, "alpha", alpha);
+        vapors_1.vapors.utils.defineReadOnly(this, "doc", doc || null);
     }
     // Returns if this opcode is a jump
     Opcode.prototype.isJump = function () {

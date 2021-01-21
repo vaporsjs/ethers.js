@@ -21,16 +21,16 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 
-// Inject the crypto shims (BEFORE the ethers shims)
+// Inject the crypto shims (BEFORE the vapors shims)
 import "react-native-get-random-values";
 
-// Inject the missing features with the ethers shims
-import "@ethersproject/shims";
+// Inject the missing features with the vapors shims
+import "@vaporsproject/shims";
 //import "./libs/shims";
 
-// Import ethers
-import { ethers } from "ethers";
-//import { ethers } from "./libs/ethers";
+// Import vapors
+import { vapors } from "vapors";
+//import { vapors } from "./libs/vapors";
 
 // Import the test framework
 import "./libs/mocha.js";
@@ -55,7 +55,7 @@ setTimeout(async function() {
     testing.setLogFunc(function(message) {
         console.log(message);
         inflight = inflight.then(() => {
-            return ethers.utils._fetchData("http:/\/localhost:8042/", ethers.utils.toUtf8Bytes(message)).then((result) => {
+            return vapors.utils._fetchData("http:/\/localhost:8042/", vapors.utils.toUtf8Bytes(message)).then((result) => {
                 return true;
             }, (error) => {
                 return false;

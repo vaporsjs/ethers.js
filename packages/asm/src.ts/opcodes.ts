@@ -1,16 +1,16 @@
 "use strict";
 
 // Yellow Paper
-//   See: https://ethereum.github.io/yellowpaper/paper.pdf
+//   See: https://vapory.github.io/yellowpaper/paper.pdf
 // SHL / SHR / SAR:
-//   See: https://eips.ethereum.org/EIPS/eip-145
+//   See: https://eips.vapory.org/EIPS/eip-145
 // CREATE2:
-//   See: https://eips.ethereum.org/EIPS/eip-1014
+//   See: https://eips.vapory.org/EIPS/eip-1014
 // EXTCODEHASH
-//   See: https://eips.ethereum.org/EIPS/eip-1052
+//   See: https://eips.vapory.org/EIPS/eip-1052
 
 
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 
 export enum OpcodeMemoryAccess {
     write = "write",
@@ -28,11 +28,11 @@ export class Opcode {
     readonly doc: string;
 
     constructor(mnemonic: string, value: number, delta: number, alpha: number, doc?: string) {
-        ethers.utils.defineReadOnly(this, "mnemonic", mnemonic);
-        ethers.utils.defineReadOnly(this, "value", value);
-        ethers.utils.defineReadOnly(this, "delta", delta);
-        ethers.utils.defineReadOnly(this, "alpha", alpha);
-        ethers.utils.defineReadOnly(this, "doc", doc || null);
+        vapors.utils.defineReadOnly(this, "mnemonic", mnemonic);
+        vapors.utils.defineReadOnly(this, "value", value);
+        vapors.utils.defineReadOnly(this, "delta", delta);
+        vapors.utils.defineReadOnly(this, "alpha", alpha);
+        vapors.utils.defineReadOnly(this, "doc", doc || null);
     }
 
     // Returns if this opcode is a jump

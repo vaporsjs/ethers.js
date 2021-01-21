@@ -13,8 +13,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var properties_1 = require("@ethersproject/properties");
-var logger_1 = require("@ethersproject/logger");
+var properties_1 = require("@vaporsproject/properties");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 var logger = new logger_1.Logger(_version_1.version);
 var json_rpc_provider_1 = require("./json-rpc-provider");
@@ -23,7 +23,7 @@ function buildWeb3LegacyFetcher(provider, sendFunc) {
     return function (method, params) {
         // Metamask complains about eth_sign (and on some versions hangs)
         if (method == "eth_sign" && provider.isMetaMask) {
-            // https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_sign
+            // https://github.com/vaporyco/go-vapory/wiki/Management-APIs#personal_sign
             method = "personal_sign";
             params = [params[1], params[0]];
         }
@@ -56,7 +56,7 @@ function buildEip1193Fetcher(provider) {
         }
         // Metamask complains about eth_sign (and on some versions hangs)
         if (method == "eth_sign" && provider.isMetaMask) {
-            // https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_sign
+            // https://github.com/vaporyco/go-vapory/wiki/Management-APIs#personal_sign
             method = "personal_sign";
             params = [params[1], params[0]];
         }

@@ -65,6 +65,6 @@ export function getPackageJsonPath(name: string): string {
     return getPackageInfo(name).packageJsonPath;
 }
 
-export function isEthers(name: string) {
+export function isVapors(name: string) {
     return !!packageLookup[name];
 }

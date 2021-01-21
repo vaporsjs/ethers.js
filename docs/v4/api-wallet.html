@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Wallets and Signers &mdash; ethers.js 4.0.0 documentation</title>
+  <title>Wallets and Signers &mdash; vapors.js 4.0.0 documentation</title>
   
 
   
@@ -26,8 +26,8 @@
 
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Providers" href="api-providers.html" />
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> ethers.js
+            <a href="index.html" class="icon icon-home"> vapors.js
           
 
           
@@ -124,7 +124,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ethers.js</a>
+          <a href="index.html">vapors.js</a>
         
       </nav>
 
@@ -179,7 +179,7 @@
   <div class="section" id="wallets-and-signers">
 <span id="api-wallet"></span><h1>Wallets and Signers<a class="headerlink" href="#wallets-and-signers" title="Permalink to this headline">¶</a></h1>
 <p>A <strong>Wallet</strong> manages a private/public key pair which is used to cryptographically sign
-transactions and prove ownership on the Ethereum network.</p>
+transactions and prove ownership on the Vapory network.</p>
 <hr class="docutils" />
 <div class="section" id="wallet">
 <span id="id1"></span><h2>Wallet<a class="headerlink" href="#wallet" title="Permalink to this headline">¶</a></h2>
@@ -206,12 +206,12 @@ lost there is <strong>NO way to recover it</strong>.</p>
 </dl>
 <dl class="docutils" id="fromencryptedjson">
 <dt><sup>Wallet</sup> . fromEncryptedJson ( json, password [ , progressCallback ] ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>Wallet</sup></dt>
-<dd>Decrypt an encrypted Secret Storage <a class="reference external" href="https://medium.com/&#64;julien.maffre/what-is-an-ethereum-keystore-file-86c8c5917b97">JSON Wallet</a> (from Geth, parity, Crowdsale
+<dd>Decrypt an encrypted Secret Storage <a class="reference external" href="https://medium.com/&#64;julien.maffre/what-is-an-vapory-keystore-file-86c8c5917b97">JSON Wallet</a> (from Geth, parity, Crowdsale
 tools, or that was created using <em>prototype.encrypt</em> )</dd>
 <dt><sup>Wallet</sup> . fromMnemonic ( mnemonic [ , path <sup>= “m/44’/60’/0’/0/0”</sup> [ , wordlist ] ] ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>Wallet</sup></dt>
 <dd><p class="first">Generate a <a class="reference external" href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki">BIP-039</a> + <a class="reference external" href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">BIP-044</a> wallet from <em>mnemonic</em> deriving <em>path</em> using
 the <em>wordlist</em>. The default language is English (en).</p>
-<p>In the browserified <code class="docutils literal notranslate"><span class="pre">dist/ethers.min.js</span></code> only the English wordlist is
+<p>In the browserified <code class="docutils literal notranslate"><span class="pre">dist/vapors.min.js</span></code> only the English wordlist is
 available. Each additional wordlist may be included by adding a <code class="docutils literal notranslate"><span class="pre">&lt;script&gt;</span></code>
 for the <code class="docutils literal notranslate"><span class="pre">dist/wordlist-*.js</span></code></p>
 <p>The current supported wordlists are:</p>
@@ -229,27 +229,27 @@ for the <code class="docutils literal notranslate"><span class="pre">dist/wordli
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>English (US)</td>
-<td><code class="docutils literal notranslate"><span class="pre">ethers.wordlists.en</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">vapors.wordlists.en</span></code></td>
 <td><em>included</em></td>
 </tr>
 <tr class="row-odd"><td>Italian</td>
-<td><code class="docutils literal notranslate"><span class="pre">ethers.wordlists.it</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">vapors.wordlists.it</span></code></td>
 <td><code class="docutils literal notranslate"><span class="pre">dist/wordlist-it.js</span></code></td>
 </tr>
 <tr class="row-even"><td>Japanese</td>
-<td><code class="docutils literal notranslate"><span class="pre">ethers.wordlists.ja</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">vapors.wordlists.ja</span></code></td>
 <td><code class="docutils literal notranslate"><span class="pre">dist/wordlist-ja.js</span></code></td>
 </tr>
 <tr class="row-odd"><td>Korean</td>
-<td><code class="docutils literal notranslate"><span class="pre">ethers.wordlists.ko</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">vapors.wordlists.ko</span></code></td>
 <td><code class="docutils literal notranslate"><span class="pre">dist/wordlist-ko.js</span></code></td>
 </tr>
 <tr class="row-even"><td>Chinese (simplified)</td>
-<td><code class="docutils literal notranslate"><span class="pre">ethers.wordlists.zh_cn</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">vapors.wordlists.zh_cn</span></code></td>
 <td><code class="docutils literal notranslate"><span class="pre">dist/wordlist-zh.js</span></code></td>
 </tr>
 <tr class="row-odd"><td>Chinese (traditional)</td>
-<td><code class="docutils literal notranslate"><span class="pre">ethers.wordlists.zh_tw</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">vapors.wordlists.zh_tw</span></code></td>
 <td><code class="docutils literal notranslate"><span class="pre">dist/wordlist-zh.js</span></code></td>
 </tr>
 </tbody>
@@ -269,17 +269,17 @@ for the <code class="docutils literal notranslate"><span class="pre">dist/wordli
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text"><em>load a private key</em></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="s2">&quot;0x0123456789012345678901234567890123456789012345678901234567890123&quot;</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">);</span>
 
 <span class="c1">// Connect a wallet to mainnet</span>
-<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
-<span class="kd">let</span> <span class="nx">walletWithProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">walletWithProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text"><em>create a new random account</em></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">randomWallet</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">createRandom</span><span class="p">();</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">randomWallet</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">createRandom</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -310,7 +310,7 @@ for the <code class="docutils literal notranslate"><span class="pre">dist/wordli
 <span class="kd">let</span> <span class="nx">json</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">password</span> <span class="o">=</span> <span class="s2">&quot;foo&quot;</span><span class="p">;</span>
 
-<span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">fromEncryptedJson</span><span class="p">(</span><span class="nx">json</span><span class="p">,</span> <span class="nx">password</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">fromEncryptedJson</span><span class="p">(</span><span class="nx">json</span><span class="p">,</span> <span class="nx">password</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">wallet</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Address: &quot;</span> <span class="o">+</span> <span class="nx">wallet</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span>
     <span class="c1">// &quot;Address: 0x88a5C2d9919e46F883EB62F7b8Dd9d0CC45bc290&quot;</span>
 <span class="p">});</span>
@@ -320,14 +320,14 @@ for the <code class="docutils literal notranslate"><span class="pre">dist/wordli
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text"><em>load a mnemonic phrase</em></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">mnemonic</span> <span class="o">=</span> <span class="s2">&quot;radar blur cabbage chef fix engine embark joy scheme fiction master release&quot;</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">mnemonicWallet</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">fromMnemonic</span><span class="p">(</span><span class="nx">mnemonic</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">mnemonicWallet</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">fromMnemonic</span><span class="p">(</span><span class="nx">mnemonic</span><span class="p">);</span>
 
 <span class="c1">// Load the second account from a mnemonic</span>
 <span class="kd">let</span> <span class="nx">path</span> <span class="o">=</span> <span class="s2">&quot;m/44&#39;/60&#39;/1&#39;/0/0&quot;</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">secondMnemonicWallet</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">fromMnemonic</span><span class="p">(</span><span class="nx">mnemonic</span><span class="p">,</span> <span class="nx">path</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">secondMnemonicWallet</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">fromMnemonic</span><span class="p">(</span><span class="nx">mnemonic</span><span class="p">,</span> <span class="nx">path</span><span class="p">);</span>
 
 <span class="c1">// Load using a non-english locale wordlist (the path &quot;null&quot; will use the default)</span>
-<span class="kd">let</span> <span class="nx">secondMnemonicWallet</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">fromMnemonic</span><span class="p">(</span><span class="nx">mnemonic</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">wordlists</span><span class="p">.</span><span class="nx">ko</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">secondMnemonicWallet</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">fromMnemonic</span><span class="p">(</span><span class="nx">mnemonic</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">wordlists</span><span class="p">.</span><span class="nx">ko</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -342,7 +342,7 @@ for the <code class="docutils literal notranslate"><span class="pre">dist/wordli
 <dd>The private key of a wallet; keep this secret</dd>
 <dt><sup>prototype</sup> . provider</dt>
 <dd><p class="first">A connected <a class="reference internal" href="api-providers.html#provider"><span class="std std-ref">Provider</span></a> which allows the wallet to
-connect to the Ethereum network to query its state and send transactions,
+connect to the Vapory network to query its state and send transactions,
 or null if no provider is connected.</p>
 <p class="last">To change the provider, use the <a class="reference internal" href="#wallet-connect"><span class="std std-ref">connect</span></a> method, which will return
 a <strong>new instance</strong> of the Wallet connected to the provider.</p>
@@ -385,7 +385,7 @@ preserved as a binary representation of the <a class="reference internal" href="
 <div class="literal-block-wrapper docutils container" id="id6">
 <div class="code-block-caption"><span class="caption-text"><em>signing transactions</em></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="s2">&quot;0x3141592653589793238462643383279502884197169399375105820974944592&quot;</span>
-<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">)</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">address</span><span class="p">)</span>
 <span class="c1">// &quot;0x7357589f8e367c2C31F51242fB77B350A11830F3&quot;</span>
@@ -398,13 +398,13 @@ preserved as a binary representation of the <a class="reference internal" href="
 
     <span class="nx">to</span><span class="o">:</span> <span class="s2">&quot;0x88a5C2d9919e46F883EB62F7b8Dd9d0CC45bc290&quot;</span><span class="p">,</span>
     <span class="c1">// ... or supports ENS names</span>
-    <span class="c1">// to: &quot;ricmoo.firefly.eth&quot;,</span>
+    <span class="c1">// to: &quot;ricmoo.firefly.vap&quot;,</span>
 
     <span class="nx">value</span><span class="o">:</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">parseEther</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">),</span>
     <span class="nx">data</span><span class="o">:</span> <span class="s2">&quot;0x&quot;</span><span class="p">,</span>
 
     <span class="c1">// This ensures the transaction cannot be replayed on different networks</span>
-    <span class="nx">chainId</span><span class="o">:</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">(</span><span class="s1">&#39;homestead&#39;</span><span class="p">).</span><span class="nx">chainId</span>
+    <span class="nx">chainId</span><span class="o">:</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">(</span><span class="s1">&#39;homestead&#39;</span><span class="p">).</span><span class="nx">chainId</span>
 <span class="p">}</span>
 
 <span class="kd">let</span> <span class="nx">signPromise</span> <span class="o">=</span> <span class="nx">wallet</span><span class="p">.</span><span class="nx">sign</span><span class="p">(</span><span class="nx">transaction</span><span class="p">)</span>
@@ -417,8 +417,8 @@ preserved as a binary representation of the <a class="reference internal" href="
     <span class="c1">//    acdc47ab5dfaad46bcf63f2a34a05b2cb6290fd8ff801d07f6767df63c1c3da7</span>
     <span class="c1">//    a7b83b53cd6cea3d3075ef9597d5&quot;</span>
 
-    <span class="c1">// This can now be sent to the Ethereum network</span>
-    <span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">()</span>
+    <span class="c1">// This can now be sent to the Vapory network</span>
+    <span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">()</span>
     <span class="nx">provider</span><span class="p">.</span><span class="nx">sendTransaction</span><span class="p">(</span><span class="nx">signedTransaction</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">tx</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tx</span><span class="p">);</span>
@@ -438,7 +438,7 @@ preserved as a binary representation of the <a class="reference internal" href="
 <div class="literal-block-wrapper docutils container" id="id7">
 <div class="code-block-caption"><span class="caption-text"><em>signing text messages</em></span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="s2">&quot;0x3141592653589793238462643383279502884197169399375105820974944592&quot;</span>
-<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">);</span>
 
 <span class="c1">// Sign a text message</span>
 <span class="kd">let</span> <span class="nx">signPromise</span> <span class="o">=</span> <span class="nx">wallet</span><span class="p">.</span><span class="nx">signMessage</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>
@@ -452,7 +452,7 @@ preserved as a binary representation of the <a class="reference internal" href="
     <span class="c1">//    1c&quot;</span>
 
     <span class="c1">// Expanded-format</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">splitSignature</span><span class="p">(</span><span class="nx">signature</span><span class="p">));</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">splitSignature</span><span class="p">(</span><span class="nx">signature</span><span class="p">));</span>
     <span class="c1">// {</span>
     <span class="c1">//   r: &quot;0xea09d6e94e52b48489bd66754c9c02a772f029d4a2f136bba9917ab3042a0474&quot;,</span>
     <span class="c1">//   s: &quot;0x301198d8c2afb71351753436b7e5a420745fed77b6c3089bbcca64113575ec3c&quot;,</span>
@@ -466,11 +466,11 @@ preserved as a binary representation of the <a class="reference internal" href="
 <div class="literal-block-wrapper docutils container" id="id8">
 <div class="code-block-caption"><span class="caption-text"><em>signing binary messages</em></span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="s2">&quot;0x3141592653589793238462643383279502884197169399375105820974944592&quot;</span>
-<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">);</span>
 
 <span class="c1">// The 66 character hex string MUST be converted to a 32-byte array first!</span>
 <span class="kd">let</span> <span class="nx">hash</span> <span class="o">=</span> <span class="s2">&quot;0x3ea2f1d0abf3fc66cf29eebb70cbd4e7fe762ef8a09bcc06c8edf641230afec0&quot;</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">binaryData</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">arrayify</span><span class="p">(</span><span class="nx">hash</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">binaryData</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">arrayify</span><span class="p">(</span><span class="nx">hash</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">signPromise</span> <span class="o">=</span> <span class="nx">wallet</span><span class="p">.</span><span class="nx">signMessage</span><span class="p">(</span><span class="nx">binaryData</span><span class="p">)</span>
 
@@ -510,10 +510,10 @@ provided will be populated from the network.</dd>
 <div class="literal-block-wrapper docutils container" id="id9">
 <div class="code-block-caption"><span class="caption-text"><em>query the network</em></span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// We require a provider to query the network</span>
-<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
 
 <span class="kd">let</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="s2">&quot;0x3141592653589793238462643383279502884197169399375105820974944592&quot;</span>
-<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">balancePromise</span> <span class="o">=</span> <span class="nx">wallet</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">();</span>
 
@@ -532,21 +532,21 @@ provided will be populated from the network.</dd>
 <div class="literal-block-wrapper docutils container" id="id10">
 <div class="code-block-caption"><span class="caption-text"><em>transfer ether</em></span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// We require a provider to send transactions</span>
-<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
 
 <span class="kd">let</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="s2">&quot;0x3141592653589793238462643383279502884197169399375105820974944592&quot;</span>
-<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseEther</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseEther</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">tx</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">to</span><span class="o">:</span> <span class="s2">&quot;0x88a5c2d9919e46f883eb62f7b8dd9d0cc45bc290&quot;</span><span class="p">,</span>
     <span class="c1">// ... or supports ENS names</span>
-    <span class="c1">// to: &quot;ricmoo.firefly.eth&quot;,</span>
+    <span class="c1">// to: &quot;ricmoo.firefly.vap&quot;,</span>
 
     <span class="c1">// We must pass in the amount as wei (1 ether = 1e18 wei), so we</span>
     <span class="c1">// use this convenience function to convert ether to wei.</span>
-    <span class="nx">value</span><span class="o">:</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseEther</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseEther</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span>
 <span class="p">};</span>
 
 <span class="kd">let</span> <span class="nx">sendPromise</span> <span class="o">=</span> <span class="nx">wallet</span><span class="p">.</span><span class="nx">sendTransaction</span><span class="p">(</span><span class="nx">tx</span><span class="p">);</span>
@@ -614,8 +614,8 @@ encryption with a value between 0 and 1, inclusive indicating the progress.</p>
 <p>The Signer API is an abstract class which makes it easy to extend and add new signers,
 that can be used by this library and extension libraries. The <a class="reference internal" href="#wallet"><span class="std std-ref">Wallet</span></a>
 extends the Signer API, as do the <a class="reference internal" href="api-providers.html#signer-jsonrpc"><span class="std std-ref">JsonRpcSigner</span></a> and the
-<a class="reference external" href="https://github.com/ethers-io/ethers-ledger">Ledger Hardware Wallet Signer</a>.</p>
-<p>To implement a Signer, inherit the abstract class <em>ethers.types.Signer</em> and implement
+<a class="reference external" href="https://github.com/vaporsjs/vapors-ledger">Ledger Hardware Wallet Signer</a>.</p>
+<p>To implement a Signer, inherit the abstract class <em>vapors.types.Signer</em> and implement
 the following properties:</p>
 <dl class="docutils">
 <dt><sup>object</sup> . provider</dt>

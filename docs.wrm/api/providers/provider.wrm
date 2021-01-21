@@ -23,19 +23,19 @@ sent to the network.
 _code: Account Examples @lang<javascript>
 
 // Get the balance for an account...
-provider.getBalance("ricmoo.firefly.eth");
+provider.getBalance("ricmoo.firefly.vap");
 //!
 
 // Get the code for a contract...
-provider.getCode("registrar.firefly.eth");
+provider.getCode("registrar.firefly.vap");
 //!
 
 // Get the storage value at position 0...
-provider.getStorageAt("registrar.firefly.eth", 0)
+provider.getStorageAt("registrar.firefly.vap", 0)
 //!
 
 // Get transaction count of an account...
-provider.getTransactionCount("ricmoo.firefly.eth");
+provider.getTransactionCount("ricmoo.firefly.vap");
 //!
 
 
@@ -57,16 +57,16 @@ provider.getBlock(100004)
 provider.getBlockWithTransactions(100004)
 //!
 
-_subsection: Ethereum Naming Service (ENS) Methods @<Provider--ens-methods>
+_subsection: Vapory Naming Service (ENS) Methods @<Provider--ens-methods>
 
-The [Ethereum Naming Service](link-ens) (ENS) allows a short and
+The [Vapory Naming Service](link-ens) (ENS) allows a short and
 easy-to-remember ENS Name to be attached to any set of keys
 and values.
 
 One of the most common uses for this is to use a simple name to
-refer to an [Ethereum Address](address).
+refer to an [Vapory Address](address).
 
-In the ethers API, nearly anywhere that accepts an address, an
+In the vapors API, nearly anywhere that accepts an address, an
 ENS name may be used instead, which can simplify code and make
 reading and debugging much simpler.
 
@@ -90,7 +90,7 @@ provider.lookupAddress("0x6fC21092DA55B392b045eD78F4732bff3C580e2c");
 //!
 
 // Lookup an address of an ENS name...
-provider.resolveName("ricmoo.firefly.eth");
+provider.resolveName("ricmoo.firefly.vap");
 //!
 
 
@@ -262,8 +262,8 @@ _code: Events Example @lang<javascript>
 
 // <hide>
 const txHash = utils.id("dummy-data");
-const myAddress = ethers.constants.HashZero;
-const myOtherAddress = ethers.constants.HashZero;
+const myAddress = vapors.constants.HashZero;
+const myOtherAddress = vapors.constants.HashZero;
 // </hide>
 
 provider.on("block", (blockNumber) => {
@@ -280,7 +280,7 @@ provider.once(txHash, (transaction) => {
 // Interface API. If address is not specified, any address
 // matches and if topics is not specified, any log matches
 filter = {
-    address: "dai.tokens.ethers.eth",
+    address: "dai.tokens.vapors.vap",
     topics: [
         utils.id("Transfer(address,address,uint256)")
     ]

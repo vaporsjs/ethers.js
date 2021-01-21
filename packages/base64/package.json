@@ -1,5 +1,5 @@
 {
-  "_ethers.alias": {
+  "_vapors.alias": {
     "base64.js": "browser-base64.js"
   },
   "author": "Richard Moore <me@ricmoo.com>",
@@ -7,14 +7,14 @@
     "./lib/base64": "./lib/browser-base64.js"
   },
   "dependencies": {
-    "@ethersproject/bytes": "^5.0.4"
+    "@vaporsproject/bytes": "^5.0.4"
   },
   "description": "Base64 coder.",
-  "ethereum": "donations.ethers.eth",
+  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
-      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+      "url": "https://gitcoin.co/grants/13/vaporsjs-complete-simple-and-tiny-2"
     },
     {
       "type": "individual",
@@ -22,20 +22,20 @@
     }
   ],
   "keywords": [
-    "Ethereum",
-    "ethers"
+    "Vapory",
+    "vapors"
   ],
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/base64",
+  "name": "@vaporsproject/base64",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "directory": "packages/base64",
     "type": "git",
-    "url": "git://github.com/ethers-io/ethers.js.git"
+    "url": "git://github.com/vaporsjs/vapors.js.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

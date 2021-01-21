@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -14,7 +14,7 @@ Network Changes
 // Force page refreshes on network changes
 {
     // The "any" network will allow spontaneous network changes
-    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+    const provider = new vapors.providers.Web3Provider(window.vapory, "any");
     provider.on("network", (newNetwork, oldNetwork) => {
         // When a Provider makes its initial connection, it emits a "network"
         // event with a null oldNetwork along with the newNetwork. So, if the

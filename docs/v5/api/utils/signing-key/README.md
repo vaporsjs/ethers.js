@@ -1,13 +1,13 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
 Signing Key
 ===========
 
-#### **new ***ethers* . *utils* . **SigningKey**( privateKey )
+#### **new ***vapors* . *utils* . **SigningKey**( privateKey )
 
 Create a new SigningKey for *privateKey*.
 
@@ -47,22 +47,22 @@ Returns true if *anObject* is a SigningKey.
 Other Functions
 ---------------
 
-#### *ethers* . *utils* . **verifyMessage**( message , signature ) => *string< [Address](/v5/api/utils/address/#address) >*
+#### *vapors* . *utils* . **verifyMessage**( message , signature ) => *string< [Address](/v5/api/utils/address/#address) >*
 
-Returns the address that signed *message* producing *signature*. The signature may have a non-canonical v (i.e. does not need to be 27 or 28), in which case it will be normalized to compute the `recoveryParam` which will then be used to compute the address; this allows systems which use the v to encode additional data (such as [EIP-155](https://eips.ethereum.org/EIPS/eip-155)) to be used since the v parameter is still completely non-ambiguous.
-
-
-#### *ethers* . *utils* . **verifyTypedData**( domain , types , value , signature ) => *string< [Address](/v5/api/utils/address/#address) >*
-
-Returns the address that signed the [EIP-712](https://eips.ethereum.org/EIPS/eip-712) *value* for the *domain* and *types* to produce the signature.
+Returns the address that signed *message* producing *signature*. The signature may have a non-canonical v (i.e. does not need to be 27 or 28), in which case it will be normalized to compute the `recoveryParam` which will then be used to compute the address; this allows systems which use the v to encode additional data (such as [EIP-155](https://eips.vapory.org/EIPS/eip-155)) to be used since the v parameter is still completely non-ambiguous.
 
 
-#### *ethers* . *utils* . **recoverPublicKey**( digest , signature ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 65 > >*
+#### *vapors* . *utils* . **verifyTypedData**( domain , types , value , signature ) => *string< [Address](/v5/api/utils/address/#address) >*
+
+Returns the address that signed the [EIP-712](https://eips.vapory.org/EIPS/eip-712) *value* for the *domain* and *types* to produce the signature.
+
+
+#### *vapors* . *utils* . **recoverPublicKey**( digest , signature ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 65 > >*
 
 Returns the uncompressed public key (i.e. the first byte will be `0x04`) of the private key that was used to sign *digest* which gave the *signature*.
 
 
-#### *ethers* . *utils* . **computePublicKey**( key [ , compressed = false ] ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
+#### *vapors* . *utils* . **computePublicKey**( key [ , compressed = false ] ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
 
 Computes the public key of *key*, optionally compressing it. The *key* can be any form of public key (compressed or uncompressed) or a private key.
 

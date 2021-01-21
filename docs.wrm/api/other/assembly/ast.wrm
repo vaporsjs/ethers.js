@@ -1,6 +1,6 @@
 _section: Abstract Syntax Tree @<asm-ast>
 
-Parsing a file using the [Ethers ASM Dialect](asm-dialect) will
+Parsing a file using the [Vapors ASM Dialect](asm-dialect) will
 generate an Abstract Syntax Tree. The root node will always
 be a [[asm-scopenode]] whose name is ``_``.
 

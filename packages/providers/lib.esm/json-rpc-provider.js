@@ -8,14 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { Signer } from "@ethersproject/abstract-signer";
-import { BigNumber } from "@ethersproject/bignumber";
-import { hexlify, hexValue, isHexString } from "@ethersproject/bytes";
-import { _TypedDataEncoder } from "@ethersproject/hash";
-import { checkProperties, deepCopy, defineReadOnly, getStatic, resolveProperties, shallowCopy } from "@ethersproject/properties";
-import { toUtf8Bytes } from "@ethersproject/strings";
-import { fetchJson, poll } from "@ethersproject/web";
-import { Logger } from "@ethersproject/logger";
+import { Signer } from "@vaporsproject/abstract-signer";
+import { BigNumber } from "@vaporsproject/bignumber";
+import { hexlify, hexValue, isHexString } from "@vaporsproject/bytes";
+import { _TypedDataEncoder } from "@vaporsproject/hash";
+import { checkProperties, deepCopy, defineReadOnly, getStatic, resolveProperties, shallowCopy } from "@vaporsproject/properties";
+import { toUtf8Bytes } from "@vaporsproject/strings";
+import { fetchJson, poll } from "@vaporsproject/web";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 import { BaseProvider } from "./base-provider";
@@ -192,7 +192,7 @@ export class JsonRpcSigner extends Signer {
         return __awaiter(this, void 0, void 0, function* () {
             const data = ((typeof (message) === "string") ? toUtf8Bytes(message) : message);
             const address = yield this.getAddress();
-            // https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_sign
+            // https://github.com/vaporyco/wiki/wiki/JSON-RPC#eth_sign
             return yield this.provider.send("eth_sign", [address.toLowerCase(), hexlify(data)]);
         });
     }
@@ -456,7 +456,7 @@ export class JsonRpcProvider extends BaseProvider {
         }
         super._stopEvent(event);
     }
-    // Convert an ethers.js transaction into a JSON-RPC transaction
+    // Convert an vapors.js transaction into a JSON-RPC transaction
     //  - gasLimit => gas
     //  - All values hexlified
     //  - All numeric values zero-striped

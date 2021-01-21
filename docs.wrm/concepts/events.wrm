@@ -52,11 +52,11 @@ $TopicABaCD: **[** (topic[0] = A) **OR** (topic[0] = B) **]** **AND**
 _code: ERC-20 Transfer Filter Examples @lang<javascript>
 
 // <hide>
-const tokenAddress = ethers.constants.AddressZero;
-const myAddress = ethers.constants.AddressZero;
-const myOtherAddress = ethers.constants.AddressZero;
-const id = ethers.utils.id;
-const hexZeroPad = ethers.utils.hexZeroPad;
+const tokenAddress = vapors.constants.AddressZero;
+const myAddress = vapors.constants.AddressZero;
+const myOtherAddress = vapors.constants.AddressZero;
+const id = vapors.utils.id;
+const hexZeroPad = vapors.utils.hexZeroPad;
 // </hide>
 
 // Short example of manually creating filters for an ERC-20
@@ -126,8 +126,8 @@ _code: ERC-20 Contract Filter Examples @lang<javascript>
 const tokenAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F"; // DAI
 const myAddress = "0x8ba1f109551bD432803012645Ac136ddd64DBA72";
 const otherAddress = "0xEA517D5a070e6705Cc5467858681Ed953d285Eb9";
-const provider = ethers.getDefaultProvider();
-const Contract = ethers.Contract;
+const provider = vapors.getDefaultProvider();
+const Contract = vapors.Contract;
 // </hide>
 
 const abi = [

@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-//See: https://github.com/ethereum/wiki/wiki/RLP
-var bytes_1 = require("@ethersproject/bytes");
-var logger_1 = require("@ethersproject/logger");
+//See: https://github.com/vaporyco/wiki/wiki/RLP
+var bytes_1 = require("@vaporsproject/bytes");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 var logger = new logger_1.Logger(_version_1.version);
 function arrayifyInteger(value) {

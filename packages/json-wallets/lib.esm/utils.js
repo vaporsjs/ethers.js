@@ -1,6 +1,6 @@
 "use strict";
-import { arrayify, hexlify } from "@ethersproject/bytes";
-import { toUtf8Bytes, UnicodeNormalizationForm } from '@ethersproject/strings';
+import { arrayify, hexlify } from "@vaporsproject/bytes";
+import { toUtf8Bytes, UnicodeNormalizationForm } from '@vaporsproject/strings';
 export function looseArrayify(hexString) {
     if (typeof (hexString) === 'string' && hexString.substring(0, 2) !== '0x') {
         hexString = '0x' + hexString;

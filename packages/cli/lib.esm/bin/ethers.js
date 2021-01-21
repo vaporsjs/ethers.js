@@ -13,7 +13,7 @@ import fs from "fs";
 import { dirname, resolve } from "path";
 import REPL from "repl";
 import vm from "vm";
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 import { parseExpression as babelParseExpression } from "@babel/parser";
 import { CLI, dump, Plugin } from "../cli";
 import { getPassword, getProgressBar } from "../prompt";
@@ -46,40 +46,40 @@ function setupContext(path, context, plugin) {
     if (!context.process) {
         context.process = process;
     }
-    context.ethers = ethers;
-    context.version = ethers.version;
-    context.Contract = ethers.Contract;
-    context.ContractFactory = ethers.ContractFactory;
-    context.Wallet = ethers.Wallet;
-    context.providers = ethers.providers;
-    context.utils = ethers.utils;
-    context.abiCoder = ethers.utils.defaultAbiCoder;
-    context.BN = ethers.BigNumber;
-    context.BigNumber = ethers.BigNumber;
-    context.FixedNumber = ethers.FixedNumber;
-    context.getAddress = ethers.utils.getAddress;
-    context.getContractAddress = ethers.utils.getContractAddress;
-    context.getIcapAddress = ethers.utils.getIcapAddress;
-    context.arrayify = ethers.utils.arrayify;
-    context.concat = ethers.utils.concat;
-    context.hexlify = ethers.utils.hexlify;
-    context.zeroPad = ethers.utils.zeroPad;
-    context.joinSignature = ethers.utils.joinSignature;
-    context.splitSignature = ethers.utils.splitSignature;
-    context.id = ethers.utils.id;
-    context.keccak256 = ethers.utils.keccak256;
-    context.namehash = ethers.utils.namehash;
-    context.sha256 = ethers.utils.sha256;
-    context.parseEther = ethers.utils.parseEther;
-    context.parseUnits = ethers.utils.parseUnits;
-    context.formatEther = ethers.utils.formatEther;
-    context.formatUnits = ethers.utils.formatUnits;
-    context.randomBytes = ethers.utils.randomBytes;
-    context.constants = ethers.constants;
-    context.parseTransaction = ethers.utils.parseTransaction;
-    context.serializeTransaction = ethers.utils.serializeTransaction;
-    context.toUtf8Bytes = ethers.utils.toUtf8Bytes;
-    context.toUtf8String = ethers.utils.toUtf8String;
+    context.vapors = vapors;
+    context.version = vapors.version;
+    context.Contract = vapors.Contract;
+    context.ContractFactory = vapors.ContractFactory;
+    context.Wallet = vapors.Wallet;
+    context.providers = vapors.providers;
+    context.utils = vapors.utils;
+    context.abiCoder = vapors.utils.defaultAbiCoder;
+    context.BN = vapors.BigNumber;
+    context.BigNumber = vapors.BigNumber;
+    context.FixedNumber = vapors.FixedNumber;
+    context.getAddress = vapors.utils.getAddress;
+    context.getContractAddress = vapors.utils.getContractAddress;
+    context.getIcapAddress = vapors.utils.getIcapAddress;
+    context.arrayify = vapors.utils.arrayify;
+    context.concat = vapors.utils.concat;
+    context.hexlify = vapors.utils.hexlify;
+    context.zeroPad = vapors.utils.zeroPad;
+    context.joinSignature = vapors.utils.joinSignature;
+    context.splitSignature = vapors.utils.splitSignature;
+    context.id = vapors.utils.id;
+    context.keccak256 = vapors.utils.keccak256;
+    context.namehash = vapors.utils.namehash;
+    context.sha256 = vapors.utils.sha256;
+    context.parseEther = vapors.utils.parseEther;
+    context.parseUnits = vapors.utils.parseUnits;
+    context.formatEther = vapors.utils.formatEther;
+    context.formatUnits = vapors.utils.formatUnits;
+    context.randomBytes = vapors.utils.randomBytes;
+    context.constants = vapors.constants;
+    context.parseTransaction = vapors.utils.parseTransaction;
+    context.serializeTransaction = vapors.utils.serializeTransaction;
+    context.toUtf8Bytes = vapors.utils.toUtf8Bytes;
+    context.toUtf8String = vapors.utils.toUtf8String;
 }
 const cli = new CLI("sandbox");
 function prepareCode(code) {
@@ -117,7 +117,7 @@ class SandboxPlugin extends Plugin {
     static getHelp() {
         return {
             name: "sandbox",
-            help: "Run a REPL VM environment with ethers"
+            help: "Run a REPL VM environment with vapors"
         };
     }
     prepareOptions(argParser) {
@@ -143,7 +143,7 @@ class SandboxPlugin extends Plugin {
         });
     }
     run() {
-        console.log(`version: ${ethers.version}`);
+        console.log(`version: ${vapors.version}`);
         console.log(`network: ${this.network.name} (chainId: ${this.network.chainId})`);
         const filename = resolve(process.cwd(), "./sandbox.js");
         const prompt = (this.provider ? this.network.name : "no-network") + "> ";
@@ -254,7 +254,7 @@ class InitPlugin extends Plugin {
             if (password !== confirm) {
                 this.throwError("Passwords do not match");
             }
-            let wallet = ethers.Wallet.createRandom();
+            let wallet = vapors.Wallet.createRandom();
             let progressBar = yield getProgressBar("Encrypting");
             let json = yield wallet.encrypt(password, {}, progressBar);
             try {
@@ -306,8 +306,8 @@ class FundPlugin extends Plugin {
     }
     run() {
         return __awaiter(this, void 0, void 0, function* () {
-            let url = "https:/" + "/api.ethers.io/api/v1/?action=fundAccount&address=" + this.toAddress.toLowerCase();
-            return ethers.utils.fetchJson(url).then((data) => {
+            let url = "https:/" + "/api.vapors.io/api/v1/?action=fundAccount&address=" + this.toAddress.toLowerCase();
+            return vapors.utils.fetchJson(url).then((data) => {
                 console.log("Transaction Hash: " + data.hash);
             });
         });
@@ -334,7 +334,7 @@ class InfoPlugin extends Plugin {
                 runners.push(account.getAddress());
             });
             args.forEach((arg) => {
-                if (ethers.utils.isAddress(arg)) {
+                if (vapors.utils.isAddress(arg)) {
                     this.queries.push(`Address: ${arg}`);
                 }
                 else {
@@ -349,7 +349,7 @@ class InfoPlugin extends Plugin {
         return __awaiter(this, void 0, void 0, function* () {
             for (let i = 0; i < this.addresses.length; i++) {
                 let address = this.addresses[i];
-                let { balance, nonce, code, reverse } = yield ethers.utils.resolveProperties({
+                let { balance, nonce, code, reverse } = yield vapors.utils.resolveProperties({
                     balance: this.provider.getBalance(address),
                     nonce: this.provider.getTransactionCount(address),
                     code: this.provider.getCode(address),
@@ -357,7 +357,7 @@ class InfoPlugin extends Plugin {
                 });
                 let info = {
                     "Address": address,
-                    "Balance": (ethers.utils.formatEther(balance) + " ether"),
+                    "Balance": (vapors.utils.formatEther(balance) + " ether"),
                     "Transaction Count": nonce
                 };
                 if (code != "0x") {
@@ -400,7 +400,7 @@ class SendPlugin extends Plugin {
             if (this.accounts.length !== 1) {
                 this.throwUsageError("send requires exactly one account");
             }
-            this.data = ethers.utils.hexlify(argParser.consumeOption("data") || "0x");
+            this.data = vapors.utils.hexlify(argParser.consumeOption("data") || "0x");
             this.allowZero = argParser.consumeFlag("allow-zero");
         });
     }
@@ -414,7 +414,7 @@ class SendPlugin extends Plugin {
                 this.throwUsageError("send requires exactly ADDRESS and AMOUNT");
             }
             this.toAddress = yield this.getAddress(args[0], "Cannot send to the zero address (use --allow-zero to override)", this.allowZero);
-            this.value = ethers.utils.parseEther(args[1]);
+            this.value = vapors.utils.parseEther(args[1]);
         });
     }
     run() {
@@ -462,7 +462,7 @@ class SweepPlugin extends Plugin {
     }
     run() {
         return __awaiter(this, void 0, void 0, function* () {
-            let { balance, gasPrice, code } = yield ethers.utils.resolveProperties({
+            let { balance, gasPrice, code } = yield vapors.utils.resolveProperties({
                 balance: this.provider.getBalance(this.accounts[0].getAddress()),
                 gasPrice: (this.gasPrice || this.provider.getGasPrice()),
                 code: this.provider.getCode(this.toAddress)
@@ -534,7 +534,7 @@ class EvalPlugin extends Plugin {
     static getHelp() {
         return {
             name: "eval CODE",
-            help: "Run CODE in a VM with ethers"
+            help: "Run CODE in a VM with vapors"
         };
     }
     prepareArgs(args) {
@@ -568,7 +568,7 @@ class RunPlugin extends Plugin {
     static getHelp() {
         return {
             name: "run FILENAME",
-            help: "Run FILENAME in a VM with ethers"
+            help: "Run FILENAME in a VM with vapors"
         };
     }
     prepareArgs(args) {
@@ -654,7 +654,7 @@ class WrapEtherPlugin extends Plugin {
             if (args.length !== 1) {
                 this.throwError("wrap-ether requires exactly VALUE");
             }
-            this.value = ethers.utils.parseEther(args[0]);
+            this.value = vapors.utils.parseEther(args[0]);
             const address = yield this.accounts[0].getAddress();
             const balance = yield this.provider.getBalance(address);
             if (balance.lt(this.value)) {
@@ -667,9 +667,9 @@ class WrapEtherPlugin extends Plugin {
             let address = yield this.accounts[0].getAddress();
             this.dump("Wrapping ether", {
                 "From": address,
-                "Value": ethers.utils.formatEther(this.value)
+                "Value": vapors.utils.formatEther(this.value)
             });
-            let contract = new ethers.Contract(WethAddress, WethAbi, this.accounts[0]);
+            let contract = new vapors.Contract(WethAddress, WethAbi, this.accounts[0]);
             yield contract.deposit({ value: this.value });
         });
     }
@@ -694,7 +694,7 @@ class UnwrapEtherPlugin extends Plugin {
             if (args.length !== 1) {
                 this.throwError("unwrap-ether requires exactly VALUE");
             }
-            this.value = ethers.utils.parseEther(args[0]);
+            this.value = vapors.utils.parseEther(args[0]);
         });
     }
     run() {
@@ -706,9 +706,9 @@ class UnwrapEtherPlugin extends Plugin {
             let address = yield this.accounts[0].getAddress();
             this.dump("Withdrawing Wrapped Ether", {
                 "To": address,
-                "Value": ethers.utils.formatEther(this.value)
+                "Value": vapors.utils.formatEther(this.value)
             });
-            let contract = new ethers.Contract(WethAddress, WethAbi, this.accounts[0]);
+            let contract = new vapors.Contract(WethAddress, WethAbi, this.accounts[0]);
             yield contract.withdraw(this.value);
         });
     }
@@ -745,10 +745,10 @@ class SendTokenPlugin extends Plugin {
                 this.throwError("send-token requires exactly one account");
             }
             let tokenAddress = yield this.getAddress(args[0]);
-            this.contract = new ethers.Contract(tokenAddress, Erc20Abi, this.accounts[0]);
+            this.contract = new vapors.Contract(tokenAddress, Erc20Abi, this.accounts[0]);
             this.decimals = yield this.contract.decimals();
             this.toAddress = yield this.getAddress(args[1]);
-            this.value = ethers.utils.parseUnits(args[2], this.decimals);
+            this.value = vapors.utils.parseUnits(args[2], this.decimals);
         });
     }
     run() {
@@ -756,7 +756,7 @@ class SendTokenPlugin extends Plugin {
             const info = {
                 "To": this.toAddress,
                 "Token Contract": this.contract.address,
-                "Value": ethers.utils.formatUnits(this.value, this.decimals)
+                "Value": vapors.utils.formatUnits(this.value, this.decimals)
             };
             let namePromise = this.contract.name().then((name) => {
                 if (name === "") {
@@ -764,9 +764,9 @@ class SendTokenPlugin extends Plugin {
                 }
                 info["Token Name"] = name;
             }, (error) => {
-                let contract = new ethers.Contract(this.contract.address, Erc20AltAbi, this.contract.signer);
+                let contract = new vapors.Contract(this.contract.address, Erc20AltAbi, this.contract.signer);
                 contract.name().then((name) => {
-                    info["Token Name"] = ethers.utils.parseBytes32String(name);
+                    info["Token Name"] = vapors.utils.parseBytes32String(name);
                 }, (error) => {
                     throw error;
                 });
@@ -777,9 +777,9 @@ class SendTokenPlugin extends Plugin {
                 }
                 info["Token Symbol"] = symbol;
             }, (error) => {
-                let contract = new ethers.Contract(this.contract.address, Erc20AltAbi, this.contract.signer);
+                let contract = new vapors.Contract(this.contract.address, Erc20AltAbi, this.contract.signer);
                 contract.symbol().then((symbol) => {
-                    info["Token Symbol"] = ethers.utils.parseBytes32String(symbol);
+                    info["Token Symbol"] = vapors.utils.parseBytes32String(symbol);
                 }, (error) => {
                     throw error;
                 });
@@ -859,7 +859,7 @@ class CompilePlugin extends Plugin {
                 output[contract.name] = {
                     bytecode: contract.bytecode,
                     runtime: contract.runtime,
-                    interface: contract.interface.fragments.map((f) => f.format(ethers.utils.FormatTypes.full)),
+                    interface: contract.interface.fragments.map((f) => f.format(vapors.utils.FormatTypes.full)),
                     compiler: contract.compiler
                 };
             });
@@ -940,11 +940,11 @@ class DeployPlugin extends Plugin {
             if (codes.length === 0) {
                 this.throwError("No contract found");
             }
-            const factory = new ethers.ContractFactory(codes[0].interface, codes[0].bytecode, this.accounts[0]);
+            const factory = new vapors.ContractFactory(codes[0].interface, codes[0].bytecode, this.accounts[0]);
             dump("Deploying:", {
                 Contract: codes[0].name,
                 Bytecode: codes[0].bytecode,
-                Interface: codes[0].interface.fragments.map((f) => f.format(ethers.utils.FormatTypes.full)),
+                Interface: codes[0].interface.fragments.map((f) => f.format(vapors.utils.FormatTypes.full)),
                 Compiler: codes[0].compiler,
                 Optimizer: (this.noOptimize ? "No" : "Yes")
             });
@@ -958,4 +958,4 @@ class DeployPlugin extends Plugin {
 }
 cli.addPlugin("deploy", DeployPlugin);
 cli.run(process.argv.slice(2));
-//# sourceMappingURL=ethers.js.map
+//# sourceMappingURL=vapors.js.map

@@ -1,10 +1,10 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
-Ethereum Basics
+Vapory Basics
 ===============
 
 * [Events](events)

@@ -1,32 +1,32 @@
 "use strict"
 
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 
 import { version } from "./_version";
 
-const logger = new ethers.utils.Logger(version);
+const logger = new vapors.utils.Logger(version);
 
 // @TODO: Keep a per-NonceManager pool of sent but unmined transactions for
 //        rebroadcasting, in case we overrun the transaction pool
 
-export class NonceManager extends ethers.Signer {
-    readonly signer: ethers.Signer;
+export class NonceManager extends vapors.Signer {
+    readonly signer: vapors.Signer;
 
     _initialPromise: Promise<number>;
     _deltaCount: number;
 
-    constructor(signer: ethers.Signer) {
+    constructor(signer: vapors.Signer) {
         logger.checkNew(new.target, NonceManager);
         super();
         this._deltaCount = 0;
-        ethers.utils.defineReadOnly(this, "signer", signer);
+        vapors.utils.defineReadOnly(this, "signer", signer);
     }
 
-    get provider(): ethers.providers.Provider {
+    get provider(): vapors.providers.Provider {
         return this.signer.provider;
     }
 
-    connect(provider: ethers.providers.Provider): NonceManager {
+    connect(provider: vapors.providers.Provider): NonceManager {
         return new NonceManager(this.signer.connect(provider));
     }
 
@@ -34,7 +34,7 @@ export class NonceManager extends ethers.Signer {
         return this.signer.getAddress();
     }
 
-    getTransactionCount(blockTag?: ethers.providers.BlockTag): Promise<number> {
+    getTransactionCount(blockTag?: vapors.providers.BlockTag): Promise<number> {
         if (blockTag === "pending") {
             if (!this._initialPromise) {
                 this._initialPromise = this.signer.getTransactionCount("pending");
@@ -46,9 +46,9 @@ export class NonceManager extends ethers.Signer {
         return this.signer.getTransactionCount(blockTag);
     }
 
-    setTransactionCount(transactionCount: ethers.BigNumberish | Promise<ethers.BigNumberish>): void {
+    setTransactionCount(transactionCount: vapors.BigNumberish | Promise<vapors.BigNumberish>): void {
         this._initialPromise = Promise.resolve(transactionCount).then((nonce) => {
-            return ethers.BigNumber.from(nonce).toNumber();
+            return vapors.BigNumber.from(nonce).toNumber();
         });
         this._deltaCount = 0;
     }
@@ -57,17 +57,17 @@ export class NonceManager extends ethers.Signer {
         this._deltaCount += (count ? count: 1);
     }
 
-    signMessage(message: ethers.Bytes | string): Promise<string> {
+    signMessage(message: vapors.Bytes | string): Promise<string> {
         return this.signer.signMessage(message);;
     }
 
-    signTransaction(transaction: ethers.utils.Deferrable<ethers.providers.TransactionRequest>): Promise<string> {
+    signTransaction(transaction: vapors.utils.Deferrable<vapors.providers.TransactionRequest>): Promise<string> {
         return this.signer.signTransaction(transaction);
     }
 
-    sendTransaction(transaction: ethers.utils.Deferrable<ethers.providers.TransactionRequest>): Promise<ethers.providers.TransactionResponse> {
+    sendTransaction(transaction: vapors.utils.Deferrable<vapors.providers.TransactionRequest>): Promise<vapors.providers.TransactionResponse> {
         if (transaction.nonce == null) {
-            transaction = ethers.utils.shallowCopy(transaction);
+            transaction = vapors.utils.shallowCopy(transaction);
             transaction.nonce = this.getTransactionCount("pending");
             this.incrementTransactionCount();
         } else {

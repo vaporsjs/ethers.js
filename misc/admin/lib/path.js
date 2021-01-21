@@ -52,7 +52,7 @@ function getPackageJsonPath(name) {
     return getPackageInfo(name).packageJsonPath;
 }
 exports.getPackageJsonPath = getPackageJsonPath;
-function isEthers(name) {
+function isVapors(name) {
     return !!packageLookup[name];
 }
-exports.isEthers = isEthers;
+exports.isVapors = isVapors;

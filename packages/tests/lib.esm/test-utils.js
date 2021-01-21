@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import assert from 'assert';
-import { ethers } from "ethers";
-import { loadTests } from "@ethersproject/testcases";
+import { vapors } from "vapors";
+import { loadTests } from "@vaporsproject/testcases";
 import * as utils from './utils';
 function equals(a, b) {
     if (Array.isArray(a)) {
@@ -28,7 +28,7 @@ function equals(a, b) {
 }
 describe('Test Contract Address Generation', function () {
     // @TODO: Mine a large collection of these from the blockchain
-    let getContractAddress = ethers.utils.getContractAddress;
+    let getContractAddress = vapors.utils.getContractAddress;
     let Tests = [
         // Transaction: 0x939aa17985bc2a52a0c1cba9497ef09e092355a805a8150e30e24b753bac6864
         {
@@ -55,7 +55,7 @@ describe('Test Contract Address Generation', function () {
                 nonce: "0x0a",
             }
         },
-        // Ropsten: https://etherscan.io/tx/0x78d17f8ab31fb6ad688340634a9a29d8726feb6d588338a9b9b21a44159bc916
+        // Ropsten: https://vaporscan.io/tx/0x78d17f8ab31fb6ad688340634a9a29d8726feb6d588338a9b9b21a44159bc916
         {
             address: '0x271300790813f82638A8A6A8a86d65df6dF33c17',
             name: 'tx-0x78d17f8a (odd-long-hex)',
@@ -72,7 +72,7 @@ describe('Test Contract Address Generation', function () {
                 nonce: "0x0200",
             }
         },
-        // https://ropsten.etherscan.io/tx/0x444ea8ae9890ac0ee5fd249512726abf9d23f44a378d5f45f727b65dc1b899c2
+        // https://ropsten.vaporscan.io/tx/0x444ea8ae9890ac0ee5fd249512726abf9d23f44a378d5f45f727b65dc1b899c2
         {
             address: '0x995C25706C407a1F1E84b3777775e3e619764933',
             name: 'tx-0x444ea8ae (even-long-hex)',
@@ -119,30 +119,30 @@ describe('Test RLP Coder', function () {
     tests.forEach(function (test) {
         it(('RLP coder encoded - ' + test.name), function () {
             this.timeout(120000);
-            assert.equal(ethers.utils.RLP.encode(test.decoded), test.encoded, 'RLP encoded - ' + test.name);
+            assert.equal(vapors.utils.RLP.encode(test.decoded), test.encoded, 'RLP encoded - ' + test.name);
         });
     });
     tests.forEach((test) => {
         it(('RLP coder decoded - ' + test.name), function () {
             this.timeout(120000);
-            assert.ok(equals(ethers.utils.RLP.decode(test.encoded), test.decoded), 'RLP decoded - ' + test.name);
+            assert.ok(equals(vapors.utils.RLP.decode(test.encoded), test.decoded), 'RLP decoded - ' + test.name);
         });
     });
 });
 describe('Test Unit Conversion', function () {
     const tests = loadTests('units');
     tests.forEach((test) => {
-        let wei = ethers.BigNumber.from(test.wei);
-        it(('parses ' + test.ether + ' ether'), function () {
-            assert.ok(ethers.utils.parseEther(test.ether.replace(/,/g, '')).eq(wei), 'parsing ether failed - ' + test.name);
+        let wei = vapors.BigNumber.from(test.wei);
+        it(('parses ' + test.vaper + ' ether'), function () {
+            assert.ok(vapors.utils.parseEther(test.vaper.replace(/,/g, '')).eq(wei), 'parsing ether failed - ' + test.name);
         });
         it(('formats ' + wei.toString() + ' wei to ether'), function () {
-            let actual = ethers.utils.formatEther(wei);
-            assert.equal(actual, test.ether_format, 'formatting wei failed - ' + test.name);
+            let actual = vapors.utils.formatEther(wei);
+            assert.equal(actual, test.vaper_format, 'formatting wei failed - ' + test.name);
         });
     });
     tests.forEach((test) => {
-        let wei = ethers.BigNumber.from(test.wei);
+        let wei = vapors.BigNumber.from(test.wei);
         ['kwei', 'mwei', 'gwei', 'szabo', 'finney', 'satoshi'].forEach((name) => {
             let unitName = name;
             if (name === 'satoshi') {
@@ -151,13 +151,13 @@ describe('Test Unit Conversion', function () {
             if (test[name]) {
                 it(('parses ' + test[name] + ' ' + name), function () {
                     this.timeout(120000);
-                    assert.ok(ethers.utils.parseUnits(test[name].replace(/,/g, ''), unitName).eq(wei), ('parsing ' + name + ' failed - ' + test.name));
+                    assert.ok(vapors.utils.parseUnits(test[name].replace(/,/g, ''), unitName).eq(wei), ('parsing ' + name + ' failed - ' + test.name));
                 });
             }
             let expectedKey = (name + '_format');
             if (test[expectedKey]) {
                 it(('formats ' + wei.toString() + ' wei to ' + name + ')'), function () {
-                    let actual = ethers.utils.formatUnits(wei, unitName);
+                    let actual = vapors.utils.formatUnits(wei, unitName);
                     let expected = test[expectedKey];
                     assert.equal(actual, expected, ('formats ' + name + ' - ' + test.name));
                 });
@@ -181,7 +181,7 @@ describe('Test Unit Conversion', function () {
             "998998998998.123456789": "998,998,998,998.123456789",
         };
         Object.keys(tests).forEach((test) => {
-            assert.equal(ethers.utils.commify(test), tests[test]);
+            assert.equal(vapors.utils.commify(test), tests[test]);
         });
     });
 });
@@ -190,13 +190,13 @@ describe('Test Namehash', function () {
     tests.forEach((test) => {
         it(('computes namehash - "' + test.name + '"'), function () {
             this.timeout(120000);
-            assert.equal(ethers.utils.namehash(test.name), test.expected, 'computes namehash(' + test.name + ')');
+            assert.equal(vapors.utils.namehash(test.name), test.expected, 'computes namehash(' + test.name + ')');
         });
     });
     it("isValidName", function () {
-        assert.ok(ethers.utils.isValidName("ricmoo.eth"));
-        assert.ok(!ethers.utils.isValidName(""));
-        assert.ok(!ethers.utils.isValidName("ricmoo..eth"));
+        assert.ok(vapors.utils.isValidName("ricmoo.vap"));
+        assert.ok(!vapors.utils.isValidName(""));
+        assert.ok(!vapors.utils.isValidName("ricmoo..vap"));
     });
 });
 describe('Test ID Hash Functions', function () {
@@ -210,7 +210,7 @@ describe('Test ID Hash Functions', function () {
     tests.forEach((test) => {
         it(('computes id - ' + test.name), function () {
             this.timeout(120000);
-            let actual = ethers.utils.id(test.text);
+            let actual = vapors.utils.id(test.text);
             assert.equal(actual, test.expected, 'computes id(' + test.text + ')');
         });
     });
@@ -221,7 +221,7 @@ describe('Test Solidity Hash Functions', function () {
         it(`computes ${funcName} correctly`, function () {
             this.timeout(120000);
             tests.forEach((test, index) => {
-                let actual = (ethers.utils)['solidity' + funcName](test.types, test.values);
+                let actual = (vapors.utils)['solidity' + funcName](test.types, test.values);
                 let expected = test[testKey];
                 assert.equal(actual, expected, ('computes solidity-' + funcName + '(' + JSON.stringify(test.values) + ') - ' + test.types));
             });
@@ -242,7 +242,7 @@ describe('Test Solidity Hash Functions', function () {
     testsInvalid.forEach((type) => {
         it(`disallows invalid type "${type}"`, function () {
             assert.throws(() => {
-                ethers.utils.solidityPack([type], ["0x12"]);
+                vapors.utils.solidityPack([type], ["0x12"]);
             }, (error) => {
                 const message = error.message;
                 return (message.match(/invalid([a-z ]*) type/) && message.indexOf(type) >= 0);
@@ -255,19 +255,19 @@ describe('Test Hash Functions', function () {
     it('computes keccak256 correctly', function () {
         this.timeout(120000);
         tests.forEach(function (test) {
-            assert.equal(ethers.utils.keccak256(test.data), test.keccak256, ('Keccak256 - ' + test.data));
+            assert.equal(vapors.utils.keccak256(test.data), test.keccak256, ('Keccak256 - ' + test.data));
         });
     });
     it('computes sha2-256 correctly', function () {
         this.timeout(120000);
         tests.forEach(function (test) {
-            assert.equal(ethers.utils.sha256(test.data), test.sha256, ('SHA256 - ' + test.data));
+            assert.equal(vapors.utils.sha256(test.data), test.sha256, ('SHA256 - ' + test.data));
         });
     });
     it('computes sha2-512 correctly', function () {
         this.timeout(120000);
         tests.forEach(function (test) {
-            assert.equal(ethers.utils.sha512(test.data), test.sha512, ('SHA512 - ' + test.data));
+            assert.equal(vapors.utils.sha512(test.data), test.sha512, ('SHA512 - ' + test.data));
         });
     });
 });
@@ -277,8 +277,8 @@ describe('Test Solidity splitSignature', function () {
         let r = '0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef';
         let s = '0xcafe1a7ecafe1a7ecafe1a7ecafe1a7ecafe1a7ecafe1a7ecafe1a7ecafe1a7e';
         for (let v = 27; v <= 28; v++) {
-            let signature = ethers.utils.concat([r, s, [v]]);
-            let sig = ethers.utils.splitSignature(signature);
+            let signature = vapors.utils.concat([r, s, [v]]);
+            let sig = vapors.utils.splitSignature(signature);
             assert.equal(sig.r, r, 'split r correctly');
             assert.equal(sig.s, s, 'split s correctly');
             assert.equal(sig.v, v, 'split v correctly');
@@ -289,8 +289,8 @@ describe('Test Solidity splitSignature', function () {
         let r = '0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef';
         let s = '0xcafe1a7ecafe1a7ecafe1a7ecafe1a7ecafe1a7ecafe1a7ecafe1a7ecafe1a7e';
         for (let v = 27; v <= 28; v++) {
-            let signature = ethers.utils.concat([r, s, [v - 27]]);
-            let sig = ethers.utils.splitSignature(signature);
+            let signature = vapors.utils.concat([r, s, [v - 27]]);
+            let sig = vapors.utils.splitSignature(signature);
             assert.equal(sig.r, r, 'split r correctly');
             assert.equal(sig.s, s, 'split s correctly');
             assert.equal(sig.v, v, 'split v correctly');
@@ -302,19 +302,19 @@ describe('Test Base64 coder', function () {
     it('encodes and decodes the example from wikipedia', function () {
         this.timeout(120000);
         let decodedText = 'Man is distinguished, not only by his reason, but by this singular passion from other animals, which is a lust of the mind, that by a perseverance of delight in the continued and indefatigable generation of knowledge, exceeds the short vehemence of any carnal pleasure.';
-        let decoded = ethers.utils.toUtf8Bytes(decodedText);
+        let decoded = vapors.utils.toUtf8Bytes(decodedText);
         let encoded = 'TWFuIGlzIGRpc3Rpbmd1aXNoZWQsIG5vdCBvbmx5IGJ5IGhpcyByZWFzb24sIGJ1dCBieSB0aGlzIHNpbmd1bGFyIHBhc3Npb24gZnJvbSBvdGhlciBhbmltYWxzLCB3aGljaCBpcyBhIGx1c3Qgb2YgdGhlIG1pbmQsIHRoYXQgYnkgYSBwZXJzZXZlcmFuY2Ugb2YgZGVsaWdodCBpbiB0aGUgY29udGludWVkIGFuZCBpbmRlZmF0aWdhYmxlIGdlbmVyYXRpb24gb2Yga25vd2xlZGdlLCBleGNlZWRzIHRoZSBzaG9ydCB2ZWhlbWVuY2Ugb2YgYW55IGNhcm5hbCBwbGVhc3VyZS4=';
-        assert.equal(ethers.utils.base64.encode(decoded), encoded, 'encodes to base64 string');
-        assert.equal(ethers.utils.toUtf8String(ethers.utils.base64.decode(encoded)), decodedText, 'decodes from base64 string');
+        assert.equal(vapors.utils.base64.encode(decoded), encoded, 'encodes to base64 string');
+        assert.equal(vapors.utils.toUtf8String(vapors.utils.base64.decode(encoded)), decodedText, 'decodes from base64 string');
     });
 });
 describe('Test UTF-8 coder', function () {
-    const overlong = ethers.utils.Utf8ErrorReason.OVERLONG;
-    const utf16Surrogate = ethers.utils.Utf8ErrorReason.UTF16_SURROGATE;
-    const overrun = ethers.utils.Utf8ErrorReason.OVERRUN;
-    const missingContinue = ethers.utils.Utf8ErrorReason.MISSING_CONTINUE;
-    const unexpectedContinue = ethers.utils.Utf8ErrorReason.UNEXPECTED_CONTINUE;
-    const outOfRange = ethers.utils.Utf8ErrorReason.OUT_OF_RANGE;
+    const overlong = vapors.utils.Utf8ErrorReason.OVERLONG;
+    const utf16Surrogate = vapors.utils.Utf8ErrorReason.UTF16_SURROGATE;
+    const overrun = vapors.utils.Utf8ErrorReason.OVERRUN;
+    const missingContinue = vapors.utils.Utf8ErrorReason.MISSING_CONTINUE;
+    const unexpectedContinue = vapors.utils.Utf8ErrorReason.UNEXPECTED_CONTINUE;
+    const outOfRange = vapors.utils.Utf8ErrorReason.OUT_OF_RANGE;
     let BadUTF = [
         // See: https://en.wikipedia.org/wiki/UTF-8#Overlong_encodings
         { bytes: [0xF0, 0x82, 0x82, 0xAC], reason: overlong, ignored: "", replaced: "\u20ac", name: 'wikipedia overlong encoded Euro sign' },
@@ -339,14 +339,14 @@ describe('Test UTF-8 coder', function () {
     BadUTF.forEach(function (test) {
         it('toUtf8String - ' + test.name, function () {
             // Check the string using the ignoreErrors conversion
-            const ignored = ethers.utils.toUtf8String(test.bytes, ethers.utils.Utf8ErrorFuncs.ignore);
+            const ignored = vapors.utils.toUtf8String(test.bytes, vapors.utils.Utf8ErrorFuncs.ignore);
             assert.equal(ignored, test.ignored, "ignoring errors matches");
             // Check the string using the replaceErrors conversion
-            const replaced = ethers.utils.toUtf8String(test.bytes, ethers.utils.Utf8ErrorFuncs.replace);
+            const replaced = vapors.utils.toUtf8String(test.bytes, vapors.utils.Utf8ErrorFuncs.replace);
             assert.equal(replaced, test.replaced, "replaced errors matches");
             // Check the string throws the correct error during conversion
             assert.throws(function () {
-                let result = ethers.utils.toUtf8String(test.bytes);
+                let result = vapors.utils.toUtf8String(test.bytes);
                 console.log('Result', result);
             }, function (error) {
                 return (error.message.split(";").pop().split("(")[0].trim() === test.reason);
@@ -381,9 +381,9 @@ describe('Test UTF-8 coder', function () {
         for (let i = 0; i < 100000; i++) {
             let seed = 'test-' + String(i);
             let str = randomString(seed);
-            let bytes = ethers.utils.toUtf8Bytes(str);
-            let str2 = ethers.utils.toUtf8String(bytes);
-            let escaped = JSON.parse(ethers.utils._toEscapedUtf8String(bytes));
+            let bytes = vapors.utils.toUtf8Bytes(str);
+            let str2 = vapors.utils.toUtf8String(bytes);
+            let escaped = JSON.parse(vapors.utils._toEscapedUtf8String(bytes));
             //            assert.ok(Buffer.from(str).equals(Buffer.from(bytes)), 'bytes not generated correctly - ' + bytes)
             assert.equal(str2, str, 'conversion not reflexive - ' + bytes);
             assert.equal(escaped, str, 'conversion not reflexive - ' + bytes);
@@ -393,15 +393,15 @@ describe('Test UTF-8 coder', function () {
 describe('Test Bytes32String coder', function () {
     // @TODO: a LOT more test cases; generated from Solidity
     it("encodes an ens name", function () {
-        let str = "ricmoo.firefly.eth";
-        let bytes32 = ethers.utils.formatBytes32String(str);
-        let str2 = ethers.utils.parseBytes32String(bytes32);
+        let str = "ricmoo.firefly.vap";
+        let bytes32 = vapors.utils.formatBytes32String(str);
+        let str2 = vapors.utils.parseBytes32String(bytes32);
         assert.equal(bytes32, '0x7269636d6f6f2e66697265666c792e6574680000000000000000000000000000', 'formatted correctly');
         assert.equal(str2, str, "parsed correctly");
     });
 });
 function getHex(value) {
-    return ethers.utils.hexlify(ethers.utils.toUtf8Bytes(value));
+    return vapors.utils.hexlify(vapors.utils.toUtf8Bytes(value));
 }
 describe("Test nameprep", function () {
     const Tests = loadTests("nameprep");
@@ -419,17 +419,17 @@ describe("Test nameprep", function () {
             return;
         }
         it(test.comment, function () {
-            let input = ethers.utils.toUtf8String(test.input);
+            let input = vapors.utils.toUtf8String(test.input);
             if (test.output) {
-                let expected = ethers.utils.toUtf8String(test.output);
-                let actual = ethers.utils.nameprep(input);
+                let expected = vapors.utils.toUtf8String(test.output);
+                let actual = vapors.utils.nameprep(input);
                 assert.equal(actual, expected, `actual("${getHex(actual)}") !== expected("${getHex(expected)}")`);
             }
             else {
                 let ok = true;
                 let reason = "";
                 try {
-                    let actual = ethers.utils.nameprep(input);
+                    let actual = vapors.utils.nameprep(input);
                     console.log(actual);
                     reason = `should has thrown ${test.rc} - actual("${getHex(actual)}")`;
                     ok = false;
@@ -445,25 +445,25 @@ describe("Test Signature Manipulation", function () {
     const tests = loadTests("transactions");
     tests.forEach((test) => {
         it("autofills partial signatures - " + test.name, function () {
-            const address = ethers.utils.getAddress(test.accountAddress);
-            const hash = ethers.utils.keccak256(test.unsignedTransaction);
-            const data = ethers.utils.RLP.decode(test.signedTransaction);
+            const address = vapors.utils.getAddress(test.accountAddress);
+            const hash = vapors.utils.keccak256(test.unsignedTransaction);
+            const data = vapors.utils.RLP.decode(test.signedTransaction);
             const s = data.pop(), r = data.pop(), v = parseInt(data.pop().substring(2), 16);
-            const sig = ethers.utils.splitSignature({ r: r, s: s, v: v });
+            const sig = vapors.utils.splitSignature({ r: r, s: s, v: v });
             {
-                const addr = ethers.utils.recoverAddress(hash, {
+                const addr = vapors.utils.recoverAddress(hash, {
                     r: r, s: s, v: v
                 });
                 assert.equal(addr, address, "Using r, s and v");
             }
             {
-                const addr = ethers.utils.recoverAddress(hash, {
+                const addr = vapors.utils.recoverAddress(hash, {
                     r: sig.r, _vs: sig._vs
                 });
                 assert.equal(addr, address, "Using r, _vs");
             }
             {
-                const addr = ethers.utils.recoverAddress(hash, {
+                const addr = vapors.utils.recoverAddress(hash, {
                     r: sig.r, s: sig.s, recoveryParam: sig.recoveryParam
                 });
                 assert.equal(addr, address, "Using r, s and recoveryParam");
@@ -477,7 +477,7 @@ describe("BigNumber", function () {
         if (test.expectedValue == null) {
             it(test.testcase, function () {
                 assert.throws(() => {
-                    const value = ethers.BigNumber.from(test.value);
+                    const value = vapors.BigNumber.from(test.value);
                     console.log("ERROR", value);
                 }, (error) => {
                     return true;
@@ -486,9 +486,9 @@ describe("BigNumber", function () {
         }
         else {
             it(test.testcase, function () {
-                const value = ethers.BigNumber.from(test.value);
+                const value = vapors.BigNumber.from(test.value);
                 assert.equal(value.toHexString(), test.expectedValue);
-                const value2 = ethers.BigNumber.from(value);
+                const value2 = vapors.BigNumber.from(value);
                 assert.equal(value2.toHexString(), test.expectedValue);
             });
         }
@@ -504,8 +504,8 @@ describe("BigNumber", function () {
         { value: "-0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", expected: "0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff" },
     ].forEach((test) => {
         it(`absolute value (${test.value})`, function () {
-            const value = ethers.BigNumber.from(test.value);
-            const expected = ethers.BigNumber.from(test.expected);
+            const value = vapors.BigNumber.from(test.value);
+            const expected = vapors.BigNumber.from(test.expected);
             assert.ok(value.abs().eq(expected));
         });
     });
@@ -513,7 +513,7 @@ describe("BigNumber", function () {
     it("Fails on junk with a length property", function () {
         const junk = { negative: 0, words: [1000], length: 1, red: null };
         assert.throws(() => {
-            const value = ethers.BigNumber.from("100").add(junk);
+            const value = vapors.BigNumber.from("100").add(junk);
             console.log("ERROR", value);
         }, (error) => {
             return true;
@@ -537,7 +537,7 @@ describe("FixedNumber", function () {
         ];
         Tests.forEach((test) => {
             it(`Create from=${test.value}`, function () {
-                const value = ethers.FixedNumber.from(test.value);
+                const value = vapors.FixedNumber.from(test.value);
                 assert.equal(value.toString(), test.expected);
             });
         });
@@ -561,7 +561,7 @@ describe("FixedNumber", function () {
         ];
         Tests.forEach((test) => {
             it(`Rounding value=${test.value}, decimals=${test.round}`, function () {
-                const value = ethers.FixedNumber.from(test.value).round(test.round);
+                const value = vapors.FixedNumber.from(test.value).round(test.round);
                 assert.equal(value.toString(), test.expected);
             });
         });
@@ -577,7 +577,7 @@ describe("FixedNumber", function () {
         ];
         Tests.forEach((test) => {
             it(`Clamping value=${test.value}`, function () {
-                const value = ethers.FixedNumber.from(test.value);
+                const value = vapors.FixedNumber.from(test.value);
                 assert.equal(value.floor().toString(), test.floor);
                 assert.equal(value.ceiling().toString(), test.ceiling);
             });
@@ -585,15 +585,15 @@ describe("FixedNumber", function () {
     }
 });
 describe("Logger", function () {
-    const logger = new ethers.utils.Logger("testing/0.0");
+    const logger = new vapors.utils.Logger("testing/0.0");
     it("setLogLevel", function () {
-        ethers.utils.Logger.setLogLevel(ethers.utils.Logger.levels.DEBUG);
-        ethers.utils.Logger.setLogLevel(ethers.utils.Logger.levels.INFO);
-        ethers.utils.Logger.setLogLevel(ethers.utils.Logger.levels.WARNING);
-        ethers.utils.Logger.setLogLevel(ethers.utils.Logger.levels.ERROR);
-        ethers.utils.Logger.setLogLevel(ethers.utils.Logger.levels.OFF);
+        vapors.utils.Logger.setLogLevel(vapors.utils.Logger.levels.DEBUG);
+        vapors.utils.Logger.setLogLevel(vapors.utils.Logger.levels.INFO);
+        vapors.utils.Logger.setLogLevel(vapors.utils.Logger.levels.WARNING);
+        vapors.utils.Logger.setLogLevel(vapors.utils.Logger.levels.ERROR);
+        vapors.utils.Logger.setLogLevel(vapors.utils.Logger.levels.OFF);
         // Reset back to INFO when done tests
-        ethers.utils.Logger.setLogLevel(ethers.utils.Logger.levels.INFO);
+        vapors.utils.Logger.setLogLevel(vapors.utils.Logger.levels.INFO);
     });
     it("checkArgumentCount", function () {
         logger.checkArgumentCount(3, 3);
@@ -602,30 +602,30 @@ describe("Logger", function () {
         assert.throws(() => {
             logger.checkArgumentCount(1, 3);
         }, (error) => {
-            return error.code === ethers.utils.Logger.errors.MISSING_ARGUMENT;
+            return error.code === vapors.utils.Logger.errors.MISSING_ARGUMENT;
         });
     });
     it("checkArgumentCount - too many", function () {
         assert.throws(() => {
             logger.checkArgumentCount(3, 1);
         }, (error) => {
-            return error.code === ethers.utils.Logger.errors.UNEXPECTED_ARGUMENT;
+            return error.code === vapors.utils.Logger.errors.UNEXPECTED_ARGUMENT;
         });
     });
 });
 describe("Base58 Coder", function () {
     it("decodes", function () {
-        assert.equal(ethers.utils.toUtf8String(ethers.utils.base58.decode("JxF12TrwUP45BMd")), "Hello World");
+        assert.equal(vapors.utils.toUtf8String(vapors.utils.base58.decode("JxF12TrwUP45BMd")), "Hello World");
     });
     it("encodes", function () {
-        assert.equal(ethers.utils.base58.encode(ethers.utils.toUtf8Bytes("Hello World")), "JxF12TrwUP45BMd");
+        assert.equal(vapors.utils.base58.encode(vapors.utils.toUtf8Bytes("Hello World")), "JxF12TrwUP45BMd");
     });
 });
 /*
 describe("Web Fetch", function() {
     it("fetches JSON", async function() {
-        const url = "https:/\/api.etherscan.io/api?module=stats&action=ethprice&apikey=9D13ZE7XSBTJ94N9BNJ2MA33VMAY2YPIRB";
-        const getData = ethers.utils.fetchJson(url)
+        const url = "https:/\/api.vaporscan.io/api?module=stats&action=ethprice&apikey=9D13ZE7XSBTJ94N9BNJ2MA33VMAY2YPIRB";
+        const getData = vapors.utils.fetchJson(url)
     });
 });
 */
@@ -633,12 +633,12 @@ describe("EIP-712", function () {
     const tests = loadTests("eip712");
     tests.forEach((test) => {
         it(`encoding ${test.name}`, function () {
-            const encoder = ethers.utils._TypedDataEncoder.from(test.types);
+            const encoder = vapors.utils._TypedDataEncoder.from(test.types);
             assert.equal(encoder.primaryType, test.primaryType, "instance.primaryType");
             assert.equal(encoder.encode(test.data), test.encoded, "instance.encode()");
             //console.log(test);
-            assert.equal(ethers.utils._TypedDataEncoder.getPrimaryType(test.types), test.primaryType, "getPrimaryType");
-            assert.equal(ethers.utils._TypedDataEncoder.hash(test.domain, test.types, test.data), test.digest, "digest");
+            assert.equal(vapors.utils._TypedDataEncoder.getPrimaryType(test.types), test.primaryType, "getPrimaryType");
+            assert.equal(vapors.utils._TypedDataEncoder.hash(test.domain, test.types, test.data), test.digest, "digest");
         });
     });
     tests.forEach((test) => {
@@ -647,7 +647,7 @@ describe("EIP-712", function () {
         }
         it(`signing ${test.name}`, function () {
             return __awaiter(this, void 0, void 0, function* () {
-                const wallet = new ethers.Wallet(test.privateKey);
+                const wallet = new vapors.Wallet(test.privateKey);
                 const signature = yield wallet._signTypedData(test.domain, test.types, test.data);
                 assert.equal(signature, test.signature, "signature");
             });

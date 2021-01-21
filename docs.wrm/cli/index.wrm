@@ -1,7 +1,7 @@
 _section: Command Line Interfaces
 
 _toc:
-    ethers
+    vapors
     asm
     ens
     typescript

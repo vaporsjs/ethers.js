@@ -1,8 +1,8 @@
-import { Fragment, Indexed, Interface, JsonFragment, Result } from "@ethersproject/abi";
-import { Block, BlockTag, Listener, Log, Provider, TransactionReceipt, TransactionRequest, TransactionResponse } from "@ethersproject/abstract-provider";
-import { Signer } from "@ethersproject/abstract-signer";
-import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
-import { BytesLike } from "@ethersproject/bytes";
+import { Fragment, Indexed, Interface, JsonFragment, Result } from "@vaporsproject/abi";
+import { Block, BlockTag, Listener, Log, Provider, TransactionReceipt, TransactionRequest, TransactionResponse } from "@vaporsproject/abstract-provider";
+import { Signer } from "@vaporsproject/abstract-signer";
+import { BigNumber, BigNumberish } from "@vaporsproject/bignumber";
+import { BytesLike } from "@vaporsproject/bytes";
 export interface Overrides {
     gasLimit?: BigNumberish | Promise<BigNumberish>;
     gasPrice?: BigNumberish | Promise<BigNumberish>;

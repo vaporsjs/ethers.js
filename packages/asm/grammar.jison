@@ -191,8 +191,8 @@ function getLoc(yy, start, end, statement) {
         };
     }
 
-    if (yy._ethersLocation) {
-        return yy._ethersLocation(result);
+    if (yy._vaporsLocation) {
+        return yy._vaporsLocation(result);
     }
 
     return result;

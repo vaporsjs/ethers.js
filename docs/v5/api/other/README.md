@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -8,7 +8,7 @@ Other Libraries
 ===============
 
 * [Assembly](assembly)
-  * [Ethers ASM Dialect](assembly/dialect)
+  * [Vapors ASM Dialect](assembly/dialect)
     * [Opcodes](assembly/dialect)
     * [Labels](assembly/dialect)
     * [Literals](assembly/dialect)

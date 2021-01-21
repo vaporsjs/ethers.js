@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -105,12 +105,12 @@ Sub-classes **must** implement this, however they may throw if sending a transac
 
 #### *signer* . **_signTypedData**( domain , types , value ) => *Promise< string< [RawSignature](/v5/api/utils/bytes/#signature-raw) > >*
 
-Signs the typed data *value* with *types* data structure for *domain* using the [EIP-712](https://eips.ethereum.org/EIPS/eip-712) specification.
+Signs the typed data *value* with *types* data structure for *domain* using the [EIP-712](https://eips.vapory.org/EIPS/eip-712) specification.
 
 
 #### Experimental feature (this method name will change)
 
-This is still an experimental feature. If using it, please specify the **exact** version of ethers you are using (e.g. spcify `"5.0.18"`, **not** `"^5.0.18"`) as the method name will be renamed from `_signTypedData` to `signTypedData` once it has been used in the field a bit.
+This is still an experimental feature. If using it, please specify the **exact** version of vapors you are using (e.g. spcify `"5.0.18"`, **not** `"^5.0.18"`) as the method name will be renamed from `_signTypedData` to `signTypedData` once it has been used in the field a bit.
 
 
 ```javascript
@@ -178,37 +178,37 @@ The default implementation calls `checkTransaction` and resolves to if it is an 
 Wallet
 ------
 
-#### **new ***ethers* . **Wallet**( privateKey [ , provider ] )
+#### **new ***vapors* . **Wallet**( privateKey [ , provider ] )
 
 Create a new Wallet instance for *privateKey* and optionally connected to the *provider*.
 
 
-#### *ethers* . *Wallet* . **createRandom**( [ options = {} ] ) => *[Wallet](/v5/api/signer/#Wallet)*
+#### *vapors* . *Wallet* . **createRandom**( [ options = {} ] ) => *[Wallet](/v5/api/signer/#Wallet)*
 
 Returns a new Wallet with a random private key, generated from cryptographically secure entropy sources. If the current environment does not have a secure entropy source, an error is thrown.
 
 Wallets created using this method will have a mnemonic.
 
 
-#### *ethers* . *Wallet* . **fromEncryptedJson**( json , password [ , progress ] ) => *Promise< [Wallet](/v5/api/signer/#Wallet) >*
+#### *vapors* . *Wallet* . **fromEncryptedJson**( json , password [ , progress ] ) => *Promise< [Wallet](/v5/api/signer/#Wallet) >*
 
 Create an instance from an encrypted JSON wallet.
 
 If *progress* is provided it will be called during decryption with a value between 0 and 1 indicating the progress towards completion.
 
 
-#### *ethers* . *Wallet* . **fromEncryptedJsonSync**( json , password ) => *[Wallet](/v5/api/signer/#Wallet)*
+#### *vapors* . *Wallet* . **fromEncryptedJsonSync**( json , password ) => *[Wallet](/v5/api/signer/#Wallet)*
 
 Create an instance from an encrypted JSON wallet.
 
 This operation will operate synchronously which will lock up the user interface, possibly for a non-trivial duration. Most applications should use the asynchronous `fromEncryptedJson` instead.
 
 
-#### *ethers* . *Wallet* . **fromMnemonic**( mnemonic [ , path , [ wordlist ] ] ) => *[Wallet](/v5/api/signer/#Wallet)*
+#### *vapors* . *Wallet* . **fromMnemonic**( mnemonic [ , path , [ wordlist ] ] ) => *[Wallet](/v5/api/signer/#Wallet)*
 
 Create an instance from a mnemonic phrase.
 
-If path is not specified, the Ethereum default path is used (i.e. `m/44'/60'/0'/0/0`).
+If path is not specified, the Vapory default path is used (i.e. `m/44'/60'/0'/0/0`).
 
 If wordlist is not specified, the English Wordlist is used.
 
@@ -312,7 +312,7 @@ wallet.sendTransaction(tx)
 VoidSigner
 ----------
 
-#### **new ***ethers* . **VoidSigner**( address [ , provider ] ) => *[VoidSigner](/v5/api/signer/#VoidSigner)*
+#### **new ***vapors* . **VoidSigner**( address [ , provider ] ) => *[VoidSigner](/v5/api/signer/#VoidSigner)*
 
 Create a new instance of a **VoidSigner** for *address*.
 
@@ -324,14 +324,14 @@ The address of this **VoidSigner**.
 
 ```javascript
 address = "0x8ba1f109551bD432803012645Ac136ddd64DBA72"
-signer = new ethers.VoidSigner(address, provider)
+signer = new vapors.VoidSigner(address, provider)
 
 // The DAI token contract
 abi = [
   "function balanceOf(address) view returns (uint)",
   "function transfer(address, uint) returns (bool)"
 ]
-contract = new ethers.Contract("dai.tokens.ethers.eth", abi, signer)
+contract = new vapors.Contract("dai.tokens.vapors.vap", abi, signer)
 
 // Get the number of tokens for this account
 tokens = await contract.balanceOf(signer.getAddress())
@@ -347,11 +347,11 @@ tokens = await contract.balanceOf(signer.getAddress())
 //
 
 // This will pass since the token balance is available
-contract.callStatic.transfer("donations.ethers.eth", tokens)
+contract.callStatic.transfer("donations.vapors.vap", tokens)
 // { Promise: true }
 
 // This will fail since it is greater than the token balance
-contract.callStatic.transfer("donations.ethers.eth", tokens.add(1))
+contract.callStatic.transfer("donations.vapors.vap", tokens.add(1))
 // Error: call revert exception (method="transfer(address,uint256)", errorSignature="Error(string)", errorArgs=["Dai/insufficient-balance"], reason="Dai/insufficient-balance", code=CALL_EXCEPTION, version=abi/5.0.9)
 ```
 

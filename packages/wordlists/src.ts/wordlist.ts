@@ -3,10 +3,10 @@
 // This gets overridden by rollup
 const exportWordlist = false;
 
-import { id } from "@ethersproject/hash";
-import { defineReadOnly } from "@ethersproject/properties";
+import { id } from "@vaporsproject/hash";
+import { defineReadOnly } from "@vaporsproject/properties";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 export const logger = new Logger(version);
 
@@ -49,9 +49,9 @@ export abstract class Wordlist {
         if (exportWordlist) {
             try {
                 const anyGlobal = (window as any)
-                if (anyGlobal._ethers && anyGlobal._ethers.wordlists) {
-                    if (!anyGlobal._ethers.wordlists[name]) {
-                         defineReadOnly(anyGlobal._ethers.wordlists, name, lang);
+                if (anyGlobal._vapors && anyGlobal._vapors.wordlists) {
+                    if (!anyGlobal._vapors.wordlists[name]) {
+                         defineReadOnly(anyGlobal._vapors.wordlists, name, lang);
                     }
                 }
             } catch (error) { }

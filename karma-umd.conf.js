@@ -5,7 +5,7 @@ module.exports = function(config) {
     basePath: "./output/karma",
     frameworks: [ 'mocha' ],
     files: [
-        "./ethers.umd.js",
+        "./vapors.umd.js",
         "./tests.umd.js",
     ],
     reporters: [ 'karma' ],

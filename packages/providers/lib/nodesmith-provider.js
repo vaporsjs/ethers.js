@@ -15,11 +15,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var url_json_rpc_provider_1 = require("./url-json-rpc-provider");
-var logger_1 = require("@ethersproject/logger");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 var logger = new logger_1.Logger(_version_1.version);
-// Special API key provided by Nodesmith for ethers.js
-var defaultApiKey = "ETHERS_JS_SHARED";
+// Special API key provided by Nodesmith for vapors.js
+var defaultApiKey = "VAPORS_JS_SHARED";
 var NodesmithProvider = /** @class */ (function (_super) {
     __extends(NodesmithProvider, _super);
     function NodesmithProvider() {
@@ -36,19 +36,19 @@ var NodesmithProvider = /** @class */ (function (_super) {
         var host = null;
         switch (network.name) {
             case "homestead":
-                host = "https://ethereum.api.nodesmith.io/v1/mainnet/jsonrpc";
+                host = "https://vapory.api.nodesmith.io/v1/mainnet/jsonrpc";
                 break;
             case "ropsten":
-                host = "https://ethereum.api.nodesmith.io/v1/ropsten/jsonrpc";
+                host = "https://vapory.api.nodesmith.io/v1/ropsten/jsonrpc";
                 break;
             case "rinkeby":
-                host = "https://ethereum.api.nodesmith.io/v1/rinkeby/jsonrpc";
+                host = "https://vapory.api.nodesmith.io/v1/rinkeby/jsonrpc";
                 break;
             case "goerli":
-                host = "https://ethereum.api.nodesmith.io/v1/goerli/jsonrpc";
+                host = "https://vapory.api.nodesmith.io/v1/goerli/jsonrpc";
                 break;
             case "kovan":
-                host = "https://ethereum.api.nodesmith.io/v1/kovan/jsonrpc";
+                host = "https://vapory.api.nodesmith.io/v1/kovan/jsonrpc";
                 break;
             default:
                 logger.throwArgumentError("unsupported network", "network", arguments[0]);

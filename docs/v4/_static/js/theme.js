@@ -4,11 +4,11 @@ require=function r(s,a,l){function c(e,n){if(!a[e]){if(!s[e]){var i="function"==
 
 (function() {
     var banner = document.createElement("div");
-    banner.className = "ethers-banner";
-    banner.innerHTML = "<b>Note:</b> This documentation is for the legacy version 4 of ethers.js. You are probably looking for <a href=\"/v5/\">the version 5 documentation</a>.<span class=\"close\" id=\"ethers-banner-close\">&times;</span>";
+    banner.className = "vapors-banner";
+    banner.innerHTML = "<b>Note:</b> This documentation is for the legacy version 4 of vapors.js. You are probably looking for <a href=\"/v5/\">the version 5 documentation</a>.<span class=\"close\" id=\"vapors-banner-close\">&times;</span>";
     document.body.appendChild(banner);
 
-    document.getElementById("ethers-banner-close").onclick = function() {
+    document.getElementById("vapors-banner-close").onclick = function() {
         banner.parentNode.removeChild(banner);
     };
 })();

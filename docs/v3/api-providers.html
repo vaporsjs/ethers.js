@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Providers API &mdash; ethers.js 3.0.0 documentation</title>
+  <title>Providers API &mdash; vapors.js 3.0.0 documentation</title>
   
 
   
@@ -30,16 +30,16 @@
   
 
   
-    <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
   
-    <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
   
 
   
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="ethers.js 3.0.0 documentation" href="index.html"/>
+    <link rel="top" title="vapors.js 3.0.0 documentation" href="index.html"/>
         <link rel="up" title="Application Programming Interface (API)" href="api.html"/>
         <link rel="next" title="Contracts" href="api-contract.html"/>
         <link rel="prev" title="Wallets" href="api-wallet.html"/> 
@@ -61,7 +61,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> ethers.js
+            <a href="index.html" class="icon icon-home"> vapors.js
           
 
           
@@ -101,7 +101,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="api.html">Application Programming Interface (API)</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="api-wallet.html">Wallets</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Providers API</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#connecting-to-ethereum">Connecting to Ethereum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#connecting-to-vapory">Connecting to Vapory</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#examples"><em>Examples</em></a></li>
 </ul>
 </li>
@@ -109,7 +109,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#provider">Provider</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#fallbackprovider-inherits-from-provider">FallbackProvider <sup>( inherits from Provider )</sup></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#jsonrpcprovider-inherits-from-provider">JsonRpcProvider <sup>( inherits from Provider )</sup></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#etherscanprovider-inherits-from-provider">EtherscanProvider <sup>( inherits from Provider )</sup></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vaporscanprovider-inherits-from-provider">VaporscanProvider <sup>( inherits from Provider )</sup></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#infuraprovider-inherits-from-jsonrpcprovider">InfuraProvider <sup>( inherits from JsonRpcProvider )</sup></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web3provider-inherits-from-jsonrpcprovider">Web3Provider <sup>( inherits from JsonRpcProvider )</sup></a></li>
 </ul>
@@ -122,7 +122,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#id3"><em>Examples</em></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#ethereum-name-resolution">Ethereum Name Resolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vapory-name-resolution">Vapory Name Resolution</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#contract-execution">Contract Execution</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id4"><em>Examples</em></a></li>
 </ul>
@@ -147,7 +147,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#provider-specific-extra-api-calls">Provider Specific Extra API Calls</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#etherscan">Etherscan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vaporscan">Vaporscan</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#web3provider">Web3Provider</a></li>
 </ul>
 </li>
@@ -175,7 +175,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ethers.js</a>
+          <a href="index.html">vapors.js</a>
         
       </nav>
 
@@ -228,66 +228,66 @@
             
   <div class="section" id="providers-api">
 <span id="api-provider"></span><h1>Providers API<a class="headerlink" href="#providers-api" title="Permalink to this headline">¶</a></h1>
-<p>A Provider abstracts a connection to the Ethereum blockchain, for issuing queries
+<p>A Provider abstracts a connection to the Vapory blockchain, for issuing queries
 and sending state changing transactions.</p>
 <p>Unlike the Web3 provider, there is no concept of accounts or signing entities in
-an Ethers Provider. It is simply a connection to the network, and cannot unlock
-accounts or sign and is unaware of your Ethereum addresses.</p>
+an Vapors Provider. It is simply a connection to the network, and cannot unlock
+accounts or sign and is unaware of your Vapory addresses.</p>
 <p>To manage state changing operations, you must use a <a class="reference internal" href="api-wallet.html#api-wallet"><span class="std std-ref">Wallet</span></a>
 to sign transactions. If you pass a wallet in as a signer to
 a <a class="reference internal" href="api-contract.html#api-contract"><span class="std std-ref">Contract</span></a>, this is managed for you by the contract.</p>
 <hr class="docutils" />
-<div class="section" id="connecting-to-ethereum">
-<h2>Connecting to Ethereum<a class="headerlink" href="#connecting-to-ethereum" title="Permalink to this headline">¶</a></h2>
-<p>There are several ways to connect to the Ethereum blockchain:</p>
+<div class="section" id="connecting-to-vapory">
+<h2>Connecting to Vapory<a class="headerlink" href="#connecting-to-vapory" title="Permalink to this headline">¶</a></h2>
+<p>There are several ways to connect to the Vapory blockchain:</p>
 <dl class="docutils">
-<dt>new <sup>ethers . providers</sup> . EtherscanProvider( [ network ] [ , apiToken ] )</dt>
-<dd><p class="first">Connect to the <a class="reference external" href="https://etherscan.io/apis">Etherscan</a> blockchain <a class="reference external" href="https://etherscan.io/apis">web service API</a>.</p>
+<dt>new <sup>vapors . providers</sup> . VaporscanProvider( [ network ] [ , apiToken ] )</dt>
+<dd><p class="first">Connect to the <a class="reference external" href="https://vaporscan.io/apis">Vaporscan</a> blockchain <a class="reference external" href="https://vaporscan.io/apis">web service API</a>.</p>
 <p class="last"><strong>default:</strong> <em>network</em>=’homestead’, <em>apiToken</em>=null</p>
 </dd>
-<dt>new <sup>ethers . providers</sup> . JsonRpcProvider( [ url ] [ , network ] )</dt>
-<dd><p class="first">Connect to the <a class="reference external" href="https://github.com/ethereum/wiki/wiki/JSON-RPC">JSON-RPC API</a> <em>url</em> of an Ethereum node, such as <a class="reference external" href="https://ethcore.io/parity.html">Parity</a> or <a class="reference external" href="https://geth.ethereum.org">Geth</a>.</p>
+<dt>new <sup>vapors . providers</sup> . JsonRpcProvider( [ url ] [ , network ] )</dt>
+<dd><p class="first">Connect to the <a class="reference external" href="https://github.com/vaporyco/wiki/wiki/JSON-RPC">JSON-RPC API</a> <em>url</em> of an Vapory node, such as <a class="reference external" href="https://ethcore.io/parity.html">Parity</a> or <a class="reference external" href="https://gvap.vapory.org">Geth</a>.</p>
 <p class="last"><strong>default:</strong> <em>url</em>=”<a class="reference external" href="http://localhost:8545/">http://localhost:8545/</a>”, <em>network</em>=’homestead’</p>
 </dd>
-<dt>new <sup>ethers . providers</sup> . InfuraProvider( [ network ] [ , apiAccessToken ] )</dt>
-<dd><p class="first">Connect to the <a class="reference external" href="https://infura.io">INFURA</a> hosted network of Ethereum nodes.</p>
+<dt>new <sup>vapors . providers</sup> . InfuraProvider( [ network ] [ , apiAccessToken ] )</dt>
+<dd><p class="first">Connect to the <a class="reference external" href="https://infura.io">INFURA</a> hosted network of Vapory nodes.</p>
 <p class="last"><strong>default:</strong> <em>network</em>=’homestead’, <em>apiAccessToken</em>=null</p>
 </dd>
-<dt>new <sup>ethers . providers</sup> . Web3Provider( web3Provider [ , network ] )</dt>
+<dt>new <sup>vapors . providers</sup> . Web3Provider( web3Provider [ , network ] )</dt>
 <dd><p class="first">Connect to an existing Web3 provider (e.g. <cite>web3Instance.currentProvider</cite>).</p>
 <p class="last"><strong>default:</strong> <em>network</em>=’homestead’</p>
 </dd>
-<dt>new <sup>ethers . providers</sup> . FallbackProvider( providers )</dt>
+<dt>new <sup>vapors . providers</sup> . FallbackProvider( providers )</dt>
 <dd>Improves reliability by attempting each provider in turn, falling back to the
 next in the list if an error was encountered.</dd>
-<dt><sup>ethers . providers</sup> . getDefaultProvider( [ network ] )</dt>
-<dd><p class="first">This automatically creates a FallbackProvider backed by INFURA and Etherscan; recommended</p>
+<dt><sup>vapors . providers</sup> . getDefaultProvider( [ network ] )</dt>
+<dd><p class="first">This automatically creates a FallbackProvider backed by INFURA and Vaporscan; recommended</p>
 <p class="last"><strong>default:</strong> <em>network</em>=’homestead’</p>
 </dd>
 </dl>
 <div class="section" id="examples">
 <h3><em>Examples</em><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">providers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">providers</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">providers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">providers</span><span class="p">;</span>
 
 <span class="o">//</span> <span class="n">Connect</span> <span class="n">to</span> <span class="n">Ropsten</span> <span class="p">(</span><span class="n">the</span> <span class="n">test</span> <span class="n">network</span><span class="p">)</span>
 
 <span class="o">//</span> <span class="n">You</span> <span class="n">may</span> <span class="n">specify</span> <span class="nb">any</span> <span class="n">of</span><span class="p">:</span>
 <span class="o">//</span> <span class="o">-</span> <span class="n">boolean</span><span class="p">;</span> <span class="n">true</span> <span class="o">=</span> <span class="n">ropsten</span><span class="p">,</span> <span class="n">false</span> <span class="o">=</span> <span class="n">homestead</span>
-<span class="o">//</span> <span class="o">-</span> <span class="nb">object</span><span class="p">;</span> <span class="p">{</span> <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;ropsten&#39;</span><span class="p">,</span> <span class="n">chainId</span><span class="p">:</span> <span class="mi">3</span> <span class="p">}</span> <span class="p">(</span><span class="n">see</span> <span class="n">ethers</span><span class="o">.</span><span class="n">networks</span><span class="p">);</span>
+<span class="o">//</span> <span class="o">-</span> <span class="nb">object</span><span class="p">;</span> <span class="p">{</span> <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;ropsten&#39;</span><span class="p">,</span> <span class="n">chainId</span><span class="p">:</span> <span class="mi">3</span> <span class="p">}</span> <span class="p">(</span><span class="n">see</span> <span class="n">vapors</span><span class="o">.</span><span class="n">networks</span><span class="p">);</span>
 <span class="o">//</span> <span class="o">-</span> <span class="n">string</span><span class="p">;</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="s1">&#39;homestead&#39;</span><span class="p">,</span> <span class="s1">&#39;ropsten&#39;</span><span class="p">,</span> <span class="s1">&#39;rinkeby&#39;</span><span class="p">,</span> <span class="s1">&#39;kovan&#39;</span>
 <span class="n">var</span> <span class="n">network</span> <span class="o">=</span> <span class="n">providers</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">ropsten</span><span class="p">;</span>
 
 <span class="o">//</span> <span class="n">Connect</span> <span class="n">to</span> <span class="n">INFUA</span>
 <span class="n">var</span> <span class="n">infuraProvider</span> <span class="o">=</span> <span class="n">new</span> <span class="n">providers</span><span class="o">.</span><span class="n">InfuraProvider</span><span class="p">(</span><span class="n">network</span><span class="p">);</span>
 
-<span class="o">//</span> <span class="n">Connect</span> <span class="n">to</span> <span class="n">Etherscan</span>
-<span class="n">var</span> <span class="n">etherscanProvider</span> <span class="o">=</span> <span class="n">new</span> <span class="n">providers</span><span class="o">.</span><span class="n">EtherscanProvider</span><span class="p">(</span><span class="n">network</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Connect</span> <span class="n">to</span> <span class="n">Vaporscan</span>
+<span class="n">var</span> <span class="n">vaporscanProvider</span> <span class="o">=</span> <span class="n">new</span> <span class="n">providers</span><span class="o">.</span><span class="n">VaporscanProvider</span><span class="p">(</span><span class="n">network</span><span class="p">);</span>
 
-<span class="o">//</span> <span class="n">Creating</span> <span class="n">a</span> <span class="n">provider</span> <span class="n">to</span> <span class="n">automatically</span> <span class="n">fallback</span> <span class="n">onto</span> <span class="n">Etherscan</span>
+<span class="o">//</span> <span class="n">Creating</span> <span class="n">a</span> <span class="n">provider</span> <span class="n">to</span> <span class="n">automatically</span> <span class="n">fallback</span> <span class="n">onto</span> <span class="n">Vaporscan</span>
 <span class="o">//</span> <span class="k">if</span> <span class="n">INFURA</span> <span class="ow">is</span> <span class="n">down</span>
 <span class="n">var</span> <span class="n">fallbackProvider</span> <span class="o">=</span> <span class="n">new</span> <span class="n">providers</span><span class="o">.</span><span class="n">FallbackProvider</span><span class="p">([</span>
     <span class="n">infuraProvider</span><span class="p">,</span>
-    <span class="n">etherscanProvider</span>
+    <span class="n">vaporscanProvider</span>
 <span class="p">]);</span>
 
 <span class="o">//</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">equivalent</span> <span class="n">to</span> <span class="n">using</span> <span class="n">the</span> <span class="n">getDefaultProvider</span>
@@ -314,7 +314,7 @@ indirectly populated by child Objects.</p>
 <dd>The name of the network the provider is connected to (e.g. ‘homestead’, ‘ropsten’, ‘rinkeby’, ‘kovan’)</dd>
 <dt><sup>prototype</sup> . chainId</dt>
 <dd>The chain ID (or network ID) this provider is connected as; this is used by
-signers to prevent <a class="reference external" href="https://github.com/ethereum/EIPs/issues/155">replay attacks</a> across compatible networks</dd>
+signers to prevent <a class="reference external" href="https://github.com/vaporyco/EIPs/issues/155">replay attacks</a> across compatible networks</dd>
 </dl>
 </div>
 <div class="section" id="fallbackprovider-inherits-from-provider">
@@ -336,11 +336,11 @@ non-standard or less common JSON-RPC methods. A <a class="reference internal" hr
 returned which will resolve to the parsed JSON result.</dd>
 </dl>
 </div>
-<div class="section" id="etherscanprovider-inherits-from-provider">
-<h3>EtherscanProvider <sup>( inherits from Provider )</sup><a class="headerlink" href="#etherscanprovider-inherits-from-provider" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="vaporscanprovider-inherits-from-provider">
+<h3>VaporscanProvider <sup>( inherits from Provider )</sup><a class="headerlink" href="#vaporscanprovider-inherits-from-provider" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt><sup>prototype</sup> . apiToken</dt>
-<dd>The Etherscan API Token (or null if not specified)</dd>
+<dd>The Vaporscan API Token (or null if not specified)</dd>
 </dl>
 </div>
 <div class="section" id="infuraprovider-inherits-from-jsonrpcprovider">
@@ -355,7 +355,7 @@ returned which will resolve to the parsed JSON result.</dd>
 <dl class="docutils">
 <dt><sup>prototype</sup> . provider</dt>
 <dd><p class="first">The underlying Web3-compatible provider from the Web3 library, for example
-an <a class="reference external" href="https://github.com/ethereum/web3.js/blob/develop/lib/web3/httpprovider.js">HTTPProvider</a> or <a class="reference external" href="https://github.com/ethereum/web3.js/blob/develop/lib/web3/ipcprovider.js">IPCProvider</a>. The only required method on a Web3 provider
+an <a class="reference external" href="https://github.com/vaporyco/web3.js/blob/develop/lib/web3/httpprovider.js">HTTPProvider</a> or <a class="reference external" href="https://github.com/vaporyco/web3.js/blob/develop/lib/web3/ipcprovider.js">IPCProvider</a>. The only required method on a Web3 provider
 is:</p>
 <p class="last"><em>sendAsync ( method , params , callback )</em></p>
 </dd>
@@ -386,8 +386,8 @@ resolves to.</dd>
 </dl>
 <div class="section" id="id2">
 <h3><em>Examples</em><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ethers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">providers</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">vapors</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">providers</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="p">;</span>
 
 <span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">(</span><span class="s1">&#39;ropsten&#39;</span><span class="p">);</span>
 
@@ -396,16 +396,16 @@ resolves to.</dd>
 <span class="n">provider</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">balance</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="o">//</span> <span class="n">balance</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">BigNumber</span> <span class="p">(</span><span class="ow">in</span> <span class="n">wei</span><span class="p">);</span> <span class="nb">format</span> <span class="ow">is</span> <span class="k">as</span> <span class="n">a</span> <span class="n">sting</span> <span class="p">(</span><span class="ow">in</span> <span class="n">ether</span><span class="p">)</span>
-    <span class="n">var</span> <span class="n">etherString</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">formatEther</span><span class="p">(</span><span class="n">balance</span><span class="p">);</span>
+    <span class="n">var</span> <span class="n">vaporString</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">formatEther</span><span class="p">(</span><span class="n">balance</span><span class="p">);</span>
 
-    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Balance: &quot;</span> <span class="o">+</span> <span class="n">etherString</span><span class="p">);</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Balance: &quot;</span> <span class="o">+</span> <span class="n">vaporString</span><span class="p">);</span>
 <span class="p">});</span>
 
 <span class="n">provider</span><span class="o">.</span><span class="n">getTransactionCount</span><span class="p">(</span><span class="n">address</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">transactionCount</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Total Transactions Ever Send: &quot;</span> <span class="o">+</span> <span class="n">transactionCount</span><span class="p">);</span>
 <span class="p">});</span>
 
-<span class="n">provider</span><span class="o">.</span><span class="n">resolveName</span><span class="p">(</span><span class="s2">&quot;test.ricmoose.eth&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">address</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">provider</span><span class="o">.</span><span class="n">resolveName</span><span class="p">(</span><span class="s2">&quot;test.ricmoose.vap&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">address</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Address: &quot;</span> <span class="o">+</span> <span class="n">address</span><span class="p">);</span>
 <span class="p">});</span>
 </pre></div>
@@ -477,17 +477,17 @@ resolves to.</dd>
 </div>
 </div>
 <hr class="docutils" />
-<div class="section" id="ethereum-name-resolution">
-<h2>Ethereum Name Resolution<a class="headerlink" href="#ethereum-name-resolution" title="Permalink to this headline">¶</a></h2>
-<p>The Ethereum Naming Service (ENS) allows easy to remember and use names to be
-assigned to Ethereum addresses. Any provider operation which takes an address
+<div class="section" id="vapory-name-resolution">
+<h2>Vapory Name Resolution<a class="headerlink" href="#vapory-name-resolution" title="Permalink to this headline">¶</a></h2>
+<p>The Vapory Naming Service (ENS) allows easy to remember and use names to be
+assigned to Vapory addresses. Any provider operation which takes an address
 may also take an ENS name.</p>
 <p>It is often useful to resolve a name entered by a user or perform a reverse lookup
 of an address to get a more human readbale name.</p>
 <p><strong>Resolving Names</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">providers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">providers</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">providers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">providers</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
-<span class="n">provider</span><span class="o">.</span><span class="n">resolveName</span><span class="p">(</span><span class="s1">&#39;registrar.firefly.eth&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">address</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">provider</span><span class="o">.</span><span class="n">resolveName</span><span class="p">(</span><span class="s1">&#39;registrar.firefly.vap&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">address</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">address</span><span class="p">);</span>
     <span class="o">//</span> <span class="s1">&#39;0x6fC21092DA55B392b045eD78F4732bff3C580e2c&#39;</span>
 <span class="p">});</span>
@@ -496,7 +496,7 @@ of an address to get a more human readbale name.</p>
 <p><strong>Looking up Addresses</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">provider</span><span class="o">.</span><span class="n">lookupAddress</span><span class="p">(</span><span class="s1">&#39;0x6fC21092DA55B392b045eD78F4732bff3C580e2c&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
-    <span class="o">//</span> <span class="s1">&#39;registrar.firefly.eth&#39;</span>
+    <span class="o">//</span> <span class="s1">&#39;registrar.firefly.vap&#39;</span>
 <span class="p">});</span>
 </pre></div>
 </div>
@@ -508,20 +508,20 @@ of an address to get a more human readbale name.</p>
 usually be used instead.</p>
 <dl class="docutils">
 <dt><sup>prototype</sup> . call ( transaction )</dt>
-<dd><p class="first">Send the <strong>read-only</strong> (constant) <em>transaction</em> to a single Ethereum node and
+<dd><p class="first">Send the <strong>read-only</strong> (constant) <em>transaction</em> to a single Vapory node and
 return a <a class="reference internal" href="notes.html#promise"><span class="std std-ref">Promise</span></a> with the result (as a <a class="reference internal" href="api-utils.html#hexstring"><span class="std std-ref">hex string</span></a>) of executing it.
 (See <a class="reference internal" href="#transactionrequest"><span class="std std-ref">Transaction Requests</span></a>)</p>
 <p class="last">This is free, since it does not change any state on the blockchain.</p>
 </dd>
 <dt><sup>prototype</sup> . estimateGas ( transaction )</dt>
-<dd><p class="first">Send a <em>transaction</em> to a single Ethereum node and return a <a class="reference internal" href="notes.html#promise"><span class="std std-ref">Promise</span></a> with the
+<dd><p class="first">Send a <em>transaction</em> to a single Vapory node and return a <a class="reference internal" href="notes.html#promise"><span class="std std-ref">Promise</span></a> with the
 estimated amount of gas required (as a <a class="reference internal" href="api-utils.html#bignumber"><span class="std std-ref">BigNumber</span></a>) to send it.
 (See <a class="reference internal" href="#transactionrequest"><span class="std std-ref">Transaction Requests</span></a>)</p>
 <p class="last">This is free, but only an estimate. Providing too little gas will result in a
 transaction being rejected (while still consuming all provided gas).</p>
 </dd>
 <dt><sup>prototype</sup> . sendTransaction ( signedTransaction )</dt>
-<dd><p class="first">Send the <em>signedTransaction</em> to the <strong>entire</strong> Ethereum network and returns a <a class="reference internal" href="notes.html#promise"><span class="std std-ref">Promise</span></a>
+<dd><p class="first">Send the <em>signedTransaction</em> to the <strong>entire</strong> Vapory network and returns a <a class="reference internal" href="notes.html#promise"><span class="std std-ref">Promise</span></a>
 with the transaction hash.</p>
 <p class="last"><strong>This will consume gas</strong> from the account that signed the transaction.</p>
 </dd>
@@ -529,14 +529,14 @@ with the transaction hash.</p>
 <div class="section" id="id4">
 <h3><em>Examples</em><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p><strong>Call (Constant) Functions</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ethers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">vapors</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
 
 <span class="o">//</span> <span class="n">setup</span> <span class="n">a</span> <span class="n">transaction</span> <span class="n">to</span> <span class="n">call</span> <span class="n">the</span> <span class="n">CryptoKitties</span><span class="o">.</span><span class="n">symbol</span><span class="p">()</span> <span class="n">function</span>
 <span class="o">//</span> <span class="n">CryptoKitties</span> <span class="n">contract</span> <span class="n">address</span>
 <span class="n">var</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;0x06012c8cf97BEaD5deAe237070F9587f8E7A266d&quot;</span><span class="p">;</span>
 <span class="o">//</span> <span class="n">first</span> <span class="mi">8</span> <span class="n">nibbles</span> <span class="n">of</span> <span class="n">the</span> <span class="nb">hash</span> <span class="n">of</span> <span class="n">symbol</span><span class="p">()</span>
-<span class="n">var</span> <span class="n">data</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">id</span><span class="p">(</span><span class="s1">&#39;symbol()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">data</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">id</span><span class="p">(</span><span class="s1">&#39;symbol()&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">);</span>
 <span class="n">var</span> <span class="n">transaction</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">to</span><span class="p">:</span> <span class="n">address</span><span class="p">,</span>
     <span class="n">data</span><span class="p">:</span> <span class="n">data</span>
@@ -551,14 +551,14 @@ with the transaction hash.</p>
 </pre></div>
 </div>
 <p><strong>sendTransaction</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ethers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">vapors</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
 <span class="n">var</span> <span class="n">privateKey</span> <span class="o">=</span> <span class="s1">&#39;0x0123456789012345678901234567890123456789012345678901234567890123&#39;</span><span class="p">;</span>
-<span class="n">var</span> <span class="n">wallet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ethers</span><span class="o">.</span><span class="n">Wallet</span><span class="p">(</span><span class="n">privateKey</span><span class="p">);</span>
-<span class="n">wallet</span><span class="o">.</span><span class="n">provider</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">(</span><span class="s1">&#39;ropsten&#39;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">wallet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">vapors</span><span class="o">.</span><span class="n">Wallet</span><span class="p">(</span><span class="n">privateKey</span><span class="p">);</span>
+<span class="n">wallet</span><span class="o">.</span><span class="n">provider</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">(</span><span class="s1">&#39;ropsten&#39;</span><span class="p">);</span>
 
 <span class="n">var</span> <span class="n">transaction</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">to</span><span class="p">:</span> <span class="s2">&quot;0x88a5C2d9919e46F883EB62F7b8Dd9d0CC45bc290&quot;</span><span class="p">,</span>
-    <span class="n">value</span><span class="p">:</span> <span class="n">ethers</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">parseEther</span><span class="p">(</span><span class="s2">&quot;0.1&quot;</span><span class="p">)</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">parseEther</span><span class="p">(</span><span class="s2">&quot;0.1&quot;</span><span class="p">)</span>
 <span class="p">};</span>
 
 <span class="n">var</span> <span class="n">estimateGasPromise</span> <span class="o">=</span> <span class="n">wallet</span><span class="o">.</span><span class="n">estimateGas</span><span class="p">(</span><span class="n">transaction</span><span class="p">);</span>
@@ -598,11 +598,11 @@ match the <em>filter</em>. (See <a class="reference internal" href="#filter"><sp
 <div class="section" id="id5">
 <h3><em>Examples</em><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p><strong>getCode</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ethers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">vapors</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
 
 <span class="n">var</span> <span class="n">contractAddress</span> <span class="o">=</span> <span class="s1">&#39;0x6fC21092DA55B392b045eD78F4732bff3C580e2c&#39;</span><span class="p">;</span>
-<span class="n">var</span> <span class="n">contractEnsName</span> <span class="o">=</span> <span class="s1">&#39;registrar.firefly.eth&#39;</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">contractEnsName</span> <span class="o">=</span> <span class="s1">&#39;registrar.firefly.vap&#39;</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">codePromise</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">getCode</span><span class="p">(</span><span class="n">contractEnsName</span><span class="p">);</span>
 <span class="n">codePromise</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">result</span><span class="p">){</span>
    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;getCode by ENS name:&#39;</span><span class="p">);</span>
@@ -617,10 +617,10 @@ match the <em>filter</em>. (See <a class="reference internal" href="#filter"><sp
 </pre></div>
 </div>
 <p><strong>getStorageAt</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ethers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">vapors</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
 
-<span class="n">var</span> <span class="n">contractEnsName</span> <span class="o">=</span> <span class="s1">&#39;registrar.firefly.eth&#39;</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">contractEnsName</span> <span class="o">=</span> <span class="s1">&#39;registrar.firefly.vap&#39;</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">storagePromise</span> <span class="o">=</span> <span class="n">provider</span><span class="o">.</span><span class="n">getStorageAt</span><span class="p">(</span><span class="n">contractEnsName</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 <span class="n">storagePromise</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">result</span><span class="p">){</span>
    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
@@ -628,8 +628,8 @@ match the <em>filter</em>. (See <a class="reference internal" href="#filter"><sp
 </pre></div>
 </div>
 <p><strong>getLogs</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ethers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">vapors</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
 
 <span class="n">var</span> <span class="n">cryptoKittiesContractAddress</span> <span class="o">=</span> <span class="s1">&#39;0x06012c8cf97BEaD5deAe237070F9587f8E7A266d&#39;</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">topic</span> <span class="o">=</span> <span class="s1">&#39;0x241ea03ca20251805084d27d4440371c34a0b85ff108f6bb5611248f73818b80&#39;</span><span class="p">;</span>
@@ -882,9 +882,9 @@ or <a class="reference internal" href="api-utils.html#hexstring"><span class="st
 </div>
 <div class="section" id="filters">
 <span id="filter"></span><h3>Filters<a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h3>
-<p>Filtering on topics supports a <a class="reference external" href="https://github.com/ethereum/wiki/wiki/JSON-RPC#a-note-on-specifying-topic-filters">somewhat complicated</a> specification, however,
+<p>Filtering on topics supports a <a class="reference external" href="https://github.com/vaporyco/wiki/wiki/JSON-RPC#a-note-on-specifying-topic-filters">somewhat complicated</a> specification, however,
 for the vast majority of filters, a single topic is usually sufficient (see the example below).</p>
-<p>The <em>EtherscanProvider</em> only supports a single topic.</p>
+<p>The <em>VaporscanProvider</em> only supports a single topic.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Example</span>
 <span class="p">{</span>
     <span class="o">//</span> <span class="n">Optional</span><span class="p">;</span> <span class="n">The</span> <span class="nb">range</span> <span class="n">of</span> <span class="n">blocks</span> <span class="n">to</span> <span class="n">limit</span> <span class="n">querying</span> <span class="p">(</span><span class="n">See</span><span class="p">:</span> <span class="n">Block</span> <span class="n">Tags</span> <span class="n">above</span><span class="p">)</span>
@@ -904,8 +904,8 @@ for the vast majority of filters, a single topic is usually sufficient (see the 
 <hr class="docutils" />
 <div class="section" id="provider-specific-extra-api-calls">
 <h2>Provider Specific Extra API Calls<a class="headerlink" href="#provider-specific-extra-api-calls" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="etherscan">
-<h3>Etherscan<a class="headerlink" href="#etherscan" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="vaporscan">
+<h3>Vaporscan<a class="headerlink" href="#vaporscan" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt><sup>prototype</sup> . getEtherPrice ( )</dt>
 <dd>Returns a <a class="reference internal" href="notes.html#promise"><span class="std std-ref">Promise</span></a> with the price of ether in USD.</dd>
@@ -914,9 +914,9 @@ for the vast majority of filters, a single topic is usually sufficient (see the 
 for each transaction to or from <em>addressOrName</em> between <em>startBlock</em> and <em>endBlock</em> (inclusive).</dd>
 </dl>
 <p><strong>Examples</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">EtherscanProvider</span><span class="p">();</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">new</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">VaporscanProvider</span><span class="p">();</span>
 
-<span class="o">//</span> <span class="n">Getting</span> <span class="n">the</span> <span class="n">current</span> <span class="n">Ethereum</span> <span class="n">price</span>
+<span class="o">//</span> <span class="n">Getting</span> <span class="n">the</span> <span class="n">current</span> <span class="n">Vapory</span> <span class="n">price</span>
 <span class="n">provider</span><span class="o">.</span><span class="n">getEtherPrice</span><span class="p">()</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">price</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Ether price in USD: &quot;</span> <span class="o">+</span> <span class="n">price</span><span class="p">);</span>
 <span class="p">});</span>
@@ -935,10 +935,10 @@ for each transaction to or from <em>addressOrName</em> between <em>startBlock</e
     <span class="o">//</span>     <span class="n">blockNumber</span><span class="p">:</span> <span class="mi">3135808</span><span class="p">,</span>
     <span class="o">//</span>     <span class="n">transactionIndex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="o">//</span>     <span class="n">from</span><span class="p">:</span> <span class="s1">&#39;0xb2682160c482eB985EC9F3e364eEc0a904C44C23&#39;</span><span class="p">,</span>
-    <span class="o">//</span>     <span class="n">gasPrice</span><span class="p">:</span> <span class="n">ethers</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">bigNumberify</span><span class="p">(</span><span class="s1">&#39;0x4a817c800&#39;</span><span class="p">),</span>
-    <span class="o">//</span>     <span class="n">gasLimit</span><span class="p">:</span> <span class="n">ethers</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">bigNumberify</span><span class="p">(</span><span class="s1">&#39;0x493e0&#39;</span><span class="p">),</span>
+    <span class="o">//</span>     <span class="n">gasPrice</span><span class="p">:</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">bigNumberify</span><span class="p">(</span><span class="s1">&#39;0x4a817c800&#39;</span><span class="p">),</span>
+    <span class="o">//</span>     <span class="n">gasLimit</span><span class="p">:</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">bigNumberify</span><span class="p">(</span><span class="s1">&#39;0x493e0&#39;</span><span class="p">),</span>
     <span class="o">//</span>     <span class="n">to</span><span class="p">:</span> <span class="s1">&#39;0xAe572713CfE65cd7033774170F029B7219Ee7f70&#39;</span><span class="p">,</span>
-    <span class="o">//</span>     <span class="n">value</span><span class="p">:</span> <span class="n">ethers</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">bigNumberify</span><span class="p">(</span><span class="s1">&#39;0xd2f13f7789f0000&#39;</span><span class="p">),</span>
+    <span class="o">//</span>     <span class="n">value</span><span class="p">:</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">bigNumberify</span><span class="p">(</span><span class="s1">&#39;0xd2f13f7789f0000&#39;</span><span class="p">),</span>
     <span class="o">//</span>     <span class="n">nonce</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
     <span class="o">//</span>     <span class="n">data</span><span class="p">:</span> <span class="s1">&#39;0x&#39;</span><span class="p">,</span>
     <span class="o">//</span>     <span class="n">creates</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>

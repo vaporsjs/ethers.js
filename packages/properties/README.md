@@ -1,18 +1,18 @@
 Property Utilities
 ==================
 
-This sub-module is part of the [ethers project](https://github.com/ethers-io/ethers.js).
+This sub-module is part of the [vapors project](https://github.com/vaporsjs/vapors.js).
 
 It contains several useful utility methods for managing simple objects with
 defined properties.
 
-For more information, see the [documentation](https://docs.ethers.io/v5/api/utils/properties/).
+For more information, see the [documentation](https://docs.vapors.io/v5/api/utils/properties/).
 
 
 Importing
 ---------
 
-Most users will prefer to use the [umbrella package](https://www.npmjs.com/package/ethers),
+Most users will prefer to use the [umbrella package](https://www.npmjs.com/package/vapors),
 but for those with more specific needs, individual components can be imported.
 
 ```javascript
@@ -34,7 +34,7 @@ const {
 
     Deferrable
 
-} = require("@ethersproject/properties");
+} = require("@vaporsproject/properties");
 ```
 
 

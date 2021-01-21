@@ -1,18 +1,18 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
 Web Utilities
 =============
 
-#### *ethers* . *utils* . **fetchJson**( urlOrConnectionInfo [ , json [ , processFunc ] ] ) => *Promise< any >*
+#### *vapors* . *utils* . **fetchJson**( urlOrConnectionInfo [ , json [ , processFunc ] ] ) => *Promise< any >*
 
 Fetch and parse the JSON content from *urlOrConnectionInfo*, with the optional body *json* and optionally processing the result with *processFun* before returning it.
 
 
-#### *ethers* . *utils* . **poll**( pollFunc [ , options ] ) => *Promise< any >*
+#### *vapors* . *utils* . **poll**( pollFunc [ , options ] ) => *Promise< any >*
 
 Repeatedly call pollFunc using the [PollOptions](/v5/api/utils/web/#PollOptions) until it returns a value other than undefined.
 

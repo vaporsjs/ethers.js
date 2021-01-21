@@ -1,5 +1,5 @@
-import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
-import { BytesLike, SignatureLike } from "@ethersproject/bytes";
+import { BigNumber, BigNumberish } from "@vaporsproject/bignumber";
+import { BytesLike, SignatureLike } from "@vaporsproject/bytes";
 export declare type UnsignedTransaction = {
     to?: string;
     nonce?: number;

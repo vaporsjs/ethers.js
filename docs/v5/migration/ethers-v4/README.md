@@ -1,10 +1,10 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
-Migration: From Ethers v4
+Migration: From Vapors v4
 =========================
 
 BigNumber
@@ -14,25 +14,25 @@ BigNumber
 
 ```
 // v4
-ethers.utils.BigNumber
-ethers.utils.BigNumberish
+vapors.utils.BigNumber
+vapors.utils.BigNumberish
 
 // v5
-ethers.BigNumber
-ethers.BigNumberish
+vapors.BigNumber
+vapors.BigNumberish
 ```
 
 ### Creating Instances
 
 ```
 // v4
-new ethers.utils.BigNumber(someValue)
-ethers.utils.bigNumberify(someValue);
+new vapors.utils.BigNumber(someValue)
+vapors.utils.bigNumberify(someValue);
 
 // v5
 // - Constructor is private
 // - Removed `bigNumberify`
-ethers.BigNumber.from(someValue)
+vapors.BigNumber.from(someValue)
 ```
 
 Contracts
@@ -105,8 +105,8 @@ Errors
 
 ```
 // v4
-ethers.errors.UNKNOWN_ERROR
-ethers.errors.*
+vapors.errors.UNKNOWN_ERROR
+vapors.errors.*
 
 errors.setCensorship(censorship, permanent)
 errors.setLogLevel(logLevel)
@@ -119,13 +119,13 @@ errors.warn(...)
 errors.info(...)
 
 // v5
-ethers.utils.Logger.errors.UNKNOWN_ERROR
-ethers.utils.Logger.errors.*
+vapors.utils.Logger.errors.UNKNOWN_ERROR
+vapors.utils.Logger.errors.*
 
 Logger.setCensorship(censorship, permanent)
 Logger.setLogLevel(logLevel)
 
-const logger = new ethers.utils.Logger(version);
+const logger = new vapors.utils.Logger(version);
 logger.checkArgumentCount(count, expectedCount, suffix)
 logger.checkNew(self, kind)
 logger.checkNormalize()

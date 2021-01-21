@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var bytes_1 = require("@ethersproject/bytes");
-var bignumber_1 = require("@ethersproject/bignumber");
-var keccak256_1 = require("@ethersproject/keccak256");
-var rlp_1 = require("@ethersproject/rlp");
-var logger_1 = require("@ethersproject/logger");
+var bytes_1 = require("@vaporsproject/bytes");
+var bignumber_1 = require("@vaporsproject/bignumber");
+var keccak256_1 = require("@vaporsproject/keccak256");
+var rlp_1 = require("@vaporsproject/rlp");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 var logger = new logger_1.Logger(_version_1.version);
 function getChecksumAddress(address) {
@@ -114,7 +114,7 @@ function getIcapAddress(address) {
     return "XE" + ibanChecksum("XE00" + base36) + base36;
 }
 exports.getIcapAddress = getIcapAddress;
-// http://ethereum.stackexchange.com/questions/760/how-is-the-address-of-an-ethereum-contract-computed
+// http://vapory.stackexchange.com/questions/760/how-is-the-address-of-an-vapory-contract-computed
 function getContractAddress(transaction) {
     var from = null;
     try {

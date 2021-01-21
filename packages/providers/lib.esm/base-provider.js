@@ -8,19 +8,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { ForkEvent, Provider } from "@ethersproject/abstract-provider";
-import { Base58 } from "@ethersproject/basex";
-import { BigNumber } from "@ethersproject/bignumber";
-import { arrayify, concat, hexConcat, hexDataLength, hexDataSlice, hexlify, hexValue, hexZeroPad, isHexString } from "@ethersproject/bytes";
-import { HashZero } from "@ethersproject/constants";
-import { namehash } from "@ethersproject/hash";
-import { getNetwork } from "@ethersproject/networks";
-import { defineReadOnly, getStatic, resolveProperties } from "@ethersproject/properties";
-import { sha256 } from "@ethersproject/sha2";
-import { toUtf8Bytes, toUtf8String } from "@ethersproject/strings";
-import { poll } from "@ethersproject/web";
+import { ForkEvent, Provider } from "@vaporsproject/abstract-provider";
+import { Base58 } from "@vaporsproject/basex";
+import { BigNumber } from "@vaporsproject/bignumber";
+import { arrayify, concat, hexConcat, hexDataLength, hexDataSlice, hexlify, hexValue, hexZeroPad, isHexString } from "@vaporsproject/bytes";
+import { HashZero } from "@vaporsproject/constants";
+import { namehash } from "@vaporsproject/hash";
+import { getNetwork } from "@vaporsproject/networks";
+import { defineReadOnly, getStatic, resolveProperties } from "@vaporsproject/properties";
+import { sha256 } from "@vaporsproject/sha2";
+import { toUtf8Bytes, toUtf8String } from "@vaporsproject/strings";
+import { poll } from "@vaporsproject/web";
 import bech32 from "bech32";
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 import { Formatter } from "./formatter";
@@ -260,7 +260,7 @@ export class Resolver {
             if (coinType == null) {
                 coinType = 60;
             }
-            // If Ethereum, use the standard `addr(bytes32)`
+            // If Vapory, use the standard `addr(bytes32)`
             if (coinType === 60) {
                 // keccak256("addr(bytes32)")
                 const transaction = {

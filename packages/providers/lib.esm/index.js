@@ -1,10 +1,10 @@
 "use strict";
-import { Provider } from "@ethersproject/abstract-provider";
-import { getNetwork } from "@ethersproject/networks";
+import { Provider } from "@vaporsproject/abstract-provider";
+import { getNetwork } from "@vaporsproject/networks";
 import { BaseProvider, Resolver } from "./base-provider";
 import { AlchemyProvider, AlchemyWebSocketProvider } from "./alchemy-provider";
 import { CloudflareProvider } from "./cloudflare-provider";
-import { EtherscanProvider } from "./etherscan-provider";
+import { VaporscanProvider } from "./vaporscan-provider";
 import { FallbackProvider } from "./fallback-provider";
 import { IpcProvider } from "./ipc-provider";
 import { InfuraProvider, InfuraWebSocketProvider } from "./infura-provider";
@@ -15,7 +15,7 @@ import { StaticJsonRpcProvider, UrlJsonRpcProvider } from "./url-json-rpc-provid
 import { Web3Provider } from "./web3-provider";
 import { WebSocketProvider } from "./websocket-provider";
 import { Formatter, isCommunityResourcable, isCommunityResource, showThrottleMessage } from "./formatter";
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 ////////////////////////
@@ -51,7 +51,7 @@ function getDefaultProvider(network, options) {
         FallbackProvider,
         AlchemyProvider,
         CloudflareProvider,
-        EtherscanProvider,
+        VaporscanProvider,
         InfuraProvider,
         JsonRpcProvider,
         NodesmithProvider,
@@ -67,7 +67,7 @@ export {
 Provider, BaseProvider, Resolver, UrlJsonRpcProvider, 
 ///////////////////////
 // Concreate Providers
-FallbackProvider, AlchemyProvider, AlchemyWebSocketProvider, CloudflareProvider, EtherscanProvider, InfuraProvider, InfuraWebSocketProvider, JsonRpcProvider, NodesmithProvider, PocketProvider, StaticJsonRpcProvider, Web3Provider, WebSocketProvider, IpcProvider, 
+FallbackProvider, AlchemyProvider, AlchemyWebSocketProvider, CloudflareProvider, VaporscanProvider, InfuraProvider, InfuraWebSocketProvider, JsonRpcProvider, NodesmithProvider, PocketProvider, StaticJsonRpcProvider, Web3Provider, WebSocketProvider, IpcProvider, 
 ///////////////////////
 // Signer
 JsonRpcSigner, 

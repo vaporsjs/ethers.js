@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 "use strict";
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 function getType(param, flexible) {
     if (param.type === "address" || param.type === "string") {
         return "string";
@@ -10,19 +10,19 @@ function getType(param, flexible) {
     }
     if (param.type.substring(0, 5) === "bytes") {
         if (flexible) {
-            return "string | ethers.utils.BytesLike";
+            return "string | vapors.utils.BytesLike";
         }
         return "string";
     }
     let match = param.type.match(/^(u?int)([0-9]+)$/);
     if (match) {
         if (flexible) {
-            return "ethers.BigNumberish";
+            return "vapors.BigNumberish";
         }
         if (parseInt(match[2]) < 53) {
             return 'number';
         }
-        return 'ethers.BigNumber';
+        return 'vapors.BigNumber';
     }
     if (param.type === "array") {
         return "Array<" + getType(param.arrayChildren) + ">";
@@ -34,16 +34,16 @@ function getType(param, flexible) {
     throw new Error("unknown type");
     return null;
 }
-export const header = "import { ethers } from \"ethers\";\n\n";
+export const header = "import { vapors } from \"vapors\";\n\n";
 export function generate(contract, bytecode) {
     let lines = [];
-    lines.push("export class " + contract.name + " extends ethers.Contract {");
+    lines.push("export class " + contract.name + " extends vapors.Contract {");
     lines.push("");
-    lines.push("    constructor(addressOrName: string, providerOrSigner: ethers.Signer | ethers.providers.Provider) {");
+    lines.push("    constructor(addressOrName: string, providerOrSigner: vapors.Signer | vapors.providers.Provider) {");
     lines.push("        super(addressOrName, new.target.ABI(), providerOrSigner)");
     lines.push("    }");
     lines.push("");
-    lines.push(`    connect(providerOrSigner: ethers.Signer | ethers.providers.Provider): ${contract.name} {`);
+    lines.push(`    connect(providerOrSigner: vapors.Signer | vapors.providers.Provider): ${contract.name} {`);
     lines.push(`        return new (<{ new(...args: any[]): ${contract.name} }>(this.constructor))(this.address, providerOrSigner)`);
     lines.push("    }");
     lines.push("");
@@ -56,14 +56,14 @@ export function generate(contract, bytecode) {
         }
         let fragment = contract.interface.functions[signature];
         console.log(fragment);
-        let output = "Promise<ethers.providers.TransactionResponse>";
-        let overrides = "ethers.CallOverrides";
+        let output = "Promise<vapors.providers.TransactionResponse>";
+        let overrides = "vapors.CallOverrides";
         if (fragment.constant == false) {
             if (fragment.payable) {
-                overrides = "ethers.PayableOverrides";
+                overrides = "vapors.PayableOverrides";
             }
             else {
-                overrides = "ethers.Overrides";
+                overrides = "vapors.Overrides";
             }
         }
         else if (fragment.outputs.length > 0) {
@@ -97,13 +97,13 @@ export function generate(contract, bytecode) {
         lines.push("    }");
     }
     lines.push("");
-    lines.push("    static factory(signer?: ethers.Signer): ethers.ContractFactory {");
-    lines.push("        return new ethers.ContractFactory(" + contract.name + ".ABI(), " + contract.name + ".bytecode(), signer);");
+    lines.push("    static factory(signer?: vapors.Signer): vapors.ContractFactory {");
+    lines.push("        return new vapors.ContractFactory(" + contract.name + ".ABI(), " + contract.name + ".bytecode(), signer);");
     lines.push("    }");
     lines.push("");
     lines.push("    static bytecode(): string {");
     if (bytecode == null) {
-        lines.push('        return ethers.errors.throwError("no bytecode provided during generation", ethers.errors.UNSUPPORTED_OPERATION, { operation: "contract.bytecode" });');
+        lines.push('        return vapors.errors.throwError("no bytecode provided during generation", vapors.errors.UNSUPPORTED_OPERATION, { operation: "contract.bytecode" });');
     }
     else {
         lines.push('        return "' + bytecode + '";');
@@ -113,7 +113,7 @@ export function generate(contract, bytecode) {
     lines.push("    static ABI(): Array<string> {");
     lines.push("        return [");
     contract.interface.fragments.forEach((fragment) => {
-        lines.push(`            "${fragment.format(ethers.utils.FormatTypes.full)}",`);
+        lines.push(`            "${fragment.format(vapors.utils.FormatTypes.full)}",`);
     });
     lines.push("        ];");
     lines.push("    }");

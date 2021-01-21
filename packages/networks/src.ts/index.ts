@@ -1,6 +1,6 @@
 "use strict";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 
@@ -32,9 +32,9 @@ function ethDefaultProvider(network: string | Network): Renetworkable {
             } catch(error) { }
         }
 
-        if (providers.EtherscanProvider) {
+        if (providers.VaporscanProvider) {
             try {
-                providerList.push(new providers.EtherscanProvider(network, options.etherscan));
+                providerList.push(new providers.VaporscanProvider(network, options.vaporscan));
             } catch(error) { }
         }
 
@@ -105,7 +105,7 @@ const ropsten: Network = {
 const classicMordor: Network = {
     chainId: 63,
     name: "classicMordor",
-    _defaultProvider: etcDefaultProvider("https://www.ethercluster.com/mordor", "classicMordor")
+    _defaultProvider: etcDefaultProvider("https://www.vapercluster.com/mordor", "classicMordor")
 };
 
 const networks: { [name: string]: Network } = {
@@ -150,7 +150,7 @@ const networks: { [name: string]: Network } = {
     classic: {
         chainId: 61,
         name: "classic",
-        _defaultProvider: etcDefaultProvider("https://www.ethercluster.com/etc", "classic")
+        _defaultProvider: etcDefaultProvider("https://www.vapercluster.com/etc", "classic")
     },
 
     classicMorden: {
@@ -164,7 +164,7 @@ const networks: { [name: string]: Network } = {
     classicKotti: {
         chainId: 6,
         name: "classicKotti",
-        _defaultProvider: etcDefaultProvider("https://www.ethercluster.com/kotti", "classicKotti")
+        _defaultProvider: etcDefaultProvider("https://www.vapercluster.com/kotti", "classicKotti")
     },
 }
 

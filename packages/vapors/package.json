@@ -1,0 +1,68 @@
+{
+  "author": "Richard Moore <me@ricmoo.com>",
+  "browser-old": "./dist/vapors.umd.js",
+  "dependencies": {
+    "@vaporsproject/abi": "5.0.9",
+    "@vaporsproject/abstract-provider": "5.0.7",
+    "@vaporsproject/abstract-signer": "5.0.9",
+    "@vaporsproject/address": "5.0.8",
+    "@vaporsproject/base64": "5.0.6",
+    "@vaporsproject/basex": "5.0.6",
+    "@vaporsproject/bignumber": "5.0.12",
+    "@vaporsproject/bytes": "5.0.8",
+    "@vaporsproject/constants": "5.0.7",
+    "@vaporsproject/contracts": "5.0.8",
+    "@vaporsproject/hash": "5.0.9",
+    "@vaporsproject/hdnode": "5.0.7",
+    "@vaporsproject/json-wallets": "5.0.9",
+    "@vaporsproject/keccak256": "5.0.6",
+    "@vaporsproject/logger": "5.0.8",
+    "@vaporsproject/networks": "5.0.6",
+    "@vaporsproject/pbkdf2": "5.0.6",
+    "@vaporsproject/properties": "5.0.6",
+    "@vaporsproject/providers": "5.0.17",
+    "@vaporsproject/random": "5.0.6",
+    "@vaporsproject/rlp": "5.0.6",
+    "@vaporsproject/sha2": "5.0.6",
+    "@vaporsproject/signing-key": "5.0.7",
+    "@vaporsproject/solidity": "5.0.7",
+    "@vaporsproject/strings": "5.0.7",
+    "@vaporsproject/transactions": "5.0.8",
+    "@vaporsproject/units": "5.0.8",
+    "@vaporsproject/wallet": "5.0.9",
+    "@vaporsproject/web": "5.0.11",
+    "@vaporsproject/wordlists": "5.0.7"
+  },
+  "description": "Umbrella package for most common Vapors libraries.",
+  "vapory": "donations.vapors.vap",
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://gitcoin.co/grants/13/vaporsjs-complete-simple-and-tiny-2"
+    },
+    {
+      "type": "individual",
+      "url": "https://www.buymeacoffee.com/ricmoo"
+    }
+  ],
+  "keywords": [
+    "Vapory",
+    "vapors"
+  ],
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "module": "./lib.esm/index.js",
+  "name": "vapors",
+  "repository": {
+    "directory": "packages/vapors",
+    "type": "git",
+    "url": "git://github.com/vaporsjs/vapors.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "sideEffects": false,
+  "tarballHash": "0x29af40c513a6ae9f1f3d3b9281e9dab348f682dd7cc6a69f4f8977a03eb651eb",
+  "types": "./lib/index.d.ts",
+  "version": "5.0.24"
+}

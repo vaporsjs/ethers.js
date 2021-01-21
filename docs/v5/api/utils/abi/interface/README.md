@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -10,13 +10,13 @@ Interface
 Creating Instances
 ------------------
 
-#### **new ***ethers* . *utils* . **Interface**( abi )
+#### **new ***vapors* . *utils* . **Interface**( abi )
 
 Create a new **Interface** from a JSON string or object representing *abi*.
 
 The *abi* may be a JSON string or the parsed Object (using JSON.parse) which is emitted by the [Solidity compiler](https://solidity.readthedocs.io/en/v0.6.0/using-the-compiler.html#output-description) (or compatible languages).
 
-The *abi* may also be a [Human-Readable Abi](https://blog.ricmoo.com/human-readable-contract-abis-in-ethers-js-141902f4d917), which is a format the Ethers created to simplify manually typing the ABI into the source and so that a Contract ABI can also be referenced easily within the same source file.
+The *abi* may also be a [Human-Readable Abi](https://blog.ricmoo.com/human-readable-contract-abis-in-vapors-js-141902f4d917), which is a format the Vapors created to simplify manually typing the ABI into the source and so that a Contract ABI can also be referenced easily within the same source file.
 
 
 Properties

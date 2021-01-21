@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -156,7 +156,7 @@ Properties
 ```
 {
   "expected": "0x33868cc5c3fd3a9cd3adbc1e868ea133d2218f60dc2660c3bc48d8b1f4961384",
-  "name":     "ViTalIk.WALlet.Eth",
+  "name":     "ViTalIk.WALlet.Vap",
   "test":     "mixed case"
 }
 ```

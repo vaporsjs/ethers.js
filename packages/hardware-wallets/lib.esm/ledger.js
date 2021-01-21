@@ -8,9 +8,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 import { version } from "./_version";
-const logger = new ethers.utils.Logger(version);
+const logger = new vapors.utils.Logger(version);
 import Eth from "@ledgerhq/hw-app-eth";
 // We store these in a separated import so it is easier to swap them out
 // at bundle time; browsers do not get HID, for example. This maps a string
@@ -22,7 +22,7 @@ function waiter(duration) {
         setTimeout(resolve, duration);
     });
 }
-export class LedgerSigner extends ethers.Signer {
+export class LedgerSigner extends vapors.Signer {
     constructor(provider, type, path) {
         super();
         if (path == null) {
@@ -31,16 +31,16 @@ export class LedgerSigner extends ethers.Signer {
         if (type == null) {
             type = "default";
         }
-        ethers.utils.defineReadOnly(this, "path", path);
-        ethers.utils.defineReadOnly(this, "type", type);
-        ethers.utils.defineReadOnly(this, "provider", provider || null);
+        vapors.utils.defineReadOnly(this, "path", path);
+        vapors.utils.defineReadOnly(this, "type", type);
+        vapors.utils.defineReadOnly(this, "provider", provider || null);
         const transport = transports[type];
         if (!transport) {
             logger.throwArgumentError("unknown or unsupported type", "type", type);
         }
-        ethers.utils.defineReadOnly(this, "_eth", transport.create().then((transport) => {
+        vapors.utils.defineReadOnly(this, "_eth", transport.create().then((transport) => {
             const eth = new Eth(transport);
-            return eth.getAppConfiguration().then((config) => {
+            return vap.getAppConfiguration().then((config) => {
                 return eth;
             }, (error) => {
                 return Promise.reject(error);
@@ -73,38 +73,38 @@ export class LedgerSigner extends ethers.Signer {
     }
     getAddress() {
         return __awaiter(this, void 0, void 0, function* () {
-            const account = yield this._retry((eth) => eth.getAddress(this.path));
-            return ethers.utils.getAddress(account.address);
+            const account = yield this._retry((eth) => vap.getAddress(this.path));
+            return vapors.utils.getAddress(account.address);
         });
     }
     signMessage(message) {
         return __awaiter(this, void 0, void 0, function* () {
             if (typeof (message) === 'string') {
-                message = ethers.utils.toUtf8Bytes(message);
+                message = vapors.utils.toUtf8Bytes(message);
             }
-            const messageHex = ethers.utils.hexlify(message).substring(2);
-            const sig = yield this._retry((eth) => eth.signPersonalMessage(this.path, messageHex));
+            const messageHex = vapors.utils.hexlify(message).substring(2);
+            const sig = yield this._retry((eth) => vap.signPersonalMessage(this.path, messageHex));
             sig.r = '0x' + sig.r;
             sig.s = '0x' + sig.s;
-            return ethers.utils.joinSignature(sig);
+            return vapors.utils.joinSignature(sig);
         });
     }
     signTransaction(transaction) {
         return __awaiter(this, void 0, void 0, function* () {
-            const tx = yield ethers.utils.resolveProperties(transaction);
+            const tx = yield vapors.utils.resolveProperties(transaction);
             const baseTx = {
                 chainId: (tx.chainId || undefined),
                 data: (tx.data || undefined),
                 gasLimit: (tx.gasLimit || undefined),
                 gasPrice: (tx.gasPrice || undefined),
-                nonce: (tx.nonce ? ethers.BigNumber.from(tx.nonce).toNumber() : undefined),
+                nonce: (tx.nonce ? vapors.BigNumber.from(tx.nonce).toNumber() : undefined),
                 to: (tx.to || undefined),
                 value: (tx.value || undefined),
             };
-            const unsignedTx = ethers.utils.serializeTransaction(baseTx).substring(2);
-            const sig = yield this._retry((eth) => eth.signTransaction(this.path, unsignedTx));
-            return ethers.utils.serializeTransaction(baseTx, {
-                v: ethers.BigNumber.from("0x" + sig.v).toNumber(),
+            const unsignedTx = vapors.utils.serializeTransaction(baseTx).substring(2);
+            const sig = yield this._retry((eth) => vap.signTransaction(this.path, unsignedTx));
+            return vapors.utils.serializeTransaction(baseTx, {
+                v: vapors.BigNumber.from("0x" + sig.v).toNumber(),
                 r: ("0x" + sig.r),
                 s: ("0x" + sig.s),
             });

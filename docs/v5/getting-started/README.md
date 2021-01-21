@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -11,7 +11,7 @@ Installing
 ----------
 
 ```
-/home/ricmoo> npm install --save ethers
+/home/ricmoo> npm install --save vapors
 ```
 
 Importing
@@ -20,24 +20,24 @@ Importing
 ### Node.js
 
 ```
-const { ethers } = require("ethers");
+const { vapors } = require("vapors");
 ```
 
 ```
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 ```
 
 ### Web Browser
 
 ```
 <script type="module">
-    import { ethers } from "https://cdn.ethers.io/lib/ethers-5.0.esm.min.js";
+    import { vapors } from "https://cdn.vapors.io/lib/vapors-5.0.esm.min.js";
     // Your code here...
 </script>
 ```
 
 ```
-<script src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js"
+<script src="https://cdn.vapors.io/lib/vapors-5.0.umd.min.js"
         type="application/javascript"></script>
 ```
 
@@ -48,13 +48,13 @@ Common Terms
 
 
 
-Connecting to Ethereum: Metamask
+Connecting to Vapory: Metamask
 --------------------------------
 
 ```
 // A Web3Provider wraps a standard Web3 provider, which is
-// what Metamask injects as window.ethereum into each page
-const provider = new ethers.providers.Web3Provider(window.ethereum)
+// what Metamask injects as window.vapory into each page
+const provider = new vapors.providers.Web3Provider(window.vapory)
 
 // The Metamask plugin also allows signing transactions to
 // send ether and pay to change state within the blockchain.
@@ -62,13 +62,13 @@ const provider = new ethers.providers.Web3Provider(window.ethereum)
 const signer = provider.getSigner()
 ```
 
-Connecting to Ethereum: RPC
+Connecting to Vapory: RPC
 ---------------------------
 
 ```
-// If you don't specify a //url//, Ethers connects to the default 
+// If you don't specify a //url//, Vapors connects to the default 
 // (i.e. ``http:/\/localhost:8545``)
-const provider = new ethers.providers.JsonRpcProvider();
+const provider = new vapors.providers.JsonRpcProvider();
 
 // The provider also allows signing transactions to
 // send ether and pay to change state within the blockchain.
@@ -84,17 +84,17 @@ provider.getBlockNumber()
 // { Promise: 11312227 }
 
 // Get the balance of an account (by address or ENS name, if supported by network)
-balance = await provider.getBalance("ethers.eth")
+balance = await provider.getBalance("vapors.vap")
 // { BigNumber: "2337132817842795605" }
 
 // Often you need to format the output to something more user-friendly,
 // such as in ether (instead of wei)
-ethers.utils.formatEther(balance)
+vapors.utils.formatEther(balance)
 // '2.337132817842795605'
 
 // If a user enters a string in an input field, you may need
 // to convert it from ether (as a string) to wei (as a BigNumber)
-ethers.utils.parseEther("1.0")
+vapors.utils.parseEther("1.0")
 // { BigNumber: "1000000000000000000" }
 ```
 
@@ -103,8 +103,8 @@ ethers.utils.parseEther("1.0")
 ```
 // Send 1 ether to an ens name.
 const tx = signer.sendTransaction({
-    to: "ricmoo.firefly.eth",
-    value: ethers.utils.parseEther("1.0")
+    to: "ricmoo.firefly.vap",
+    value: vapors.utils.parseEther("1.0")
 });
 ```
 
@@ -113,7 +113,7 @@ Contracts
 
 ```javascript
 // You can also use an ENS name for the contract address
-const daiAddress = "dai.tokens.ethers.eth";
+const daiAddress = "dai.tokens.vapors.vap";
 
 // The ERC-20 Contract ABI, which is a common contract interface
 // for tokens (this is the Human-Readable ABI format)
@@ -133,7 +133,7 @@ const daiAbi = [
 ];
 
 // The Contract object
-const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
+const daiContract = new vapors.Contract(daiAddress, daiAbi, provider);
 ```
 
 ### Read-Only Methods
@@ -148,11 +148,11 @@ daiContract.symbol()
 // { Promise: 'DAI' }
 
 // Get the balance of an address
-balance = await daiContract.balanceOf("ricmoo.firefly.eth")
+balance = await daiContract.balanceOf("ricmoo.firefly.vap")
 // { BigNumber: "15923148775162018481031" }
 
 // Format the DAI for displaying to the user
-ethers.utils.formatUnits(balance, 18)
+vapors.utils.formatUnits(balance, 18)
 // '15923.148775162018481031'
 ```
 
@@ -165,10 +165,10 @@ ethers.utils.formatUnits(balance, 18)
 const daiWithSigner = contract.connect(signer);
 
 // Each DAI has 18 decimal places
-const dai = ethers.utils.parseUnits("1.0", 18);
+const dai = vapors.utils.parseUnits("1.0", 18);
 
-// Send 1 DAI to "ricmoo.firefly.eth"
-tx = daiWithSigner.transfer("ricmoo.firefly.eth", dai);
+// Send 1 DAI to "ricmoo.firefly.vap"
+tx = daiWithSigner.transfer("ricmoo.firefly.vap", dai);
 ```
 
 ### Listening to Events
@@ -186,7 +186,7 @@ daiContract.on("Transfer", (from, to, amount, event) => {
 myAddress = "0x8ba1f109551bD432803012645Ac136ddd64DBA72";
 filter = daiContract.filters.Transfer(null, myAddress)
 // {
-//   address: 'dai.tokens.ethers.eth',
+//   address: 'dai.tokens.vapors.vap',
 //   topics: [
 //     '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
 //     null,
@@ -211,7 +211,7 @@ myAddress = await signer.getAddress()
 // Filter for all token transfers to me
 filterFrom = daiContract.filters.Transfer(myAddress, null);
 // {
-//   address: 'dai.tokens.ethers.eth',
+//   address: 'dai.tokens.vapors.vap',
 //   topics: [
 //     '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
 //     '0x0000000000000000000000008ba1f109551bd432803012645ac136ddd64dba72'
@@ -221,7 +221,7 @@ filterFrom = daiContract.filters.Transfer(myAddress, null);
 // Filter for all token transfers from me
 filterTo = daiContract.filters.Transfer(null, myAddress);
 // {
-//   address: 'dai.tokens.ethers.eth',
+//   address: 'dai.tokens.vapors.vap',
 //   topics: [
 //     '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',
 //     null,
@@ -320,7 +320,7 @@ signature = await signer.signMessage("Hello World");
 message = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
 
 // This array representation is 32 bytes long
-messageBytes = ethers.utils.arrayify(message);
+messageBytes = vapors.utils.arrayify(message);
 // Uint8Array [ 221, 242, 82, 173, 27, 226, 200, 155, 105, 194, 176, 104, 252, 55, 141, 170, 149, 43, 167, 241, 99, 196, 161, 22, 40, 245, 90, 77, 245, 35, 179, 239 ]
 
 // To sign a hash, you most often want to sign the bytes

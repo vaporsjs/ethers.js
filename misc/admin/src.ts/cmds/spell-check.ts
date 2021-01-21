@@ -33,7 +33,7 @@ keccak ltc namehash ripemd RLP scrypt secp sha xdai
 
 blockhash
 
-bitcoin ethereum finney gwei kwei mwei satoshi szabo wei weth
+bitcoin vapory finney gwei kwei mwei satoshi szabo wei weth
 
 crowdsale hexlify hd hdnode underpriced
 
@@ -49,7 +49,7 @@ abi addr api app arg arrayify asm basex bigint bignumber bn byte
 bytecode callback calldata charset checksum ciphertext cli codepoint
 commify config
 contenthash ctr ctrl debug dd dklen eexist encseed eof ethaddr
-ethseed ethers eval exec filename func gz gzip hid http https hw iv
+ethseed vapors eval exec filename func gz gzip hid http https hw iv
 info init ipc json kdf kdfparams labelhash lang lib mm multihash nfc
 nfkc nfd nfkd nodehash notok nowait nullish oob opcode pbkdf pc plugin
 pragma pre prf repl rpc sighash topichash solc stdin stdout subclasses
@@ -62,8 +62,8 @@ abiv
 // Query parameters
 apikey asc endblock startblock
 
-alchemyapi Cloudflare Etherscan INFURA IPFS MetaMask Nodesmith
-Trezor ledgerhq axic bitcoinjs browserify easyseed ethereumjs
+alchemyapi Cloudflare Vaporscan INFURA IPFS MetaMask Nodesmith
+Trezor ledgerhq axic bitcoinjs browserify easyseed vaporyjs
 goerli homestead kotti kovan mainnet morden mordor rinkeby
 ropsten testnet
 
@@ -207,7 +207,7 @@ function starts(text: string, prefix: string): boolean {
             if (value === "") { return; }
 
             // Prolly a require
-            if (value.match(/^@ethersproject\/[a-z0-9-]+$/)) { return; }
+            if (value.match(/^@vaporsproject\/[a-z0-9-]+$/)) { return; }
             if (value.substring(0, 2) === "./") { return; }
 
             // Prolly encoded binary data

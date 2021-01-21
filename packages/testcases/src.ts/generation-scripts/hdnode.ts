@@ -6,7 +6,7 @@ import { resolve } from "path";
 import * as bip39 from "bip39";
 import { HDNode } from "bitcoinjs-lib";
 
-import * as ethereumUtil from "ethereumjs-util";
+import * as vaporyUtil from "vaporyjs-util";
 
 import { randomHexString, randomNumber, saveTests, TestCase } from "..";
 
@@ -33,7 +33,7 @@ function getHD(seed: string): Array<TestCase.HDWalletNode> {
     let hdnodes: Array<TestCase.HDWalletNode> = [{
         path: 'm',
         privateKey: '0x' + privateKey.toString('hex'),
-        address: '0x' + ethereumUtil.privateToAddress(privateKey).toString('hex'),
+        address: '0x' + vaporyUtil.privateToAddress(privateKey).toString('hex'),
     }];
 
     for (let j = 0; j < 5; j++) {
@@ -43,7 +43,7 @@ function getHD(seed: string): Array<TestCase.HDWalletNode> {
         hdnodes.push({
             path: path,
             privateKey: '0x' + privateKey.toString('hex'),
-            address: '0x' + ethereumUtil.privateToAddress(privateKey).toString('hex'),
+            address: '0x' + vaporyUtil.privateToAddress(privateKey).toString('hex'),
         });
     }
 

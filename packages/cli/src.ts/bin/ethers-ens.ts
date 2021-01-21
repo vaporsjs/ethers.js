@@ -2,14 +2,14 @@
 
 'use strict';
 
-import { ethers } from "ethers";
-import { Base58 } from "@ethersproject/basex";
+import { vapors } from "vapors";
+import { Base58 } from "@vaporsproject/basex";
 
 import { ArgParser, CLI, Help, Plugin } from '../cli';
 
 import { version } from "../_version";
 
-const logger = new ethers.utils.Logger(version);
+const logger = new vapors.utils.Logger(version);
 
 const ensAbi = [
     "function setOwner(bytes32 node, address owner) external @500000",
@@ -82,22 +82,22 @@ abstract class EnsPlugin extends Plugin {
 
     constructor() {
         super();
-        ethers.utils.defineReadOnly(this, "_ethAddressCache", { });
+        vapors.utils.defineReadOnly(this, "_ethAddressCache", { });
     }
 
-    getEns(): ethers.Contract {
-        return new ethers.Contract(this.network.ensAddress, ensAbi, this.accounts[0] || this.provider);
+    getEns(): vapors.Contract {
+        return new vapors.Contract(this.network.ensAddress, ensAbi, this.accounts[0] || this.provider);
     }
 
-    async getResolver(nodehash: string): Promise<ethers.Contract> {
+    async getResolver(nodehash: string): Promise<vapors.Contract> {
         if (!this._ethAddressCache[nodehash]) {
             this._ethAddressCache[nodehash] = await this.getEns().resolver(nodehash);
         }
-        return new ethers.Contract(this._ethAddressCache[nodehash], resolverAbi, this.accounts[0] || this.provider);
+        return new vapors.Contract(this._ethAddressCache[nodehash], resolverAbi, this.accounts[0] || this.provider);
     }
 
     async getEthInterfaceAddress(interfaceId: string): Promise<string> {
-        let ethNodehash = ethers.utils.namehash("eth");
+        let ethNodehash = vapors.utils.namehash("eth");
         if (!this._ethAddressCache[interfaceId]) {
             let resolver = await this.getResolver(ethNodehash);
             this._ethAddressCache[interfaceId] = await resolver.interfaceImplementer(ethNodehash, interfaceId);
@@ -105,20 +105,20 @@ abstract class EnsPlugin extends Plugin {
         return this._ethAddressCache[interfaceId];
     }
 
-    async getEthController(): Promise<ethers.Contract> {
+    async getEthController(): Promise<vapors.Contract> {
         let address = await this.getEthInterfaceAddress(InterfaceID_Controller);
-        return new ethers.Contract(address, ethControllerAbi, this.accounts[0] || this.provider);
+        return new vapors.Contract(address, ethControllerAbi, this.accounts[0] || this.provider);
     }
 
-    async getEthLegacyRegistrar(): Promise<ethers.Contract> {
+    async getEthLegacyRegistrar(): Promise<vapors.Contract> {
         let address = await this.getEthInterfaceAddress(InterfaceID_Legacy);
-        return new ethers.Contract(address, ethLegacyRegistrarAbi, this.accounts[0] || this.provider);
+        return new vapors.Contract(address, ethLegacyRegistrarAbi, this.accounts[0] || this.provider);
     }
 
-    async getEthRegistrar(): Promise<ethers.Contract> {
+    async getEthRegistrar(): Promise<vapors.Contract> {
         //let address = await this.getEthInterfaceAddress(InterfaceID_ERC721);
-        let address = await this.getEns().owner(ethers.utils.namehash("eth"));
-        return new ethers.Contract(address, ethRegistrarAbi, this.accounts[0] || this.provider);
+        let address = await this.getEns().owner(vapors.utils.namehash("eth"));
+        return new vapors.Contract(address, ethRegistrarAbi, this.accounts[0] || this.provider);
     }
 }
 
@@ -151,7 +151,7 @@ class LookupPlugin extends EnsPlugin {
         for (let i = 0; i < this.names.length; i++) {
             let name = this.names[i];
 
-            let nodehash = ethers.utils.namehash(name);
+            let nodehash = vapors.utils.namehash(name);
 
             let details: { [ key: string]: string } = {
                 Nodehash: nodehash
@@ -159,12 +159,12 @@ class LookupPlugin extends EnsPlugin {
 
             let owner = await ens.owner(nodehash);
             let resolverAddress: string = null;
-            if (owner === ethers.constants.AddressZero) {
+            if (owner === vapors.constants.AddressZero) {
                 owner = null;
             } else {
                 details.Controller = owner;
                 details.Resolver = await ens.resolver(nodehash).then((address: string) => {
-                    if (address === ethers.constants.AddressZero) {
+                    if (address === vapors.constants.AddressZero) {
                         return "(not configured)";
                     }
                     resolverAddress = address;
@@ -174,31 +174,31 @@ class LookupPlugin extends EnsPlugin {
 
             let comps = name.split(".");
             if (comps.length === 2 && comps[1] === "eth") {
-                details.Labelhash = ethers.utils.id(comps[0].toLowerCase()); // @TODO: nameprep
+                details.Labelhash = vapors.utils.id(comps[0].toLowerCase()); // @TODO: nameprep
 
                 details.Available = await controller.available(comps[0]);
 
                 if (!details.Available) {
                     try {
                         let ownerOf = await registrar.ownerOf(details.Labelhash);
-                        if (ownerOf !== ethers.constants.AddressZero) {
+                        if (ownerOf !== vapors.constants.AddressZero) {
                             details.Registrant = ownerOf;
                             details.Registrar = "Permanent";
                         }
                     } catch (error) {
                         let entry = await legacyRegistrar.entries(details.Labelhash);
-                        let deed = new ethers.Contract(entry.owner, deedAbi, this.provider);
+                        let deed = new vapors.Contract(entry.owner, deedAbi, this.provider);
 
                         details.Registrant = await deed.owner();
                         details.Registrar = "Legacy";
-                        details["Deed Value"] = (ethers.utils.formatEther(entry.value) + " ether");
-                        details["Highest Bid"] = (ethers.utils.formatEther(entry.highestBid) + " ether");
+                        details["Deed Value"] = (vapors.utils.formatEther(entry.value) + " ether");
+                        details["Highest Bid"] = (vapors.utils.formatEther(entry.highestBid) + " ether");
                     }
                 }
             }
 
             if (resolverAddress) {
-                let resolver = new ethers.Contract(resolverAddress, resolverAbi, this.provider);
+                let resolver = new vapors.Contract(resolverAddress, resolverAbi, this.provider);
                 details["Address"] = await resolver.addr(nodehash);
 
                 let email = await resolver.text(nodehash, "email").catch((error: any) => (""));
@@ -209,8 +209,8 @@ class LookupPlugin extends EnsPlugin {
 
                 let content = await resolver.contenthash(nodehash).then((hash: string) => {
                     if (hash === "0x") { return ""; }
-                    if (hash.substring(0, 10) === "0xe3010170" && ethers.utils.isHexString(hash, 38)) {
-                        return Base58.encode(ethers.utils.hexDataSlice(hash, 4)) + " (IPFS)";
+                    if (hash.substring(0, 10) === "0xe3010170" && vapors.utils.isHexString(hash, 38)) {
+                        return Base58.encode(vapors.utils.hexDataSlice(hash, 4)) + " (IPFS)";
                     }
                     return hash + " (unknown format)";
                 }, (error: any) => (""));
@@ -238,22 +238,22 @@ abstract class AccountPlugin extends EnsPlugin {
     nodehash: string;
 
     static getHelp(): Help {
-        return logger.throwError("subclasses must implement this", ethers.errors.UNSUPPORTED_OPERATION, {
+        return logger.throwError("subclasses must implement this", vapors.errors.UNSUPPORTED_OPERATION, {
             operation: "getHelp"
         });
     }
 
     async _setValue(key: string, value: string): Promise<void> {
-        ethers.utils.defineReadOnly<any, any>(this, key, value);
+        vapors.utils.defineReadOnly<any, any>(this, key, value);
         if (key === "name") {
-            await this._setValue("nodehash", ethers.utils.namehash(value));
+            await this._setValue("nodehash", vapors.utils.namehash(value));
         }
     }
 
     async prepareArgs(args: Array<string>): Promise<void> {
         await super.prepareArgs(args);
 
-        let helpLine = ethers.utils.getStatic<() => Help>(this.constructor, "getHelp")().name;
+        let helpLine = vapors.utils.getStatic<() => Help>(this.constructor, "getHelp")().name;
         let params = helpLine.split(" ");
         let command = params[0];
         params = params.slice(1);
@@ -321,7 +321,7 @@ abstract class ControllerPlugin extends AccountPlugin {
             if (this.salt) {
                 this.throwError("Cannot specify --salt with --secret");
             }
-            this.salt = ethers.utils.id(secret);
+            this.salt = vapors.utils.id(secret);
         }
 
         this.owner = argParser.consumeOption("owner");
@@ -336,7 +336,7 @@ abstract class ControllerPlugin extends AccountPlugin {
             this.throwError("registration must be for a minimum length of 28 days");
         }
 
-        ethers.utils.defineReadOnly(this, "duration", duration * (60 * 60 * 24));
+        vapors.utils.defineReadOnly(this, "duration", duration * (60 * 60 * 24));
     }
 
     async prepareArgs(args: Array<string>): Promise<void> {
@@ -344,7 +344,7 @@ abstract class ControllerPlugin extends AccountPlugin {
 
         if (!this.salt) {
             let signature = await this.accounts[0].signMessage("commit-" + this.owner + "-" + this.name);
-            this.salt = ethers.utils.keccak256(signature);
+            this.salt = vapors.utils.keccak256(signature);
         }
     }
 }
@@ -370,7 +370,7 @@ class CommitPlugin extends ControllerPlugin {
             Owner: this.owner,
             Salt: this.salt,
             Duration: (this.duration + " seconds (informational)"),
-            Fee: ethers.utils.formatEther(fee) + " (informational)",
+            Fee: vapors.utils.formatEther(fee) + " (informational)",
             Commitment: commitment
         });
 
@@ -399,7 +399,7 @@ class RevealPlugin extends ControllerPlugin {
             Owner: this.owner,
             Salt: this.salt,
             Duration: (this.duration + " seconds"),
-            Fee: ethers.utils.formatEther(fee),
+            Fee: vapors.utils.formatEther(fee),
         });
 
         await ethController.register(this.label, this.owner, this.duration, this.salt, {
@@ -529,7 +529,7 @@ class SetSubnodePlugin extends AddressAccountPlugin {
             "Owner": this.address
         });
 
-        await this.getEns().setSubnodeOwner(ethers.utils.namehash(this.node), ethers.utils.id(this.label), this.address);
+        await this.getEns().setSubnodeOwner(vapors.utils.namehash(this.node), vapors.utils.id(this.label), this.address);
     }
 }
 cli.addPlugin("set-subnode", SetSubnodePlugin);
@@ -538,12 +538,12 @@ class SetResolverPlugin extends AddressAccountPlugin {
     static getHelp(): Help {
         return {
            name: "set-resolver NAME",
-           help: "Set the resolver (default: resolver.eth)"
+           help: "Set the resolver (default: resolver.vap)"
         }
     }
 
     getDefaultAddress(): Promise<string> {
-        return this.getAddress("resolver.eth");
+        return this.getAddress("resolver.vap");
     }
 
     async run(): Promise<void> {
@@ -594,7 +594,7 @@ class SetNamePlugin extends AddressAccountPlugin {
     async run(): Promise<void> {
         await super.run();
 
-        const nodehash = ethers.utils.namehash(this.address.substring(2) + ".addr.reverse");
+        const nodehash = vapors.utils.namehash(this.address.substring(2) + ".addr.reverse");
 
         this.dump("Set Name: " + this.name, {
             "Nodehash": nodehash,
@@ -697,8 +697,8 @@ class SetContentPlugin extends AccountPlugin {
                 this.throwError("Unsupported IPFS hash");
             }
 
-            let multihash = ethers.utils.concat([ "0xe3010170", bytes ]);
-            await super._setValue("multihash", ethers.utils.hexlify(multihash));
+            let multihash = vapors.utils.concat([ "0xe3010170", bytes ]);
+            await super._setValue("multihash", vapors.utils.hexlify(multihash));
         }
         await super._setValue(key, value);
     }
@@ -719,8 +719,8 @@ cli.addPlugin("set-content", SetContentPlugin);
 
 class MigrateRegistrarPlugin extends AccountPlugin {
     readonly label: string;
-    readonly deedValue: ethers.BigNumber;
-    readonly highestBid: ethers.BigNumber;
+    readonly deedValue: vapors.BigNumber;
+    readonly highestBid: vapors.BigNumber;
 
     static getHelp(): Help {
         return {
@@ -735,19 +735,19 @@ class MigrateRegistrarPlugin extends AccountPlugin {
         // Only Top-Level names can be migrated
         let comps = this.name.split(".");
         if (comps.length !== 2 || comps[1] !== "eth") {
-            this.throwError("Not a top-level .eth name");
+            this.throwError("Not a top-level .vap name");
         }
         await super._setValue("label", comps[0]);
 
         let ethLegacyRegistrar = await this.getEthLegacyRegistrar();
-        let entry: any = await ethLegacyRegistrar.entries(ethers.utils.id(comps[0]));
+        let entry: any = await ethLegacyRegistrar.entries(vapors.utils.id(comps[0]));
 
         // Only owned names can be migrated
         if (States[entry.state] !== "Owned") {
             this.throwError("Name not present in the Legacy registrar");
         }
 
-        let deed = new ethers.Contract(entry.owner, deedAbi, this.provider);
+        let deed = new vapors.Contract(entry.owner, deedAbi, this.provider);
         let owner = await deed.owner();
         let address = await this.accounts[0].getAddress();
 
@@ -765,12 +765,12 @@ class MigrateRegistrarPlugin extends AccountPlugin {
 
         this.dump("Migrate Registrar: " + this.name, {
             "Nodehash": this.nodehash,
-            "Highest Bid": (ethers.utils.formatEther(this.highestBid) + " ether"),
-            "Deed Value": (ethers.utils.formatEther(this.deedValue) + " ether"),
+            "Highest Bid": (vapors.utils.formatEther(this.highestBid) + " ether"),
+            "Deed Value": (vapors.utils.formatEther(this.deedValue) + " ether"),
         });
 
         let legacyRegistrar = await this.getEthLegacyRegistrar();
-        await legacyRegistrar.transferRegistrars(ethers.utils.id(this.label));
+        await legacyRegistrar.transferRegistrars(vapors.utils.id(this.label));
     }
 }
 cli.addPlugin("migrate-registrar", MigrateRegistrarPlugin);
@@ -795,7 +795,7 @@ class TransferPlugin extends AccountPlugin {
         } else if (key === "name") {
             let comps = value.split(".");
             if (comps.length !== 2 || comps[1] !== "eth") {
-                this.throwError("Not a top-level .eth name");
+                this.throwError("Not a top-level .vap name");
             }
             await super._setValue("label", comps[0]);
             await super._setValue(key, value);
@@ -813,7 +813,7 @@ class TransferPlugin extends AccountPlugin {
         });
 
         let registrar = await this.getEthRegistrar();
-        await registrar.safeTransferFrom(this.accounts[0].getAddress(), this.new_owner, ethers.utils.id(this.label));
+        await registrar.safeTransferFrom(this.accounts[0].getAddress(), this.new_owner, vapors.utils.id(this.label));
     }
 }
 cli.addPlugin("transfer", TransferPlugin);
@@ -832,7 +832,7 @@ class ReclaimPlugin extends AddressAccountPlugin {
         if (key === "name") {
             let comps = value.split(".");
             if (comps.length !== 2 || comps[1] !== "eth") {
-                this.throwError("Not a top-level .eth name");
+                this.throwError("Not a top-level .vap name");
             }
 
             let account = await this.accounts[0].getAddress();
@@ -840,7 +840,7 @@ class ReclaimPlugin extends AddressAccountPlugin {
             let registrar = await this.getEthRegistrar();
             let ownerOf: string = null;
             try {
-                ownerOf = await registrar.ownerOf(ethers.utils.id(comps[0]));
+                ownerOf = await registrar.ownerOf(vapors.utils.id(comps[0]));
             } catch (error) {
                 this.throwError("Name not present in Permanent Registrar");
             }
@@ -863,7 +863,7 @@ class ReclaimPlugin extends AddressAccountPlugin {
         });
 
         let registrar = await this.getEthRegistrar();
-        await registrar.reclaim(ethers.utils.id(this.label), this.address);
+        await registrar.reclaim(vapors.utils.id(this.label), this.address);
     }
 }
 cli.addPlugin("reclaim", ReclaimPlugin);
@@ -975,7 +975,7 @@ class RenewPlugin extends EnsPlugin {
             const label = this.labels[i];
             console.log(label);
 
-            const expiration = (await ethRegistrar.nameExpires(ethers.utils.id(label))).toNumber();
+            const expiration = (await ethRegistrar.nameExpires(vapors.utils.id(label))).toNumber();
             if (expiration === 0) {
                 this.throwError(`not registered: ${ label }`);
             }
@@ -987,11 +987,11 @@ class RenewPlugin extends EnsPlugin {
 
             const fee = (await ethController.rentPrice(label, duration)).mul(11).div(10);
 
-            this.dump(`Renew: ${ label }.eth`, {
+            this.dump(`Renew: ${ label }.vap`, {
                 "Current Expiry": formatDate(new Date(expiration * 1000)),
                 "Duration":       `${ (duration / (24 * 60 * 60)) } days`,
                 "Until":          formatDate(new Date((expiration + duration) * 1000)),
-                "Fee":            `${ ethers.utils.formatEther(fee) } (+10% buffer)`,
+                "Fee":            `${ vapors.utils.formatEther(fee) } (+10% buffer)`,
             });
 
             await ethController.renew(label, duration, {

@@ -54,7 +54,7 @@ function getDefinitions(source) {
 
 const getSourceUrl = (function(path, include, exclude) {
     console.log("Scanning TypeScript Sources...");
-    const Link = "https://github.com/ethers-io/ethers.js/blob/master/packages$FILENAME#L$LINE";
+    const Link = "https://github.com/vaporsjs/vapors.js/blob/master/packages$FILENAME#L$LINE";
     const Root = resolve(__dirname, path);
 
     const readdir = function(path) {
@@ -117,17 +117,17 @@ const getSourceUrl = (function(path, include, exclude) {
 
 function codeContextify(context) {
     const { inspect } = require("util");
-    const ethers = context.require("./packages/ethers");
+    const vapors = context.require("./packages/vapors");
 
-    context.ethers = ethers;
-    context.BigNumber = ethers.BigNumber;
-    context.constants = ethers.constants;
-    context.utils = ethers.utils;
-    context.arrayify = ethers.utils.arrayify;
-    context.hexlify = ethers.utils.hexlify;
-    context.hexValue = ethers.utils.hexValue;
-    context.Wallet = ethers.Wallet;
-    context.provider = new ethers.providers.InfuraProvider("mainnet", "49a0efa3aaee4fd99797bfa94d8ce2f1");
+    context.vapors = vapors;
+    context.BigNumber = vapors.BigNumber;
+    context.constants = vapors.constants;
+    context.utils = vapors.utils;
+    context.arrayify = vapors.utils.arrayify;
+    context.hexlify = vapors.utils.hexlify;
+    context.hexValue = vapors.utils.hexValue;
+    context.Wallet = vapors.Wallet;
+    context.provider = new vapors.providers.InfuraProvider("mainnet", "49a0efa3aaee4fd99797bfa94d8ce2f1");
 
     context.BigNumber.prototype[inspect.custom] = function(depth, options) {
         return `{ BigNumber: ${JSON.stringify(this.toString()) } }`;
@@ -151,17 +151,17 @@ function codeContextify(context) {
 
 
 module.exports = {
-  title: "ethers",
+  title: "vapors",
   subtitle: "v5.0",
   logo: "logo.svg",
 
   prefix: "/v5",
 
-  link: "https:/\/docs.ethers.io",
+  link: "https:/\/docs.vapors.io",
   copyright: "The content of this site is licensed under the [Creative Commons License](https:/\/choosealicense.com/licenses/cc-by-4.0/). Generated on &$now;.",
 
   markdown: {
-      "banner": "-----\n\nDocumentation: [html](https://docs.ethers.io/)\n\n-----\n\n"
+      "banner": "-----\n\nDocumentation: [html](https://docs.vapors.io/)\n\n-----\n\n"
   },
 
   codeContextify: codeContextify,
@@ -172,14 +172,14 @@ module.exports = {
 
   externalLinks: {
       "link-alchemy": { name: "Alchemy", url: "https:/\/alchemyapi.io" },
-      "link-cloudflare": { name: "Cloudflare", url: "https:/\/developers.cloudflare.com/distributed-web/ethereum-gateway/" },
+      "link-cloudflare": { name: "Cloudflare", url: "https:/\/developers.cloudflare.com/distributed-web/vapory-gateway/" },
       "link-ens": { name: "ENS", url: "https:/\/ens.domains/" },
-      "link-ethereum": { name: "Ethereum", url: "https:/\/ethereumorg" },
-      "link-etherscan": { name: "Etherscan", url: "https:/\/etherscan.io" },
+      "link-vapory": { name: "Vapory", url: "https:/\/vaporyorg" },
+      "link-vaporscan": { name: "Vaporscan", url: "https:/\/vaporscan.io" },
       "link-expo": { name: "Expo", url: "https:/\/expo.io" },
-      "link-etherscan-api": "https:/\/etherscan.io/apis",
+      "link-vaporscan-api": "https:/\/vaporscan.io/apis",
       "link-flatworm": { name: "Flatworm", url: "https:/\/github.com/ricmoo/flatworm" },
-      "link-geth": { name: "Geth", url: "https:/\/geth.ethereum.org" },
+      "link-geth": { name: "Geth", url: "https:/\/gvap.vapory.org" },
       "link-infura": { name: "INFURA", url: "https:/\/infura.io" },
       "link-javascriptcore": { name: "JavaScriptCore", url: "https:/\/developer.apple.com/documentation/javascriptcore?language=objc" },
       "link-ledger": "https:/\/www.ledger.com",
@@ -194,60 +194,60 @@ module.exports = {
       "link-sphinx": { name: "Sphinx", url: "https:/\/www.sphinx-doc.org/" },
 
       "link-alchemy-signup": "https:/\/dashboard.alchemyapi.io/signup?referral=55a35117-028e-4b7c-9e47-e275ad0acc6d",
-      "link-etherscan-signup": "https:/\/etherscan.io/apis",
-      "link-etherscan-ratelimit": "https:/\/info.etherscan.com/api-return-errors/",
+      "link-vaporscan-signup": "https:/\/vaporscan.io/apis",
+      "link-vaporscan-ratelimit": "https:/\/info.vaporscan.com/api-return-errors/",
       "link-infura-signup": "https:/\/infura.io/register",
-      "link-pocket-signup": "https:/\/pokt.network/pocket-gateway-ethereum-mainnet/",
+      "link-pocket-signup": "https:/\/pokt.network/pocket-gateway-vapory-mainnet/",
 
-      "link-json-rpc": "https:/\/github.com/ethereum/wiki/wiki/JSON-RPC",
-      "link-web3-send": "https:/\/github.com/ethereum/web3.js/blob/1.x/packages/web3-providers-http/types/index.d.ts#L57",
-      "link-parity-trace": "https:/\/openethereum.github.io/wiki/JSONRPC-trace-module",
-      "link-parity-rpc": "https:/\/openethereum.github.io/wiki/JSONRPC",
-      "link-geth-debug": "https:/\/github.com/ethereum/go-ethereum/wiki/Management-APIs#debug",
-      "link-geth-rpc": "https:/\/github.com/ethereum/go-ethereum/wiki/Management-APIs",
+      "link-json-rpc": "https:/\/github.com/vaporyco/wiki/wiki/JSON-RPC",
+      "link-web3-send": "https:/\/github.com/vaporyco/web3.js/blob/1.x/packages/web3-providers-http/types/index.d.ts#L57",
+      "link-parity-trace": "https:/\/openvapory.github.io/wiki/JSONRPC-trace-module",
+      "link-parity-rpc": "https:/\/openvapory.github.io/wiki/JSONRPC",
+      "link-geth-debug": "https:/\/github.com/vaporyco/go-vapory/wiki/Management-APIs#debug",
+      "link-geth-rpc": "https:/\/github.com/vaporyco/go-vapory/wiki/Management-APIs",
 
-      "link-legacy-docs3": "https:/\/docs.ethers.io/v3/",
-      "link-legacy-docs4": "https:/\/docs.ethers.io/v4/",
+      "link-legacy-docs3": "https:/\/docs.vapors.io/v3/",
+      "link-legacy-docs4": "https:/\/docs.vapors.io/v4/",
 
-      "link-github-ci": "https:/\/github.com/ethers-io/ethers.js/actions/runs/158006903",
-      "link-github-issues": "https:/\/github.com/ethers-io/ethers.js/issues",
+      "link-github-ci": "https:/\/github.com/vaporsjs/vapors.js/actions/runs/158006903",
+      "link-github-issues": "https:/\/github.com/vaporsjs/vapors.js/issues",
 
-      "link-issue-407": "https:/\/github.com/ethers-io/ethers.js/issues/407",
+      "link-issue-407": "https:/\/github.com/vaporsjs/vapors.js/issues/407",
 
       "link-infura-secret": "https:/\/infura.io/docs/gettingStarted/authentication",
 
-      "link-web3": "https:/\/github.com/ethereum/web3.js",
-      "link-web3-http": "https:/\/github.com/ethereum/web3.js/tree/1.x/packages/web3-providers-http",
-      "link-web3-ipc": "https:/\/github.com/ethereum/web3.js/tree/1.x/packages/web3-providers-ipc",
-      "link-web3-ws": "https:/\/github.com/ethereum/web3.js/tree/1.x/packages/web3-providers-ws",
+      "link-web3": "https:/\/github.com/vaporyco/web3.js",
+      "link-web3-http": "https:/\/github.com/vaporyco/web3.js/tree/1.x/packages/web3-providers-http",
+      "link-web3-ipc": "https:/\/github.com/vaporyco/web3.js/tree/1.x/packages/web3-providers-ipc",
+      "link-web3-ws": "https:/\/github.com/vaporyco/web3.js/tree/1.x/packages/web3-providers-ws",
 
       "link-solc-output": "https:/\/solidity.readthedocs.io/en/v0.6.0/using-the-compiler.html#output-description",
       "link-bip39-wordlists": "https:/\/github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md",
 
-      "link-icap": "https:/\/github.com/ethereum/wiki/wiki/Inter-exchange-Client-Address-Protocol-%28ICAP%29",
-      "link-jsonrpc": "https:/\/github.com/ethereum/wiki/wiki/JSON-RPC",
+      "link-icap": "https:/\/github.com/vaporyco/wiki/wiki/Inter-exchange-Client-Address-Protocol-%28ICAP%29",
+      "link-jsonrpc": "https:/\/github.com/vaporyco/wiki/wiki/JSON-RPC",
       "link-mit": { name: "MIT License", url: "https:/\/en.m.wikipedia.org/wiki/MIT_License" },
       "link-namehash": { name: "namehash", url: "https:/\/docs.ens.domains/contract-api-reference/name-processing#hashing-names" },
-      "link-rlp": { name: "Recursive Length Prefix", url: "https:/\/github.com/ethereum/wiki/wiki/RLP" },
+      "link-rlp": { name: "Recursive Length Prefix", url: "https:/\/github.com/vaporyco/wiki/wiki/RLP" },
 
-      "link-ethersio": "https:/\/ethers.io/",
-      "link-ethers-docs": "https:/\/docs.ethers.io/",
-      "link-ethers-js": "https:/\/cdn.ethers.io/lib/ethers-5.0.esm.min.js",
-      "link-ethers-npm": "https:/\/www.npmjs.com/search?q=%40ethersproject%2F",
-      "link-ethers-asm-grammar": "https:/\/github.com/ethers-io/ethers.js/blob/master/packages/asm/grammar.jison",
+      "link-vaporsio": "https:/\/vapors.io/",
+      "link-vapors-docs": "https:/\/docs.vapors.io/",
+      "link-vapors-js": "https:/\/cdn.vapors.io/lib/vapors-5.0.esm.min.js",
+      "link-vapors-npm": "https:/\/www.npmjs.com/search?q=%40vaporsproject%2F",
+      "link-vapors-asm-grammar": "https:/\/github.com/vaporsjs/vapors.js/blob/master/packages/asm/grammar.jison",
 
-      "link-eip-155": { name: "EIP-155", url: "https:/\/eips.ethereum.org/EIPS/eip-155" },
-      "link-eip-191": { name: "EIP-191", url: "https:/\/eips.ethereum.org/EIPS/eip-191" },
-      "link-eip-609": { name: "EIP-609", url: "https:/\/eips.ethereum.org/EIPS/eip-609" },
-      "link-eip-712": { name: "EIP-712", url: "https:/\/eips.ethereum.org/EIPS/eip-712" },
-      "link-eip-1014": { name: "EIP-1014", url: "https:/\/eips.ethereum.org/EIPS/eip-1014" },
-      "link-eip-1193": { name: "EIP-1193", url: "https:/\/eips.ethereum.org/EIPS/eip-1193" },
-      "link-eip-2098": { name: "EIP-2098", url: "https:/\/eips.ethereum.org/EIPS/eip-2098" },
+      "link-eip-155": { name: "EIP-155", url: "https:/\/eips.vapory.org/EIPS/eip-155" },
+      "link-eip-191": { name: "EIP-191", url: "https:/\/eips.vapory.org/EIPS/eip-191" },
+      "link-eip-609": { name: "EIP-609", url: "https:/\/eips.vapory.org/EIPS/eip-609" },
+      "link-eip-712": { name: "EIP-712", url: "https:/\/eips.vapory.org/EIPS/eip-712" },
+      "link-eip-1014": { name: "EIP-1014", url: "https:/\/eips.vapory.org/EIPS/eip-1014" },
+      "link-eip-1193": { name: "EIP-1193", url: "https:/\/eips.vapory.org/EIPS/eip-1193" },
+      "link-eip-2098": { name: "EIP-2098", url: "https:/\/eips.vapory.org/EIPS/eip-2098" },
       "link-bip-39": { name: "BIP-39", url: "https:/\/en.bitcoin.it/wiki/BIP_0039" },
       "link-bip-32": { name: "BIP-32", url: "https:/\/github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" },
 
       "link-npm-elliptic": { name: "elliptic", url: "https:/\/www.npmjs.com/package/elliptic" },
-      "link-npm-ethersproject-shims": { name: "Shims", url: "https:/\/www.npmjs.com/package/@ethersproject/shims" },
+      "link-npm-vaporsproject-shims": { name: "Shims", url: "https:/\/www.npmjs.com/package/@vaporsproject/shims" },
       "link-npm-events": { name: "EventEmitter", url: "https:/\/nodejs.org/dist/latest-v13.x/docs/api/events.html#events_class_eventemitter" },
       "link-npm-bnjs": { name: "BN.js", url: "https:/\/www.npmjs.com/package/bn.js" },
       "link-npm-query-bignumber": "https:/\/www.npmjs.com/search?q=bignumber",
@@ -260,7 +260,7 @@ module.exports = {
       "link-js-proxy": "https:/\/developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
       "link-js-typedarray": "https:/\/developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray",
 
-      "link-ricmoo-humanreadableabi": "https:/\/blog.ricmoo.com/human-readable-contract-abis-in-ethers-js-141902f4d917",
+      "link-ricmoo-humanreadableabi": "https:/\/blog.ricmoo.com/human-readable-contract-abis-in-vapors-js-141902f4d917",
 
       "link-wiki-basicauth": { name: "Basic Authentication", url: "https:/\/en.wikipedia.org/wiki/Basic_access_authentication" },
       "link-wiki-backoff": { name: "Exponential Backoff", url: "https:/\/en.wikipedia.org/wiki/Exponential_backoff" },

@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import fs from "fs";
 import { resolve } from "path";
-import { assemble, disassemble, formatBytecode, parse, SemanticErrorSeverity } from "@ethersproject/asm";
+import { assemble, disassemble, formatBytecode, parse, SemanticErrorSeverity } from "@vaporsproject/asm";
 import { CLI, Plugin } from "../cli";
 function repeat(text, length) {
     if (text.length === 0) {
@@ -177,4 +177,4 @@ class AssemblePlugin extends Plugin {
 }
 cli.setPlugin(AssemblePlugin);
 cli.run(process.argv.slice(2));
-//# sourceMappingURL=ethers-asm.js.map
+//# sourceMappingURL=vapors-asm.js.map

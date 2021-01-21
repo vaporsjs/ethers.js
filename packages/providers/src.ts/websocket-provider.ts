@@ -1,14 +1,14 @@
 "use strict";
 
-import { BigNumber } from "@ethersproject/bignumber";
-import { Network, Networkish } from "@ethersproject/networks";
-import { defineReadOnly } from "@ethersproject/properties";
+import { BigNumber } from "@vaporsproject/bignumber";
+import { Network, Networkish } from "@vaporsproject/networks";
+import { defineReadOnly } from "@vaporsproject/properties";
 
 import { Event } from "./base-provider";
 import { JsonRpcProvider } from "./json-rpc-provider";
 import { WebSocket } from "./ws";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 
@@ -41,7 +41,7 @@ export type Subscription = {
 
 
 // For more info about the Real-time Event API see:
-//   https://geth.ethereum.org/docs/rpc/pubsub
+//   https://gvap.vapory.org/docs/rpc/pubsub
 
 export class WebSocketProvider extends JsonRpcProvider {
     readonly _websocket: any;

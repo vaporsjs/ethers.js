@@ -1,26 +1,26 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "bin": {
-    "ethers": "./lib/bin/ethers.js",
-    "ethers-asm": "./lib/bin/ethers-asm.js",
-    "ethers-ens": "./lib/bin/ethers-ens.js",
-    "ethers-ts": "./lib/bin/ethers-ts.js"
+    "vapors": "./lib/bin/vapors.js",
+    "vapors-asm": "./lib/bin/vapors-asm.js",
+    "vapors-ens": "./lib/bin/vapors-ens.js",
+    "vapors-ts": "./lib/bin/vapors-ts.js"
   },
   "dependencies": {
     "@babel/parser": "7.8.4",
     "@babel/types": "7.8.3",
-    "@ethersproject/asm": "^5.0.5",
-    "@ethersproject/basex": "^5.0.3",
-    "ethers": "^5.0.13",
+    "@vaporsproject/asm": "^5.0.5",
+    "@vaporsproject/basex": "^5.0.3",
+    "vapors": "^5.0.13",
     "scrypt-js": "3.0.1",
     "solc": "0.7.1"
   },
   "description": "Command-Line Interface scripts and releated utilities.",
-  "ethereum": "donations.ethers.eth",
+  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
-      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+      "url": "https://gitcoin.co/grants/13/vaporsjs-complete-simple-and-tiny-2"
     },
     {
       "type": "individual",
@@ -28,21 +28,21 @@
     }
   ],
   "keywords": [
-    "Ethereum",
-    "ethers",
+    "Vapory",
+    "vapors",
     "cli"
   ],
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/cli",
+  "name": "@vaporsproject/cli",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "directory": "packages/cli",
     "type": "git",
-    "url": "git://github.com/ethers-io/ethers.js.git"
+    "url": "git://github.com/vaporsjs/vapors.js.git"
   },
   "scripts": {
     "test": "exit 1"

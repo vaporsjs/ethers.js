@@ -55,7 +55,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = __importDefault(require("fs"));
 var path_1 = require("path");
-var asm_1 = require("@ethersproject/asm");
+var asm_1 = require("@vaporsproject/asm");
 var cli_1 = require("../cli");
 function repeat(text, length) {
     if (text.length === 0) {
@@ -247,4 +247,4 @@ var AssemblePlugin = /** @class */ (function (_super) {
 }(cli_1.Plugin));
 cli.setPlugin(AssemblePlugin);
 cli.run(process.argv.slice(2));
-//# sourceMappingURL=ethers-asm.js.map
+//# sourceMappingURL=vapors-asm.js.map

@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -17,7 +17,7 @@ Generates a brain wallet, with a slightly improved experience, in which the gene
 
 #### *BrainWallet* . **generateLegacy**( username , password [ , progressCallback ] ) => *[BrainWallet](/v5/api/experimental/#experimental-brainwallet)*
 
-Generate a brain wallet which is compatible with the ethers v3 and earlier.
+Generate a brain wallet which is compatible with the vapors v3 and earlier.
 
 
 EIP1193Bridge

@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -10,7 +10,7 @@ Other Providers
 FallbackProvider
 ----------------
 
-#### **new ***ethers* . *providers* . **FallbackProvider**( providers [ , quorum ] )
+#### **new ***vapors* . *providers* . **FallbackProvider**( providers [ , quorum ] )
 
 Creates a new instance of a FallbackProvider connected to *providers*. If quorum is not specified, half of the total sum of the provider weights is used.
 
@@ -62,7 +62,7 @@ The path this [Provider](/v5/api/providers/provider/) is connected to.
 UrlJsonRpcProvider
 ------------------
 
-#### **new ***ethers* . *providers* . **UrlJsonRpcProvider**( [ network [ , apiKey ] ] )
+#### **new ***vapors* . *providers* . **UrlJsonRpcProvider**( [ network [ , apiKey ] ] )
 
 Sub-classes do not need to override this. Instead they should override the static method `getUrl` and optionally `getApiKey`.
 
@@ -85,9 +85,9 @@ The URL to use for the JsonRpcProvider instance.
 Web3Provider
 ------------
 
-#### **new ***ethers* . *providers* . **Web3Provider**( externalProvider [ , network ] )
+#### **new ***vapors* . *providers* . **Web3Provider**( externalProvider [ , network ] )
 
-Create a new **Web3Provider**, which wraps an [EIP-1193 Provider](https://eips.ethereum.org/EIPS/eip-1193) or Web3Provider-compatible Provider.
+Create a new **Web3Provider**, which wraps an [EIP-1193 Provider](https://eips.vapory.org/EIPS/eip-1193) or Web3Provider-compatible Provider.
 
 
 #### *web3Provider* . **provider** => *Web3CompatibleProvider*
@@ -99,7 +99,7 @@ The provider used to create this instance.
 
 #### *externalProvider* . **request**( request ) => *Promise< any >*
 
-This follows the [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) API signature.
+This follows the [EIP-1193](https://eips.vapory.org/EIPS/eip-1193) API signature.
 
 The *request* should be a standard JSON-RPC payload, which should at a minimum specify the `method` and `params`.
 
@@ -108,7 +108,7 @@ The result should be the actual result, which differs from the Web3.js response,
 
 #### *externalProvider* . **sendAsync**( request , callback ) => *void*
 
-This follows the [Web3.js Provider Signature](https://github.com/ethereum/web3.js/blob/1.x/packages/web3-providers-http/types/index.d.ts#L57).
+This follows the [Web3.js Provider Signature](https://github.com/vaporyco/web3.js/blob/1.x/packages/web3-providers-http/types/index.d.ts#L57).
 
 The *request* should be a standard JSON-RPC payload, which should at a minimum specify the `method` and `params`.
 
@@ -123,7 +123,7 @@ This is identical to `sendAsync`. Historically, this used a synchronous web requ
 WebSocketProvider
 -----------------
 
-#### **new ***ethers* . *provider* . **WebSocketProvider**( [ url [ , network ] ] )
+#### **new ***vapors* . *provider* . **WebSocketProvider**( [ url [ , network ] ] )
 
 Returns a new [WebSocketProvider](/v5/api/providers/other/#WebSocketProvider) connected to *url* as the *network*.
 

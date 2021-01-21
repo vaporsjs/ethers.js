@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -12,10 +12,10 @@ Help
 
 ```
 Usage:
-   ethers [ COMMAND ] [ ARGS ] [ OPTIONS ]
+   vapors [ COMMAND ] [ ARGS ] [ OPTIONS ]
 
 COMMANDS (default: sandbox)
-   sandbox                    Run a REPL VM environment with ethers
+   sandbox                    Run a REPL VM environment with vapors
    init FILENAME              Create a new JSON wallet
       [ --force ]                Overwrite any existing files
    fund TARGET                Fund TARGET with testnet ether
@@ -26,8 +26,8 @@ COMMANDS (default: sandbox)
    sweep TARGET               Send all ether from accounts[0] to TARGET
    sign-message MESSAGE       Sign a MESSAGE with accounts[0]
       [ --hex ]                  The message content is hex encoded
-   eval CODE                  Run CODE in a VM with ethers
-   run FILENAME               Run FILENAME in a VM with ethers
+   eval CODE                  Run CODE in a VM with vapors
+   run FILENAME               Run FILENAME in a VM with vapors
    wait HASH                  Wait for a transaction HASH to be mined
    wrap-ether VALUE           Deposit VALUE into Wrapped Ether (WETH)
    unwrap-ether VALUE         Withdraw VALUE from Wrapped Ether (WETH)
@@ -54,7 +54,7 @@ ACCOUNT OPTIONS
 
 PROVIDER OPTIONS (default: all + homestead)
   --alchemy                   Include Alchemy
-  --etherscan                 Include Etherscan
+  --vaporscan                 Include Vaporscan
   --infura                    Include INFURA
   --nodesmith                 Include nodesmith
   --rpc URL                   Include a custom JSON-RPC
@@ -82,7 +82,7 @@ Examples
 --------
 
 ```
-/home/ethers> ethers init wallet.json
+/home/vapors> vapors init wallet.json
 Creating a new JSON Wallet - wallet.json
 Keep this password and file SAFE!! If lost or forgotten
 it CANNOT be recovered, by ANYone, EVER.
@@ -94,13 +94,13 @@ Saved:               wallet.json
 
 
 # If you are planning to try out the Ropsten testnet...
-/home/ethers> ethers --network ropsten fund 0x485bcC23ae2E5038ec7ec9b8DCB2A6A6291cC003
+/home/vapors> vapors --network ropsten fund 0x485bcC23ae2E5038ec7ec9b8DCB2A6A6291cC003
 Transaction Hash: 0x8dc55b8f8dc8076acded97f9e3ed7d6162460c0221e2769806006b6d7d1156e0
 ```
 
 ```
 # Sending ether
-/home/ricmoo> ethers --account wallet.json send ricmoo.firefly.eth 0.123
+/home/ricmoo> vapors --account wallet.json send ricmoo.firefly.vap 0.123
 Password (wallet.json): ******
 Decrypting... 100%
 Transaction:
@@ -121,8 +121,8 @@ Response:
 # Sending a token (SAI)
 # NOTE: the contract address could be used instead but
 #       popular token contract addresses are also managed
-#       by ethers
-/home/ricmoo> ethers --account wallet.json send-token sai.tokens.ethers.eth ricmoo.firefly.eth 1.0
+#       by vapors
+/home/ricmoo> vapors --account wallet.json send-token sai.tokens.vapors.vap ricmoo.firefly.vap 1.0
 Sending Tokens:
   To:              0x8ba1f109551bD432803012645Ac136ddd64DBA72
   Token Contract:  0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359
@@ -145,7 +145,7 @@ Response:
 ```
 
 ```
-/home/ethers> ethers --account wallet.json sign-message 'Hello World'
+/home/vapors> vapors --account wallet.json sign-message 'Hello World'
 Password (wallet.json): ******
 Decrypting... 100%
 Message:
@@ -164,7 +164,7 @@ Signature
 ### Scripting
 
 ```
-/home/ethers> ethers --network ropsten \
+/home/vapors> vapors --network ropsten \
                --account wallet.json \
                eval \
                'accounts[0].getBalance().then(b => formatEther(b))'
@@ -172,13 +172,13 @@ Signature
 ```
 
 ```
-/home/ethers> ethers --network rinkeby \
+/home/vapors> vapors --network rinkeby \
                eval "provider.getBlockNumber()"
 5761009
 ```
 
 ```
-/home/ethers> ethers eval 'utils.Fragment.from(
+/home/vapors> vapors eval 'utils.Fragment.from(
                "function balanceOf(address) view returns (uint)"
               ).format("json")' | json_pp
 {
@@ -202,19 +202,19 @@ Signature
 ```
 
 ```
-/home/ricmoo> ethers eval 'id("Transfer(address,address,uint256")'
+/home/ricmoo> vapors eval 'id("Transfer(address,address,uint256")'
 0xd99659a21de82e379975ce8df556f939a4ccb95e92144f38bb0dd35730ffcdd5
 ```
 
 ```
-/home/ricmoo> ethers eval 'Wallet.createRandom().mnemonic'
+/home/ricmoo> vapors eval 'Wallet.createRandom().mnemonic'
 useful pond inch knock ritual matrix giggle attend dilemma convince coach amazing
 ```
 
 ### Using Mnemonics (with a password)
 
 ```
-/home/ricmoo> ethers --account mnemonic.txt --mnemonic-password
+/home/ricmoo> vapors --account mnemonic.txt --mnemonic-password
 Password (mnemonic): ******
 network: homestead (chainId: 1)
 homestead> accounts[0].getAddress()
@@ -226,7 +226,7 @@ homestead>
 ### Using Mnemonics (with experimental memory-hard passwords)
 
 ```
-/home/ricmoo> ethers --account mnemonic.txt --xxx-mnemonic-password
+/home/ricmoo> vapors --account mnemonic.txt --xxx-mnemonic-password
 Password (mnemonic; experimental - hard): ******
 Decrypting... 100%
 network: homestead (chainId: 1)

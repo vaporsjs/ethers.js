@@ -19,7 +19,7 @@ fs.readdirSync(inputDir).forEach((filename) => {
    const comps = filename.split(".")[0].split("-");
    testcases.push({
        name: comps[1],
-       type: (data.ethaddr ? "crowdsale": "secret-storage"),
+       type: (data.vapaddr ? "crowdsale": "secret-storage"),
        hasAddress: !!data.address,
        address: ("0x" + comps[2]),
        privateKey: ("0x" + comps[3]),

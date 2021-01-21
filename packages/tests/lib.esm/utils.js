@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 'use strict';
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 function randomBytes(seed, lower, upper) {
     if (!upper) {
         upper = lower;
@@ -8,16 +8,16 @@ function randomBytes(seed, lower, upper) {
     if (upper === 0 && upper === lower) {
         return new Uint8Array(0);
     }
-    let result = ethers.utils.arrayify(ethers.utils.keccak256(ethers.utils.toUtf8Bytes(seed)));
+    let result = vapors.utils.arrayify(vapors.utils.keccak256(vapors.utils.toUtf8Bytes(seed)));
     while (result.length < upper) {
-        result = ethers.utils.concat([result, ethers.utils.keccak256(ethers.utils.concat([seed, result]))]);
+        result = vapors.utils.concat([result, vapors.utils.keccak256(vapors.utils.concat([seed, result]))]);
     }
-    let top = ethers.utils.arrayify(ethers.utils.keccak256(result));
+    let top = vapors.utils.arrayify(vapors.utils.keccak256(result));
     let percent = ((top[0] << 16) | (top[1] << 8) | top[2]) / 0x01000000;
     return result.slice(0, lower + Math.floor((upper - lower) * percent));
 }
 function randomHexString(seed, lower, upper) {
-    return ethers.utils.hexlify(randomBytes(seed, lower, upper));
+    return vapors.utils.hexlify(randomBytes(seed, lower, upper));
 }
 function randomNumber(seed, lower, upper) {
     let top = randomBytes(seed, 3);

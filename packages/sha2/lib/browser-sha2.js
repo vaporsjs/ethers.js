@@ -5,9 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var hash_js_1 = __importDefault(require("hash.js"));
 //const _ripemd160 = _hash.ripemd160;
-var bytes_1 = require("@ethersproject/bytes");
+var bytes_1 = require("@vaporsproject/bytes");
 var types_1 = require("./types");
-var logger_1 = require("@ethersproject/logger");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 var logger = new logger_1.Logger(_version_1.version);
 function ripemd160(data) {

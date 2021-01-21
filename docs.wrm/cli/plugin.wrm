@@ -116,7 +116,7 @@ and arguments.
 
 _code: @lang<shell>
 
-/home/ethers> ethers --account wallet.json --yes send ricmoo.eth 1.0
+/home/vapors> vapors --account wallet.json --yes send ricmoo.vap 1.0
 #  An Option ----------^                     ^   ^
 #    - name =  "account"                     |   |
 #    - value = "wallet.json"                 |   |
@@ -125,7 +125,7 @@ _code: @lang<shell>
 #    - value = true                              |
 #  Arguments ------------------------------------+
 #    - count = 3
-#    - [ "send", "ricmoo.eth", "1.0" ]
+#    - [ "send", "ricmoo.vap", "1.0" ]
 
 _null:
 

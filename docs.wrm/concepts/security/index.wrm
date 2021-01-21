@@ -2,11 +2,11 @@ _section: Security @<security>
 
 _subsection: Key Derivation Functions @<security--pbkdf>
 
-This is not specific to Ethereum, but is a useful technique
+This is not specific to Vapory, but is a useful technique
 to understand and has some implications on User Experience.
 
 Many people are concerned that encrypting and decrypting an
-Ethereum wallet is quite slow and can take quite some time.
+Vapory wallet is quite slow and can take quite some time.
 It is important to understand this is intentional and provides
 much stronger security.
 
@@ -43,7 +43,7 @@ being faster for an attacker.
 _heading: Mitigating the User Experience
 
 Rather than reducing the security (see below), a better practice is to make
-the user feel better about waiting. The Ethers encryption and decryption
+the user feel better about waiting. The Vapors encryption and decryption
 API allows the developer to incorporate a progress bar, by passing in a
 progress callback which will be periodically called with a number between
 0 and 1 indication percent completion.
@@ -56,7 +56,7 @@ wasted.
 
 _heading: Work-Arounds (not recommended)
 
-There are ways to reduce the time required to decrypt an Ethereum JSON
+There are ways to reduce the time required to decrypt an Vapory JSON
 Wallet, but please keep in mind that doing so **discards nearly all security**
 on that wallet.
 

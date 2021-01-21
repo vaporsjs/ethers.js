@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Utilities &mdash; ethers.js 4.0.0 documentation</title>
+  <title>Utilities &mdash; vapors.js 4.0.0 documentation</title>
   
 
   
@@ -26,8 +26,8 @@
 
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Low-Level API" href="api-advanced.html" />
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> ethers.js
+            <a href="index.html" class="icon icon-home"> vapors.js
           
 
           
@@ -139,7 +139,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ethers.js</a>
+          <a href="index.html">vapors.js</a>
         
       </nav>
 
@@ -198,7 +198,7 @@ required to write dapps, process user input and format data.</p>
 <hr class="docutils" />
 <div class="section" id="addresses">
 <h2>Addresses<a class="headerlink" href="#addresses" title="Permalink to this headline">¶</a></h2>
-<p>There are <a class="reference internal" href="notes.html#checksum-address"><span class="std std-ref">several formats</span></a> available to represent Ethereum
+<p>There are <a class="reference internal" href="notes.html#checksum-address"><span class="std std-ref">several formats</span></a> available to represent Vapory
 addresses and various ways they are determined.</p>
 <dl class="docutils" id="utils-getaddress">
 <dt><sup>utils</sup> . getAddress ( address ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>Address</sup></dt>
@@ -389,10 +389,10 @@ be multiple bytes long.</p>
 <div class="code-block-caption"><span class="caption-text"><em>example</em></span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&quot;Hello World!&quot;</span>
 
-<span class="kd">let</span> <span class="nx">bytes32</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatBytes32String</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nx">bytes32</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatBytes32String</span><span class="p">(</span><span class="nx">text</span><span class="p">)</span>
 <span class="c1">// &quot;0x48656c6c6f20576f726c64210000000000000000000000000000000000000000&quot;</span>
 
-<span class="kd">let</span> <span class="nx">originalText</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseBytes32String</span><span class="p">(</span><span class="nx">bytes32</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nx">originalText</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseBytes32String</span><span class="p">(</span><span class="nx">bytes32</span><span class="p">)</span>
 <span class="c1">// &quot;Hello World!&quot;</span>
 </pre></div>
 </div>
@@ -402,23 +402,23 @@ be multiple bytes long.</p>
 <div class="section" id="constants">
 <span id="id2"></span><h2>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
-<dt><sup>ethers . constants</sup> . AddressZero</dt>
+<dt><sup>vapors . constants</sup> . AddressZero</dt>
 <dd>The address <code class="docutils literal notranslate"><span class="pre">0x0000000000000000000000000000000000000000</span></code>.</dd>
-<dt><sup>ethers . constants</sup> . HashZero</dt>
+<dt><sup>vapors . constants</sup> . HashZero</dt>
 <dd>The bytes32 <code class="docutils literal notranslate"><span class="pre">0x0000000000000000000000000000000000000000000000000000000000000000</span></code>.</dd>
-<dt><sup>ethers . constants</sup> . MaxUint256</dt>
+<dt><sup>vapors . constants</sup> . MaxUint256</dt>
 <dd>The bytes32 <code class="docutils literal notranslate"><span class="pre">0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</span></code>.</dd>
-<dt><sup>ethers . constants</sup> . NegativeOne</dt>
+<dt><sup>vapors . constants</sup> . NegativeOne</dt>
 <dd>The <a class="reference internal" href="#bignumber"><span class="std std-ref">BigNumber</span></a> <code class="docutils literal notranslate"><span class="pre">bigNumberify(-1)</span></code>.</dd>
-<dt><sup>ethers . constants</sup> . Zero</dt>
+<dt><sup>vapors . constants</sup> . Zero</dt>
 <dd>The <a class="reference internal" href="#bignumber"><span class="std std-ref">BigNumber</span></a> <code class="docutils literal notranslate"><span class="pre">bigNumberify(0)</span></code>.</dd>
-<dt><sup>ethers . constants</sup> . One</dt>
+<dt><sup>vapors . constants</sup> . One</dt>
 <dd>The <a class="reference internal" href="#bignumber"><span class="std std-ref">BigNumber</span></a> <code class="docutils literal notranslate"><span class="pre">bigNumberify(1)</span></code>.</dd>
-<dt><sup>ethers . constants</sup> . Two</dt>
+<dt><sup>vapors . constants</sup> . Two</dt>
 <dd>The <a class="reference internal" href="#bignumber"><span class="std std-ref">BigNumber</span></a> <code class="docutils literal notranslate"><span class="pre">bigNumberify(2)</span></code>.</dd>
-<dt><sup>ethers . constants</sup> . WeiPerEther</dt>
+<dt><sup>vapors . constants</sup> . WeiPerEther</dt>
 <dd>The <a class="reference internal" href="#bignumber"><span class="std std-ref">BigNumber</span></a> <code class="docutils literal notranslate"><span class="pre">bigNumberify(&quot;1000000000000000000&quot;)</span></code>.</dd>
-<dt><sup>ethers . constants</sup> . EtherSymbol</dt>
+<dt><sup>vapors . constants</sup> . VaporSymbol</dt>
 <dd>The Greek character Xi, used as the symbol for <em>ether</em>.</dd>
 </dl>
 </div>
@@ -429,12 +429,12 @@ be multiple bytes long.</p>
 <h3>Elliptic Curve<a class="headerlink" href="#elliptic-curve" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt><sup>utils</sup> . computeAddress ( publicOrPrivateKey ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>Address</sup></dt>
-<dd>Computes the Ethereum address given a public key or private key.</dd>
+<dd>Computes the Vapory address given a public key or private key.</dd>
 <dt><sup>utils</sup> . computePublicKey ( publicOrPrivateKey [ , compressed <sup>= false</sup> ] ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>hex</sup></dt>
 <dd>Compute the public key for <em>publicOrPrivateKey</em>, optionally <em>compressed</em>. If
 <em>publicOrPrivateKey</em> is a public key, it may be either compressed or uncompressed.</dd>
 <dt><sup>utils</sup> . recoverAddress ( digest , signature ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>Address</sup></dt>
-<dd>Returns the Ethereum address by using ecrecover with the <em>digest</em> for the
+<dd>Returns the Vapory address by using ecrecover with the <em>digest</em> for the
 <em>signature</em>.</dd>
 <dt><sup>utils</sup> . recoverPublicKey ( digest , signature ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>hex</sup></dt>
 <dd>Returns the public key by using ecrecover with the <em>digest</em> for the <em>signature</em>.</dd>
@@ -461,7 +461,7 @@ generate <em>signature</em>.</dd>
 <dl class="docutils">
 <dt><sup>utils</sup> . keccak256 ( hexStringOrArrayish ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>hex</sup></dt>
 <dd>Compute the keccak256 cryptographic hash of a value, returned as a hex string. (Note:
-often Ethereum documentation refers to this, <strong>incorrectly</strong>, as SHA3)</dd>
+often Vapory documentation refers to this, <strong>incorrectly</strong>, as SHA3)</dd>
 <dt><sup>utils</sup> . sha256 ( hexStringOrArrayish ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>hex</sup></dt>
 <dd>Compute the SHA2-256 cryptographic hash of a value, returned as a hex string.</dd>
 </dl>
@@ -488,8 +488,8 @@ often Ethereum documentation refers to this, <strong>incorrectly</strong>, as SH
 <dl class="docutils">
 <dt><sup>utils</sup> . hashMessage ( stringOrArrayish ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>hex</sup></dt>
 <dd>Compute the prefixed message hash of a stringOrArrayish, by converting the
-message to bytes (as necessary) and prefixing with <code class="docutils literal notranslate"><span class="pre">\x19Ethereum</span> <span class="pre">Signed</span> <span class="pre">Message\n</span></code>
-and the length of the message. See the <a class="reference external" href="https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_sign">eth_sign</a> JSON-RPC method for more information.</dd>
+message to bytes (as necessary) and prefixing with <code class="docutils literal notranslate"><span class="pre">\x19Vapory</span> <span class="pre">Signed</span> <span class="pre">Message\n</span></code>
+and the length of the message. See the <a class="reference external" href="https://github.com/vaporyco/wiki/wiki/JSON-RPC#eth_sign">eth_sign</a> JSON-RPC method for more information.</dd>
 <dt><sup>utils</sup> . id ( utf8String ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>hex</sup></dt>
 <dd>Compute the keccak256 cryptographic hash of a UTF-8 string, returned as a hex string.</dd>
 </dl>
@@ -585,12 +585,12 @@ packed data for <em>values</em> given the <em>types</em>.</dd>
 <div class="section" id="ether-strings-and-wei">
 <h2>Ether Strings and Wei<a class="headerlink" href="#ether-strings-and-wei" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
-<dt><sup>utils</sup> . etherSymbol</dt>
-<dd>The ethereum symbol (the Greek letter <em>Xi</em> )</dd>
+<dt><sup>utils</sup> . vaporSymbol</dt>
+<dd>The vapory symbol (the Greek letter <em>Xi</em> )</dd>
 </dl>
 <dl class="docutils" id="parseether">
-<dt><sup>utils</sup> . parseEther ( etherString ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>BigNumber</sup></dt>
-<dd>Parse the <em>etherString</em> representation of ether into a BigNumber instance
+<dt><sup>utils</sup> . parseEther ( vaporString ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>BigNumber</sup></dt>
+<dd>Parse the <em>vaporString</em> representation of ether into a BigNumber instance
 of the amount of wei.</dd>
 </dl>
 <dl class="docutils" id="formatether">
@@ -676,11 +676,11 @@ byte is two nibbles).</dd>
 <dt><sup>utils</sup> . namehash ( ensName ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>hex</sup></dt>
 <dd>Compute the namehash of <em>ensName</em>. Currently only supports the
 characters <code class="docutils literal notranslate"><span class="pre">[a-z0-9.-]</span></code>. The concerns with fully supporting UTF-8
-are largely security releated, but <a class="reference external" href="https://github.com/ethers-io/ethers.js/issues/42">are open for discussion</a>.</dd>
+are largely security releated, but <a class="reference external" href="https://github.com/vaporsjs/vapors.js/issues/42">are open for discussion</a>.</dd>
 </dl>
 <div class="literal-block-wrapper docutils container" id="id15">
 <div class="code-block-caption"><span class="caption-text"><em>examples</em></span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">namehash</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">namehash</span><span class="p">(</span><span class="s1">&#39;ricmoo.firefly.eth&#39;</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">namehash</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">namehash</span><span class="p">(</span><span class="s1">&#39;ricmoo.firefly.vap&#39;</span><span class="p">);</span>
 <span class="c1">// &quot;0x0bcad17ecf260d6506c6b97768bdc2acfb6694445d27ffd3f9c1cfbee4a9bd6d&quot;</span>
 </pre></div>
 </div>
@@ -689,7 +689,7 @@ are largely security releated, but <a class="reference external" href="https://g
 </div>
 <div class="section" id="signatures">
 <span id="signature"></span><h2>Signatures<a class="headerlink" href="#signatures" title="Permalink to this headline">¶</a></h2>
-<p>There are two common formats for signatures in Ethereum. The <strong>flat-format</strong>, which
+<p>There are two common formats for signatures in Vapory. The <strong>flat-format</strong>, which
 is a hexstring with 65 bytes (130 nibbles); or an <strong>expanded-format</strong>, which is an object with
 the properties:</p>
 <blockquote>

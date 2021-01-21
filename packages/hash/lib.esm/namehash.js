@@ -1,7 +1,7 @@
-import { concat, hexlify } from "@ethersproject/bytes";
-import { nameprep, toUtf8Bytes } from "@ethersproject/strings";
-import { keccak256 } from "@ethersproject/keccak256";
-import { Logger } from "@ethersproject/logger";
+import { concat, hexlify } from "@vaporsproject/bytes";
+import { nameprep, toUtf8Bytes } from "@vaporsproject/strings";
+import { keccak256 } from "@vaporsproject/keccak256";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 const Zeros = new Uint8Array(32);

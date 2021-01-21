@@ -1,29 +1,29 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
 API Providers
 =============
 
-EtherscanProvider
+VaporscanProvider
 -----------------
 
-#### **new ***ethers* . *providers* . **EtherscanProvider**( [ network = "homestead" , [ apiKey ] ] )
+#### **new ***vapors* . *providers* . **VaporscanProvider**( [ network = "homestead" , [ apiKey ] ] )
 
-Create a new **EtherscanProvider** connected to *network* with the optional *apiKey*.
+Create a new **VaporscanProvider** connected to *network* with the optional *apiKey*.
 
 The *network* may be specified as a **string** for a common network name, a **number** for a common chain ID or a [Network Object]provider-(network).
 
-If no *apiKey* is provided, a shared API key will be used, which may result in reduced performance and throttled requests. It is highly recommended for production, you register with [Etherscan](https://etherscan.io) for your own API key.
+If no *apiKey* is provided, a shared API key will be used, which may result in reduced performance and throttled requests. It is highly recommended for production, you register with [Vaporscan](https://vaporscan.io) for your own API key.
 
 
 #### Note: Default API keys
 
 If no *apiKey* is provided, a shared API key will be used, which may result in reduced performance and throttled requests.
 
-It is highly recommended for production, you register with [Etherscan](https://etherscan.io) for your own API key.
+It is highly recommended for production, you register with [Vaporscan](https://vaporscan.io) for your own API key.
 
 
 #### **Supported Networks**
@@ -39,24 +39,24 @@ It is highly recommended for production, you register with [Etherscan](https://e
 
 ```javascript
 // Connect to mainnet (homestead)
-provider = new EtherscanProvider();
+provider = new VaporscanProvider();
 
 // Connect to rinkeby testnet (these are equivalent)
-provider = new EtherscanProvider("rinkeby");
-provider = new EtherscanProvider(4);
+provider = new VaporscanProvider("rinkeby");
+provider = new VaporscanProvider(4);
 
-const network = ethers.providers.getNetwork("rinkeby");
+const network = vapors.providers.getNetwork("rinkeby");
 // {
 //   chainId: 4,
 //   ensAddress: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
 //   name: 'rinkeby'
 // }
 
-provider = new EtherscanProvider(network);
+provider = new VaporscanProvider(network);
 
 // Connect to mainnet (homestead) with an API key
-provider = new EtherscanProvider(null, apiKey);
-provider = new EtherscanProvider("homestead", apiKey);
+provider = new VaporscanProvider(null, apiKey);
+provider = new VaporscanProvider("homestead", apiKey);
 ```
 
 #### *provider* . **getHistory**( address ) => *Array< History >*
@@ -67,7 +67,7 @@ provider = new EtherscanProvider("homestead", apiKey);
 InfuraProvider
 --------------
 
-#### **new ***ethers* . *providers* . **InfuraProvider**( [ network = "homestead" , [ apiKey ] ] )
+#### **new ***vapors* . *providers* . **InfuraProvider**( [ network = "homestead" , [ apiKey ] ] )
 
 Create a new **InfuraProvider** connected to *network* with the optional *apiKey*.
 
@@ -106,7 +106,7 @@ It is highly recommended for production, you register with [INFURA](https://infu
 provider = new InfuraProvider();
 
 // Connect to the ropsten testnet
-// (see EtherscanProvider above for other network examples)
+// (see VaporscanProvider above for other network examples)
 provider = new InfuraProvider("ropsten");
 
 // Connect to mainnet with a Project ID (these are equivalent)
@@ -126,7 +126,7 @@ provider = InfuraProvider.getWebSocketProvider()
 AlchemyProvider
 ---------------
 
-#### **new ***ethers* . *providers* . **AlchemyProvider**( [ network = "homestead" , [ apiKey ] ] )
+#### **new ***vapors* . *providers* . **AlchemyProvider**( [ network = "homestead" , [ apiKey ] ] )
 
 Create a new **AlchemyProvider** connected to *network* with the optional *apiKey*.
 
@@ -156,7 +156,7 @@ It is highly recommended for production, you register with [Alchemy](https://alc
 provider = new AlchemyProvider();
 
 // Connect to the ropsten testnet
-// (see EtherscanProvider above for other network examples)
+// (see VaporscanProvider above for other network examples)
 provider = new AlchemyProvider("ropsten");
 
 // Connect to mainnet with an API key (these are equivalent)
@@ -170,7 +170,7 @@ provider = AlchemyProvider.getWebSocketProvider()
 CloudflareProvider
 ------------------
 
-#### **new ***ethers* . *providers* . **CloudflareProvider**( )
+#### **new ***vapors* . *providers* . **CloudflareProvider**( )
 
 Create a new **CloudflareProvider** connected to mainnet (i.e. "homestead").
 

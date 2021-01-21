@@ -1,5 +1,5 @@
 "use strict";
-import { getAddress } from "@ethersproject/address";
+import { getAddress } from "@vaporsproject/address";
 export function isCrowdsaleWallet(json) {
     let data = null;
     try {
@@ -8,7 +8,7 @@ export function isCrowdsaleWallet(json) {
     catch (error) {
         return false;
     }
-    return (data.encseed && data.ethaddr);
+    return (data.encseed && data.vapaddr);
 }
 export function isKeystoreWallet(json) {
     let data = null;
@@ -30,7 +30,7 @@ export function isKeystoreWallet(json) {
 export function getJsonWalletAddress(json) {
     if (isCrowdsaleWallet(json)) {
         try {
-            return getAddress(JSON.parse(json).ethaddr);
+            return getAddress(JSON.parse(json).vapaddr);
         }
         catch (error) {
             return null;

@@ -12,5 +12,5 @@ exports.MaxUint256 = bignumbers_1.MaxUint256;
 var hashes_1 = require("./hashes");
 exports.HashZero = hashes_1.HashZero;
 var strings_1 = require("./strings");
-exports.EtherSymbol = strings_1.EtherSymbol;
+exports.VaporSymbol = strings_1.VaporSymbol;
 //# sourceMappingURL=index.js.map

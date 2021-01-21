@@ -1,5 +1,5 @@
 {
-  "_ethers.alias": {
+  "_vapors.alias": {
     "pbkdf2.js": "browser-pbkdf2.js"
   },
   "author": "Richard Moore <me@ricmoo.com>",
@@ -7,15 +7,15 @@
     "./lib/pbkdf2": "./lib/browser-pbkdf2.js"
   },
   "dependencies": {
-    "@ethersproject/bytes": "^5.0.4",
-    "@ethersproject/sha2": "^5.0.3"
+    "@vaporsproject/bytes": "^5.0.4",
+    "@vaporsproject/sha2": "^5.0.3"
   },
-  "description": "The PBKDF2 password-pbased key derivation function for ethers.",
-  "ethereum": "donations.ethers.eth",
+  "description": "The PBKDF2 password-pbased key derivation function for vapors.",
+  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
-      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+      "url": "https://gitcoin.co/grants/13/vaporsjs-complete-simple-and-tiny-2"
     },
     {
       "type": "individual",
@@ -23,21 +23,21 @@
     }
   ],
   "keywords": [
-    "Ethereum",
-    "ethers",
+    "Vapory",
+    "vapors",
     "pbkdf2"
   ],
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/pbkdf2",
+  "name": "@vaporsproject/pbkdf2",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "directory": "packages/pbkdf2",
     "type": "git",
-    "url": "git://github.com/ethers-io/ethers.js.git"
+    "url": "git://github.com/vaporsjs/vapors.js.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

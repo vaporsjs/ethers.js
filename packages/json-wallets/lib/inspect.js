@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var address_1 = require("@ethersproject/address");
+var address_1 = require("@vaporsproject/address");
 function isCrowdsaleWallet(json) {
     var data = null;
     try {
@@ -9,7 +9,7 @@ function isCrowdsaleWallet(json) {
     catch (error) {
         return false;
     }
-    return (data.encseed && data.ethaddr);
+    return (data.encseed && data.vapaddr);
 }
 exports.isCrowdsaleWallet = isCrowdsaleWallet;
 function isKeystoreWallet(json) {
@@ -33,7 +33,7 @@ exports.isKeystoreWallet = isKeystoreWallet;
 function getJsonWalletAddress(json) {
     if (isCrowdsaleWallet(json)) {
         try {
-            return address_1.getAddress(JSON.parse(json).ethaddr);
+            return address_1.getAddress(JSON.parse(json).vapaddr);
         }
         catch (error) {
             return null;

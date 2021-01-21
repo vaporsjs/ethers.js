@@ -7,7 +7,7 @@ requiring it should specify the //exact version// needed.
 
 _subsection: BrainWallet @<experimental-brainwallet> @INHERIT<[[Wallet]]>
 
-Ethers removed support for BrainWallets in v4, since they are unsafe and
+Vapors removed support for BrainWallets in v4, since they are unsafe and
 many can be easily guessed, allowing attackers to steal the funds. This
 class is offered to ensure older systems which used brain wallets can
 still recover their funds and assets.
@@ -17,12 +17,12 @@ Generates a brain wallet, with a slightly improved experience, in which
 the generated wallet has a mnemonic.
 
 _property: BrainWallet.generateLegacy(username, password [ , progressCallback ]) => [[experimental-brainwallet]]
-Generate a brain wallet which is compatible with the ethers v3 and earlier.
+Generate a brain wallet which is compatible with the vapors v3 and earlier.
 
 
 _subsection: EIP1193Bridge @<experimental-eip1193bridge> @INHERIT<[[link-npm-events]]>
 
-The **EIP1193Bridge** allows a normal Ethers [[Signer]] and [[Provider]] to be
+The **EIP1193Bridge** allows a normal Vapors [[Signer]] and [[Provider]] to be
 exposed in as a standard [EIP-1193 Provider](link-eip-1193), which may be useful
 when interacting with other libraries.
 

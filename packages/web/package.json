@@ -1,5 +1,5 @@
 {
-  "_ethers.alias": {
+  "_vapors.alias": {
     "geturl.js": "browser-geturl.js"
   },
   "author": "Richard Moore <me@ricmoo.com>",
@@ -7,18 +7,18 @@
     "./lib/geturl": "./lib/browser-geturl.js"
   },
   "dependencies": {
-    "@ethersproject/base64": "^5.0.3",
-    "@ethersproject/bytes": "^5.0.4",
-    "@ethersproject/logger": "^5.0.5",
-    "@ethersproject/properties": "^5.0.3",
-    "@ethersproject/strings": "^5.0.4"
+    "@vaporsproject/base64": "^5.0.3",
+    "@vaporsproject/bytes": "^5.0.4",
+    "@vaporsproject/logger": "^5.0.5",
+    "@vaporsproject/properties": "^5.0.3",
+    "@vaporsproject/strings": "^5.0.4"
   },
-  "description": "Utility fucntions for managing web requests for ethers.",
-  "ethereum": "donations.ethers.eth",
+  "description": "Utility fucntions for managing web requests for vapors.",
+  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
-      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+      "url": "https://gitcoin.co/grants/13/vaporsjs-complete-simple-and-tiny-2"
     },
     {
       "type": "individual",
@@ -26,20 +26,20 @@
     }
   ],
   "keywords": [
-    "Ethereum",
-    "ethers"
+    "Vapory",
+    "vapors"
   ],
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/web",
+  "name": "@vaporsproject/web",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "directory": "packages/web",
     "type": "git",
-    "url": "git://github.com/ethers-io/ethers.js.git"
+    "url": "git://github.com/vaporsjs/vapors.js.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -1,2 +1,2 @@
-import { BytesLike } from "@ethersproject/bytes";
+import { BytesLike } from "@vaporsproject/bytes";
 export declare function keccak256(data: BytesLike): string;

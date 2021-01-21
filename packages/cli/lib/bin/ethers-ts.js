@@ -55,13 +55,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = __importDefault(require("fs"));
 var path_1 = require("path");
-var ethers_1 = require("ethers");
+var vapors_1 = require("vapors");
 var cli_1 = require("../cli");
 var typescript_1 = require("../typescript");
 var solc_1 = require("../solc");
 function computeHash(content) {
     var bareContent = content.replace(/\/\*\* Content Hash: 0x[0-9A-F]{64} \*\//i, '/** Content Hash: */');
-    return ethers_1.ethers.utils.id(bareContent);
+    return vapors_1.vapors.utils.id(bareContent);
 }
 function checkHash(content) {
     var match = content.match(/\/\*\* Content Hash: (0x[0-9A-F]{64}) \*\//i);
@@ -211,4 +211,4 @@ var GeneratePlugin = /** @class */ (function (_super) {
 }(cli_1.Plugin));
 cli.setPlugin(GeneratePlugin);
 cli.run(process.argv.slice(2));
-//# sourceMappingURL=ethers-ts.js.map
+//# sourceMappingURL=vapors-ts.js.map

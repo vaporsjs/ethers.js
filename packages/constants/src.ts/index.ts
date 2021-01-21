@@ -10,5 +10,5 @@ export {
     MaxUint256
 } from "./bignumbers";
 export { HashZero } from "./hashes";
-export { EtherSymbol } from "./strings";
+export { VaporSymbol } from "./strings";
 

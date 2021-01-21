@@ -1,7 +1,7 @@
 _section: Interface @<Interface> @SRC<abi/interface:class.Interface>
 
 The **Interface** Class abstracts the encoding and decoding required
-to interact with contracts on the Ethereum network.
+to interact with contracts on the Vapory network.
 
 Many of the standards organically evolved along side the [[link-solidity]]
 language, which other languages have adopted to remain compatible with
@@ -14,7 +14,7 @@ expect so they can interoperate with each other.
 
 _subsection: Creating Instances @<Interface--creating>
 
-_property: new ethers.utils.Interface(abi) @SRC<abi/interface:constructor.Interface>
+_property: new vapors.utils.Interface(abi) @SRC<abi/interface:constructor.Interface>
 Create a new **Interface** from a JSON string or object representing
 //abi//.
 
@@ -22,7 +22,7 @@ The //abi// may be a JSON string or the parsed Object (using JSON.parse)
 which is emitted by the [Solidity compiler](link-solc-output) (or compatible languages).
 
 The //abi// may also be a [Human-Readable Abi](link-ricmoo-humanreadableabi),
-which is a format the Ethers created to simplify manually typing the ABI
+which is a format the Vapors created to simplify manually typing the ABI
 into the source and so that a Contract ABI can also be referenced easily
 within the same source file.
 

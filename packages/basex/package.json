@@ -1,15 +1,15 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "@ethersproject/bytes": "^5.0.4",
-    "@ethersproject/properties": "^5.0.3"
+    "@vaporsproject/bytes": "^5.0.4",
+    "@vaporsproject/properties": "^5.0.3"
   },
   "description": "Base-X without Buffer.",
-  "ethereum": "donations.ethers.eth",
+  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
-      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+      "url": "https://gitcoin.co/grants/13/vaporsjs-complete-simple-and-tiny-2"
     },
     {
       "type": "individual",
@@ -17,20 +17,20 @@
     }
   ],
   "keywords": [
-    "Ethereum",
-    "ethers"
+    "Vapory",
+    "vapors"
   ],
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/basex",
+  "name": "@vaporsproject/basex",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "directory": "packages/basex",
     "type": "git",
-    "url": "git://github.com/ethers-io/ethers.js.git"
+    "url": "git://github.com/vaporsjs/vapors.js.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -1,18 +1,18 @@
 "use strict";
 
-// See: https://github.com/ethereum/wiki/wiki/JSON-RPC
+// See: https://github.com/vaporyco/wiki/wiki/JSON-RPC
 
-import { Provider, TransactionRequest, TransactionResponse } from "@ethersproject/abstract-provider";
-import { Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from "@ethersproject/abstract-signer";
-import { BigNumber } from "@ethersproject/bignumber";
-import { Bytes, hexlify, hexValue, isHexString } from "@ethersproject/bytes";
-import { _TypedDataEncoder } from "@ethersproject/hash";
-import { Network, Networkish } from "@ethersproject/networks";
-import { checkProperties, deepCopy, Deferrable, defineReadOnly, getStatic, resolveProperties, shallowCopy } from "@ethersproject/properties";
-import { toUtf8Bytes } from "@ethersproject/strings";
-import { ConnectionInfo, fetchJson, poll } from "@ethersproject/web";
+import { Provider, TransactionRequest, TransactionResponse } from "@vaporsproject/abstract-provider";
+import { Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from "@vaporsproject/abstract-signer";
+import { BigNumber } from "@vaporsproject/bignumber";
+import { Bytes, hexlify, hexValue, isHexString } from "@vaporsproject/bytes";
+import { _TypedDataEncoder } from "@vaporsproject/hash";
+import { Network, Networkish } from "@vaporsproject/networks";
+import { checkProperties, deepCopy, Deferrable, defineReadOnly, getStatic, resolveProperties, shallowCopy } from "@vaporsproject/properties";
+import { toUtf8Bytes } from "@vaporsproject/strings";
+import { ConnectionInfo, fetchJson, poll } from "@vaporsproject/web";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 
@@ -217,7 +217,7 @@ export class JsonRpcSigner extends Signer implements TypedDataSigner {
         const data = ((typeof(message) === "string") ? toUtf8Bytes(message): message);
         const address = await this.getAddress();
 
-        // https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_sign
+        // https://github.com/vaporyco/wiki/wiki/JSON-RPC#eth_sign
         return await this.provider.send("eth_sign", [ address.toLowerCase(), hexlify(data) ]);
     }
 
@@ -520,7 +520,7 @@ export class JsonRpcProvider extends BaseProvider {
     }
 
 
-    // Convert an ethers.js transaction into a JSON-RPC transaction
+    // Convert an vapors.js transaction into a JSON-RPC transaction
     //  - gasLimit => gas
     //  - All values hexlified
     //  - All numeric values zero-striped

@@ -1,20 +1,20 @@
 _section: Logging @<logging>
 
 These are just a few simple logging utilities provided to simplify
-and standardize the error facilities across the Ethers library.
+and standardize the error facilities across the Vapors library.
 
 The [[Logger]] library has zero dependencies and is intentionally
 very light so it can be easily included in each library.
 
 The [Censorship](Logger--censorship) functionality relies on one instance
-of the Ethers library being included. In large bundled packages or when
+of the Vapors library being included. In large bundled packages or when
 ``npm link`` is used, this may not be the case. If you require this
 functionality, ensure that your bundling is configured properly.
 
 
 _subsection: Logger @<Logger> @SRC<logger:class.Logger>
 
-_property: new ethers.utils.Logger(version) @SRC<logger:constructor.Logger>
+_property: new vapors.utils.Logger(version) @SRC<logger:constructor.Logger>
 Create a new logger which will include //version// in all errors thrown.
 
 _property: Logger.globalLogger() => [[Logger]] @SRC<logger>
@@ -36,7 +36,7 @@ Log warnings.
 _heading: Errors
 
 These functions honor the current [Censorship](Logger--censorship) and help create
-a standard error model for detecting and processing errors within Ethers.
+a standard error model for detecting and processing errors within Vapors.
 
 _property: logger.makeError(message [ , code = UNKNOWN_ERROR [ , params ] ]) => Error @SRC<logger>
 Create an Error object with //message// and an optional //code// and
@@ -94,7 +94,7 @@ Set the log level, to suppress logging output below a [particular log level](Log
 
 _subsection: Errors @<errors>
 
-Every error in Ethers has a ``code`` value, which is a string that will
+Every error in Vapors has a ``code`` value, which is a string that will
 match one of the following error codes.
 
 
@@ -147,7 +147,7 @@ _property: Logger.errors.UNEXPECTED_ARGUMENT @<errors-UnexpectedArgument>
 Too many parameters we passed into a function.
 
 
-_heading: Ethereum Error Codes
+_heading: Vapory Error Codes
 
 _property: Logger.errors.CALL_EXCEPTION
 An attempt to call a blockchain contract (getter) resulted in a
@@ -162,7 +162,7 @@ A sending account must have enough ether to pay for the value, the gas limit
 of data is 4 gas for each zero byte and 68 gas for each non-zero byte.
 
 _property: Logger.errors.NETWORK_ERROR
-An Ethereum network validation error, such as an invalid chain ID.
+An Vapory network validation error, such as an invalid chain ID.
 
 _property: Logger.errors.NONCE_EXPIRED
 The nonce being specified has already been used in a mined transaction.

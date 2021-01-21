@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -12,7 +12,7 @@ Help
 
 ```
 Usage:
-   ethers-ts FILENAME [ ... ] [ OPTIONS ]
+   vapors-ts FILENAME [ ... ] [ OPTIONS ]
 
 OPTIONS
   --output FILENAME           Write the output to FILENAME (default: stdout)

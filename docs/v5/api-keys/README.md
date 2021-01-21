@@ -1,13 +1,13 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
 Provider API Keys
 =================
 
-Etherscan
+Vaporscan
 ---------
 
 INFURA
@@ -29,8 +29,8 @@ const network = "homestead";
 // Specify your own API keys
 // Each is optional, and if you omit it the default
 // API key for that service will be used.
-const provider = ethers.getDefaultProvider(network, {
-    etherscan: YOUR_ETHERSCAN_API_KEY,
+const provider = vapors.getDefaultProvider(network, {
+    vaporscan: YOUR_VAPORSCAN_API_KEY,
     infura: YOUR_INFURA_PROJECT_ID,
     // Or if using a project secret:
     // infura: {

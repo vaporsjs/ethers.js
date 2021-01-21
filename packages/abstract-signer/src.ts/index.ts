@@ -1,11 +1,11 @@
 "use strict";
 
-import { BlockTag, Provider, TransactionRequest, TransactionResponse } from "@ethersproject/abstract-provider";
-import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
-import { Bytes, BytesLike } from "@ethersproject/bytes";
-import { Deferrable, defineReadOnly, resolveProperties, shallowCopy } from "@ethersproject/properties";
+import { BlockTag, Provider, TransactionRequest, TransactionResponse } from "@vaporsproject/abstract-provider";
+import { BigNumber, BigNumberish } from "@vaporsproject/bignumber";
+import { Bytes, BytesLike } from "@vaporsproject/bytes";
+import { Deferrable, defineReadOnly, resolveProperties, shallowCopy } from "@vaporsproject/properties";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 
@@ -20,7 +20,7 @@ const forwardErrors = [
 ];
 
 // EIP-712 Typed Data
-// See: https://eips.ethereum.org/EIPS/eip-712
+// See: https://eips.vapory.org/EIPS/eip-712
 
 export interface TypedDataDomain {
     name?: string;

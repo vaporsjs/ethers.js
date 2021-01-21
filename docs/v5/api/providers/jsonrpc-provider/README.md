@@ -1,13 +1,13 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
 JsonRpcProvider
 ===============
 
-#### **new ***ethers* . *providers* . **JsonRpcProvider**( [ url [ , aNetworkish ] ] )
+#### **new ***vapors* . *providers* . **JsonRpcProvider**( [ url [ , aNetworkish ] ] )
 
 Connect to a JSON-RPC API located at *url* using the *aNetworkish* network. If *url* is not specified, the default (i.e. `http://localhost:8545`) is used and if no network is specified, it will be determined automatically by querying the node.
 
@@ -19,7 +19,7 @@ Each node implementation is slightly different and may require specific command-
 
 #### *jsonRpcProvider* . **getSigner**( [ addressOrIndex ] ) => *[JsonRpcSigner](/v5/api/providers/jsonrpc-provider/#JsonRpcSigner)*
 
-Returns a [JsonRpcSigner](/v5/api/providers/jsonrpc-provider/#JsonRpcSigner) which is managed by this Ethereum node, at *addressOrIndex*. If no *addressOrIndex* is provided, the first account (account #0) is used.
+Returns a [JsonRpcSigner](/v5/api/providers/jsonrpc-provider/#JsonRpcSigner) which is managed by this Vapory node, at *addressOrIndex*. If no *addressOrIndex* is provided, the first account (account #0) is used.
 
 
 #### *jsonRpcProvider* . **getUncheckedSigner**( [ addressOrIndex ] ) => *[JsonRpcUncheckedSigner](/v5/api/providers/jsonrpc-provider/#UncheckedJsonRpcSigner)*

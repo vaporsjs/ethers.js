@@ -1,6 +1,6 @@
-import { ethers } from "ethers";
-export declare class BrainWallet extends ethers.Wallet {
-    static _generate(username: ethers.Bytes | string, password: ethers.Bytes | string, legacy: boolean, progressCallback?: ethers.utils.ProgressCallback): Promise<BrainWallet>;
-    static generate(username: ethers.Bytes | string, password: ethers.Bytes | string, progressCallback?: ethers.utils.ProgressCallback): Promise<BrainWallet>;
-    static generateLegacy(username: ethers.Bytes | string, password: ethers.Bytes | string, progressCallback?: ethers.utils.ProgressCallback): Promise<BrainWallet>;
+import { vapors } from "vapors";
+export declare class BrainWallet extends vapors.Wallet {
+    static _generate(username: vapors.Bytes | string, password: vapors.Bytes | string, legacy: boolean, progressCallback?: vapors.utils.ProgressCallback): Promise<BrainWallet>;
+    static generate(username: vapors.Bytes | string, password: vapors.Bytes | string, progressCallback?: vapors.utils.ProgressCallback): Promise<BrainWallet>;
+    static generateLegacy(username: vapors.Bytes | string, password: vapors.Bytes | string, progressCallback?: vapors.utils.ProgressCallback): Promise<BrainWallet>;
 }

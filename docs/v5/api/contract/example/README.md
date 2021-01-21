@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -26,13 +26,13 @@ const abi = [
 ];
 
 // This can be an address or an ENS name
-const address = "dai.tokens.ethers.eth";
+const address = "dai.tokens.vapors.vap";
 
 // An example Provider
-const provider = ethers.getDefaultProvider();
+const provider = vapors.getDefaultProvider();
 
 // An example Signer
-const signer = ethers.Wallet.createRandom().connect(provider);
+const signer = vapors.Wallet.createRandom().connect(provider);
 
 // Read-Only; By connecting to a Provider, allows:
 // - Any constant function
@@ -40,17 +40,17 @@ const signer = ethers.Wallet.createRandom().connect(provider);
 // - Populating Unsigned Transactions for non-constant methods
 // - Estimating Gas for non-constant (as an anonymous sender)
 // - Static Calling non-constant methods (as anonymous sender)
-const erc20 = new ethers.Contract(address, abi, provider);
+const erc20 = new vapors.Contract(address, abi, provider);
 
 // Read-Write; By connecting to a Signer, allows:
 // - Everything from Read-Only (except as Signer, not anonymous)
 // - Sending transactions for non-constant functions
-const erc20_rw = new ethers.Contract(address, abi, signer)
+const erc20_rw = new vapors.Contract(address, abi, signer)
 ```
 
 ### ERC20Contract
 
-#### **new ***ethers* . **Contract**( address , abi , providerOrSigner )
+#### **new ***vapors* . **Contract**( address , abi , providerOrSigner )
 
 See the above code example for creating an Instance which will (in addition to the Contact methods and properties) automatically add the additional properties defined in *abi* to a **Contract** connected to *address* using the *providerOrSigner*.
 
@@ -193,7 +193,7 @@ Returns an [UnsignedTransaction](/v5/api/utils/transactions/#UnsignedTransaction
 
 #### Note on Estimating and Static Calling
 
-When you perform a static call, the current state is taken into account as best as Ethereum can determine. There are many cases where this can provide false positives and false negatives. The eventually consistent model of the blockchain also means there are certain consistency modes that cannot be known until an actual transaction is attempted.
+When you perform a static call, the current state is taken into account as best as Vapory can determine. There are many cases where this can provide false positives and false negatives. The eventually consistent model of the blockchain also means there are certain consistency modes that cannot be known until an actual transaction is attempted.
 
 
 Meta-Class Filters

@@ -13,24 +13,24 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var ethers_1 = require("ethers");
+var vapors_1 = require("vapors");
 var _version_1 = require("./_version");
-var logger = new ethers_1.ethers.utils.Logger(_version_1.version);
+var logger = new vapors_1.vapors.utils.Logger(_version_1.version);
 var MetamaskProvider = /** @class */ (function (_super) {
     __extends(MetamaskProvider, _super);
-    function MetamaskProvider(ethereum) {
+    function MetamaskProvider(vapory) {
         var _this = this;
-        if (!ethereum) {
-            ethereum = global.ethereum;
-            if (!ethereum) {
-                logger.throwError("could not auto-detect global.ethereum", ethers_1.ethers.errors.UNSUPPORTED_OPERATION, {
-                    operation: "window.ethereum"
+        if (!vapory) {
+            vapory = global.vapory;
+            if (!vapory) {
+                logger.throwError("could not auto-detect global.vapory", vapors_1.vapors.errors.UNSUPPORTED_OPERATION, {
+                    operation: "window.vapory"
                 });
             }
         }
-        _this = _super.call(this, ethereum) || this;
+        _this = _super.call(this, vapory) || this;
         var _account = null;
-        ethers_1.ethers.utils.defineReadOnly(_this, "_pollAccountFunc", function () {
+        vapors_1.vapors.utils.defineReadOnly(_this, "_pollAccountFunc", function () {
             var account = null;
             if (account === _account) {
                 return;
@@ -39,7 +39,7 @@ var MetamaskProvider = /** @class */ (function (_super) {
             _this.emit("account", account, _account);
             _account = account;
         });
-        _this = _super.call(this, ethereum) || this;
+        _this = _super.call(this, vapory) || this;
         return _this;
     }
     MetamaskProvider.prototype.getSigner = function (addressOrIndex) {
@@ -85,6 +85,6 @@ var MetamaskProvider = /** @class */ (function (_super) {
         return this;
     };
     return MetamaskProvider;
-}(ethers_1.ethers.providers.Web3Provider));
+}(vapors_1.vapors.providers.Web3Provider));
 exports.MetamaskProvider = MetamaskProvider;
 //# sourceMappingURL=metamask-provider.js.map

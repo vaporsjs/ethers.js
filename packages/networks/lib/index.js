@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var logger_1 = require("@ethersproject/logger");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 var logger = new logger_1.Logger(_version_1.version);
 ;
@@ -19,9 +19,9 @@ function ethDefaultProvider(network) {
             }
             catch (error) { }
         }
-        if (providers.EtherscanProvider) {
+        if (providers.VaporscanProvider) {
             try {
-                providerList.push(new providers.EtherscanProvider(network, options.etherscan));
+                providerList.push(new providers.VaporscanProvider(network, options.vaporscan));
             }
             catch (error) { }
         }
@@ -84,7 +84,7 @@ var ropsten = {
 var classicMordor = {
     chainId: 63,
     name: "classicMordor",
-    _defaultProvider: etcDefaultProvider("https://www.ethercluster.com/mordor", "classicMordor")
+    _defaultProvider: etcDefaultProvider("https://www.vapercluster.com/mordor", "classicMordor")
 };
 var networks = {
     unspecified: {
@@ -120,7 +120,7 @@ var networks = {
     classic: {
         chainId: 61,
         name: "classic",
-        _defaultProvider: etcDefaultProvider("https://www.ethercluster.com/etc", "classic")
+        _defaultProvider: etcDefaultProvider("https://www.vapercluster.com/etc", "classic")
     },
     classicMorden: {
         chainId: 62,
@@ -131,7 +131,7 @@ var networks = {
     classicKotti: {
         chainId: 6,
         name: "classicKotti",
-        _defaultProvider: etcDefaultProvider("https://www.ethercluster.com/kotti", "classicKotti")
+        _defaultProvider: etcDefaultProvider("https://www.vapercluster.com/kotti", "classicKotti")
     },
 };
 /**

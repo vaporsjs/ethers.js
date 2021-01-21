@@ -26,7 +26,7 @@ function alias(name) {
         console.log(`  Aliasing: ${name}`);
         const baseDir = path_2.resolve("packages", name);
         const info = utils_1.loadJson(path_2.resolve(baseDir, "package.json"));
-        const replacements = info["_ethers.alias"] || {};
+        const replacements = info["_vapors.alias"] || {};
         const skip = Object.keys(replacements).reduce((accum, key) => {
             const replace = replacements[key];
             accum[replace] = true;

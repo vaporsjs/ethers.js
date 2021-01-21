@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Providers &mdash; ethers.js 4.0.0 documentation</title>
+  <title>Providers &mdash; vapors.js 4.0.0 documentation</title>
   
 
   
@@ -26,8 +26,8 @@
 
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Signing Messages" href="cookbook-signing.html" />
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> ethers.js
+            <a href="index.html" class="icon icon-home"> vapors.js
           
 
           
@@ -120,7 +120,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ethers.js</a>
+          <a href="index.html">vapors.js</a>
         
       </nav>
 
@@ -174,23 +174,23 @@
             
   <div class="section" id="providers">
 <h1>Providers<a class="headerlink" href="#providers" title="Permalink to this headline">¶</a></h1>
-<p>The Ethereum eco-system provides many methods of interacting with the
-blockchain. In ethers.js we expose a Provider API that covers the
+<p>The Vapory eco-system provides many methods of interacting with the
+blockchain. In vapors.js we expose a Provider API that covers the
 breadth of operations, however often it is useful to inter-operate with
 other existing APIs and libraries.</p>
 <hr class="docutils" />
 <div class="section" id="metamask">
 <h2>MetaMask<a class="headerlink" href="#metamask" title="Permalink to this headline">¶</a></h2>
-<p>The MetaMask plug-in enables Ethereum for the Chrome browser, making it
-easy for people new ecosystem to get started, exposing the Ethereum
+<p>The MetaMask plug-in enables Vapory for the Chrome browser, making it
+easy for people new ecosystem to get started, exposing the Vapory
 network as a standard Web3 Provider.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text"><em>Connecting to MetaMask</em></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// MetaMask injects a Web3 Provider as &quot;web3.currentProvider&quot;, so</span>
-<span class="c1">// we can wrap it up in the ethers.js Web3Provider, which wraps a</span>
-<span class="c1">// Web3 Provider and exposes the ethers.js Provider API.</span>
+<span class="c1">// we can wrap it up in the vapors.js Web3Provider, which wraps a</span>
+<span class="c1">// Web3 Provider and exposes the vapors.js Provider API.</span>
 
-<span class="kr">const</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">Web3Provider</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">currentProvider</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">Web3Provider</span><span class="p">(</span><span class="nx">web3</span><span class="p">.</span><span class="nx">currentProvider</span><span class="p">);</span>
 
 <span class="c1">// There is only ever up to one account in MetaMask exposed</span>
 <span class="kr">const</span> <span class="nx">signer</span> <span class="o">=</span> <span class="nx">provider</span><span class="p">.</span><span class="nx">getSigner</span><span class="p">();</span>
@@ -202,12 +202,12 @@ network as a standard Web3 Provider.</p>
 <div class="section" id="testrpc-ganache">
 <h2>TestRPC / Ganache<a class="headerlink" href="#testrpc-ganache" title="Permalink to this headline">¶</a></h2>
 <p>The Ganache (formerly TestRPC) is a mock-blockchain which helps create
-temporary instances of an Ethereum node for testing.</p>
+temporary instances of an Vapory node for testing.</p>
 <dl class="docutils">
 <dt><strong>NOTE:</strong></dt>
 <dd>Ganache is not entirely standards-compliant and may
 not always behave properly. If you are getting deeper
-into Ethereum development, we recommend installing
+into Vapory development, we recommend installing
 Geth or Parity and using a development chain</dd>
 </dl>
 <div class="literal-block-wrapper docutils container" id="id2">
@@ -220,7 +220,7 @@ Geth or Parity and using a development chain</dd>
 <span class="c1">// Or if you are running the UI version, use this instead:</span>
 <span class="c1">// const url = &quot;http://localhost:7545&quot;</span>
 
-<span class="kr">const</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">JsonRpcProvider</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">JsonRpcProvider</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
 
 <span class="c1">// Getting the accounts</span>
 <span class="kr">const</span> <span class="nx">signer0</span> <span class="o">=</span> <span class="nx">provider</span><span class="p">.</span><span class="nx">getSigner</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
@@ -232,11 +232,11 @@ Geth or Parity and using a development chain</dd>
 <div class="code-block-caption"><span class="caption-text"><em>Using an In-Process Ganache Instance</em></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// If you would like to run an in-process instance of Ganache, you can</span>
 <span class="c1">// use a method similar to the MetaMask solution; we wrap the Web3 Provider</span>
-<span class="c1">// API with an ethers.js Web3Provider, which exposes the ethers.js API</span>
+<span class="c1">// API with an vapors.js Web3Provider, which exposes the vapors.js API</span>
 <span class="c1">// from a Web3 Provider</span>
 
 <span class="kr">const</span> <span class="nx">ganache</span> <span class="o">=</span> <span class="nx">Ganache</span><span class="p">.</span><span class="nx">provider</span><span class="p">(</span><span class="nx">ganacheOptions</span><span class="p">);</span>
-<span class="kr">const</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">Web3Provider</span><span class="p">(</span><span class="nx">ganache</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">Web3Provider</span><span class="p">(</span><span class="nx">ganache</span><span class="p">);</span>
 
 <span class="c1">// Getting the accounts</span>
 <span class="kr">const</span> <span class="nx">signer0</span> <span class="o">=</span> <span class="nx">provider</span><span class="p">.</span><span class="nx">getSigner</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
@@ -258,10 +258,10 @@ before returning them to the user.</p>
 through another Provider, but dump all data going back and forth.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text"><em>Sub-Class Provider for Debugging</em></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">ethers</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">vapors</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
 
-<span class="kr">class</span> <span class="nx">DebugProvider</span> <span class="kr">extends</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">BaseProvider</span> <span class="p">{</span>
-    <span class="nx">readonly</span> <span class="nx">provider</span><span class="o">:</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">Provider</span><span class="p">;</span>
+<span class="kr">class</span> <span class="nx">DebugProvider</span> <span class="kr">extends</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">BaseProvider</span> <span class="p">{</span>
+    <span class="nx">readonly</span> <span class="nx">provider</span><span class="o">:</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">Provider</span><span class="p">;</span>
 
     <span class="nx">constructor</span><span class="p">(</span><span class="nx">provider</span><span class="p">)</span> <span class="p">{</span>
         <span class="kr">super</span><span class="p">(</span><span class="nx">provider</span><span class="p">.</span><span class="nx">getNetork</span><span class="p">());</span>

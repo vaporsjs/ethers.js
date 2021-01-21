@@ -1,10 +1,10 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
-Ethereum Naming Service
+Vapory Naming Service
 =======================
 
 Help
@@ -12,7 +12,7 @@ Help
 
 ```
 Usage:
-   ethers-ens COMMAND [ ARGS ] [ OPTIONS ]
+   vapors-ens COMMAND [ ARGS ] [ OPTIONS ]
 
 COMMANDS
    lookup [ NAME | ADDRESS [ ... ] ]
@@ -31,7 +31,7 @@ COMMANDS
       [ --address ADDRESS ]      Specify another address
    set-subnode NAME           Set a subnode owner (default: current account)
       [ --address ADDRESS ]      Specify another address
-   set-resolver NAME          Set the resolver (default: resolver.eth)
+   set-resolver NAME          Set the resolver (default: resolver.vap)
       [ --address ADDRESS ]      Specify another address
    set-addr NAME              Set the addr record (default: current account)
       [ --address ADDRESS ]      Specify another address
@@ -58,7 +58,7 @@ ACCOUNT OPTIONS
 
 PROVIDER OPTIONS (default: all + homestead)
   --alchemy                   Include Alchemy
-  --etherscan                 Include Etherscan
+  --vaporscan                 Include Vaporscan
   --infura                    Include INFURA
   --nodesmith                 Include nodesmith
   --rpc URL                   Include a custom JSON-RPC

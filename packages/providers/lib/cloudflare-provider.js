@@ -50,7 +50,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var url_json_rpc_provider_1 = require("./url-json-rpc-provider");
-var logger_1 = require("@ethersproject/logger");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 var logger = new logger_1.Logger(_version_1.version);
 var CloudflareProvider = /** @class */ (function (_super) {
@@ -68,7 +68,7 @@ var CloudflareProvider = /** @class */ (function (_super) {
         var host = null;
         switch (network.name) {
             case "homestead":
-                host = "https://cloudflare-eth.com/";
+                host = "https://cloudflare-vap.com/";
                 break;
             default:
                 logger.throwArgumentError("unsupported network", "network", arguments[0]);

@@ -1,15 +1,15 @@
 "use strict";
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 import { version } from "./_version";
-const logger = new ethers.utils.Logger(version);
+const logger = new vapors.utils.Logger(version);
 // @TODO: Keep a per-NonceManager pool of sent but unmined transactions for
 //        rebroadcasting, in case we overrun the transaction pool
-export class NonceManager extends ethers.Signer {
+export class NonceManager extends vapors.Signer {
     constructor(signer) {
         logger.checkNew(new.target, NonceManager);
         super();
         this._deltaCount = 0;
-        ethers.utils.defineReadOnly(this, "signer", signer);
+        vapors.utils.defineReadOnly(this, "signer", signer);
     }
     get provider() {
         return this.signer.provider;
@@ -32,7 +32,7 @@ export class NonceManager extends ethers.Signer {
     }
     setTransactionCount(transactionCount) {
         this._initialPromise = Promise.resolve(transactionCount).then((nonce) => {
-            return ethers.BigNumber.from(nonce).toNumber();
+            return vapors.BigNumber.from(nonce).toNumber();
         });
         this._deltaCount = 0;
     }
@@ -48,7 +48,7 @@ export class NonceManager extends ethers.Signer {
     }
     sendTransaction(transaction) {
         if (transaction.nonce == null) {
-            transaction = ethers.utils.shallowCopy(transaction);
+            transaction = vapors.utils.shallowCopy(transaction);
             transaction.nonce = this.getTransactionCount("pending");
             this.incrementTransactionCount();
         }

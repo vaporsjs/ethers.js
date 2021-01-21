@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var abstract_provider_1 = require("@ethersproject/abstract-provider");
+var abstract_provider_1 = require("@vaporsproject/abstract-provider");
 exports.Provider = abstract_provider_1.Provider;
-var networks_1 = require("@ethersproject/networks");
+var networks_1 = require("@vaporsproject/networks");
 exports.getNetwork = networks_1.getNetwork;
 var base_provider_1 = require("./base-provider");
 exports.BaseProvider = base_provider_1.BaseProvider;
@@ -12,8 +12,8 @@ exports.AlchemyProvider = alchemy_provider_1.AlchemyProvider;
 exports.AlchemyWebSocketProvider = alchemy_provider_1.AlchemyWebSocketProvider;
 var cloudflare_provider_1 = require("./cloudflare-provider");
 exports.CloudflareProvider = cloudflare_provider_1.CloudflareProvider;
-var etherscan_provider_1 = require("./etherscan-provider");
-exports.EtherscanProvider = etherscan_provider_1.EtherscanProvider;
+var vaporscan_provider_1 = require("./vaporscan-provider");
+exports.VaporscanProvider = vaporscan_provider_1.VaporscanProvider;
 var fallback_provider_1 = require("./fallback-provider");
 exports.FallbackProvider = fallback_provider_1.FallbackProvider;
 var ipc_provider_1 = require("./ipc-provider");
@@ -40,7 +40,7 @@ exports.Formatter = formatter_1.Formatter;
 exports.isCommunityResourcable = formatter_1.isCommunityResourcable;
 exports.isCommunityResource = formatter_1.isCommunityResource;
 exports.showThrottleMessage = formatter_1.showThrottleMessage;
-var logger_1 = require("@ethersproject/logger");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 var logger = new logger_1.Logger(_version_1.version);
 ////////////////////////
@@ -76,7 +76,7 @@ function getDefaultProvider(network, options) {
         FallbackProvider: fallback_provider_1.FallbackProvider,
         AlchemyProvider: alchemy_provider_1.AlchemyProvider,
         CloudflareProvider: cloudflare_provider_1.CloudflareProvider,
-        EtherscanProvider: etherscan_provider_1.EtherscanProvider,
+        VaporscanProvider: vaporscan_provider_1.VaporscanProvider,
         InfuraProvider: infura_provider_1.InfuraProvider,
         JsonRpcProvider: json_rpc_provider_1.JsonRpcProvider,
         NodesmithProvider: nodesmith_provider_1.NodesmithProvider,

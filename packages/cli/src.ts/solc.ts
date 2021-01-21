@@ -6,10 +6,10 @@ import fs from "fs";
 import _module from "module";
 import { dirname, resolve } from "path";
 
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 
 export interface ContractCode {
-    interface: ethers.utils.Interface;
+    interface: vapors.utils.Interface;
     name: string;
     compiler: string;
     bytecode: string;
@@ -24,7 +24,7 @@ export type CompilerOptions = {
 };
 
 function populateOptions(options?: CompilerOptions): CompilerOptions {
-    options = ethers.utils.shallowCopy(options || { });
+    options = vapors.utils.shallowCopy(options || { });
 
     if (options.filename && !options.basedir) {
         options.basedir = dirname(options.filename);
@@ -111,7 +111,7 @@ function _compile(_solc: any, source: string, options?: CompilerOptions): Array<
 
             result.push({
                 name: name,
-                interface: new ethers.utils.Interface(contract.abi),
+                interface: new vapors.utils.Interface(contract.abi),
                 bytecode: "0x" + contract.evm.bytecode.object,
                 runtime: "0x" + contract.evm.deployedBytecode.object,
                 compiler: compilerVersion
@@ -125,7 +125,7 @@ function _compile(_solc: any, source: string, options?: CompilerOptions): Array<
 
 
 // Creates a require which will first search from the current location,
-// and for solc will fallback onto the version included in @ethersproject/cli
+// and for solc will fallback onto the version included in @vaporsproject/cli
 export function customRequire(path: string): (name: string) => any {
     // Node 8.x does not support createRequireFromPath
     const createRequire = (_module.createRequireFromPath || (function(path: string) {

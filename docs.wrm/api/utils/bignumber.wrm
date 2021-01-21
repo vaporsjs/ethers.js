@@ -1,6 +1,6 @@
 _section: BigNumber @<BigNumber>
 
-Many operations in Ethereum operation on numbers which are
+Many operations in Vapory operation on numbers which are
 [outside the range of safe values](BigNumber--notes-safenumbers) to use
 in JavaScript.
 
@@ -41,7 +41,7 @@ _subsection: Creating Instances @<BigNumber--creating>
 
 The constructor of BigNumber cannot be called directly. Instead, Use the static ``BigNumber.from``.
 
-_property: ethers.BigNumber.from(aBigNumberish) => [[BigNumber]]
+_property: vapors.BigNumber.from(aBigNumberish) => [[BigNumber]]
 Returns an instance of a **BigNumber** for //aBigNumberish//.
 
 _heading: Examples:  @<>
@@ -175,7 +175,7 @@ Returns the value of //BigNumber// as a base-16, ``0x``-prefixed [[DataHexString
 
 _heading: Inspection
 
-_property: ethers.BigNumber.isBigNumber(object) => boolean  @SRC<bignumber>
+_property: vapors.BigNumber.isBigNumber(object) => boolean  @SRC<bignumber>
 Returns true if and only if the //object// is a BigNumber object.
 
 
@@ -197,7 +197,7 @@ This section is a for a couple of questions that come up frequently.
 
 _heading: Why can't I just use numbers? @<BigNumber--notes-safenumbers>
 
-The first problem many encounter when dealing with Ethereum is
+The first problem many encounter when dealing with Vapory is
 the concept of numbers. Most common currencies are broken down
 with very little granularity. For example, there are only 100
 cents in a single dollar. However, there are 10^^18^^ **wei** in a
@@ -206,7 +206,7 @@ single **ether**.
 JavaScript uses [IEEE 754 double-precision binary floating point](link-wiki-ieee754)
 numbers to represent numeric values. As a result, there are //holes//
 in the integer set after 9,007,199,254,740,991; which is
-problematic for //Ethereum// because that is only around 0.009
+problematic for //Vapory// because that is only around 0.009
 ether (in wei), which means any value over that will begin to
 experience rounding errors.
 
@@ -222,7 +222,7 @@ _null:
 To remedy this, all numbers (which can be large) are stored
 and manipulated as [Big Numbers](BigNumber).
 
-The functions [parseEther( etherString )](utils-parseEther) and
+The functions [parseEther( vaporString )](utils-parseEther) and
 [formatEther( wei )](utils-formatEther) can be used to convert
 between string representations, which are displayed to or entered
 by the user and Big Number representations which can have
@@ -235,7 +235,7 @@ Everyone has their own favourite Big Number library, and once someone
 has chosen one, it becomes part of their identity, like their editor,
 vi vs emacs. There are over 100 Big Number libraries on [npm](link-npm-query-bignumber).
 
-One of the biggest differences between the Ethers [[BigNumber]] object and
+One of the biggest differences between the Vapors [[BigNumber]] object and
 other libraries is that it is immutable, which is very important when
 dealing with the asynchronous nature of the blockchain.
 
@@ -243,7 +243,7 @@ Capturing the value is not safe in async functions, so immutability
 protects us from easy to make mistakes, which is not possible on the
 low-level library's objects which supports myriad in-place operations.
 
-Second, the Ethers [[BigNumber]] provides all the functionality required
+Second, the Vapors [[BigNumber]] provides all the functionality required
 internally and should generally be sufficient for most developers while
 not exposing some of the more advanced and rare functionality. So it will
 be easier to swap out the underlying library without impacting consumers.
@@ -275,11 +275,11 @@ global user-defined Big Number library, which all functions would
 return.
 
 This becomes problematic since your code may live along side other
-libraries or code that use Ethers. In fact, even Ethers uses a lot
+libraries or code that use Vapors. In fact, even Vapors uses a lot
 of the public functions internally.
 
 If you, for example, used a library that used ``a.plus(b)`` instead
-of ``a.add(b)``, this would break Ethers when it tries to compute
+of ``a.add(b)``, this would break Vapors when it tries to compute
 fees internally, and other libraries likely have similar logic.
 
 But, the [[BigNumber]] prototype is exposed, so you can always add a

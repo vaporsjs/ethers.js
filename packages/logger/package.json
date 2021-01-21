@@ -1,11 +1,11 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
-  "description": "Logger utility functions for ethers.",
-  "ethereum": "donations.ethers.eth",
+  "description": "Logger utility functions for vapors.",
+  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
-      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+      "url": "https://gitcoin.co/grants/13/vaporsjs-complete-simple-and-tiny-2"
     },
     {
       "type": "individual",
@@ -13,20 +13,20 @@
     }
   ],
   "keywords": [
-    "Ethereum",
-    "ethers"
+    "Vapory",
+    "vapors"
   ],
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/logger",
+  "name": "@vaporsproject/logger",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "directory": "packages/logger",
     "type": "git",
-    "url": "git://github.com/ethers-io/ethers.js.git"
+    "url": "git://github.com/vaporsjs/vapors.js.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

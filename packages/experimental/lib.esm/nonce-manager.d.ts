@@ -1,16 +1,16 @@
-import { ethers } from "ethers";
-export declare class NonceManager extends ethers.Signer {
-    readonly signer: ethers.Signer;
+import { vapors } from "vapors";
+export declare class NonceManager extends vapors.Signer {
+    readonly signer: vapors.Signer;
     _initialPromise: Promise<number>;
     _deltaCount: number;
-    constructor(signer: ethers.Signer);
-    get provider(): ethers.providers.Provider;
-    connect(provider: ethers.providers.Provider): NonceManager;
+    constructor(signer: vapors.Signer);
+    get provider(): vapors.providers.Provider;
+    connect(provider: vapors.providers.Provider): NonceManager;
     getAddress(): Promise<string>;
-    getTransactionCount(blockTag?: ethers.providers.BlockTag): Promise<number>;
-    setTransactionCount(transactionCount: ethers.BigNumberish | Promise<ethers.BigNumberish>): void;
+    getTransactionCount(blockTag?: vapors.providers.BlockTag): Promise<number>;
+    setTransactionCount(transactionCount: vapors.BigNumberish | Promise<vapors.BigNumberish>): void;
     incrementTransactionCount(count?: number): void;
-    signMessage(message: ethers.Bytes | string): Promise<string>;
-    signTransaction(transaction: ethers.utils.Deferrable<ethers.providers.TransactionRequest>): Promise<string>;
-    sendTransaction(transaction: ethers.utils.Deferrable<ethers.providers.TransactionRequest>): Promise<ethers.providers.TransactionResponse>;
+    signMessage(message: vapors.Bytes | string): Promise<string>;
+    signTransaction(transaction: vapors.utils.Deferrable<vapors.providers.TransactionRequest>): Promise<string>;
+    sendTransaction(transaction: vapors.utils.Deferrable<vapors.providers.TransactionRequest>): Promise<vapors.providers.TransactionResponse>;
 }

@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -11,15 +11,15 @@ Installing
 ----------
 
 ```
-/home/ricmoo/my-react-project> npm install @ethersproject/shims --save
+/home/ricmoo/my-react-project> npm install @vaporsproject/shims --save
 ```
 
 ```
-// Pull in the shims (BEFORE importing ethers)
-import "@ethersproject/shims"
+// Pull in the shims (BEFORE importing vapors)
+import "@vaporsproject/shims"
 
-// Import the ethers library
-import { ethers } from "ethers";
+// Import the vapors library
+import { vapors } from "vapors";
 ```
 
 Security
@@ -29,10 +29,10 @@ Security
 // Import the crypto getRandomValues shim (**BEFORE** the shims)
 import "react-native-get-random-values"
 
-// Import the the ethers shims (**BEFORE** ethers)
-import "@ethersproject/shims"
+// Import the the vapors shims (**BEFORE** vapors)
+import "@vaporsproject/shims"
 
-// Import the ethers library
-import { ethers } from "ethers";
+// Import the vapors library
+import { vapors } from "vapors";
 ```
 

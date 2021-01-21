@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Low-Level API &mdash; ethers.js 3.0.0 documentation</title>
+  <title>Low-Level API &mdash; vapors.js 3.0.0 documentation</title>
   
 
   
@@ -30,16 +30,16 @@
   
 
   
-    <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
   
-    <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
   
 
   
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="ethers.js 3.0.0 documentation" href="index.html"/>
+    <link rel="top" title="vapors.js 3.0.0 documentation" href="index.html"/>
         <link rel="next" title="Cookbook" href="cookbook.html"/>
         <link rel="prev" title="Utilities" href="api-utils.html"/> 
 
@@ -60,7 +60,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> ethers.js
+            <a href="index.html" class="icon icon-home"> vapors.js
           
 
           
@@ -155,7 +155,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ethers.js</a>
+          <a href="index.html">vapors.js</a>
         
       </nav>
 
@@ -223,9 +223,9 @@ non-hardened nodes.</p>
 <div class="section" id="creating-instances">
 <h3>Creating Instances<a class="headerlink" href="#creating-instances" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><sup>ethers . HDNode</sup> <strong>. fromMnemonic</strong> ( mnemonic )</dt>
+<dt><sup>vapors . HDNode</sup> <strong>. fromMnemonic</strong> ( mnemonic )</dt>
 <dd>Create an HDNode from a <em>mnemonic</em> phrase.</dd>
-<dt><sup>ethers . HDNode</sup> <strong>. fromSeed</strong> ( seed )</dt>
+<dt><sup>vapors . HDNode</sup> <strong>. fromSeed</strong> ( seed )</dt>
 <dd>Create an HDNode from a seed.</dd>
 </dl>
 </div>
@@ -253,27 +253,27 @@ indicate hardened derivation for that path components. See below for some exampl
 <div class="section" id="static-methods">
 <h3>Static Methods<a class="headerlink" href="#static-methods" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><sup>ethers . HDNode</sup> <strong>. mnemonicToEntropy</strong> ( mnemonic )</dt>
+<dt><sup>vapors . HDNode</sup> <strong>. mnemonicToEntropy</strong> ( mnemonic )</dt>
 <dd>Convert a <em>mnemonic</em> to its binary entropy. (throws an error if the checksum
 is invalid)</dd>
-<dt><sup>ethers . HDNode</sup> <strong>. entropyToMnemonic</strong> ( entropy )</dt>
+<dt><sup>vapors . HDNode</sup> <strong>. entropyToMnemonic</strong> ( entropy )</dt>
 <dd>Convert the binary <em>entropy</em> to the mnemonic phrase.</dd>
-<dt><sup>ethers . HDNode</sup> <strong>. mnemonicToSeed</strong> ( mnemonic )</dt>
+<dt><sup>vapors . HDNode</sup> <strong>. mnemonicToSeed</strong> ( mnemonic )</dt>
 <dd>Compute the BIP39 seed from <em>mnemonic</em>.</dd>
-<dt><sup>ethers . HDNode</sup> <strong>. isValidMnemonic</strong> ( string )</dt>
+<dt><sup>vapors . HDNode</sup> <strong>. isValidMnemonic</strong> ( string )</dt>
 <dd>Returns true if and only if the string is a valid mnemonic (including
 the checksum)</dd>
 </dl>
 </div>
 <div class="section" id="examples">
 <h3><em>Examples</em><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">HDNode</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">HDNode</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">HDNode</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">HDNode</span><span class="p">;</span>
 
 <span class="n">var</span> <span class="n">mnemonic</span> <span class="o">=</span> <span class="s2">&quot;radar blur cabbage chef fix engine embark joy scheme fiction master release&quot;</span><span class="p">;</span>
 
 <span class="n">var</span> <span class="n">masterNode</span> <span class="o">=</span> <span class="n">HDNode</span><span class="o">.</span><span class="n">fromMnemonic</span><span class="p">(</span><span class="n">mnemonic</span><span class="p">);</span>
 
-<span class="n">var</span> <span class="n">standardEthereum</span> <span class="o">=</span> <span class="n">masterNode</span><span class="o">.</span><span class="n">derivePath</span><span class="p">(</span><span class="s2">&quot;m/44&#39;/60&#39;/0&#39;/0/0&quot;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">standardVapory</span> <span class="o">=</span> <span class="n">masterNode</span><span class="o">.</span><span class="n">derivePath</span><span class="p">(</span><span class="s2">&quot;m/44&#39;/60&#39;/0&#39;/0/0&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -287,7 +287,7 @@ and decoding the parameters to pass in and results returned.</p>
 <div class="section" id="creating-an-instance">
 <h3>Creating an Instance<a class="headerlink" href="#creating-an-instance" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt>new <sup>ethers</sup> . Interface ( abi )</dt>
+<dt>new <sup>vapors</sup> . Interface ( abi )</dt>
 <dd>Returns a new instance and populates the properties with the ABI constructor,
 methods and events. The <em>abi</em> may be either a JSON string or the parsed JSON
 Object.</dd>
@@ -311,7 +311,7 @@ one is generated.</dd>
 <div class="section" id="id2">
 <h3><em>Examples</em><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p><strong>Creating an Interface Instance</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">Interface</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Interface</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">Interface</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">Interface</span><span class="p">;</span>
 
 <span class="n">var</span> <span class="n">abi</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
@@ -400,8 +400,8 @@ one is generated.</dd>
 </pre></div>
 </div>
 <p><strong>Events</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ethers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">Interface</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">Interface</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">vapors</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">Interface</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">Interface</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">abi</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
         <span class="n">anonymous</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
@@ -430,7 +430,7 @@ one is generated.</dd>
 
 
 <span class="o">//</span> <span class="n">To</span> <span class="n">listen</span> <span class="k">for</span> <span class="n">this</span> <span class="n">event</span><span class="p">:</span>
-<span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
+<span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
 <span class="n">provider</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">transferInfo</span><span class="o">.</span><span class="n">topics</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">log</span><span class="p">)</span> <span class="p">{</span>
     <span class="o">//</span> <span class="n">Parse</span> <span class="n">event</span> <span class="n">data</span> <span class="p">(</span><span class="n">only</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">non</span><span class="o">-</span><span class="n">indexed</span> <span class="n">entries</span><span class="p">)</span>
     <span class="n">var</span> <span class="n">result</span> <span class="o">=</span> <span class="n">transferInfo</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">log</span><span class="o">.</span><span class="n">data</span><span class="p">);</span>
@@ -471,7 +471,7 @@ one is generated.</dd>
 <div class="section" id="id3">
 <h3>Creating Instances<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt>new <sup>ethers . utils</sup> <strong>. AbiCoder</strong> ( [ coerceFunc ] )</dt>
+<dt>new <sup>vapors . utils</sup> <strong>. AbiCoder</strong> ( [ coerceFunc ] )</dt>
 <dd>Create a new ABI Coder object, which calls <em>coerceFunc</em> for each parsed value
 during decoding. The <em>coerceFunc</em> should have the signature: <code class="docutils literal"><span class="pre">function(type,</span> <span class="pre">value)</span></code>.</dd>
 </dl>
@@ -479,7 +479,7 @@ during decoding. The <em>coerceFunc</em> should have the signature: <code class=
 <div class="section" id="static-properties">
 <h3>Static Properties<a class="headerlink" href="#static-properties" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><sup>ethers . utils</sup> <strong>. defaultAbiCoder</strong></dt>
+<dt><sup>vapors . utils</sup> <strong>. defaultAbiCoder</strong></dt>
 <dd>A default instance of the coder which can be used, which has a <em>coerceFunc</em>
 which will call <code class="docutils literal"><span class="pre">toNumber()</span></code> on BigNumbers whose <strong>type</strong> is less than
 53 bits and is safe for JavaScript Number instances.</dd>
@@ -530,9 +530,9 @@ Returns a <a class="reference internal" href="notes.html#promise"><span class="s
 </div>
 <div class="section" id="id7">
 <h3><em>Examples</em><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ethers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
-<span class="n">var</span> <span class="n">Provider</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">Provider</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">vapors</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">Provider</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">Provider</span><span class="p">;</span>
 
 <span class="o">//</span> <span class="n">The</span> <span class="n">new</span> <span class="n">provider</span> <span class="n">Object</span>
 <span class="n">function</span> <span class="n">DemoProvider</span><span class="p">(</span><span class="n">testnet</span><span class="p">,</span> <span class="n">somethingElse</span><span class="p">)</span> <span class="p">{</span>
@@ -651,7 +651,7 @@ computes a public key from a digest and a signature.</p>
 <div class="section" id="id8">
 <h3>Creating Instances<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt>new <sup>ethers</sup> . SigningKey ( privateKey )</dt>
+<dt>new <sup>vapors</sup> . SigningKey ( privateKey )</dt>
 <dd>Create a new SigningKey and compute the corresponding public key and address.
 A private key may be a any <a class="reference internal" href="api-utils.html#hexstring"><span class="std std-ref">hex string</span></a> or an
 <a class="reference internal" href="api-utils.html#api-arrayish"><span class="std std-ref">Arrayish</span></a> representing 32 bytes.</dd>
@@ -669,7 +669,7 @@ message.</dd>
 <p class="last"><strong>default:</strong> <em>compressed</em>=false</p>
 </dd>
 <dt><sup>SigningKey</sup> . publicKeyToAddress ( publicOrPrivateKey )</dt>
-<dd>Convert a <em>publicOrPrivateKey</em> to an Ethereum address.</dd>
+<dd>Convert a <em>publicOrPrivateKey</em> to an Vapory address.</dd>
 </dl>
 </div>
 <div class="section" id="id10">
@@ -680,15 +680,15 @@ message.</dd>
 <dt><sup>prototype</sup> . publicKey</dt>
 <dd>The compressed public key.</dd>
 <dt><sup>prototype</sup> . address</dt>
-<dd>The Ethereum address for this key pair.</dd>
+<dd>The Vapory address for this key pair.</dd>
 <dt><sup>prototype</sup> . signDigest ( messageDigest )</dt>
 <dd>The compressed public key</dd>
 </dl>
 </div>
 <div class="section" id="id11">
 <h3><em>Examples</em><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ethers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">SigningKey</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">_SigningKey</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">vapors</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">SigningKey</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">_SigningKey</span><span class="p">;</span>
 
 <span class="n">var</span> <span class="n">privateKey</span> <span class="o">=</span> <span class="s1">&#39;0x0123456789012345678901234567890123456789012345678901234567890123&#39;</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">signingKey</span> <span class="o">=</span> <span class="n">new</span> <span class="n">SigningKey</span><span class="p">(</span><span class="n">privateKey</span><span class="p">);</span>
@@ -697,8 +697,8 @@ message.</dd>
 <span class="o">//</span> <span class="s2">&quot;Address: 0x14791697260E4c9A71f18484C9f997B308e59325&quot;</span>
 
 <span class="n">var</span> <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">;</span>
-<span class="n">var</span> <span class="n">messageBytes</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">toUtf8Bytes</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">messageDigest</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">keccak256</span><span class="p">(</span><span class="n">messageBytes</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">messageBytes</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">toUtf8Bytes</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">messageDigest</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">keccak256</span><span class="p">(</span><span class="n">messageBytes</span><span class="p">);</span>
 
 <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Digest: &quot;</span> <span class="o">+</span> <span class="n">messageDigest</span><span class="p">);</span>
 <span class="o">//</span> <span class="s2">&quot;Digest: 0x592fa743889fc7f92ac2a37bb1f5ba1daf2a5c84741ca0e0061d243a2e6707ba&quot;</span>
@@ -744,27 +744,27 @@ message.</dd>
 <hr class="docutils" />
 <div class="section" id="recursive-length-prefixed-encoding-rlp">
 <h2>Recursive-Length Prefixed Encoding (RLP)<a class="headerlink" href="#recursive-length-prefixed-encoding-rlp" title="Permalink to this headline">¶</a></h2>
-<p>This encoding method is used internally for several aspects of Ethereum, such as
+<p>This encoding method is used internally for several aspects of Vapory, such as
 encoding transactions and determining contract addresses. For most developers this
 should not be necessary to use.</p>
 <p>RLP can encode nested arrays, with data as <a class="reference internal" href="api-utils.html#hexstring"><span class="std std-ref">hex strings</span></a> and Uint8Array (or other non-Array
 <a class="reference internal" href="api-utils.html#api-arrayish"><span class="std std-ref">arrayish</span></a> objects). A decoded object will always have data represented as <a class="reference internal" href="api-utils.html#hexstring"><span class="std std-ref">hex strings</span></a> and
 Arrays.</p>
-<p>See: <a class="reference external" href="https://github.com/ethereum/wiki/wiki/RLP">https://github.com/ethereum/wiki/wiki/RLP</a></p>
+<p>See: <a class="reference external" href="https://github.com/vaporyco/wiki/wiki/RLP">https://github.com/vaporyco/wiki/wiki/RLP</a></p>
 <div class="section" id="id12">
 <h3>Static Methods<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><sup>ethers . utils . RLP</sup> . encode( object )</dt>
+<dt><sup>vapors . utils . RLP</sup> . encode( object )</dt>
 <dd>Encodes an object as an RLP <a class="reference internal" href="api-utils.html#hexstring"><span class="std std-ref">hex string</span></a>. (throws an Error if the object contains
 invalid items)</dd>
-<dt><sup>ethers . utils . RLP</sup> . decode( hexStringOrArrayish )</dt>
+<dt><sup>vapors . utils . RLP</sup> . decode( hexStringOrArrayish )</dt>
 <dd>Decode <em>hexStringOrArrayish</em> into the encoded object. (throws an Error if
 invalid RLP-coded data)</dd>
 </dl>
 </div>
 <div class="section" id="id13">
 <h3><em>Examples</em><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">rlp</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">RLP</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">rlp</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">RLP</span><span class="p">;</span>
 
 <span class="n">var</span> <span class="nb">object</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span><span class="s2">&quot;0x42&quot;</span><span class="p">],</span> <span class="s2">&quot;0x1234&quot;</span><span class="p">,</span> <span class="p">[</span> <span class="p">[],</span> <span class="p">[]</span> <span class="p">]</span> <span class="p">];</span>
 

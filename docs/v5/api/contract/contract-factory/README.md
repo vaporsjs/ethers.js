@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -10,7 +10,7 @@ ContractFactory
 Creating Instances
 ------------------
 
-#### **new ***ethers* . **ContractFactory**( interface , bytecode [ , signer ] )
+#### **new ***vapors* . **ContractFactory**( interface , bytecode [ , signer ] )
 
 
 
@@ -59,8 +59,8 @@ The transaction can be found at `contract.deployTransaction`, and no interaction
 
 ```
 // <hide>
-const signer = ethers.LocalSigner();
-const ContractFactory = ethers.ContractFactory;
+const signer = vapors.LocalSigner();
+const ContractFactory = vapors.ContractFactory;
 // </hide>
 
 // If your contract constructor requires parameters, the ABI
@@ -71,7 +71,7 @@ const abi = [
 
 const factory = new ContractFactory(abi, bytecode, signer)
 
-const contract = await factory.deploy("ricmoo.eth", 42);
+const contract = await factory.deploy("ricmoo.vap", 42);
 
 // The address is available immediately, but the contract
 // is NOT deployed yet

@@ -1,20 +1,20 @@
 "use strict";
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 import { version } from "./_version";
-const logger = new ethers.utils.Logger(version);
-export class MetamaskProvider extends ethers.providers.Web3Provider {
-    constructor(ethereum) {
-        if (!ethereum) {
-            ethereum = global.ethereum;
-            if (!ethereum) {
-                logger.throwError("could not auto-detect global.ethereum", ethers.errors.UNSUPPORTED_OPERATION, {
-                    operation: "window.ethereum"
+const logger = new vapors.utils.Logger(version);
+export class MetamaskProvider extends vapors.providers.Web3Provider {
+    constructor(vapory) {
+        if (!vapory) {
+            vapory = global.vapory;
+            if (!vapory) {
+                logger.throwError("could not auto-detect global.vapory", vapors.errors.UNSUPPORTED_OPERATION, {
+                    operation: "window.vapory"
                 });
             }
         }
-        super(ethereum);
+        super(vapory);
         let _account = null;
-        ethers.utils.defineReadOnly(this, "_pollAccountFunc", () => {
+        vapors.utils.defineReadOnly(this, "_pollAccountFunc", () => {
             let account = null;
             if (account === _account) {
                 return;
@@ -23,7 +23,7 @@ export class MetamaskProvider extends ethers.providers.Web3Provider {
             this.emit("account", account, _account);
             _account = account;
         });
-        super(ethereum);
+        super(vapory);
     }
     getSigner(addressOrIndex) {
         if (!this.enabled) {

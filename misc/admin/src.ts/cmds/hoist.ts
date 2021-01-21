@@ -1,11 +1,11 @@
 
-import { dirs, isEthers } from "../path";
+import { dirs, isVapors } from "../path";
 import { getDependencies, updateJson } from "../local";
 import { colorify } from "../log";
 
 (async function() {
     const dependencies = getDependencies(null, (name: string) => {
-        return !isEthers(name);
+        return !isVapors(name);
     });
 
     console.log(colorify.bold(`Hoisting ${ Object.keys(dependencies).length } dependencies into root package...`));

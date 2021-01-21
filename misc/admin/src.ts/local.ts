@@ -12,7 +12,7 @@ export type Package = {
     version: string;
     tarballHash: string;
     location: "remote" | "local";
-    _ethers_nobuild: boolean;
+    _vapors_nobuild: boolean;
 };
 
 export function getPackage(name: string): Package {
@@ -25,7 +25,7 @@ export function getPackage(name: string): Package {
         location: "local",
         tarballHash: (value.tarballHash || null),
         gitHead: (value.gitHead || null),
-        _ethers_nobuild: !!value._ethers_nobuild,
+        _vapors_nobuild: !!value._vapors_nobuild,
     };
 }
 

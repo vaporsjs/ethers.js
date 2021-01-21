@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -12,9 +12,9 @@ Types
 
 ### Constants
 
-#### *ethers* . *utils* . **defaultPath** => *"m/44'/60'/0'/0/0"*
+#### *vapors* . *utils* . **defaultPath** => *"m/44'/60'/0'/0/0"*
 
-The default path for Ethereum in an HD Wallet
+The default path for Vapory in an HD Wallet
 
 
 ### Mnemonic
@@ -39,17 +39,17 @@ HDNode
 
 ### Creating Instances
 
-#### *ethers* . *HDNode* . **fromMnemonic**( phrase [ , password [ , wordlist ] ] ) => *[HDNode](/v5/api/utils/hdnode/#HDNode)*
+#### *vapors* . *HDNode* . **fromMnemonic**( phrase [ , password [ , wordlist ] ] ) => *[HDNode](/v5/api/utils/hdnode/#HDNode)*
 
 Return the [HDNode](/v5/api/utils/hdnode/#HDNode) for *phrase* with the optional *password* and *wordlist*.
 
 
-#### *ethers* . *HDNode* . **fromSeed**( aBytesLike ) => *[HDNode](/v5/api/utils/hdnode/#HDNode)*
+#### *vapors* . *HDNode* . **fromSeed**( aBytesLike ) => *[HDNode](/v5/api/utils/hdnode/#HDNode)*
 
 Return the [HDNode](/v5/api/utils/hdnode/#HDNode) for the seed *aBytesLike*.
 
 
-#### *ethers* . *HDNode* . **fromExtendedKey**( extendedKey ) => *[HDNode](/v5/api/utils/hdnode/#HDNode)*
+#### *vapors* . *HDNode* . **fromExtendedKey**( extendedKey ) => *[HDNode](/v5/api/utils/hdnode/#HDNode)*
 
 Return the [HDNode](/v5/api/utils/hdnode/#HDNode) for the *extendedKey*. If *extendedKey* was neutered, the **HDNode** will only be able to compute addresses and not private keys.
 
@@ -136,17 +136,17 @@ Return a new [HDNode](/v5/api/utils/hdnode/#HDNode) which is the child of *hdNod
 Other Functions
 ---------------
 
-#### *ethers* . *utils* . **mnemonicToSeed**( phrase [ , password ] ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 64 > >*
+#### *vapors* . *utils* . **mnemonicToSeed**( phrase [ , password ] ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 64 > >*
 
 Convert a mnemonic phrase to a seed, according to [BIP-39](https://en.bitcoin.it/wiki/BIP_0039).
 
 
-#### *ethers* . *utils* . **mnemonicToEntropy**( phrase [ , wordlist ] ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
+#### *vapors* . *utils* . **mnemonicToEntropy**( phrase [ , wordlist ] ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
 
 Convert a mnemonic phrase to its entropy, according to [BIP-39](https://en.bitcoin.it/wiki/BIP_0039).
 
 
-#### *ethers* . *utils* . **isValidMnemonic**( phrase [ , wordlist ] ) => *boolean*
+#### *vapors* . *utils* . **isValidMnemonic**( phrase [ , wordlist ] ) => *boolean*
 
 Returns true if *phrase* is a valid mnemonic phrase, by testing the checksum.
 

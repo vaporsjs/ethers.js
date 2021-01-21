@@ -29,7 +29,7 @@ A **Networkish** may be any of the following:
   the default name ``"unknown"`` and no ``ensAddress`` is used
 
 _subsection: Network @<providers-Network>
-A **Network** represents an Ethereum network.
+A **Network** represents an Vapory network.
 
 _property: network.name => string
 The human-readable name of the network, such as ``homestead``. If the network

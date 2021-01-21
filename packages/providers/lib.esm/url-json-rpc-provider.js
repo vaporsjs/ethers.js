@@ -8,8 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { defineReadOnly, getStatic } from "@ethersproject/properties";
-import { Logger } from "@ethersproject/logger";
+import { defineReadOnly, getStatic } from "@vaporsproject/properties";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 import { JsonRpcProvider } from "./json-rpc-provider";

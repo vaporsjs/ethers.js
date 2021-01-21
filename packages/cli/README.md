@@ -2,12 +2,12 @@ Command-Line Interface (CLI)
 ============================
 
 The command-line interface provides several simple tools to manage
-and debug Ethereum-related tasks using the ethers.js library.
+and debug Vapory-related tasks using the vapors.js library.
 
 **To install:**
 
 ```
-/home/ricmoo> npm install -g @ethersproject/cli
+/home/ricmoo> npm install -g @vaporsproject/cli
 ```
 
 -----
@@ -17,7 +17,7 @@ Sandbox Utility
 ===============
 
 The sandbox utility run on its own will run a REPL environment similar
-to running `node`, with many features from the ethers.js library
+to running `node`, with many features from the vapors.js library
 already imported and permits loading accounts and setting up a provider.
 
 It also provides a simple interface to common tasks, such as sweeping
@@ -26,7 +26,7 @@ accounts, signing messages and compiling Solidity.
 **Example:** Create and fund testnet account
 
 ```
-/home/ricmoo> ethers init ropsten.json
+/home/ricmoo> vapors init ropsten.json
 Creating a new JSON Wallet - ropsten.json
 Keep this password and file SAFE!! If lost or forgotten
 it CANNOT be recovered, by ANYone, EVER.
@@ -35,28 +35,28 @@ Confirm password: ****
 Encrypting... 100%
 New account address: 0xe923a7f82860C30442a1A541C14bE4251bd71A34
 Saved:               ropsten.json
-/home/ricmoo> ethers --wait --network ropsten fund 0xe923a7f82860C30442a1A541C14bE4251bd71A34
+/home/ricmoo> vapors --wait --network ropsten fund 0xe923a7f82860C30442a1A541C14bE4251bd71A34
 Transaction Hash: 0x457c1d8b58170c73a02afa2816e877de41d6337a483d4af9cbd674d2b478473d
-/home/ethers>
+/home/vapors>
 ```
 
 **Example:** Simple evaluations
 
 ```
-/home/ricmoo> ethers eval 'namehash("ricmoose.eth")'
+/home/ricmoo> vapors eval 'namehash("ricmoose.vap")'
 0xb52c4744695ed3be701ccef35d5901de3aaf7294245966ef16617c30aab7b626
 
-/home/ricmoo> ethers eval 'id("Hello...")'
+/home/ricmoo> vapors eval 'id("Hello...")'
 0x9cd41c139084dafa62261ce045f504e3c697fa303c87a78b241a9f8ae65bae88
 
-/home/ricmoo> ethers --network ropsten eval '(new Contract(provider.network.ensAddress, [ "function owner(bytes32) view returns (address)" ], provider)).owner(namehash("eth"))'
+/home/ricmoo> vapors --network ropsten eval '(new Contract(provider.network.ensAddress, [ "function owner(bytes32) view returns (address)" ], provider)).owner(namehash("eth"))'
 0x227Fcb6Ddf14880413EF4f1A3dF2Bbb32bcb29d7
 ```
 
 **Example:** REPL
 
 ```
-/home/ricmoo> ethers --network ropsten --account mnemonic.txt
+/home/ricmoo> vapors --network ropsten --account mnemonic.txt
 network: ropsten (chainId: 3)
 ropsten> provider.getGasPrice()
 BigNumber { _hex: '0xb2d05e00', _isBigNumber: true }
@@ -80,10 +80,10 @@ Help (--help)
 
 ```
 Usage:
-   ethers [ COMMAND ] [ ARGS ] [ OPTIONS ]
+   vapors [ COMMAND ] [ ARGS ] [ OPTIONS ]
 
 COMMANDS (default: sandbox)
-   sandbox                    Run a REPL VM environment with ethers
+   sandbox                    Run a REPL VM environment with vapors
    init FILENAME              Create a new JSON wallet
       [ --force ]                Overwrite any existing files
    fund TARGET                Fund TARGET with testnet ether
@@ -94,8 +94,8 @@ COMMANDS (default: sandbox)
    sweep TARGET               Send all ether from accounts[0] to TARGET
    sign-message MESSAGE       Sign a MESSAGE with accounts[0]
       [ --hex ]                  The message content is hex encoded
-   eval CODE                  Run CODE in a VM with ethers
-   run FILENAME               Run FILENAME in a VM with ethers
+   eval CODE                  Run CODE in a VM with vapors
+   run FILENAME               Run FILENAME in a VM with vapors
    wait HASH                  Wait for a transaction HASH to be mined
    compile FILENAME           Compiles a Solidity contract
       [ --no-optimize ]          Do not optimize the compiled output
@@ -118,7 +118,7 @@ ACCOUNT OPTIONS
 
 PROVIDER OPTIONS (default: all + homestead)
   --alchemy                   Include Alchemy
-  --etherscan                 Include Etherscan
+  --vaporscan                 Include Vaporscan
   --infura                    Include INFURA
   --nodesmith                 Include nodesmith
   --rpc URL                   Include a custom JSON-RPC
@@ -144,7 +144,7 @@ OTHER OPTIONS
 
 -----
 
-Ethereum Naming Service (ENS)
+Vapory Naming Service (ENS)
 =============================
 
 These tools help manage ENS names.
@@ -154,7 +154,7 @@ Help (--help)
 
 ```
 Usage:
-   ethers-ens COMMAND [ ARGS ] [ OPTIONS ]
+   vapors-ens COMMAND [ ARGS ] [ OPTIONS ]
 
 COMMANDS
    lookup [ NAME | ADDRESS [ ... ] ]
@@ -173,7 +173,7 @@ COMMANDS
       [ --address ADDRESS ]      Specify another address
    set-subnode NAME           Set a subnode owner (default: current account)
       [ --address ADDRESS ]      Specify another address
-   set-resolver NAME          Set the resolver (default: resolver.eth)
+   set-resolver NAME          Set the resolver (default: resolver.vap)
       [ --address ADDRESS ]      Specify another address
    set-addr NAME              Set the addr record (default: current account)
       [ --address ADDRESS ]      Specify another address
@@ -204,7 +204,7 @@ Help (--help)
 
 ```
 Usage:
-   ethers-ts FILENAME [ ... ] [ OPTIONS ]
+   vapors-ts FILENAME [ ... ] [ OPTIONS ]
 
 OPTIONS
   --output FILENAME           Write the output to FILENAME (default: stdout)

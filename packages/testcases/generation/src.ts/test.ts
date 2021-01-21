@@ -1,6 +1,6 @@
 import { createHash } from "crypto";
 import { saveTests as _saveTests } from "../../lib/index";
-import { ethers } from "../../../ethers";
+import { vapors } from "../../../vapors";
 
 import * as TestCase from "../../lib/testcases";
 export { TestCase };
@@ -59,7 +59,7 @@ export abstract class AbstractTest<T = any> {
         while (true) {
             const address = this.randomHexString(20);
             if (address.match(/[a-f]/i)) {
-                return ethers.utils.getAddress(address);
+                return vapors.utils.getAddress(address);
             }
         }
     }

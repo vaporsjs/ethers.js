@@ -17,13 +17,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var aes_js_1 = __importDefault(require("aes-js"));
-var address_1 = require("@ethersproject/address");
-var bytes_1 = require("@ethersproject/bytes");
-var keccak256_1 = require("@ethersproject/keccak256");
-var pbkdf2_1 = require("@ethersproject/pbkdf2");
-var strings_1 = require("@ethersproject/strings");
-var properties_1 = require("@ethersproject/properties");
-var logger_1 = require("@ethersproject/logger");
+var address_1 = require("@vaporsproject/address");
+var bytes_1 = require("@vaporsproject/bytes");
+var keccak256_1 = require("@vaporsproject/keccak256");
+var pbkdf2_1 = require("@vaporsproject/pbkdf2");
+var strings_1 = require("@vaporsproject/strings");
+var properties_1 = require("@vaporsproject/properties");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 var logger = new logger_1.Logger(_version_1.version);
 var utils_1 = require("./utils");
@@ -38,11 +38,11 @@ var CrowdsaleAccount = /** @class */ (function (_super) {
     return CrowdsaleAccount;
 }(properties_1.Description));
 exports.CrowdsaleAccount = CrowdsaleAccount;
-// See: https://github.com/ethereum/pyethsaletool
+// See: https://github.com/vaporyco/pyethsaletool
 function decrypt(json, password) {
     var data = JSON.parse(json);
     password = utils_1.getPassword(password);
-    // Ethereum Address
+    // Vapory Address
     var ethaddr = address_1.getAddress(utils_1.searchPath(data, "ethaddr"));
     // Encrypted Seed
     var encseed = utils_1.looseArrayify(utils_1.searchPath(data, "encseed"));

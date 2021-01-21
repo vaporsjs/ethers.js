@@ -3,22 +3,22 @@
 import {
     Block, BlockTag, BlockWithTransactions, EventType, Filter, FilterByBlockHash, ForkEvent,
     Listener, Log, Provider, TransactionReceipt, TransactionRequest, TransactionResponse
-} from "@ethersproject/abstract-provider";
-import { Base58 } from "@ethersproject/basex";
-import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
-import { arrayify, concat, hexConcat, hexDataLength, hexDataSlice, hexlify, hexValue, hexZeroPad, isHexString } from "@ethersproject/bytes";
-import { HashZero } from "@ethersproject/constants";
-import { namehash } from "@ethersproject/hash";
-import { getNetwork, Network, Networkish } from "@ethersproject/networks";
-import { Deferrable, defineReadOnly, getStatic, resolveProperties } from "@ethersproject/properties";
-import { Transaction } from "@ethersproject/transactions";
-import { sha256 } from "@ethersproject/sha2";
-import { toUtf8Bytes, toUtf8String } from "@ethersproject/strings";
-import { poll } from "@ethersproject/web";
+} from "@vaporsproject/abstract-provider";
+import { Base58 } from "@vaporsproject/basex";
+import { BigNumber, BigNumberish } from "@vaporsproject/bignumber";
+import { arrayify, concat, hexConcat, hexDataLength, hexDataSlice, hexlify, hexValue, hexZeroPad, isHexString } from "@vaporsproject/bytes";
+import { HashZero } from "@vaporsproject/constants";
+import { namehash } from "@vaporsproject/hash";
+import { getNetwork, Network, Networkish } from "@vaporsproject/networks";
+import { Deferrable, defineReadOnly, getStatic, resolveProperties } from "@vaporsproject/properties";
+import { Transaction } from "@vaporsproject/transactions";
+import { sha256 } from "@vaporsproject/sha2";
+import { toUtf8Bytes, toUtf8String } from "@vaporsproject/strings";
+import { poll } from "@vaporsproject/web";
 
 import bech32 from "bech32";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 
@@ -193,15 +193,15 @@ export interface EnsResolver {
     readonly address: string;
 
     // Multichain address resolution (also normal address resolution)
-    // See: https://eips.ethereum.org/EIPS/eip-2304
+    // See: https://eips.vapory.org/EIPS/eip-2304
     getAddress(coinType?: 60): Promise<string>
 
     // Contenthash field
-    // See: https://eips.ethereum.org/EIPS/eip-1577
+    // See: https://eips.vapory.org/EIPS/eip-1577
     getContentHash(): Promise<string>;
 
     // Storage of text records
-    // See: https://eips.ethereum.org/EIPS/eip-634
+    // See: https://eips.vapory.org/EIPS/eip-634
     getText(key: string): Promise<string>;
 };
 
@@ -331,7 +331,7 @@ export class Resolver implements EnsResolver {
     async getAddress(coinType?: number): Promise<string> {
         if (coinType == null) { coinType = 60; }
 
-        // If Ethereum, use the standard `addr(bytes32)`
+        // If Vapory, use the standard `addr(bytes32)`
         if (coinType === 60) {
             // keccak256("addr(bytes32)")
             const transaction = {

@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -13,10 +13,10 @@ Migration Guide
   * [Contracts](web3)
   * [Numbers](web3)
   * [Utilities](web3)
-* [Migration: From Ethers v4](ethers-v4)
-  * [BigNumber](ethers-v4)
-  * [Contracts](ethers-v4)
-  * [Errors](ethers-v4)
-  * [Interface](ethers-v4)
-  * [Wallet](ethers-v4)
+* [Migration: From Vapors v4](vapors-v4)
+  * [BigNumber](vapors-v4)
+  * [Contracts](vapors-v4)
+  * [Errors](vapors-v4)
+  * [Interface](vapors-v4)
+  * [Wallet](vapors-v4)
 

@@ -11,13 +11,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import fs from 'fs';
 import { join as pathJoin } from "path";
-import { ethers } from 'ethers';
+import { vapors } from 'vapors';
 import { CLI, Plugin } from '../cli';
 import { header as Header, generate as generateTypeScript } from "../typescript";
 import { compile } from "../solc";
 function computeHash(content) {
     let bareContent = content.replace(/\/\*\* Content Hash: 0x[0-9A-F]{64} \*\//i, '/** Content Hash: */');
-    return ethers.utils.id(bareContent);
+    return vapors.utils.id(bareContent);
 }
 function checkHash(content) {
     let match = content.match(/\/\*\* Content Hash: (0x[0-9A-F]{64}) \*\//i);
@@ -150,4 +150,4 @@ class GeneratePlugin extends Plugin {
 }
 cli.setPlugin(GeneratePlugin);
 cli.run(process.argv.slice(2));
-//# sourceMappingURL=ethers-ts.js.map
+//# sourceMappingURL=vapors-ts.js.map

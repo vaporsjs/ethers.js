@@ -1,9 +1,9 @@
 /// <reference types="node" />
 import EventEmitter from "events";
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 export declare class _Eip1193Bridge extends EventEmitter {
-    readonly signer: ethers.Signer;
-    readonly provider: ethers.providers.Provider;
-    constructor(signer: ethers.Signer, provider?: ethers.providers.Provider);
+    readonly signer: vapors.Signer;
+    readonly provider: vapors.providers.Provider;
+    constructor(signer: vapors.Signer, provider?: vapors.providers.Provider);
     send(method: string, params?: Array<any>): Promise<any>;
 }

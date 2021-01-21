@@ -11,16 +11,16 @@ import {
     TransactionReceipt,
     TransactionRequest,
     TransactionResponse
-} from "@ethersproject/abstract-provider";
+} from "@vaporsproject/abstract-provider";
 
-import { getNetwork } from "@ethersproject/networks";
-import { Network, Networkish } from "@ethersproject/networks";
+import { getNetwork } from "@vaporsproject/networks";
+import { Network, Networkish } from "@vaporsproject/networks";
 
 import { BaseProvider, EnsProvider, EnsResolver, Resolver } from "./base-provider";
 
 import { AlchemyProvider, AlchemyWebSocketProvider } from "./alchemy-provider";
 import { CloudflareProvider } from "./cloudflare-provider";
-import { EtherscanProvider } from "./etherscan-provider";
+import { VaporscanProvider } from "./vaporscan-provider";
 import { FallbackProvider } from "./fallback-provider";
 import { IpcProvider } from "./ipc-provider";
 import { InfuraProvider, InfuraWebSocketProvider } from "./infura-provider";
@@ -34,7 +34,7 @@ import { ExternalProvider, JsonRpcFetchFunc } from "./web3-provider";
 
 import { CommunityResourcable, Formatter, isCommunityResourcable, isCommunityResource, showThrottleMessage } from "./formatter";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 
@@ -75,7 +75,7 @@ function getDefaultProvider(network?: Network | string, options?: any): BaseProv
 
         AlchemyProvider,
         CloudflareProvider,
-        EtherscanProvider,
+        VaporscanProvider,
         InfuraProvider,
         JsonRpcProvider,
         NodesmithProvider,
@@ -107,7 +107,7 @@ export {
     AlchemyProvider,
     AlchemyWebSocketProvider,
     CloudflareProvider,
-    EtherscanProvider,
+    VaporscanProvider,
     InfuraProvider,
     InfuraWebSocketProvider,
     JsonRpcProvider,

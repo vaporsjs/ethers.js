@@ -1,16 +1,16 @@
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 export declare function dump(header: string, info: any): void;
-declare class WrappedSigner extends ethers.Signer {
+declare class WrappedSigner extends vapors.Signer {
     readonly addressPromise: Promise<string>;
-    readonly provider: ethers.providers.Provider;
+    readonly provider: vapors.providers.Provider;
     readonly plugin: Plugin;
-    constructor(addressPromise: Promise<string>, signerFunc: () => Promise<ethers.Signer>, plugin: Plugin);
-    connect(provider?: ethers.providers.Provider): ethers.Signer;
+    constructor(addressPromise: Promise<string>, signerFunc: () => Promise<vapors.Signer>, plugin: Plugin);
+    connect(provider?: vapors.providers.Provider): vapors.Signer;
     getAddress(): Promise<string>;
-    signMessage(message: string | ethers.utils.Bytes): Promise<string>;
-    populateTransaction(transactionRequest: ethers.providers.TransactionRequest): Promise<ethers.providers.TransactionRequest>;
-    signTransaction(transactionRequest: ethers.providers.TransactionRequest): Promise<string>;
-    sendTransaction(transactionRequest: ethers.providers.TransactionRequest): Promise<ethers.providers.TransactionResponse>;
+    signMessage(message: string | vapors.utils.Bytes): Promise<string>;
+    populateTransaction(transactionRequest: vapors.providers.TransactionRequest): Promise<vapors.providers.TransactionRequest>;
+    signTransaction(transactionRequest: vapors.providers.TransactionRequest): Promise<string>;
+    sendTransaction(transactionRequest: vapors.providers.TransactionRequest): Promise<vapors.providers.TransactionResponse>;
     unlock(): Promise<void>;
 }
 export declare class ArgParser {
@@ -37,13 +37,13 @@ export interface PluginType {
     getOptionHelp?: () => Array<Help>;
 }
 export declare abstract class Plugin {
-    network: ethers.providers.Network;
-    provider: ethers.providers.Provider;
+    network: vapors.providers.Network;
+    provider: vapors.providers.Provider;
     accounts: ReadonlyArray<WrappedSigner>;
     mnemonicPassword: boolean;
     _xxxMnemonicPasswordHard: boolean;
-    gasLimit: ethers.BigNumber;
-    gasPrice: ethers.BigNumber;
+    gasLimit: vapors.BigNumber;
+    gasPrice: vapors.BigNumber;
     nonce: number;
     yes: boolean;
     wait: boolean;

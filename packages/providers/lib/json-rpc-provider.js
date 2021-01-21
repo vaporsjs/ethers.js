@@ -49,14 +49,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var abstract_signer_1 = require("@ethersproject/abstract-signer");
-var bignumber_1 = require("@ethersproject/bignumber");
-var bytes_1 = require("@ethersproject/bytes");
-var hash_1 = require("@ethersproject/hash");
-var properties_1 = require("@ethersproject/properties");
-var strings_1 = require("@ethersproject/strings");
-var web_1 = require("@ethersproject/web");
-var logger_1 = require("@ethersproject/logger");
+var abstract_signer_1 = require("@vaporsproject/abstract-signer");
+var bignumber_1 = require("@vaporsproject/bignumber");
+var bytes_1 = require("@vaporsproject/bytes");
+var hash_1 = require("@vaporsproject/hash");
+var properties_1 = require("@vaporsproject/properties");
+var strings_1 = require("@vaporsproject/strings");
+var web_1 = require("@vaporsproject/web");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 var logger = new logger_1.Logger(_version_1.version);
 var base_provider_1 = require("./base-provider");
@@ -249,7 +249,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
                         address = _a.sent();
                         return [4 /*yield*/, this.provider.send("eth_sign", [address.toLowerCase(), bytes_1.hexlify(data)])];
                     case 2: 
-                    // https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_sign
+                    // https://github.com/vaporyco/wiki/wiki/JSON-RPC#eth_sign
                     return [2 /*return*/, _a.sent()];
                 }
             });
@@ -575,7 +575,7 @@ var JsonRpcProvider = /** @class */ (function (_super) {
         }
         _super.prototype._stopEvent.call(this, event);
     };
-    // Convert an ethers.js transaction into a JSON-RPC transaction
+    // Convert an vapors.js transaction into a JSON-RPC transaction
     //  - gasLimit => gas
     //  - All values hexlified
     //  - All numeric values zero-striped

@@ -1,17 +1,17 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "@ethersproject/cli": "^5.0.4",
-    "@ethersproject/testcases": "^5.0.5",
+    "@vaporsproject/cli": "^5.0.4",
+    "@vaporsproject/testcases": "^5.0.5",
     "@types/mocha": "^5.2.0",
-    "ethers": "^5.0.13"
+    "vapors": "^5.0.13"
   },
-  "description": "Testing package for ethers.",
-  "ethereum": "donations.ethers.eth",
+  "description": "Testing package for vapors.",
+  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
-      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+      "url": "https://gitcoin.co/grants/13/vaporsjs-complete-simple-and-tiny-2"
     },
     {
       "type": "individual",
@@ -19,20 +19,20 @@
     }
   ],
   "keywords": [
-    "Ethereum",
-    "ethers"
+    "Vapory",
+    "vapors"
   ],
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/tests",
+  "name": "@vaporsproject/tests",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "directory": "packages/tests",
     "type": "git",
-    "url": "git://github.com/ethers-io/ethers.js.git"
+    "url": "git://github.com/vaporsjs/vapors.js.git"
   },
   "scripts": {
     "test": "exit 1"

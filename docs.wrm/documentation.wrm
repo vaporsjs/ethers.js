@@ -205,10 +205,10 @@ __underlined text__
 - With bullet points
 - With a total of three items
 
-This is a [Link to Ethereum](https://ethereum.org) and this
+This is a [Link to Vapory](https://vapory.org) and this
 is an [Internal Link](some-link).
 
-This is a self-titled link [[https://ethereumorg]] and this
+This is a self-titled link [[https://vaporyorg]] and this
 [[some-link]] will use the title from its directives value.
 
 

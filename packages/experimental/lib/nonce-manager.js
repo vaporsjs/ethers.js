@@ -13,9 +13,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var ethers_1 = require("ethers");
+var vapors_1 = require("vapors");
 var _version_1 = require("./_version");
-var logger = new ethers_1.ethers.utils.Logger(_version_1.version);
+var logger = new vapors_1.vapors.utils.Logger(_version_1.version);
 // @TODO: Keep a per-NonceManager pool of sent but unmined transactions for
 //        rebroadcasting, in case we overrun the transaction pool
 var NonceManager = /** @class */ (function (_super) {
@@ -26,7 +26,7 @@ var NonceManager = /** @class */ (function (_super) {
         logger.checkNew(_newTarget, NonceManager);
         _this = _super.call(this) || this;
         _this._deltaCount = 0;
-        ethers_1.ethers.utils.defineReadOnly(_this, "signer", signer);
+        vapors_1.vapors.utils.defineReadOnly(_this, "signer", signer);
         return _this;
     }
     Object.defineProperty(NonceManager.prototype, "provider", {
@@ -54,7 +54,7 @@ var NonceManager = /** @class */ (function (_super) {
     };
     NonceManager.prototype.setTransactionCount = function (transactionCount) {
         this._initialPromise = Promise.resolve(transactionCount).then(function (nonce) {
-            return ethers_1.ethers.BigNumber.from(nonce).toNumber();
+            return vapors_1.vapors.BigNumber.from(nonce).toNumber();
         });
         this._deltaCount = 0;
     };
@@ -70,7 +70,7 @@ var NonceManager = /** @class */ (function (_super) {
     };
     NonceManager.prototype.sendTransaction = function (transaction) {
         if (transaction.nonce == null) {
-            transaction = ethers_1.ethers.utils.shallowCopy(transaction);
+            transaction = vapors_1.vapors.utils.shallowCopy(transaction);
             transaction.nonce = this.getTransactionCount("pending");
             this.incrementTransactionCount();
         }
@@ -82,6 +82,6 @@ var NonceManager = /** @class */ (function (_super) {
         });
     };
     return NonceManager;
-}(ethers_1.ethers.Signer));
+}(vapors_1.vapors.Signer));
 exports.NonceManager = NonceManager;
 //# sourceMappingURL=nonce-manager.js.map

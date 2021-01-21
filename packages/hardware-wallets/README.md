@@ -10,17 +10,17 @@ API
 ===
 
 ```
-import { LedgerSigner } from "@ethersproject/hardware-wallets";
+import { LedgerSigner } from "@vaporsproject/hardware-wallets";
 const signer = new LedgerSigner(provider, type, path);
 // By default:
 //   - in node, type = "hid"
-//   - path is the default Ethereum path (i.e.  `m/44'/60'/0'/0/0`)
+//   - path is the default Vapory path (i.e.  `m/44'/60'/0'/0/0`)
 ```
 
 License
 =======
 
-All ethers code is MIT License.
+All vapors code is MIT License.
 
 Each hardware wallet manufacturer may impose additional license
 requirements so please check the related abstraction libraries

@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -12,7 +12,7 @@ Help
 
 ```
 Usage:
-   ethers-asm [ FILENAME ] [ OPTIONS ]
+   vapors-asm [ FILENAME ] [ OPTIONS ]
 
 OPTIONS
   --define KEY=VALUE          provide assembler defines
@@ -102,15 +102,15 @@ Assembler Examples
 ------------------
 
 ```
-/home/ethers> ethers-asm SimpleStore.asm
+/home/vapors> vapors-asm SimpleStore.asm
 0x602a6000556044601160003960446000f334601e5760003560e01c80632096525514602457806355241077146030575b60006000fd5b60005460005260206000f35b6024361415601e5760043560005560006000f3
 
 # Piping in ASM source code
-/home/ethers> cat SimpleStore.asm | ethers-asm
+/home/vapors> cat SimpleStore.asm | vapors-asm
 # Same as above
 
 # Setting a define which the ASM file checks and adds a checksum
-/home/ethers> ethers-asm --define checksum SimpleStore.asm
+/home/vapors> vapors-asm --define checksum SimpleStore.asm
 0x602a6000556065601160003960656000f334601e5760003560e01c80632096525514602457806355241077146030575b60006000fd5b60005460005260206000f35b6024361415601e5760043560005560006000f37f10358310d664c9aeb4bf4ce7a10a6a03176bd23194c8ccbd3160a6dac90774d6
 ```
 
@@ -144,7 +144,7 @@ Disassembler Examples
 ---------------------
 
 ```
-/home/ethers> ethers-asm --disassemble SimpleStore.bin
+/home/vapors> vapors-asm --disassemble SimpleStore.bin
 0000 : 0x2a                                                               ; #1
 0002 : 0x00                                                               ; #1
 0004 : SSTORE
@@ -199,7 +199,7 @@ Disassembler Examples
 0052 : 0x00                                                               ; #1
 0054 : RETURN
 
-/home/ethers> cat SimpleStore.bin | ethers-asm --disassemble
+/home/vapors> cat SimpleStore.bin | vapors-asm --disassemble
 # Same as above
 ```
 

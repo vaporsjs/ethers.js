@@ -5,8 +5,8 @@ import fs from "fs";
 import { colorify } from "../log";
 import { resolve } from "../path";
 
-const sourceEthers = fs.readFileSync(resolve("packages/ethers/src.ts/ethers.ts")).toString();
-const targets = sourceEthers.match(/export\s*{\s*((.|\s)*)}/)[1].trim();
+const sourceVapors = fs.readFileSync(resolve("packages/vapors/src.ts/vapors.ts")).toString();
+const targets = sourceVapors.match(/export\s*{\s*((.|\s)*)}/)[1].trim();
 
 ////////////////////
 // Begin template
@@ -16,21 +16,21 @@ const output = `"use strict";
 
 // To modify this file, you must update ./misc/admin/lib/cmds/update-exports.js
 
-import * as ethers from "./ethers";
+import * as vapors from "./vapors";
 
 try {
     const anyGlobal = (window as any);
 
-    if (anyGlobal._ethers == null) {
-        anyGlobal._ethers = ethers;
+    if (anyGlobal._vapors == null) {
+        anyGlobal._vapors = vapors;
     }
 } catch (error) { }
 
-export { ethers };
+export { vapors };
 
 export {
     ${ targets }
-} from "./ethers";
+} from "./vapors";
 `;
 
 ////////////////////
@@ -39,4 +39,4 @@ export {
 
 console.log(colorify.bold(`Flattening exports...`))
 
-fs.writeFileSync(resolve("packages/ethers/src.ts/index.ts"), output);
+fs.writeFileSync(resolve("packages/vapors/src.ts/index.ts"), output);

@@ -1,4 +1,4 @@
-import { BigNumber } from "@ethersproject/bignumber";
+import { BigNumber } from "@vaporsproject/bignumber";
 export interface JsonFragmentType {
     name?: string;
     indexed?: boolean;

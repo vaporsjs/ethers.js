@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Contracts &mdash; ethers.js 4.0.0 documentation</title>
+  <title>Contracts &mdash; vapors.js 4.0.0 documentation</title>
   
 
   
@@ -26,8 +26,8 @@
 
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Utilities" href="api-utils.html" />
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> ethers.js
+            <a href="index.html" class="icon icon-home"> vapors.js
           
 
           
@@ -150,7 +150,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ethers.js</a>
+          <a href="index.html">vapors.js</a>
         
       </nav>
 
@@ -204,7 +204,7 @@
             
   <div class="section" id="contracts">
 <span id="api-contract"></span><h1>Contracts<a class="headerlink" href="#contracts" title="Permalink to this headline">¶</a></h1>
-<p>A Contract is an abstraction of an executable program on the Ethereum Blockchain. A
+<p>A Contract is an abstraction of an executable program on the Vapory Blockchain. A
 Contract has code (called byte code) as well as allocated long-term memory (called
 storage). Every deployed Contract has an address, which is used to connect to it
 so that it may be sent messages to call its methods.</p>
@@ -230,7 +230,7 @@ miner priority heuristics.</p>
 as functions on a JavaScript object, handling all the binary protocol conversion,
 internal name mangling and topic construction. This allows a Contract object to be
 used like any standard JavaScript object, without having to worry about the
-low-level details of the Ethereum Virtual Machine or Blockchain.</p>
+low-level details of the Vapory Virtual Machine or Blockchain.</p>
 <p>The Contract object is a meta-class, which is a class that defines a Class at
 run-time. The Contract definition (called an <strong>Application Binary Interface</strong>, or ABI)
 can be provided and the available methods and events will be dynamically added to
@@ -266,17 +266,17 @@ the object.</p>
 <hr class="docutils" />
 <div class="section" id="deploying-a-contract">
 <span id="contract-deployment"></span><h2>Deploying a Contract<a class="headerlink" href="#deploying-a-contract" title="Permalink to this headline">¶</a></h2>
-<p>To deploy a contract to the Ethereum network, a <strong>ContractFactory</strong> can be created
+<p>To deploy a contract to the Vapory network, a <strong>ContractFactory</strong> can be created
 which manages the Contract bytecode and <strong>Application Binary Interface</strong> (ABI),
 usually generated from the <em>Solidity</em> compiler.</p>
 <div class="section" id="creating-a-contract-factory">
 <h3>Creating a Contract Factory<a class="headerlink" href="#creating-a-contract-factory" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt>new <sup>ethers</sup> . ContractFactory ( abi , bytecode [ , signer ] )</dt>
+<dt>new <sup>vapors</sup> . ContractFactory ( abi , bytecode [ , signer ] )</dt>
 <dd>Creates a factory for deployment of the Contract with <em>bytecode</em>, and the
 constructor defined in the <em>abi</em>. The <em>signer</em> will be used to send
 any deployment transaction.</dd>
-<dt><sup>ethers</sup> . ContractFactory . fromSolidity ( compilerOutput [ , signer ] )</dt>
+<dt><sup>vapors</sup> . ContractFactory . fromSolidity ( compilerOutput [ , signer ] )</dt>
 <dd>Creates a ContractFactory from the <em>compilerOutput</em> of the <em>Solidity</em>
 compiler or from the <em>Truffle</em> JSON.
 (i.e. <code class="docutils literal notranslate"><span class="pre">output.contracts['SimpleStorage.sol'].SimpleStorage</span></code>)</dd>
@@ -324,7 +324,7 @@ analysis tools.</dd>
 </dl>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text"><em>Deploy a Contract</em></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">ethers</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">vapors</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
 
 <span class="c1">// The Contract interface</span>
 <span class="kd">let</span> <span class="nx">abi</span> <span class="o">=</span> <span class="p">[</span>
@@ -384,28 +384,28 @@ analysis tools.</dd>
 
 
 <span class="c1">// Connect to the network</span>
-<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">(</span><span class="s1">&#39;ropsten&#39;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">(</span><span class="s1">&#39;ropsten&#39;</span><span class="p">);</span>
 
 <span class="c1">// Load the wallet to deploy the contract with</span>
 <span class="kd">let</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="s1">&#39;0x0123456789012345678901234567890123456789012345678901234567890123&#39;</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
 
 <span class="c1">// Deployment is asynchronous, so we use an async IIFE</span>
 <span class="p">(</span><span class="nx">async</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
     <span class="c1">// Create an instance of a Contract Factory</span>
-    <span class="kd">let</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">ContractFactory</span><span class="p">(</span><span class="nx">abi</span><span class="p">,</span> <span class="nx">bytecode</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">ContractFactory</span><span class="p">(</span><span class="nx">abi</span><span class="p">,</span> <span class="nx">bytecode</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">);</span>
 
     <span class="c1">// Notice we pass in &quot;Hello World&quot; as the parameter to the constructor</span>
     <span class="kd">let</span> <span class="nx">contract</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">factory</span><span class="p">.</span><span class="nx">deploy</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">);</span>
 
     <span class="c1">// The address the Contract WILL have once mined</span>
-    <span class="c1">// See: https://ropsten.etherscan.io/address/0x2bd9aaa2953f988153c8629926d22a6a5f69b14e</span>
+    <span class="c1">// See: https://ropsten.vaporscan.io/address/0x2bd9aaa2953f988153c8629926d22a6a5f69b14e</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">contract</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span>
     <span class="c1">// &quot;0x2bD9aAa2953F988153c8629926D22A6a5F69b14E&quot;</span>
 
     <span class="c1">// The transaction that was sent to the network to deploy the Contract</span>
-    <span class="c1">// See: https://ropsten.etherscan.io/tx/0x159b76843662a15bd67e482dcfbee55e8e44efad26c5a614245e12a00d4b1a51</span>
+    <span class="c1">// See: https://ropsten.vaporscan.io/tx/0x159b76843662a15bd67e482dcfbee55e8e44efad26c5a614245e12a00d4b1a51</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">contract</span><span class="p">.</span><span class="nx">deployTransaction</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
     <span class="c1">// &quot;0x159b76843662a15bd67e482dcfbee55e8e44efad26c5a614245e12a00d4b1a51&quot;</span>
 
@@ -427,7 +427,7 @@ the <strong>Contract</strong> object.</p>
 <div class="section" id="connecting-to-a-contract">
 <h3>Connecting to a Contract<a class="headerlink" href="#connecting-to-a-contract" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt>new <sup>ethers</sup> . Contract ( addressOrName , abi , providerOrSigner )</dt>
+<dt>new <sup>vapors</sup> . Contract ( addressOrName , abi , providerOrSigner )</dt>
 <dd><p class="first">Connects to the contract at <em>addressOrName</em> defined by <em>abi</em>, connected as <em>providerOrSigner</em>.</p>
 <p>For supported formats for <em>abi</em>, see <a class="reference internal" href="#contract-abi"><span class="std std-ref">Contract ABI</span></a>.</p>
 <p class="last">For access capabilities and restrictions, see <a class="reference internal" href="#providers-vs-signers"><span class="std std-ref">Providers vs Signers</span></a></p>
@@ -435,7 +435,7 @@ the <strong>Contract</strong> object.</p>
 </dl>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text"><em>Connecting to an existing Contract</em></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">ethers</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">vapors</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
 
 <span class="c1">// The Contract interface</span>
 <span class="kd">let</span> <span class="nx">abi</span> <span class="o">=</span> <span class="p">[</span>
@@ -446,14 +446,14 @@ the <strong>Contract</strong> object.</p>
 <span class="p">];</span>
 
 <span class="c1">// Connect to the network</span>
-<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
 
 <span class="c1">// The address from the above deployment example</span>
 <span class="kd">let</span> <span class="nx">contractAddress</span> <span class="o">=</span> <span class="s2">&quot;0x2bD9aAa2953F988153c8629926D22A6a5F69b14E&quot;</span><span class="p">;</span>
 
 <span class="c1">// We connect to the Contract using a Provider, so we will only</span>
 <span class="c1">// have read-only access to the Contract</span>
-<span class="kd">let</span> <span class="nx">contract</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">contractAddress</span><span class="p">,</span> <span class="nx">abi</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">contract</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">contractAddress</span><span class="p">,</span> <span class="nx">abi</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -471,7 +471,7 @@ the <strong>Contract</strong> object.</p>
 <div class="code-block-caption"><span class="caption-text"><em>Calling a Non-Constant Method</em></span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// A Signer from a private key</span>
 <span class="kd">let</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="s1">&#39;0x0123456789012345678901234567890123456789012345678901234567890123&#39;</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
 
 <span class="c1">// Create a new instance of the Contract with a Signer, which allows</span>
 <span class="c1">// update methods</span>
@@ -482,7 +482,7 @@ the <strong>Contract</strong> object.</p>
 <span class="c1">// Set a new Value, which returns the transaction</span>
 <span class="kd">let</span> <span class="nx">tx</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">contractWithSigner</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="s2">&quot;I like turtles.&quot;</span><span class="p">);</span>
 
-<span class="c1">// See: https://ropsten.etherscan.io/tx/0xaf0068dcf728afa5accd02172867627da4e6f946dfb8174a7be31f01b11d5364</span>
+<span class="c1">// See: https://ropsten.vaporscan.io/tx/0xaf0068dcf728afa5accd02172867627da4e6f946dfb8174a7be31f01b11d5364</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">tx</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
 <span class="c1">// &quot;0xaf0068dcf728afa5accd02172867627da4e6f946dfb8174a7be31f01b11d5364&quot;</span>
 
@@ -884,7 +884,7 @@ and event.</p>
 <p>The Solidity compiler generates the ABI in a JSON format, which can be used as
 a JSON string or parsed as a JavaScript Object. This is generated by the
 compiler and can be loaded as a file, or copied into the source code.</p>
-<p>The ABI may also be specified using <a class="reference external" href="https://blog.ricmoo.com/human-readable-contract-abis-in-ethers-js-141902f4d917">Human-Readable ABI</a>, which is much easier
+<p>The ABI may also be specified using <a class="reference external" href="https://blog.ricmoo.com/human-readable-contract-abis-in-vapors-js-141902f4d917">Human-Readable ABI</a>, which is much easier
 to use when typing in an ABI by hand, for example, as well as easier to read. This
 is simply an array of strings, each of which is the Solidity function or event
 signature.</p>

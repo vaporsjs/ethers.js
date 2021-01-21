@@ -131,7 +131,7 @@ function getFiles(basedir: string): Record<string, string> {
 }
 
 (async function() {
-    const bucket = "docs.ethers.io";
+    const bucket = "docs.vapors.io";
 
     const awsAccessId = await config.get("aws-upload-docs-accesskey");
     const awsSecretKey = await config.get("aws-upload-docs-secretkey");

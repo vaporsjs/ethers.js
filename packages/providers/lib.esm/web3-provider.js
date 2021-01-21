@@ -1,6 +1,6 @@
 "use strict";
-import { defineReadOnly } from "@ethersproject/properties";
-import { Logger } from "@ethersproject/logger";
+import { defineReadOnly } from "@vaporsproject/properties";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 import { JsonRpcProvider } from "./json-rpc-provider";
@@ -9,7 +9,7 @@ function buildWeb3LegacyFetcher(provider, sendFunc) {
     return function (method, params) {
         // Metamask complains about eth_sign (and on some versions hangs)
         if (method == "eth_sign" && provider.isMetaMask) {
-            // https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_sign
+            // https://github.com/vaporyco/go-vapory/wiki/Management-APIs#personal_sign
             method = "personal_sign";
             params = [params[1], params[0]];
         }
@@ -42,7 +42,7 @@ function buildEip1193Fetcher(provider) {
         }
         // Metamask complains about eth_sign (and on some versions hangs)
         if (method == "eth_sign" && provider.isMetaMask) {
-            // https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_sign
+            // https://github.com/vaporyco/go-vapory/wiki/Management-APIs#personal_sign
             method = "personal_sign";
             params = [params[1], params[0]];
         }

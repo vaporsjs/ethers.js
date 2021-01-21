@@ -1,11 +1,11 @@
 "use strict";
 
-import { encode as base64Encode } from "@ethersproject/base64";
-import { hexlify, isBytesLike } from "@ethersproject/bytes";
-import { shallowCopy } from "@ethersproject/properties";
-import { toUtf8Bytes, toUtf8String } from "@ethersproject/strings";
+import { encode as base64Encode } from "@vaporsproject/base64";
+import { hexlify, isBytesLike } from "@vaporsproject/bytes";
+import { shallowCopy } from "@vaporsproject/properties";
+import { toUtf8Bytes, toUtf8String } from "@vaporsproject/strings";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 

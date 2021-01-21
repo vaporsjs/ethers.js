@@ -1,6 +1,6 @@
 _section: Contributing and Hacking @<contributing>
 
-The ethers.js library is something that I've written out of necessity,
+The vapors.js library is something that I've written out of necessity,
 and has grown somewhat organically over time.
 
 Many things are the way they are for good (at the time, at least) reasons,
@@ -13,7 +13,7 @@ So, pull requests are always welcome, but please keep a few points in mind:
   considered for the next major version
 - Security is important; adding dependencies require fairly convincing
   arguments as to why
-- The library aims to be lean, so keep an eye on the dist/ethers.min.js
+- The library aims to be lean, so keep an eye on the dist/vapors.min.js
   file size before and after your changes
 - Add test cases for both expected and unexpected input
 - Any new features need to be supported by me (future issues, documentation,
@@ -38,15 +38,15 @@ with each other.
 _code: Preparing for builds @lang<shell>
 
 # Clone the repository
-/home/ricmoo> git clone git@github.com:ethers-io/ethers.js.git
-/home/ricmoo> cd ethers.js
+/home/ricmoo> git clone git@github.com:vaporsjs/vapors.js.git
+/home/ricmoo> cd vapors.js
 
 # Install the base dependencies
-/home/ricmoo/ethers.js> npm install
+/home/ricmoo/vapors.js> npm install
 
 # Install each module's dependencies and link the libraries
 # internally, so they reference each other
-/home/ricmoo/ethers.js> npm run bootstrap
+/home/ricmoo/vapors.js> npm run bootstrap
 
 
 _subsection: Making your changes @<contributing--updating>
@@ -56,37 +56,37 @@ TODO: Add more information here.
 _code: Watching and Building @lang<shell>
 
 # Begin watching the files and re-building whenever they change
-/home/ricmoo/ethers.js> npm run auto-build
+/home/ricmoo/vapors.js> npm run auto-build
 
 
 # Sometimes the issue only affects the ESM modules
-/home/ricmoo/ethers.js> npm run auto-build-esm
+/home/ricmoo/vapors.js> npm run auto-build-esm
 
 
 # Or if you only need to run a single build
-/home/ricmoo/ethers.js> npm run _build-cjs
-/home/ricmoo/ethers.js> npm run _build-esm
+/home/ricmoo/vapors.js> npm run _build-cjs
+/home/ricmoo/vapors.js> npm run _build-esm
 
 
 _code: Testing @lang<shell>
 
 # Rebuilds all files and bundles testcases up for testing
-/home/ricmoo/ethers.js> npm test
+/home/ricmoo/vapors.js> npm test
 
 # Often you don't need the full CI experience
-/home/ricmoo/ethers.js> npm run _test-node
+/home/ricmoo/vapors.js> npm run _test-node
 
 
 _code: Preparing the Distribution @lang<shell>
 
-/home/ricmoo/ethers.js> npm run update-version
+/home/ricmoo/vapors.js> npm run update-version
 
 
 _subsection: Documentation @<contributing--documentation>
 
 The documents are generated using [Flatworm](flatworm) documentation
 generation tool, which was written for the purpose of writing the documentation
-for ethers.
+for vapors.
 
 Style Guide (this section will have much more coming):
 
@@ -101,7 +101,7 @@ Style Guide (this section will have much more coming):
 _heading: Building
 
 To build the documentation, you should first follow the
-[above steps](contributing--building) to build the ethers library.
+[above steps](contributing--building) to build the vapors library.
 
 Building the docs will generate several types of output:
 
@@ -113,7 +113,7 @@ Building the docs will generate several types of output:
 
 _code: Building the Documentations @lang<shell>
 
-/home/ricmoo/ethers.js> npm run build-docs
+/home/ricmoo/vapors.js> npm run build-docs
 
 
 _heading: Evaluation
@@ -129,7 +129,7 @@ inject the code directly.
 
 _code: Build docs skipping evaluation @lang<shell>
 
-/home/ricmoo/ethers.js> npm run build-docs -- --skip-eval
+/home/ricmoo/vapors.js> npm run build-docs -- --skip-eval
 
 
 _heading: Previewing Changes
@@ -142,4 +142,4 @@ caches after changing (and re-building) the docs.
 
 _code: Running a webserver @lang<shell>
 
-/home/ricmoo/ethers.js> npm run serve-docs
+/home/ricmoo/vapors.js> npm run serve-docs

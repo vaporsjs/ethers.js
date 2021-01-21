@@ -1,20 +1,20 @@
 "use strict";
 
-import { getAddress } from "@ethersproject/address";
-import { Provider, TransactionRequest } from "@ethersproject/abstract-provider";
-import { ExternallyOwnedAccount, Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from "@ethersproject/abstract-signer";
-import { arrayify, Bytes, BytesLike, concat, hexDataSlice, isHexString, joinSignature, SignatureLike } from "@ethersproject/bytes";
-import { hashMessage, _TypedDataEncoder } from "@ethersproject/hash";
-import { defaultPath, HDNode, entropyToMnemonic, Mnemonic } from "@ethersproject/hdnode";
-import { keccak256 } from "@ethersproject/keccak256";
-import { defineReadOnly, resolveProperties } from "@ethersproject/properties";
-import { randomBytes } from "@ethersproject/random";
-import { SigningKey } from "@ethersproject/signing-key";
-import { decryptJsonWallet, decryptJsonWalletSync, encryptKeystore, ProgressCallback } from "@ethersproject/json-wallets";
-import { computeAddress, recoverAddress, serialize, UnsignedTransaction } from "@ethersproject/transactions";
-import { Wordlist } from "@ethersproject/wordlists";
+import { getAddress } from "@vaporsproject/address";
+import { Provider, TransactionRequest } from "@vaporsproject/abstract-provider";
+import { ExternallyOwnedAccount, Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from "@vaporsproject/abstract-signer";
+import { arrayify, Bytes, BytesLike, concat, hexDataSlice, isHexString, joinSignature, SignatureLike } from "@vaporsproject/bytes";
+import { hashMessage, _TypedDataEncoder } from "@vaporsproject/hash";
+import { defaultPath, HDNode, entropyToMnemonic, Mnemonic } from "@vaporsproject/hdnode";
+import { keccak256 } from "@vaporsproject/keccak256";
+import { defineReadOnly, resolveProperties } from "@vaporsproject/properties";
+import { randomBytes } from "@vaporsproject/random";
+import { SigningKey } from "@vaporsproject/signing-key";
+import { decryptJsonWallet, decryptJsonWalletSync, encryptKeystore, ProgressCallback } from "@vaporsproject/json-wallets";
+import { computeAddress, recoverAddress, serialize, UnsignedTransaction } from "@vaporsproject/transactions";
+import { Wordlist } from "@vaporsproject/wordlists";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 

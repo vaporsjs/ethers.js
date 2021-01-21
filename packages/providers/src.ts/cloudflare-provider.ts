@@ -1,9 +1,9 @@
 "use strict";
 
-import { Network } from "@ethersproject/networks";
+import { Network } from "@vaporsproject/networks";
 import { UrlJsonRpcProvider } from "./url-json-rpc-provider";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 
@@ -20,7 +20,7 @@ export class CloudflareProvider extends UrlJsonRpcProvider {
         let host = null;
         switch (network.name) {
             case "homestead":
-                host = "https://cloudflare-eth.com/";
+                host = "https://cloudflare-vap.com/";
                 break;
             default:
                logger.throwArgumentError("unsupported network", "network", arguments[0]);

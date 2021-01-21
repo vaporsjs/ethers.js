@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Utilities &mdash; ethers.js 3.0.0 documentation</title>
+  <title>Utilities &mdash; vapors.js 3.0.0 documentation</title>
   
 
   
@@ -30,16 +30,16 @@
   
 
   
-    <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
   
-    <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
   
 
   
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="ethers.js 3.0.0 documentation" href="index.html"/>
+    <link rel="top" title="vapors.js 3.0.0 documentation" href="index.html"/>
         <link rel="up" title="Application Programming Interface (API)" href="api.html"/>
         <link rel="next" title="Low-Level API" href="api-advanced.html"/>
         <link rel="prev" title="Contracts" href="api-contract.html"/> 
@@ -61,7 +61,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> ethers.js
+            <a href="index.html" class="icon icon-home"> vapors.js
           
 
           
@@ -156,7 +156,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ethers.js</a>
+          <a href="index.html">vapors.js</a>
         
       </nav>
 
@@ -209,8 +209,8 @@
             
   <div class="section" id="utilities">
 <h1>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h1>
-<p>The utility functions exposed in both the <em>ethers</em> umbrella package and the <em>ethers-utils</em>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
+<p>The utility functions exposed in both the <em>vapors</em> umbrella package and the <em>vapors-utils</em>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -284,7 +284,7 @@ be non-negative.</p>
 </div>
 <div class="section" id="examples">
 <h3><em>Examples</em><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">gasPriceWei</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">bigNumberify</span><span class="p">(</span><span class="s2">&quot;20902747399&quot;</span><span class="p">);</span>
 <span class="n">var</span> <span class="n">gasLimit</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">bigNumberify</span><span class="p">(</span><span class="mi">3000000</span><span class="p">);</span>
 
@@ -302,12 +302,12 @@ be non-negative.</p>
 <div class="section" id="ether-strings-and-wei">
 <h2>Ether Strings and Wei<a class="headerlink" href="#ether-strings-and-wei" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
-<dt><sup>utils</sup> . etherSymbol</dt>
-<dd>The ethereum symbol (the Greek letter <em>Xi</em> )</dd>
+<dt><sup>utils</sup> . vaporSymbol</dt>
+<dd>The vapory symbol (the Greek letter <em>Xi</em> )</dd>
 </dl>
 <dl class="docutils" id="parseether">
-<dt><sup>utils</sup> . parseEther ( etherString )</dt>
-<dd>Parse the <em>etherString</em> representation of ether into a BigNumber instance
+<dt><sup>utils</sup> . parseEther ( vaporString )</dt>
+<dd>Parse the <em>vaporString</em> representation of ether into a BigNumber instance
 of the amount of wei.</dd>
 </dl>
 <dl class="docutils" id="formatether">
@@ -331,7 +331,7 @@ may be a number of decimals between 3 and 18 (multiple of 3) or a name, such as 
 </dl>
 <div class="section" id="id1">
 <h3><em>Examples</em><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">wei</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">parseEther</span><span class="p">(</span><span class="s1">&#39;1000.0&#39;</span><span class="p">);</span>
 <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">wei</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
 <span class="o">//</span> <span class="s2">&quot;1000000000000000000000&quot;</span>
@@ -359,7 +359,7 @@ may be a number of decimals between 3 and 18 (multiple of 3) or a name, such as 
 <hr class="docutils" />
 <div class="section" id="addresses">
 <h2>Addresses<a class="headerlink" href="#addresses" title="Permalink to this headline">¶</a></h2>
-<p>There are <a class="reference internal" href="notes.html#checksum-address"><span class="std std-ref">several formats</span></a> available on the Ethereum network for
+<p>There are <a class="reference internal" href="notes.html#checksum-address"><span class="std std-ref">several formats</span></a> available on the Vapory network for
 addresses, and it is often useful to be able to convert between them.</p>
 <dl class="docutils" id="api-getaddress">
 <dt><sup>utils</sup> . getAddress ( address [ , generateIcap ] )</dt>
@@ -368,7 +368,7 @@ addresses, and it is often useful to be able to convert between them.</p>
 </dl>
 <div class="section" id="id2">
 <h3><em>Examples</em><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">address</span> <span class="o">=</span> <span class="s2">&quot;0xd115bffabbdd893a6f7cea402e7338643ced44a6&quot;</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">icapAddress</span> <span class="o">=</span> <span class="s2">&quot;XE93OF8SR0OWI6F4FO88KWO4UNNGG1FEBHI&quot;</span><span class="p">;</span>
 
@@ -400,7 +400,7 @@ addresses, and it is often useful to be able to convert between them.</p>
 </dl>
 <div class="section" id="id3">
 <h3><em>Examples</em><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Hello World&quot;</span><span class="p">;</span>
 
 <span class="n">var</span> <span class="nb">bytes</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">toUtf8Bytes</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
@@ -423,7 +423,7 @@ addresses, and it is often useful to be able to convert between them.</p>
 <dl class="docutils">
 <dt><sup>utils</sup> . keccak256 ( hexStringOrArrayish )</dt>
 <dd>Compute the keccak256 cryptographic hash of a value, returned as a hex string. (Note:
-often Ethereum refers to this, <strong>incorrectly</strong>, as SHA3)</dd>
+often Vapory refers to this, <strong>incorrectly</strong>, as SHA3)</dd>
 <dt><sup>utils</sup> . id ( utf8String )</dt>
 <dd>Compute the keccak256 cryptographic hash of a UTF-8 string, returned as a hex string.</dd>
 <dt><sup>utils</sup> . sha256 ( hexStringOrArrayish )</dt>
@@ -434,7 +434,7 @@ often Ethereum refers to this, <strong>incorrectly</strong>, as SHA3)</dd>
 <div class="section" id="id4">
 <h3><em>Examples</em><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p><strong>Hashing Binary Data</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
 <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">utils</span><span class="o">.</span><span class="n">keccak256</span><span class="p">([</span> <span class="mh">0x42</span> <span class="p">]));</span>
 <span class="o">//</span> <span class="s1">&#39;0x1f675bff07515f5df96737194ea945c36c41e7b4fcef307b7cd4d0e602a69111&#39;</span>
 
@@ -450,7 +450,7 @@ often Ethereum refers to this, <strong>incorrectly</strong>, as SHA3)</dd>
 </pre></div>
 </div>
 <p><strong>Hashing UTF-8 Strings</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
 <span class="o">//</span> <span class="n">Convert</span> <span class="n">the</span> <span class="n">string</span> <span class="n">to</span> <span class="n">binary</span> <span class="n">data</span>
 <span class="n">var</span> <span class="n">utf8Bytes</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">toUtf8Bytes</span><span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
 
@@ -469,7 +469,7 @@ often Ethereum refers to this, <strong>incorrectly</strong>, as SHA3)</dd>
 </pre></div>
 </div>
 <p><strong>Random Bytes</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
 <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">utils</span><span class="o">.</span><span class="n">randomBytes</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>
 <span class="o">//</span> <span class="n">Uint8Array</span> <span class="p">[</span> <span class="mi">194</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">140</span> <span class="p">]</span>
 </pre></div>
@@ -494,7 +494,7 @@ packed data for <em>values</em> given the <em>types</em>.</dd>
 </dl>
 <div class="section" id="id5">
 <h3><em>Examples</em><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">result</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">solidityKeccak256</span><span class="p">([</span> <span class="s1">&#39;int8&#39;</span><span class="p">,</span> <span class="s1">&#39;bytes1&#39;</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span> <span class="p">],</span> <span class="p">[</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;0x42&#39;</span><span class="p">,</span> <span class="s1">&#39;hello&#39;</span> <span class="p">]);</span>
 <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
 <span class="o">//</span> <span class="s1">&#39;0x52d7e6a62ca667228365be2143375d0a2a92a3bd4325dd571609dfdc7026686e&#39;</span>
@@ -548,7 +548,7 @@ string passed into a function may be any case and may be odd-length.</p>
 <hr class="docutils" />
 <div class="section" id="contract-addresses">
 <h2>Contract Addresses<a class="headerlink" href="#contract-addresses" title="Permalink to this headline">¶</a></h2>
-<p>Every contract deployed on the Ethereum network requires an address (you can think
+<p>Every contract deployed on the Vapory network requires an address (you can think
 of this as the memory address which the running application lives at). The address
 is generated from a cryptographic hash of the address of the creator and the nonce
 of the transaction.</p>
@@ -560,7 +560,7 @@ defined)</dd>
 </dl>
 <div class="section" id="id6">
 <h3><em>Examples</em><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
 <span class="o">//</span> <span class="n">Ropsten</span><span class="p">:</span> <span class="mh">0x5bdfd14fcc917abc2f02a30721d152a6f147f09e8cbaad4e0d5405d646c5c3e1</span>
 <span class="n">var</span> <span class="n">transaction</span> <span class="o">=</span> <span class="p">{</span>
     <span class="n">from</span><span class="p">:</span> <span class="s1">&#39;0xc6af6e1a78a6752c7f8cd63877eb789a2adb776c&#39;</span><span class="p">,</span>

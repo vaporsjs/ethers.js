@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var bignumber_1 = require("@ethersproject/bignumber");
+var bignumber_1 = require("@vaporsproject/bignumber");
 var NegativeOne = ( /*#__PURE__*/bignumber_1.BigNumber.from(-1));
 exports.NegativeOne = NegativeOne;
 var Zero = ( /*#__PURE__*/bignumber_1.BigNumber.from(0));

@@ -1,21 +1,21 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "@ethersproject/abstract-signer": "^5.0.6",
-    "@ethersproject/address": "^5.0.5",
-    "@ethersproject/bignumber": "^5.0.8",
-    "@ethersproject/bytes": "^5.0.4",
-    "@ethersproject/keccak256": "^5.0.3",
-    "@ethersproject/logger": "^5.0.5",
-    "@ethersproject/properties": "^5.0.4",
-    "@ethersproject/strings": "^5.0.4"
+    "@vaporsproject/abstract-signer": "^5.0.6",
+    "@vaporsproject/address": "^5.0.5",
+    "@vaporsproject/bignumber": "^5.0.8",
+    "@vaporsproject/bytes": "^5.0.4",
+    "@vaporsproject/keccak256": "^5.0.3",
+    "@vaporsproject/logger": "^5.0.5",
+    "@vaporsproject/properties": "^5.0.4",
+    "@vaporsproject/strings": "^5.0.4"
   },
-  "description": "Hash utility functions for Ethereum.",
-  "ethereum": "donations.ethers.eth",
+  "description": "Hash utility functions for Vapory.",
+  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
-      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+      "url": "https://gitcoin.co/grants/13/vaporsjs-complete-simple-and-tiny-2"
     },
     {
       "type": "individual",
@@ -23,20 +23,20 @@
     }
   ],
   "keywords": [
-    "Ethereum",
-    "ethers"
+    "Vapory",
+    "vapors"
   ],
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/hash",
+  "name": "@vaporsproject/hash",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "directory": "packages/hash",
     "type": "git",
-    "url": "git://github.com/ethers-io/ethers.js.git"
+    "url": "git://github.com/vaporsjs/vapors.js.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

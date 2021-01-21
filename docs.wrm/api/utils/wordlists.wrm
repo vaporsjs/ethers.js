@@ -31,33 +31,33 @@ the registered //name//.
 _subsection: Languages @<wordlists--languages>
 
 The [official wordlists](link-bip39-wordlists) available at
-`ethers.wordlists`. In the browser, only the english language is
+`vapors.wordlists`. In the browser, only the english language is
 available by default; to include the others (which increases the
-size of the library), see the dist files in the `ethers` package.
+size of the library), see the dist files in the `vapors` package.
 
-_property: ethers.wordlists.cz => Wordlist
+_property: vapors.wordlists.cz => Wordlist
 The Czech [[Wordlist]].
 
-_property: ethers.wordlists.en => Wordlist
+_property: vapors.wordlists.en => Wordlist
 The English [[Wordlist]].
 
-_property: ethers.wordlists.es => Wordlist
+_property: vapors.wordlists.es => Wordlist
 The Spanish [[Wordlist]].
 
-_property: ethers.wordlists.fr => Wordlist
+_property: vapors.wordlists.fr => Wordlist
 The French [[Wordlist]].
 
-_property: ethers.wordlists.it => Wordlist
+_property: vapors.wordlists.it => Wordlist
 The Italian [[Wordlist]].
 
-_property: ethers.wordlists.ja => Wordlist
+_property: vapors.wordlists.ja => Wordlist
 The Japanese [[Wordlist]].
 
-_property: ethers.wordlists.ko => Wordlist
+_property: vapors.wordlists.ko => Wordlist
 The Korean [[Wordlist]].
 
-_property: ethers.wordlists.zh_cn => Wordlist
+_property: vapors.wordlists.zh_cn => Wordlist
 The Simplified Chinese [[Wordlist]].
 
-_property: ethers.wordlists.zh_tw => Wordlist
+_property: vapors.wordlists.zh_tw => Wordlist
 The Traditional Chinese [[Wordlist]].

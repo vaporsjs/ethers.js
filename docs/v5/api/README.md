@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -11,7 +11,7 @@ Application Programming Interface
   * [Provider](providers/provider)
     * [Accounts Methods](providers/provider)
     * [Blocks Methods](providers/provider)
-    * [Ethereum Naming Service (ENS) Methods](providers/provider)
+    * [Vapory Naming Service (ENS) Methods](providers/provider)
     * [Logs Methods](providers/provider)
     * [Network Status Methods](providers/provider)
     * [Transactions Methods](providers/provider)
@@ -22,7 +22,7 @@ Application Programming Interface
     * [JsonRpcUncheckedSigner](providers/jsonrpc-provider)
     * [Node-Specific Methods](providers/jsonrpc-provider)
   * [API Providers](providers/api-providers)
-    * [EtherscanProvider](providers/api-providers)
+    * [VaporscanProvider](providers/api-providers)
     * [InfuraProvider](providers/api-providers)
     * [AlchemyProvider](providers/api-providers)
     * [CloudflareProvider](providers/api-providers)
@@ -152,7 +152,7 @@ Application Programming Interface
     * [Languages](utils/wordlists)
 * [Other Libraries](other)
   * [Assembly](other/assembly)
-    * [Ethers ASM Dialect](other/assembly/dialect)
+    * [Vapors ASM Dialect](other/assembly/dialect)
       * [Opcodes](other/assembly/dialect)
       * [Labels](other/assembly/dialect)
       * [Literals](other/assembly/dialect)

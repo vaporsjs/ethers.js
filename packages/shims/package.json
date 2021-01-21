@@ -1,13 +1,13 @@
 {
-  "_ethers_nobuild": true,
+  "_vapors_nobuild": true,
   "author": "Richard Moore <me@ricmoo.com>",
   "browser": "./dist/index.min.js",
-  "description": "Shims required for ethers in constrained environments.",
-  "ethereum": "donations.ethers.eth",
+  "description": "Shims required for vapors in constrained environments.",
+  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
-      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+      "url": "https://gitcoin.co/grants/13/vaporsjs-complete-simple-and-tiny-2"
     },
     {
       "type": "individual",
@@ -15,19 +15,19 @@
     }
   ],
   "keywords": [
-    "Ethereum",
-    "ethers"
+    "Vapory",
+    "vapors"
   ],
   "license": "MIT",
   "main": "./src/index.js",
-  "name": "@ethersproject/shims",
+  "name": "@vaporsproject/shims",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "directory": "packages/shims",
     "type": "git",
-    "url": "git://github.com/ethers-io/ethers.js.git"
+    "url": "git://github.com/vaporsjs/vapors.js.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

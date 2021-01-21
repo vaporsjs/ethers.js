@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -48,47 +48,47 @@ Register a wordlist with the list of wordlists, optionally overriding the regist
 Languages
 ---------
 
-#### *ethers* . *wordlists* . **cz** => *Wordlist*
+#### *vapors* . *wordlists* . **cz** => *Wordlist*
 
 The Czech [Wordlist](/v5/api/utils/wordlists/#Wordlist).
 
 
-#### *ethers* . *wordlists* . **en** => *Wordlist*
+#### *vapors* . *wordlists* . **en** => *Wordlist*
 
 The English [Wordlist](/v5/api/utils/wordlists/#Wordlist).
 
 
-#### *ethers* . *wordlists* . **es** => *Wordlist*
+#### *vapors* . *wordlists* . **es** => *Wordlist*
 
 The Spanish [Wordlist](/v5/api/utils/wordlists/#Wordlist).
 
 
-#### *ethers* . *wordlists* . **fr** => *Wordlist*
+#### *vapors* . *wordlists* . **fr** => *Wordlist*
 
 The French [Wordlist](/v5/api/utils/wordlists/#Wordlist).
 
 
-#### *ethers* . *wordlists* . **it** => *Wordlist*
+#### *vapors* . *wordlists* . **it** => *Wordlist*
 
 The Italian [Wordlist](/v5/api/utils/wordlists/#Wordlist).
 
 
-#### *ethers* . *wordlists* . **ja** => *Wordlist*
+#### *vapors* . *wordlists* . **ja** => *Wordlist*
 
 The Japanese [Wordlist](/v5/api/utils/wordlists/#Wordlist).
 
 
-#### *ethers* . *wordlists* . **ko** => *Wordlist*
+#### *vapors* . *wordlists* . **ko** => *Wordlist*
 
 The Korean [Wordlist](/v5/api/utils/wordlists/#Wordlist).
 
 
-#### *ethers* . *wordlists* . **zh_cn** => *Wordlist*
+#### *vapors* . *wordlists* . **zh_cn** => *Wordlist*
 
 The Simplified Chinese [Wordlist](/v5/api/utils/wordlists/#Wordlist).
 
 
-#### *ethers* . *wordlists* . **zh_tw** => *Wordlist*
+#### *vapors* . *wordlists* . **zh_tw** => *Wordlist*
 
 The Traditional Chinese [Wordlist](/v5/api/utils/wordlists/#Wordlist).
 

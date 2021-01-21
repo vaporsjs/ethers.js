@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -27,17 +27,17 @@ Types
 Inspection
 ----------
 
-#### *ethers* . *utils* . **isBytes**( object ) => *boolean*
+#### *vapors* . *utils* . **isBytes**( object ) => *boolean*
 
 Returns true if and only if *object* is a valid [Bytes](/v5/api/utils/bytes/#Bytes).
 
 
-#### *ethers* . *utils* . **isBytesLike**( object ) => *boolean*
+#### *vapors* . *utils* . **isBytesLike**( object ) => *boolean*
 
 Returns true if and only if *object* is a [Bytes](/v5/api/utils/bytes/#Bytes) or [DataHexString](/v5/api/utils/bytes/#DataHexString).
 
 
-#### *ethers* . *utils* . **isHexString**( object , [ length ] ) => *boolean*
+#### *vapors* . *utils* . **isHexString**( object , [ length ] ) => *boolean*
 
 Returns true if and only if *object* is a valid hex string. If *length* is specified and *object* is not a valid [DataHexString](/v5/api/utils/bytes/#DataHexString) of *length* bytes, an InvalidArgument error is thrown.
 
@@ -45,17 +45,17 @@ Returns true if and only if *object* is a valid hex string. If *length* is speci
 Converting between Arrays and Hexstrings
 ----------------------------------------
 
-#### *ethers* . *utils* . **arrayify**( DataHexStringOrArrayish [ , options ] ) => *Uint8Array*
+#### *vapors* . *utils* . **arrayify**( DataHexStringOrArrayish [ , options ] ) => *Uint8Array*
 
 Converts *DataHexStringOrArrayish* to a Uint8Array.
 
 
-#### *ethers* . *utils* . **hexlify**( hexstringOrArrayish ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
+#### *vapors* . *utils* . **hexlify**( hexstringOrArrayish ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
 
 Converts *hexstringOrArrayish* to a [DataHexString](/v5/api/utils/bytes/#DataHexString).
 
 
-#### *ethers* . *utils* . **hexValue**( aBigNumberish ) => *string< [HexString](/v5/api/utils/bytes/#HexString) >*
+#### *vapors* . *utils* . **hexValue**( aBigNumberish ) => *string< [HexString](/v5/api/utils/bytes/#HexString) >*
 
 Converts *aBigNumberish* to a [HexString](/v5/api/utils/bytes/#HexString), with no *unnecessary* leading zeros.
 
@@ -89,17 +89,17 @@ hexValue([ 1, 2 ])
 Array Manipulation
 ------------------
 
-#### *ethers* . *utils* . **concat**( arrayOfBytesLike ) => *Uint8Array*
+#### *vapors* . *utils* . **concat**( arrayOfBytesLike ) => *Uint8Array*
 
 Concatenates all the [BytesLike](/v5/api/utils/bytes/#BytesLike) in *arrayOfBytesLike* into a single Uint8Array.
 
 
-#### *ethers* . *utils* . **stripZeros**( aBytesLike ) => *Uint8Array*
+#### *vapors* . *utils* . **stripZeros**( aBytesLike ) => *Uint8Array*
 
 Returns a Uint8Array with all leading `0` bytes of *aBtyesLike* removed.
 
 
-#### *ethers* . *utils* . **zeroPad**( aBytesLike , length ) => *Uint8Array*
+#### *vapors* . *utils* . **zeroPad**( aBytesLike , length ) => *Uint8Array*
 
 Returns a Uint8Array of the data in *aBytesLike* with `0` bytes prepended to *length* bytes long.
 
@@ -109,27 +109,27 @@ If *aBytesLike* is already longer than *length* bytes long, an InvalidArgument e
 Hexstring Manipulation
 ----------------------
 
-#### *ethers* . *utils* . **hexConcat**( arrayOfBytesLike ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
+#### *vapors* . *utils* . **hexConcat**( arrayOfBytesLike ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
 
 Concatenates all the [BytesLike](/v5/api/utils/bytes/#BytesLike) in *arrayOfBytesLike* into a single [DataHexString](/v5/api/utils/bytes/#DataHexString)
 
 
-#### *ethers* . *utils* . **hexDataLength**( aBytesLike ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
+#### *vapors* . *utils* . **hexDataLength**( aBytesLike ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
 
 Returns the length (in bytes) of *aBytesLike*.
 
 
-#### *ethers* . *utils* . **hexDataSlice**( aBytesLike , offset [ , endOffset ] ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
+#### *vapors* . *utils* . **hexDataSlice**( aBytesLike , offset [ , endOffset ] ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
 
 Returns a [DataHexString](/v5/api/utils/bytes/#DataHexString) representation of a slice of *aBytesLike*, from *offset* (in bytes) to *endOffset* (in bytes). If *endOffset* is omitted, the length of *aBytesLike* is used.
 
 
-#### *ethers* . *utils* . **hexStripZeros**( aBytesLike ) => *string< [HexString](/v5/api/utils/bytes/#HexString) >*
+#### *vapors* . *utils* . **hexStripZeros**( aBytesLike ) => *string< [HexString](/v5/api/utils/bytes/#HexString) >*
 
 Returns a [HexString](/v5/api/utils/bytes/#HexString) representation of *aBytesLike* with all leading zeros removed.
 
 
-#### *ethers* . *utils* . **hexZeroPad**( aBytesLike , length ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
+#### *vapors* . *utils* . **hexZeroPad**( aBytesLike , length ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
 
 Returns a [DataHexString](/v5/api/utils/bytes/#DataHexString) representation of *aBytesLike* padded to *length* bytes.
 
@@ -139,12 +139,12 @@ If *aBytesLike* is already longer than *length* bytes long, an InvalidArgument e
 Signature Conversion
 --------------------
 
-#### *ethers* . *utils* . **joinSignature**( aSignatureLike ) => *string< [RawSignature](/v5/api/utils/bytes/#signature-raw) >*
+#### *vapors* . *utils* . **joinSignature**( aSignatureLike ) => *string< [RawSignature](/v5/api/utils/bytes/#signature-raw) >*
 
 Return the raw-format of *aSignaturelike*, which is 65 bytes (130 nibbles) long, concatenating the **r**, **s** and (normalized) **v** of a Signature.
 
 
-#### *ethers* . *utils* . **splitSignature**( aSignatureLikeOrBytesLike ) => *[Signature](/v5/api/utils/bytes/#Signature)*
+#### *vapors* . *utils* . **splitSignature**( aSignatureLikeOrBytesLike ) => *[Signature](/v5/api/utils/bytes/#Signature)*
 
 Return the full expanded-format of *aSignaturelike* or a raw-format [DataHexString](/v5/api/utils/bytes/#DataHexString). Any missing properties will be computed.
 
@@ -152,12 +152,12 @@ Return the full expanded-format of *aSignaturelike* or a raw-format [DataHexStri
 Random Bytes
 ------------
 
-#### *ethers* . *utils* . **randomBytes**( length ) => *Uint8Array*
+#### *vapors* . *utils* . **randomBytes**( length ) => *Uint8Array*
 
 Return a new Uint8Array of *length* random bytes.
 
 
-#### *ethers* . *utils* . **shuffled**( array ) => *Array< any >*
+#### *vapors* . *utils* . **shuffled**( array ) => *Array< any >*
 
 Return a copy of *array* shuffled using [Fisher-Yates Shuffle](https://en.wikipedia.org/wiki/Fisher-Yates_shuffle).
 

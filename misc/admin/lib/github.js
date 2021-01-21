@@ -23,7 +23,7 @@ function _fetchGitHub(user, password, getUrlFunc, url) {
         while (true) {
             const filename = path_1.resolve("github-cache", Buffer.from(js_sha3_1.keccak_256.create().update(Buffer.from(url)).digest()).toString("hex").substring(0, 12));
             const headers = {
-                "User-Agent": "ethers-io",
+                "User-Agent": "vaporsjs",
             };
             let items = null;
             let link = null;
@@ -97,7 +97,7 @@ exports.fetchGitHub = fetchGitHub;
 function _getIssues(user, password) {
     return __awaiter(this, void 0, void 0, function* () {
         const cacheOnly = (user == null);
-        let issues = yield fetchGitHub(user, password, "https:/\/api.github.com/repos/ethers-io/ethers.js/issues?state=all&per_page=100", cacheOnly);
+        let issues = yield fetchGitHub(user, password, "https:/\/api.github.com/repos/vaporsjs/vapors.js/issues?state=all&per_page=100", cacheOnly);
         if (!cacheOnly) {
             console.log(`Found ${issues.length} issues`);
         }
@@ -128,7 +128,7 @@ function syncIssues(user, password) {
 exports.syncIssues = syncIssues;
 function createRelease(user, password, tagName, title, body, prerelease, commit) {
     return __awaiter(this, void 0, void 0, function* () {
-        const result = yield geturl_1.getUrl("https:/\/api.github.com/repos/ethers-io/ethers.js/releases", {
+        const result = yield geturl_1.getUrl("https:/\/api.github.com/repos/vaporsjs/vapors.js/releases", {
             body: Buffer.from(JSON.stringify({
                 tag_name: tagName,
                 target_commitish: (commit || "master"),
@@ -140,7 +140,7 @@ function createRelease(user, password, tagName, title, body, prerelease, commit)
             })),
             method: "POST",
             headers: {
-                "User-Agent": "ethers-io"
+                "User-Agent": "vaporsjs"
             },
             user: user,
             password: password

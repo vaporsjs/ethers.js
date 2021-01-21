@@ -9,28 +9,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import EventEmitter from "events";
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 import { version } from "./_version";
-const logger = new ethers.utils.Logger(version);
+const logger = new vapors.utils.Logger(version);
 /*
 function getBlockTag(tag) {
     if (tag == null) { return "latest"; }
     if (tag === "earliest" || tag === "latest" || tag === "pending") {
         return tag;
     }
-    return ethers.utils.hexValue(tag)
+    return vapors.utils.hexValue(tag)
 }
 */
 export class _Eip1193Bridge extends EventEmitter {
     constructor(signer, provider) {
         super();
-        ethers.utils.defineReadOnly(this, "signer", signer);
-        ethers.utils.defineReadOnly(this, "provider", provider || null);
+        vapors.utils.defineReadOnly(this, "signer", signer);
+        vapors.utils.defineReadOnly(this, "provider", provider || null);
     }
     send(method, params) {
         return __awaiter(this, void 0, void 0, function* () {
             function throwUnsupported(message) {
-                return logger.throwError("eth_sign requires a signer", ethers.utils.Logger.errors.UNSUPPORTED_OPERATION, {
+                return logger.throwError("eth_sign requires a signer", vapors.utils.Logger.errors.UNSUPPORTED_OPERATION, {
                     method: method,
                     params: params
                 });
@@ -65,12 +65,12 @@ export class _Eip1193Bridge extends EventEmitter {
                 }
                 case "eth_getTransactionCount": {
                     const result = yield this.provider.getTransactionCount(params[0], params[1]);
-                    return ethers.utils.hexValue(result);
+                    return vapors.utils.hexValue(result);
                 }
                 case "eth_getBlockTransactionCountByHash":
                 case "eth_getBlockTransactionCountByNumber": {
                     const result = yield this.provider.getBlock(params[0]);
-                    return ethers.utils.hexValue(result.transactions.length);
+                    return vapors.utils.hexValue(result.transactions.length);
                 }
                 case "eth_getCode": {
                     const result = yield this.provider.getBlock(params[0]);
@@ -80,14 +80,14 @@ export class _Eip1193Bridge extends EventEmitter {
                     return yield this.provider.sendTransaction(params[0]);
                 }
                 case "eth_call": {
-                    const req = ethers.providers.JsonRpcProvider.hexlifyTransaction(params[0]);
+                    const req = vapors.providers.JsonRpcProvider.hexlifyTransaction(params[0]);
                     return yield this.provider.call(req, params[1]);
                 }
                 case "estimateGas": {
                     if (params[1] && params[1] !== "latest") {
                         throwUnsupported("estimateGas does not support blockTag");
                     }
-                    const req = ethers.providers.JsonRpcProvider.hexlifyTransaction(params[0]);
+                    const req = vapors.providers.JsonRpcProvider.hexlifyTransaction(params[0]);
                     const result = yield this.provider.estimateGas(req);
                     return result.toHexString();
                 }
@@ -112,23 +112,23 @@ export class _Eip1193Bridge extends EventEmitter {
                         return throwUnsupported("eth_sign requires an account");
                     }
                     const address = yield this.signer.getAddress();
-                    if (address !== ethers.utils.getAddress(params[0])) {
+                    if (address !== vapors.utils.getAddress(params[0])) {
                         logger.throwArgumentError("account mismatch or account not found", "params[0]", params[0]);
                     }
-                    return this.signer.signMessage(ethers.utils.arrayify(params[1]));
+                    return this.signer.signMessage(vapors.utils.arrayify(params[1]));
                 }
                 case "eth_sendTransaction": {
                     if (!this.signer) {
                         return throwUnsupported("eth_sign requires an account");
                     }
-                    const req = ethers.providers.JsonRpcProvider.hexlifyTransaction(params[0]);
+                    const req = vapors.providers.JsonRpcProvider.hexlifyTransaction(params[0]);
                     const tx = yield this.signer.sendTransaction(req);
                     return tx.hash;
                 }
                 case "eth_getUncleCountByBlockHash":
                 case "eth_getUncleCountByBlockNumber":
                     {
-                        coerce = ethers.utils.hexValue;
+                        coerce = vapors.utils.hexValue;
                         break;
                     }
                 case "eth_getTransactionByBlockHashAndIndex":

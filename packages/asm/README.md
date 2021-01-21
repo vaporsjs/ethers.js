@@ -21,7 +21,7 @@ Command-Line Interface
 @TODO: Add this to the CLI package.
 
 ```
-/home/ethers> ethers-asm [ --disassemble ] [ FILENAME ]
+/home/vapors> vapors-asm [ --disassemble ] [ FILENAME ]
 ```
 
 Syntax

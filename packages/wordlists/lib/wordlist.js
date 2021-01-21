@@ -2,9 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 // This gets overridden by rollup
 var exportWordlist = false;
-var hash_1 = require("@ethersproject/hash");
-var properties_1 = require("@ethersproject/properties");
-var logger_1 = require("@ethersproject/logger");
+var hash_1 = require("@vaporsproject/hash");
+var properties_1 = require("@vaporsproject/properties");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 exports.logger = new logger_1.Logger(_version_1.version);
 var Wordlist = /** @class */ (function () {
@@ -41,9 +41,9 @@ var Wordlist = /** @class */ (function () {
         if (exportWordlist) {
             try {
                 var anyGlobal = window;
-                if (anyGlobal._ethers && anyGlobal._ethers.wordlists) {
-                    if (!anyGlobal._ethers.wordlists[name]) {
-                        properties_1.defineReadOnly(anyGlobal._ethers.wordlists, name, lang);
+                if (anyGlobal._vapors && anyGlobal._vapors.wordlists) {
+                    if (!anyGlobal._vapors.wordlists[name]) {
+                        properties_1.defineReadOnly(anyGlobal._vapors.wordlists, name, lang);
                     }
                 }
             }

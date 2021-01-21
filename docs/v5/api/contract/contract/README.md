@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -10,7 +10,7 @@ Contract
 Creating Instances
 ------------------
 
-#### **new ***ethers* . **Contract**( address , abi , signerOrProvider )
+#### **new ***vapors* . **Contract**( address , abi , signerOrProvider )
 
 
 

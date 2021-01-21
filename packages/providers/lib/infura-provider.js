@@ -13,10 +13,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var properties_1 = require("@ethersproject/properties");
+var properties_1 = require("@vaporsproject/properties");
 var websocket_provider_1 = require("./websocket-provider");
 var formatter_1 = require("./formatter");
-var logger_1 = require("@ethersproject/logger");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 var logger = new logger_1.Logger(_version_1.version);
 var url_json_rpc_provider_1 = require("./url-json-rpc-provider");

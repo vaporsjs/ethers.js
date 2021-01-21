@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -44,7 +44,7 @@ The value (in wei) for this transaction.
 
 #### *unsignedTransaction* . **chainId** => *number*
 
-The chain ID for this transaction. If the chain ID is 0 or null, then [EIP-155](https://eips.ethereum.org/EIPS/eip-155) is disabled and legacy signing is used, unless overridden in a signature.
+The chain ID for this transaction. If the chain ID is 0 or null, then [EIP-155](https://eips.vapory.org/EIPS/eip-155) is disabled and legacy signing is used, unless overridden in a signature.
 
 
 ### Transaction
@@ -91,7 +91,7 @@ The value (in wei) for *transaction*.
 
 #### *transaction* . **chainId** => *number*
 
-The chain ID for *transaction*. This is used as part of [EIP-155](https://eips.ethereum.org/EIPS/eip-155) to prevent replay attacks on different networks.
+The chain ID for *transaction*. This is used as part of [EIP-155](https://eips.vapory.org/EIPS/eip-155) to prevent replay attacks on different networks.
 
 For example, if a transaction was made on ropsten with an account also used on homestead, it would be possible for a transaction signed on ropsten to be executed on homestead, which is likely unintended.
 
@@ -110,24 +110,24 @@ The s portion of the elliptic curve signatures for *transaction*.
 
 #### *transaction* . **v** => *number*
 
-The v portion of the elliptic curve signatures for *transaction*. This is used to refine which of the two possible points a given x-coordinate can have, and in [EIP-155](https://eips.ethereum.org/EIPS/eip-155) is additionally used to encode the chain ID into the serialized transaction.
+The v portion of the elliptic curve signatures for *transaction*. This is used to refine which of the two possible points a given x-coordinate can have, and in [EIP-155](https://eips.vapory.org/EIPS/eip-155) is additionally used to encode the chain ID into the serialized transaction.
 
 
 Functions
 ---------
 
-#### *ethers* . *utils* . **parseTransaction**( aBytesLike ) => *[Transaction](/v5/api/utils/transactions/#Transaction)*
+#### *vapors* . *utils* . **parseTransaction**( aBytesLike ) => *[Transaction](/v5/api/utils/transactions/#Transaction)*
 
 Parses the transaction properties from a serialized transaction.
 
 
-#### *ethers* . *utils* . **serializeTransaction**( tx [ , signature ] ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
+#### *vapors* . *utils* . **serializeTransaction**( tx [ , signature ] ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
 
 Computes the serialized *transaction*, optionally serialized with the a *signature*. If *signature* is not present, the unsigned serialized transaction is returned, which can be used to compute the hash necessary to sign.
 
-This function uses [EIP-155](https://eips.ethereum.org/EIPS/eip-155) if a chainId is provided, otherwise legacy serialization is used. It is **highly** recommended to always specify a *chainId*.
+This function uses [EIP-155](https://eips.vapory.org/EIPS/eip-155) if a chainId is provided, otherwise legacy serialization is used. It is **highly** recommended to always specify a *chainId*.
 
-If *signature* includes a chain ID (explicitly or implicitly by using an [EIP-155](https://eips.ethereum.org/EIPS/eip-155) `v` or `_vs`) it will be used to compute the chain ID.
+If *signature* includes a chain ID (explicitly or implicitly by using an [EIP-155](https://eips.vapory.org/EIPS/eip-155) `v` or `_vs`) it will be used to compute the chain ID.
 
 If there is a mismatch between the chain ID of *transaction* and *signature* an error is thrown.
 

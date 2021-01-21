@@ -1,5 +1,5 @@
 {
-  "_ethers.alias": {
+  "_vapors.alias": {
     "ledger-transport.js": "browser-ledger-transport.js"
   },
   "author": "Richard Moore <me@ricmoo.com>",
@@ -10,14 +10,14 @@
     "@ledgerhq/hw-app-eth": "5.27.2",
     "@ledgerhq/hw-transport": "5.26.0",
     "@ledgerhq/hw-transport-u2f": "5.26.0",
-    "ethers": "^5.0.13"
+    "vapors": "^5.0.13"
   },
-  "description": "Hardware Wallet support for ethers.",
-  "ethereum": "donations.ethers.eth",
+  "description": "Hardware Wallet support for vapors.",
+  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
-      "url": "https://gitcoin.co/grants/13/ethersjs-complete-simple-and-tiny-2"
+      "url": "https://gitcoin.co/grants/13/vaporsjs-complete-simple-and-tiny-2"
     },
     {
       "type": "individual",
@@ -25,14 +25,14 @@
     }
   ],
   "keywords": [
-    "Ethereum",
-    "ethers",
+    "Vapory",
+    "vapors",
     "cli"
   ],
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/hardware-wallets",
+  "name": "@vaporsproject/hardware-wallets",
   "optionalDependencies": {
     "@ledgerhq/hw-transport-node-hid": "5.26.0"
   },
@@ -42,7 +42,7 @@
   "repository": {
     "directory": "packages/hardware-wallets",
     "type": "git",
-    "url": "git://github.com/ethers-io/ethers.js.git"
+    "url": "git://github.com/vaporsjs/vapors.js.git"
   },
   "scripts": {
     "test": "exit 1"

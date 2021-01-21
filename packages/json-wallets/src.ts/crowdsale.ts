@@ -2,15 +2,15 @@
 
 import aes from "aes-js";
 
-import { ExternallyOwnedAccount } from "@ethersproject/abstract-signer";
-import { getAddress } from "@ethersproject/address";
-import { arrayify, Bytes } from "@ethersproject/bytes";
-import { keccak256 } from "@ethersproject/keccak256";
-import { pbkdf2 } from "@ethersproject/pbkdf2";
-import { toUtf8Bytes } from "@ethersproject/strings";
-import { Description } from "@ethersproject/properties";
+import { ExternallyOwnedAccount } from "@vaporsproject/abstract-signer";
+import { getAddress } from "@vaporsproject/address";
+import { arrayify, Bytes } from "@vaporsproject/bytes";
+import { keccak256 } from "@vaporsproject/keccak256";
+import { pbkdf2 } from "@vaporsproject/pbkdf2";
+import { toUtf8Bytes } from "@vaporsproject/strings";
+import { Description } from "@vaporsproject/properties";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 
@@ -36,13 +36,13 @@ export class CrowdsaleAccount extends Description<_CrowdsaleAccount> implements 
     }
 }
 
-// See: https://github.com/ethereum/pyethsaletool
+// See: https://github.com/vaporyco/pyethsaletool
 export function decrypt(json: string, password: Bytes | string): ExternallyOwnedAccount {
     const data = JSON.parse(json);
 
     password = getPassword(password);
 
-    // Ethereum Address
+    // Vapory Address
     const ethaddr = getAddress(searchPath(data, "ethaddr"));
 
     // Encrypted Seed

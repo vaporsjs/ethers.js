@@ -3,7 +3,7 @@ _section: Testing
 Testing is a critical part of any library which wishes to remain secure, safe
 and reliable.
 
-Ethers currently has **over 23k tests** among its test suites, which are all
+Vapors currently has **over 23k tests** among its test suites, which are all
 made available for other projects to use as simple exported GZIP-JSON files.
 
 The tests are run on every check-in and the results can been seen on the
@@ -28,9 +28,9 @@ cases were created.
 _subsection: Supported Platforms @<testing-supported>
 
 While web technologies move quite fast, especially in the Web3 universe, we try
-to keep ethers as accessible as possible.
+to keep vapors as accessible as possible.
 
-Currently ethers should work on almost any ES3 or better environment and tests
+Currently vapors should work on almost any ES3 or better environment and tests
 are run against:
 
 - node.js 8.x
@@ -44,7 +44,7 @@ If there is an environment you feel has been overlooked or have suggestions, ple
 free to reach out by opening an [issue on Github](link-github-issues).
 
 We would like to add a test build for Expo and React as those developers often seem
-to encounter pain points when using ethers, so if you have experience or ideas on this,
+to encounter pain points when using vapors, so if you have experience or ideas on this,
 [bug us](link-github-issues).
 
 The next Major version (probably summer 2021) will likely drop support for node 8.x
@@ -60,7 +60,7 @@ Basically, the moral of the story is "be inclusive and don't drop people needles
 _subsection: Test Suites @<testing-suites>
 
 The test suites are available as gzipped JSON files in the
-``@ethersproject/testcases``, which makes it easy to install and import
+``@vaporsproject/testcases``, which makes it easy to install and import
 (both GZIP and JSON are quite easy to consume from most languages). Each
 test suite also has its schema available in this package.
 
@@ -69,10 +69,10 @@ _table: Test Suites @style<full>
 $Account:            Private Keys and addresses in checksum and ICAP formats
 $ContractEvents:     Compiled Solidity, ABI interfaces, input types/values with the
                      output types/values for emitted events; all tests were
-                     executed against real Ethereum nodes
+                     executed against real Vapory nodes
 $ContractAbi:        Compiled Solidity, ABI interfaces, input types/values with the
                      output types/values, encoded and decoded binary data and normalized
-                     values for function calls executed against real Ethereum nodes.
+                     values for function calls executed against real Vapory nodes.
 $ContractAbi2:       Identical to ``contract-interface``, except with emphasis on
                      the ABIv2 coder which supports nested dynami types and structured
                      data
@@ -161,7 +161,7 @@ _heading: Accounts
 
 Basic account information using a private key and computing various address forms.
 
-Tests were verified against [EthereumJS](https:/\/github.com/ethereumjs) and custom
+Tests were verified against [VaporyJS](https:/\/github.com/vaporycojs) and custom
 scripts created to directly interact with Geth and cpp implementations.
 
 //See: ``accounts.json.gz``//
@@ -280,7 +280,7 @@ Test cases for the [ENS Namehash Algorithm](link-namehash).
 _code: Examples
 {
   "expected": "0x33868cc5c3fd3a9cd3adbc1e868ea133d2218f60dc2660c3bc48d8b1f4961384",
-  "name":     "ViTalIk.WALlet.Eth",
+  "name":     "ViTalIk.WALlet.Vap",
   "test":     "mixed case"
 }
 

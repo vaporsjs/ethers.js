@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>React Native &mdash; ethers.js 4.0.0 documentation</title>
+  <title>React Native &mdash; vapors.js 4.0.0 documentation</title>
   
 
   
@@ -26,8 +26,8 @@
 
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Migration Guides" href="migration.html" />
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> ethers.js
+            <a href="index.html" class="icon icon-home"> vapors.js
           
 
           
@@ -120,7 +120,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ethers.js</a>
+          <a href="index.html">vapors.js</a>
         
       </nav>
 
@@ -182,7 +182,7 @@ additions to this document.</p>
 <div class="section" id="shims">
 <h2>Shims<a class="headerlink" href="#shims" title="Permalink to this headline">¶</a></h2>
 <p>There are several pieces of functionality missing from the current version
-of React-Native. Here is a list of functionality the <code class="docutils literal notranslate"><span class="pre">ethers/dist/shims</span></code> will
+of React-Native. Here is a list of functionality the <code class="docutils literal notranslate"><span class="pre">vapors/dist/shims</span></code> will
 provide if unavailable:</p>
 <blockquote>
 <div><ul class="simple">
@@ -196,10 +196,10 @@ provide if unavailable:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text"><em>Importing into React-Native</em></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Import the required shims</span>
-<span class="kr">import</span> <span class="s1">&#39;ethers/dist/shims.js&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="s1">&#39;vapors/dist/shims.js&#39;</span><span class="p">;</span>
 
-<span class="c1">// Import the ethers library</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">ethers</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;ethers&#39;</span><span class="p">;</span>
+<span class="c1">// Import the vapors library</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">vapors</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vapors&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -220,7 +220,7 @@ the size small.</dd>
 <hr class="docutils" />
 <div class="section" id="wordlists">
 <h2>Wordlists<a class="headerlink" href="#wordlists" title="Permalink to this headline">¶</a></h2>
-<p>React-Native will pull in the browser version of ethers, which does not have
+<p>React-Native will pull in the browser version of vapors, which does not have
 all the additional word lists, by default. Each desired wordlist must be
 separately imported.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
@@ -233,7 +233,7 @@ separately imported.</p>
     <span class="nx">ko</span><span class="p">,</span>     <span class="c1">// Korean</span>
     <span class="nx">zh_ch</span><span class="p">,</span>  <span class="c1">// Chinese (simplified)</span>
     <span class="nx">zh_tw</span>   <span class="c1">// Chinese (tranditional)</span>
-<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;ethers/wordlists&#39;</span><span class="p">;</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vapors/wordlists&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -250,7 +250,7 @@ For this reason, you may wish to reduce the log level to not show info and warni
 <div class="code-block-caption"><span class="caption-text"><em>Change Log Level</em></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// The default is &quot;info&quot;; other options</span>
 <span class="c1">// &quot;debug&quot;, &quot;info&quot;, &quot;warn&quot;, &quot;error&quot;, &quot;off&quot;</span>
-<span class="nx">ethers</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">setLogLevel</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">);</span>
+<span class="nx">vapors</span><span class="p">.</span><span class="nx">errors</span><span class="p">.</span><span class="nx">setLogLevel</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>

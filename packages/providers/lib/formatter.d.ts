@@ -1,5 +1,5 @@
-import { Block, TransactionReceipt, TransactionResponse } from "@ethersproject/abstract-provider";
-import { BigNumber } from "@ethersproject/bignumber";
+import { Block, TransactionReceipt, TransactionResponse } from "@vaporsproject/abstract-provider";
+import { BigNumber } from "@vaporsproject/bignumber";
 export declare type FormatFunc = (value: any) => any;
 export declare type FormatFuncs = {
     [key: string]: FormatFunc;

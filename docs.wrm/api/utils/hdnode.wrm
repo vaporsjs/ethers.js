@@ -6,8 +6,8 @@ _subsection: Types
 
 _heading: Constants @<hdnodes--defaultpath> @SRC<hdnode:defaultPath>
 
-_property: ethers.utils.defaultPath => "m/44'/60'/0'/0/0"
-The default path for Ethereum in an HD Wallet
+_property: vapors.utils.defaultPath => "m/44'/60'/0'/0/0"
+The default path for Vapory in an HD Wallet
 
 
 _heading: Mnemonic @<Mnemonic>
@@ -27,14 +27,14 @@ _subsection: HDNode @<HDNode> @SRC<hdnode:class.HDNode>
 
 _heading: Creating Instances @<HDNode--creating>
 
-_property: ethers.HDNode.fromMnemonic(phrase [, password [, wordlist ] ]) => [[HDNode]]  @<HDNode-fromMnemonic> @SRC<hdnode>
+_property: vapors.HDNode.fromMnemonic(phrase [, password [, wordlist ] ]) => [[HDNode]]  @<HDNode-fromMnemonic> @SRC<hdnode>
 Return the [[HDNode]] for //phrase// with the optional //password//
 and //wordlist//.
 
-_property: ethers.HDNode.fromSeed(aBytesLike) => [[HDNode]]  @<HDNode-fromSeed> @SRC<hdnode>
+_property: vapors.HDNode.fromSeed(aBytesLike) => [[HDNode]]  @<HDNode-fromSeed> @SRC<hdnode>
 Return the [[HDNode]] for the seed //aBytesLike//.
 
-_property: ethers.HDNode.fromExtendedKey(extendedKey) => [[HDNode]]  @<HDNode-fromExtendedKey> @SRC<hdnode>
+_property: vapors.HDNode.fromExtendedKey(extendedKey) => [[HDNode]]  @<HDNode-fromExtendedKey> @SRC<hdnode>
 Return the [[HDNode]] for the //extendedKey//. If //extendedKey// was
 neutered, the **HDNode** will only be able to compute addresses and not
 private keys.
@@ -114,12 +114,12 @@ by deriving //path//.
 
 _subsection: Other Functions  @<HDNode--utilities>
 
-_property: ethers.utils.mnemonicToSeed(phrase [ , password]) => string<[[DataHexString]]<64>>  @<utils-mnemonicToSeed> @SRC<hdnode>
+_property: vapors.utils.mnemonicToSeed(phrase [ , password]) => string<[[DataHexString]]<64>>  @<utils-mnemonicToSeed> @SRC<hdnode>
 Convert a mnemonic phrase to a seed, according to [BIP-39](link-bip-39).
 
-_property: ethers.utils.mnemonicToEntropy(phrase [ , wordlist ]) => string<[[DataHexString]]>  @<utils-mnemonicToEntropy> @SRC<hdnode>
+_property: vapors.utils.mnemonicToEntropy(phrase [ , wordlist ]) => string<[[DataHexString]]>  @<utils-mnemonicToEntropy> @SRC<hdnode>
 Convert a mnemonic phrase to its entropy, according to [BIP-39](link-bip-39).
 
-_property: ethers.utils.isValidMnemonic(phrase [ , wordlist ]) => boolean  @<utils-isValidMnemonic> @SRC<hdnode>
+_property: vapors.utils.isValidMnemonic(phrase [ , wordlist ]) => boolean  @<utils-isValidMnemonic> @SRC<hdnode>
 Returns true if //phrase// is a valid mnemonic phrase, by
 testing the checksum.

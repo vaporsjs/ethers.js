@@ -16,10 +16,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var ethers_1 = require("ethers");
+var vapors_1 = require("vapors");
 var scrypt_js_1 = __importDefault(require("scrypt-js"));
 var _version_1 = require("./_version");
-var logger = new ethers_1.ethers.utils.Logger(_version_1.version);
+var logger = new vapors_1.vapors.utils.Logger(_version_1.version);
 var warned = false;
 var BrainWallet = /** @class */ (function (_super) {
     __extends(BrainWallet, _super);
@@ -35,24 +35,24 @@ var BrainWallet = /** @class */ (function (_super) {
         var passwordBytes = null;
         if (typeof (username) === 'string') {
             logger.checkNormalize();
-            usernameBytes = ethers_1.ethers.utils.toUtf8Bytes(username.normalize('NFKC'));
+            usernameBytes = vapors_1.vapors.utils.toUtf8Bytes(username.normalize('NFKC'));
         }
         else {
-            usernameBytes = ethers_1.ethers.utils.arrayify(username);
+            usernameBytes = vapors_1.vapors.utils.arrayify(username);
         }
         if (typeof (password) === 'string') {
             logger.checkNormalize();
-            passwordBytes = ethers_1.ethers.utils.toUtf8Bytes(password.normalize('NFKC'));
+            passwordBytes = vapors_1.vapors.utils.toUtf8Bytes(password.normalize('NFKC'));
         }
         else {
-            passwordBytes = ethers_1.ethers.utils.arrayify(password);
+            passwordBytes = vapors_1.vapors.utils.arrayify(password);
         }
         return scrypt_js_1.default.scrypt(passwordBytes, usernameBytes, (1 << 18), 8, 1, 32, progressCallback).then(function (key) {
             if (legacy) {
                 return new BrainWallet(key);
             }
-            var mnemonic = ethers_1.ethers.utils.entropyToMnemonic(ethers_1.ethers.utils.arrayify(key).slice(0, 16));
-            return new BrainWallet(ethers_1.ethers.Wallet.fromMnemonic(mnemonic));
+            var mnemonic = vapors_1.vapors.utils.entropyToMnemonic(vapors_1.vapors.utils.arrayify(key).slice(0, 16));
+            return new BrainWallet(vapors_1.vapors.Wallet.fromMnemonic(mnemonic));
         });
     };
     BrainWallet.generate = function (username, password, progressCallback) {
@@ -62,6 +62,6 @@ var BrainWallet = /** @class */ (function (_super) {
         return BrainWallet._generate(username, password, true, progressCallback);
     };
     return BrainWallet;
-}(ethers_1.ethers.Wallet));
+}(vapors_1.vapors.Wallet));
 exports.BrainWallet = BrainWallet;
 //# sourceMappingURL=brain-wallet.js.map

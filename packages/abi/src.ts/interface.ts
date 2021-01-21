@@ -1,17 +1,17 @@
 "use strict";
 
-import { getAddress } from "@ethersproject/address";
-import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
-import { arrayify, BytesLike, concat, hexDataSlice, hexlify, hexZeroPad, isHexString } from "@ethersproject/bytes";
-import { id } from "@ethersproject/hash";
-import { keccak256 } from "@ethersproject/keccak256"
-import { defineReadOnly, Description, getStatic } from "@ethersproject/properties";
+import { getAddress } from "@vaporsproject/address";
+import { BigNumber, BigNumberish } from "@vaporsproject/bignumber";
+import { arrayify, BytesLike, concat, hexDataSlice, hexlify, hexZeroPad, isHexString } from "@vaporsproject/bytes";
+import { id } from "@vaporsproject/hash";
+import { keccak256 } from "@vaporsproject/keccak256"
+import { defineReadOnly, Description, getStatic } from "@vaporsproject/properties";
 
 import { AbiCoder, defaultAbiCoder } from "./abi-coder";
 import { checkResultErrors, Result } from "./coders/abstract-coder";
 import { ConstructorFragment, EventFragment, FormatTypes, Fragment, FunctionFragment, JsonFragment, ParamType } from "./fragments";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 

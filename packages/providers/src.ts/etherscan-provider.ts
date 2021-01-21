@@ -1,14 +1,14 @@
 "use strict";
 
-import { BlockTag, TransactionRequest, TransactionResponse } from "@ethersproject/abstract-provider";
-import { hexlify, hexValue, isHexString } from "@ethersproject/bytes";
-import { Network, Networkish } from "@ethersproject/networks";
-import { deepCopy, defineReadOnly } from "@ethersproject/properties";
-import { ConnectionInfo, fetchJson } from "@ethersproject/web";
+import { BlockTag, TransactionRequest, TransactionResponse } from "@vaporsproject/abstract-provider";
+import { hexlify, hexValue, isHexString } from "@vaporsproject/bytes";
+import { Network, Networkish } from "@vaporsproject/networks";
+import { deepCopy, defineReadOnly } from "@vaporsproject/properties";
+import { ConnectionInfo, fetchJson } from "@vaporsproject/web";
 
 import { showThrottleMessage } from "./formatter";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 
@@ -139,12 +139,12 @@ function checkError(method: string, error: any, transaction: any): any {
     throw error;
 }
 
-export class EtherscanProvider extends BaseProvider{
+export class VaporscanProvider extends BaseProvider{
     readonly baseUrl: string;
     readonly apiKey: string;
 
     constructor(network?: Networkish, apiKey?: string) {
-        logger.checkNew(new.target, EtherscanProvider);
+        logger.checkNew(new.target, VaporscanProvider);
 
         super(network);
 
@@ -154,19 +154,19 @@ export class EtherscanProvider extends BaseProvider{
         let baseUrl = null;
         switch(name) {
             case "homestead":
-                baseUrl = "https://api.etherscan.io";
+                baseUrl = "https://api.vaporscan.io";
                 break;
             case "ropsten":
-                baseUrl = "https://api-ropsten.etherscan.io";
+                baseUrl = "https://api-ropsten.vaporscan.io";
                 break;
             case "rinkeby":
-                baseUrl = "https://api-rinkeby.etherscan.io";
+                baseUrl = "https://api-rinkeby.vaporscan.io";
                 break;
             case "kovan":
-                baseUrl = "https://api-kovan.etherscan.io";
+                baseUrl = "https://api-kovan.vaporscan.io";
                 break;
             case "goerli":
-                baseUrl = "https://api-goerli.etherscan.io";
+                baseUrl = "https://api-goerli.vaporscan.io";
                 break;
             default:
                 throw new Error("unsupported network");
@@ -294,7 +294,7 @@ export class EtherscanProvider extends BaseProvider{
 
             case "call": {
                 if (params.blockTag !== "latest") {
-                    throw new Error("EtherscanProvider does not support blockTag for call");
+                    throw new Error("VaporscanProvider does not support blockTag for call");
                 }
 
                 const postData = getTransactionPostData(params.transaction);
@@ -379,7 +379,7 @@ export class EtherscanProvider extends BaseProvider{
                 if (this.network.name !== "homestead") { return 0.0; }
                 url += "?module=stats&action=ethprice";
                 url += apiKey;
-                return parseFloat((await get(url, null, getResult)).ethusd);
+                return parseFloat((await get(url, null, getResult)).vapusd);
 
             default:
                 break;

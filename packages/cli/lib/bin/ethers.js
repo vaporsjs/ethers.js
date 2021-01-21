@@ -57,7 +57,7 @@ var fs_1 = __importDefault(require("fs"));
 var path_1 = require("path");
 var repl_1 = __importDefault(require("repl"));
 var vm_1 = __importDefault(require("vm"));
-var ethers_1 = require("ethers");
+var vapors_1 = require("vapors");
 var parser_1 = require("@babel/parser");
 var cli_1 = require("../cli");
 var prompt_1 = require("../prompt");
@@ -90,40 +90,40 @@ function setupContext(path, context, plugin) {
     if (!context.process) {
         context.process = process;
     }
-    context.ethers = ethers_1.ethers;
-    context.version = ethers_1.ethers.version;
-    context.Contract = ethers_1.ethers.Contract;
-    context.ContractFactory = ethers_1.ethers.ContractFactory;
-    context.Wallet = ethers_1.ethers.Wallet;
-    context.providers = ethers_1.ethers.providers;
-    context.utils = ethers_1.ethers.utils;
-    context.abiCoder = ethers_1.ethers.utils.defaultAbiCoder;
-    context.BN = ethers_1.ethers.BigNumber;
-    context.BigNumber = ethers_1.ethers.BigNumber;
-    context.FixedNumber = ethers_1.ethers.FixedNumber;
-    context.getAddress = ethers_1.ethers.utils.getAddress;
-    context.getContractAddress = ethers_1.ethers.utils.getContractAddress;
-    context.getIcapAddress = ethers_1.ethers.utils.getIcapAddress;
-    context.arrayify = ethers_1.ethers.utils.arrayify;
-    context.concat = ethers_1.ethers.utils.concat;
-    context.hexlify = ethers_1.ethers.utils.hexlify;
-    context.zeroPad = ethers_1.ethers.utils.zeroPad;
-    context.joinSignature = ethers_1.ethers.utils.joinSignature;
-    context.splitSignature = ethers_1.ethers.utils.splitSignature;
-    context.id = ethers_1.ethers.utils.id;
-    context.keccak256 = ethers_1.ethers.utils.keccak256;
-    context.namehash = ethers_1.ethers.utils.namehash;
-    context.sha256 = ethers_1.ethers.utils.sha256;
-    context.parseEther = ethers_1.ethers.utils.parseEther;
-    context.parseUnits = ethers_1.ethers.utils.parseUnits;
-    context.formatEther = ethers_1.ethers.utils.formatEther;
-    context.formatUnits = ethers_1.ethers.utils.formatUnits;
-    context.randomBytes = ethers_1.ethers.utils.randomBytes;
-    context.constants = ethers_1.ethers.constants;
-    context.parseTransaction = ethers_1.ethers.utils.parseTransaction;
-    context.serializeTransaction = ethers_1.ethers.utils.serializeTransaction;
-    context.toUtf8Bytes = ethers_1.ethers.utils.toUtf8Bytes;
-    context.toUtf8String = ethers_1.ethers.utils.toUtf8String;
+    context.vapors = vapors_1.vapors;
+    context.version = vapors_1.vapors.version;
+    context.Contract = vapors_1.vapors.Contract;
+    context.ContractFactory = vapors_1.vapors.ContractFactory;
+    context.Wallet = vapors_1.vapors.Wallet;
+    context.providers = vapors_1.vapors.providers;
+    context.utils = vapors_1.vapors.utils;
+    context.abiCoder = vapors_1.vapors.utils.defaultAbiCoder;
+    context.BN = vapors_1.vapors.BigNumber;
+    context.BigNumber = vapors_1.vapors.BigNumber;
+    context.FixedNumber = vapors_1.vapors.FixedNumber;
+    context.getAddress = vapors_1.vapors.utils.getAddress;
+    context.getContractAddress = vapors_1.vapors.utils.getContractAddress;
+    context.getIcapAddress = vapors_1.vapors.utils.getIcapAddress;
+    context.arrayify = vapors_1.vapors.utils.arrayify;
+    context.concat = vapors_1.vapors.utils.concat;
+    context.hexlify = vapors_1.vapors.utils.hexlify;
+    context.zeroPad = vapors_1.vapors.utils.zeroPad;
+    context.joinSignature = vapors_1.vapors.utils.joinSignature;
+    context.splitSignature = vapors_1.vapors.utils.splitSignature;
+    context.id = vapors_1.vapors.utils.id;
+    context.keccak256 = vapors_1.vapors.utils.keccak256;
+    context.namehash = vapors_1.vapors.utils.namehash;
+    context.sha256 = vapors_1.vapors.utils.sha256;
+    context.parseEther = vapors_1.vapors.utils.parseEther;
+    context.parseUnits = vapors_1.vapors.utils.parseUnits;
+    context.formatEther = vapors_1.vapors.utils.formatEther;
+    context.formatUnits = vapors_1.vapors.utils.formatUnits;
+    context.randomBytes = vapors_1.vapors.utils.randomBytes;
+    context.constants = vapors_1.vapors.constants;
+    context.parseTransaction = vapors_1.vapors.utils.parseTransaction;
+    context.serializeTransaction = vapors_1.vapors.utils.serializeTransaction;
+    context.toUtf8Bytes = vapors_1.vapors.utils.toUtf8Bytes;
+    context.toUtf8String = vapors_1.vapors.utils.toUtf8String;
 }
 var cli = new cli_1.CLI("sandbox");
 function prepareCode(code) {
@@ -165,7 +165,7 @@ var SandboxPlugin = /** @class */ (function (_super) {
     SandboxPlugin.getHelp = function () {
         return {
             name: "sandbox",
-            help: "Run a REPL VM environment with ethers"
+            help: "Run a REPL VM environment with vapors"
         };
     };
     SandboxPlugin.prototype.prepareOptions = function (argParser) {
@@ -208,7 +208,7 @@ var SandboxPlugin = /** @class */ (function (_super) {
         });
     };
     SandboxPlugin.prototype.run = function () {
-        console.log("version: " + ethers_1.ethers.version);
+        console.log("version: " + vapors_1.vapors.version);
         console.log("network: " + this.network.name + " (chainId: " + this.network.chainId + ")");
         var filename = path_1.resolve(process.cwd(), "./sandbox.js");
         var prompt = (this.provider ? this.network.name : "no-network") + "> ";
@@ -340,7 +340,7 @@ var InitPlugin = /** @class */ (function (_super) {
                         if (password !== confirm) {
                             this.throwError("Passwords do not match");
                         }
-                        wallet = ethers_1.ethers.Wallet.createRandom();
+                        wallet = vapors_1.vapors.Wallet.createRandom();
                         return [4 /*yield*/, prompt_1.getProgressBar("Encrypting")];
                     case 3:
                         progressBar = _a.sent();
@@ -418,8 +418,8 @@ var FundPlugin = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             var url;
             return __generator(this, function (_a) {
-                url = "https:/" + "/api.ethers.io/api/v1/?action=fundAccount&address=" + this.toAddress.toLowerCase();
-                return [2 /*return*/, ethers_1.ethers.utils.fetchJson(url).then(function (data) {
+                url = "https:/" + "/api.vapors.io/api/v1/?action=fundAccount&address=" + this.toAddress.toLowerCase();
+                return [2 /*return*/, vapors_1.vapors.utils.fetchJson(url).then(function (data) {
                         console.log("Transaction Hash: " + data.hash);
                     })];
             });
@@ -455,7 +455,7 @@ var InfoPlugin = /** @class */ (function (_super) {
                             runners.push(account.getAddress());
                         });
                         args.forEach(function (arg) {
-                            if (ethers_1.ethers.utils.isAddress(arg)) {
+                            if (vapors_1.vapors.utils.isAddress(arg)) {
                                 _this.queries.push("Address: " + arg);
                             }
                             else {
@@ -483,7 +483,7 @@ var InfoPlugin = /** @class */ (function (_super) {
                     case 1:
                         if (!(i < this.addresses.length)) return [3 /*break*/, 4];
                         address = this.addresses[i];
-                        return [4 /*yield*/, ethers_1.ethers.utils.resolveProperties({
+                        return [4 /*yield*/, vapors_1.vapors.utils.resolveProperties({
                                 balance: this.provider.getBalance(address),
                                 nonce: this.provider.getTransactionCount(address),
                                 code: this.provider.getCode(address),
@@ -493,7 +493,7 @@ var InfoPlugin = /** @class */ (function (_super) {
                         _a = _b.sent(), balance = _a.balance, nonce = _a.nonce, code = _a.code, reverse = _a.reverse;
                         info = {
                             "Address": address,
-                            "Balance": (ethers_1.ethers.utils.formatEther(balance) + " ether"),
+                            "Balance": (vapors_1.vapors.utils.formatEther(balance) + " ether"),
                             "Transaction Count": nonce
                         };
                         if (code != "0x") {
@@ -548,7 +548,7 @@ var SendPlugin = /** @class */ (function (_super) {
                         if (this.accounts.length !== 1) {
                             this.throwUsageError("send requires exactly one account");
                         }
-                        this.data = ethers_1.ethers.utils.hexlify(argParser.consumeOption("data") || "0x");
+                        this.data = vapors_1.vapors.utils.hexlify(argParser.consumeOption("data") || "0x");
                         this.allowZero = argParser.consumeFlag("allow-zero");
                         return [2 /*return*/];
                 }
@@ -570,7 +570,7 @@ var SendPlugin = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.getAddress(args[0], "Cannot send to the zero address (use --allow-zero to override)", this.allowZero)];
                     case 2:
                         _a.toAddress = _b.sent();
-                        this.value = ethers_1.ethers.utils.parseEther(args[1]);
+                        this.value = vapors_1.vapors.utils.parseEther(args[1]);
                         return [2 /*return*/];
                 }
             });
@@ -648,7 +648,7 @@ var SweepPlugin = /** @class */ (function (_super) {
             var _a, balance, gasPrice, code, maxSpendable;
             return __generator(this, function (_b) {
                 switch (_b.label) {
-                    case 0: return [4 /*yield*/, ethers_1.ethers.utils.resolveProperties({
+                    case 0: return [4 /*yield*/, vapors_1.vapors.utils.resolveProperties({
                             balance: this.provider.getBalance(this.accounts[0].getAddress()),
                             gasPrice: (this.gasPrice || this.provider.getGasPrice()),
                             code: this.provider.getCode(this.toAddress)
@@ -752,7 +752,7 @@ var EvalPlugin = /** @class */ (function (_super) {
     EvalPlugin.getHelp = function () {
         return {
             name: "eval CODE",
-            help: "Run CODE in a VM with ethers"
+            help: "Run CODE in a VM with vapors"
         };
     };
     EvalPlugin.prototype.prepareArgs = function (args) {
@@ -805,7 +805,7 @@ var RunPlugin = /** @class */ (function (_super) {
     RunPlugin.getHelp = function () {
         return {
             name: "run FILENAME",
-            help: "Run FILENAME in a VM with ethers"
+            help: "Run FILENAME in a VM with vapors"
         };
     };
     RunPlugin.prototype.prepareArgs = function (args) {
@@ -930,7 +930,7 @@ var WrapEtherPlugin = /** @class */ (function (_super) {
                         if (args.length !== 1) {
                             this.throwError("wrap-ether requires exactly VALUE");
                         }
-                        this.value = ethers_1.ethers.utils.parseEther(args[0]);
+                        this.value = vapors_1.vapors.utils.parseEther(args[0]);
                         return [4 /*yield*/, this.accounts[0].getAddress()];
                     case 2:
                         address = _a.sent();
@@ -955,9 +955,9 @@ var WrapEtherPlugin = /** @class */ (function (_super) {
                         address = _a.sent();
                         this.dump("Wrapping ether", {
                             "From": address,
-                            "Value": ethers_1.ethers.utils.formatEther(this.value)
+                            "Value": vapors_1.vapors.utils.formatEther(this.value)
                         });
-                        contract = new ethers_1.ethers.Contract(WethAddress, WethAbi, this.accounts[0]);
+                        contract = new vapors_1.vapors.Contract(WethAddress, WethAbi, this.accounts[0]);
                         return [4 /*yield*/, contract.deposit({ value: this.value })];
                     case 2:
                         _a.sent();
@@ -993,7 +993,7 @@ var UnwrapEtherPlugin = /** @class */ (function (_super) {
                         if (args.length !== 1) {
                             this.throwError("unwrap-ether requires exactly VALUE");
                         }
-                        this.value = ethers_1.ethers.utils.parseEther(args[0]);
+                        this.value = vapors_1.vapors.utils.parseEther(args[0]);
                         return [2 /*return*/];
                 }
             });
@@ -1012,9 +1012,9 @@ var UnwrapEtherPlugin = /** @class */ (function (_super) {
                         address = _a.sent();
                         this.dump("Withdrawing Wrapped Ether", {
                             "To": address,
-                            "Value": ethers_1.ethers.utils.formatEther(this.value)
+                            "Value": vapors_1.vapors.utils.formatEther(this.value)
                         });
-                        contract = new ethers_1.ethers.Contract(WethAddress, WethAbi, this.accounts[0]);
+                        contract = new vapors_1.vapors.Contract(WethAddress, WethAbi, this.accounts[0]);
                         return [4 /*yield*/, contract.withdraw(this.value)];
                     case 3:
                         _a.sent();
@@ -1065,7 +1065,7 @@ var SendTokenPlugin = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.getAddress(args[0])];
                     case 2:
                         tokenAddress = _c.sent();
-                        this.contract = new ethers_1.ethers.Contract(tokenAddress, Erc20Abi, this.accounts[0]);
+                        this.contract = new vapors_1.vapors.Contract(tokenAddress, Erc20Abi, this.accounts[0]);
                         _a = this;
                         return [4 /*yield*/, this.contract.decimals()];
                     case 3:
@@ -1074,7 +1074,7 @@ var SendTokenPlugin = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.getAddress(args[1])];
                     case 4:
                         _b.toAddress = _c.sent();
-                        this.value = ethers_1.ethers.utils.parseUnits(args[2], this.decimals);
+                        this.value = vapors_1.vapors.utils.parseUnits(args[2], this.decimals);
                         return [2 /*return*/];
                 }
             });
@@ -1090,7 +1090,7 @@ var SendTokenPlugin = /** @class */ (function (_super) {
                         info = {
                             "To": this.toAddress,
                             "Token Contract": this.contract.address,
-                            "Value": ethers_1.ethers.utils.formatUnits(this.value, this.decimals)
+                            "Value": vapors_1.vapors.utils.formatUnits(this.value, this.decimals)
                         };
                         namePromise = this.contract.name().then(function (name) {
                             if (name === "") {
@@ -1098,9 +1098,9 @@ var SendTokenPlugin = /** @class */ (function (_super) {
                             }
                             info["Token Name"] = name;
                         }, function (error) {
-                            var contract = new ethers_1.ethers.Contract(_this.contract.address, Erc20AltAbi, _this.contract.signer);
+                            var contract = new vapors_1.vapors.Contract(_this.contract.address, Erc20AltAbi, _this.contract.signer);
                             contract.name().then(function (name) {
-                                info["Token Name"] = ethers_1.ethers.utils.parseBytes32String(name);
+                                info["Token Name"] = vapors_1.vapors.utils.parseBytes32String(name);
                             }, function (error) {
                                 throw error;
                             });
@@ -1111,9 +1111,9 @@ var SendTokenPlugin = /** @class */ (function (_super) {
                             }
                             info["Token Symbol"] = symbol;
                         }, function (error) {
-                            var contract = new ethers_1.ethers.Contract(_this.contract.address, Erc20AltAbi, _this.contract.signer);
+                            var contract = new vapors_1.vapors.Contract(_this.contract.address, Erc20AltAbi, _this.contract.signer);
                             contract.symbol().then(function (symbol) {
-                                info["Token Symbol"] = ethers_1.ethers.utils.parseBytes32String(symbol);
+                                info["Token Symbol"] = vapors_1.vapors.utils.parseBytes32String(symbol);
                             }, function (error) {
                                 throw error;
                             });
@@ -1217,7 +1217,7 @@ var CompilePlugin = /** @class */ (function (_super) {
                     output[contract.name] = {
                         bytecode: contract.bytecode,
                         runtime: contract.runtime,
-                        interface: contract.interface.fragments.map(function (f) { return f.format(ethers_1.ethers.utils.FormatTypes.full); }),
+                        interface: contract.interface.fragments.map(function (f) { return f.format(vapors_1.vapors.utils.FormatTypes.full); }),
                         compiler: contract.compiler
                     };
                 });
@@ -1318,11 +1318,11 @@ var DeployPlugin = /** @class */ (function (_super) {
                         if (codes.length === 0) {
                             this.throwError("No contract found");
                         }
-                        factory = new ethers_1.ethers.ContractFactory(codes[0].interface, codes[0].bytecode, this.accounts[0]);
+                        factory = new vapors_1.vapors.ContractFactory(codes[0].interface, codes[0].bytecode, this.accounts[0]);
                         cli_1.dump("Deploying:", {
                             Contract: codes[0].name,
                             Bytecode: codes[0].bytecode,
-                            Interface: codes[0].interface.fragments.map(function (f) { return f.format(ethers_1.ethers.utils.FormatTypes.full); }),
+                            Interface: codes[0].interface.fragments.map(function (f) { return f.format(vapors_1.vapors.utils.FormatTypes.full); }),
                             Compiler: codes[0].compiler,
                             Optimizer: (this.noOptimize ? "No" : "Yes")
                         });
@@ -1342,4 +1342,4 @@ var DeployPlugin = /** @class */ (function (_super) {
 }(cli_1.Plugin));
 cli.addPlugin("deploy", DeployPlugin);
 cli.run(process.argv.slice(2));
-//# sourceMappingURL=ethers.js.map
+//# sourceMappingURL=vapors.js.map

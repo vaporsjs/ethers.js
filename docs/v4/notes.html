@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Notes &mdash; ethers.js 4.0.0 documentation</title>
+  <title>Notes &mdash; vapors.js 4.0.0 documentation</title>
   
 
   
@@ -26,8 +26,8 @@
 
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Testing" href="testing.html" />
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> ethers.js
+            <a href="index.html" class="icon icon-home"> vapors.js
           
 
           
@@ -121,7 +121,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ethers.js</a>
+          <a href="index.html">vapors.js</a>
         
       </nav>
 
@@ -174,17 +174,17 @@
   <div class="section" id="notes">
 <h1>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h1>
 <p>A few quick notes about some of the less obvious aspects of interacting with
-Ethereum in JavaScript.</p>
+Vapory in JavaScript.</p>
 <hr class="docutils" />
 <div class="section" id="why-can-t-i-just-use-numbers">
 <span id="ieee754"></span><h2>Why can’t I just use numbers?<a class="headerlink" href="#why-can-t-i-just-use-numbers" title="Permalink to this headline">¶</a></h2>
-<p>The first problem many encounter when dealing with Ethereum is the concept of numbers. Most
+<p>The first problem many encounter when dealing with Vapory is the concept of numbers. Most
 common currencies are broken down with very little granularity. For example, there are only
 100 cents in a single dollar. However, there are  10<sup>18</sup> <strong>wei</strong> in a single
 <strong>ether</strong>.</p>
 <p>JavaScript uses <a class="reference external" href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">IEEE 754 double-precision binary floating point</a> numbers to represent
 numeric values. As a result, there are <em>holes</em> in the integer set after
-9,007,199,254,740,991; which is problematic for <em>Ethereum</em> because that is only
+9,007,199,254,740,991; which is problematic for <em>Vapory</em> because that is only
 around 0.009 ether (in wei).</p>
 <p>To demonstrate how this may be an issue in your code, consider:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="p">(</span><span class="n">Number</span><span class="o">.</span><span class="n">MAX_SAFE_INTEGER</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">Number</span><span class="o">.</span><span class="n">MAX_SAFE_INTEGER</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
@@ -193,7 +193,7 @@ around 0.009 ether (in wei).</p>
 </div>
 <p>To remedy this, all numbers (which can be large) are stored and manipulated
 as <a class="reference internal" href="api-utils.html#bignumber"><span class="std std-ref">Big Numbers</span></a>.</p>
-<p>The functions <a class="reference internal" href="api-utils.html#parseether"><span class="std std-ref">parseEther( etherString )</span></a> and <a class="reference internal" href="api-utils.html#formatether"><span class="std std-ref">formatEther( wei )</span></a> can be used to convert between
+<p>The functions <a class="reference internal" href="api-utils.html#parseether"><span class="std std-ref">parseEther( vaporString )</span></a> and <a class="reference internal" href="api-utils.html#formatether"><span class="std std-ref">formatEther( wei )</span></a> can be used to convert between
 string representations, which are displayed to or entered by the user and Big Number representations
 which can have mathematical operations handled safely.</p>
 <hr class="docutils" />
@@ -216,14 +216,14 @@ promise. If <em>onResolve</em> throws an Error, the returned Promise will reject
 </dl>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text"><em>Cleaning out an account</em></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">ethers</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">vapors</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">targetAddress</span> <span class="o">=</span> <span class="s2">&quot;0x02F024e0882B310c6734703AB9066EdD3a10C6e0&quot;</span><span class="p">;</span>
 
 <span class="kd">var</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="s2">&quot;0x0123456789012345678901234567890123456789012345678901234567890123&quot;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">);</span>
 
 <span class="c1">// Promises we are interested in</span>
-<span class="kd">var</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">(</span><span class="s1">&#39;ropsten&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">(</span><span class="s1">&#39;ropsten&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">balancePromise</span> <span class="o">=</span> <span class="nx">provider</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">(</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">gasPricePromise</span> <span class="o">=</span> <span class="nx">provider</span><span class="p">.</span><span class="nx">getGasPrice</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">transactionCountPromise</span> <span class="o">=</span> <span class="nx">provider</span><span class="p">.</span><span class="nx">getTransactionCount</span><span class="p">(</span><span class="nx">wallet</span><span class="p">.</span><span class="nx">address</span><span class="p">);</span>
@@ -294,7 +294,7 @@ promise. If <em>onResolve</em> throws an Error, the returned Promise will reject
 </div>
 <div class="section" id="checksum-address">
 <span id="id1"></span><h2>Checksum Address<a class="headerlink" href="#checksum-address" title="Permalink to this headline">¶</a></h2>
-<p>A <a class="reference external" href="https://eips.ethereum.org/EIPS/eip-55">checksum address</a> uses mixed case hexadecimal strings to encode the checksum
+<p>A <a class="reference external" href="https://eips.vapory.org/EIPS/eip-55">checksum address</a> uses mixed case hexadecimal strings to encode the checksum
 information in the capitalization of the alphabetic characters, while remaining
 backwards compatible with non-checksum addresses.</p>
 <p>Example:</p>
@@ -315,7 +315,7 @@ backwards compatible with non-checksum addresses.</p>
 </div>
 <div class="section" id="icap-address">
 <span id="id3"></span><h2>ICAP Address<a class="headerlink" href="#icap-address" title="Permalink to this headline">¶</a></h2>
-<p>The original method of adding a checksum to an Ethereum address was by using the
+<p>The original method of adding a checksum to an Vapory address was by using the
 a format compatible with <a class="reference external" href="https://en.wikipedia.org/wiki/International_Bank_Account_Number">IBAN</a> addresses, using the country code <strong>XE</strong>. However,
 only addresses which have 0 as the first byte (i.e. the address begins with 0x00)
 are truly compatible with IBAN, so ICAP extends the definition to allow for 31
@@ -329,10 +329,10 @@ alphanumeric characters (instead of the standard 30).</p>
 <hr class="docutils" />
 <div class="section" id="supported-platforms">
 <h2>Supported Platforms<a class="headerlink" href="#supported-platforms" title="Permalink to this headline">¶</a></h2>
-<p>The ethers.js library aims to be as inclusive as possible. People often ask, “why
+<p>The vapors.js library aims to be as inclusive as possible. People often ask, “why
 don’t you use feature X or syntax Y”, to which the response is usually that it
 begins to heavily restricts the potential user-base.</p>
-<p>The current target for ethers.js is to support an environment which is close to ES3,
+<p>The current target for vapors.js is to support an environment which is close to ES3,
 with the addition of Object.defineProperty, which is a bit more advanced than an old
 ES3 environment, but which adds considerable safety and security to the library.</p>
 <p>The phantomjs test harness (<code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">test-phantomjs</span></code>) has a handful of shims included
@@ -347,7 +347,7 @@ supported.</p>
 </ul>
 <p>Another supported aspect is the use of paths in <code class="docutils literal notranslate"><span class="pre">require</span></code>. A small part of the
 library may be included, for example, <code class="docutils literal notranslate"><span class="pre">keccak256</span></code>, by using:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">keccak256</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers/utils/keccak256&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">keccak256</span><span class="p">;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">keccak256</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors/utils/keccak256&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">keccak256</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Which means renaming files is a breaking change, and may only be done between
@@ -370,8 +370,8 @@ as an issue on GitHub first.</p>
 <p>A few notes on contributing.</p>
 <ul class="simple">
 <li>Please read the above section on Supported Platforms.</li>
-<li>An important feature of ethers.js is that it is small, which means uncommon features or large features need a great deal of discussion.</li>
-<li>Since ethers.js is designed to be extensible, there are often ways to add optional packages; for example, look at the BIP39 mnemonic wordlists, which are not bundled into the browser version, but are designed to be seamlessly loaded into the browser if their functionality is required.</li>
+<li>An important feature of vapors.js is that it is small, which means uncommon features or large features need a great deal of discussion.</li>
+<li>Since vapors.js is designed to be extensible, there are often ways to add optional packages; for example, look at the BIP39 mnemonic wordlists, which are not bundled into the browser version, but are designed to be seamlessly loaded into the browser if their functionality is required.</li>
 <li>Dependencies; part A) in line with the above, “keep things small”, adding a dependency is a big deal, as they often bring many other packages with them. A great deal of effort has been used to tune the build process and dependency list to keep things tight</li>
 <li>Dependencies; part B) adding additional third party libraries, adds a huge attack vector fun malicious code or unexpected consequences, so adding a dependency is certainly something that needs to be very convincingly argued.</li>
 <li>Dependencies; part C) part B applies to dev dependencies too. A devDependency can inject or otherwise do strange things and increases the attack vector for bugs and malicious code</li>
@@ -385,7 +385,7 @@ as an issue on GitHub first.</p>
 <hr class="docutils" />
 <div class="section" id="security">
 <h2>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h2>
-<p>A lot of people store a lot of value in Ethereum and the code that runs it. As
+<p>A lot of people store a lot of value in Vapory and the code that runs it. As
 such, security is important.</p>
 <div class="section" id="the-github-and-npm-package">
 <h3>The GitHub and NPM Package<a class="headerlink" href="#the-github-and-npm-package" title="Permalink to this headline">¶</a></h3>
@@ -399,12 +399,12 @@ in the system could be replaced.</p>
 <p>By using a version that is perhaps a few weeks old, providing there are no
 advisories otherwise, there has been adequate time for any compromise to have
 been broadcast.</p>
-<p>Also, one of the test cases verifies the deterministic build on <a class="reference external" href="https://travis-ci.org/ethers-io/ethers.js">Travis CI</a>. <strong>Never</strong>
+<p>Also, one of the test cases verifies the deterministic build on <a class="reference external" href="https://travis-ci.org/vaporsjs/vapors.js">Travis CI</a>. <strong>Never</strong>
 install a version which has failed the Continuous Integration tests on Travis CI.</p>
 <p>Long story short, be careful.</p>
 <p>In the event of any significant issue, it will be posted on the README.md file,
 have an issue posted, with ALL CAPS in the title and will be broadcast on the
-&#64;ethersproject twitter.</p>
+&#64;vaporsproject twitter.</p>
 </div>
 <div class="section" id="memory-hard-brute-force-encrpyting">
 <h3>Memory Hard Brute-Force Encrpyting<a class="headerlink" href="#memory-hard-brute-force-encrpyting" title="Permalink to this headline">¶</a></h3>
@@ -420,8 +420,8 @@ customer experience past the first decryption.</p>
 </div>
 <div class="section" id="responsible-disclosure">
 <h3>Responsible Disclosure<a class="headerlink" href="#responsible-disclosure" title="Permalink to this headline">¶</a></h3>
-<p>If you find a critical bug or security issue with ethers.js, please contact
-<a class="reference external" href="mailto:support&#37;&#52;&#48;ethers&#46;io">support<span>&#64;</span>ethers<span>&#46;</span>io</a> so that we can address it before you make it public.
+<p>If you find a critical bug or security issue with vapors.js, please contact
+<a class="reference external" href="mailto:support&#37;&#52;&#48;vapors&#46;io">support<span>&#64;</span>vapors<span>&#46;</span>io</a> so that we can address it before you make it public.
 You will receive credit for the discovery after it is fixed and announced. :)</p>
 <hr class="docutils" />
 </div>

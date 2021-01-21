@@ -3,11 +3,11 @@ _section: Provider API Keys @<api-keys>
 //( **TL; DR** &ndash; sign up for your own API keys with the links below to improve your application performance )//
 
 When using a [[Provider]] backed by an API service (such as [[link-alchemy]],
-[[link-etherscan]] or [[link-infura]]), the service requires an API key,
+[[link-vaporscan]] or [[link-infura]]), the service requires an API key,
 which allows each service to track individual projects and their usage and
 permissions.
 
-The ethers library offers default API keys for each service, so that each
+The vapors library offers default API keys for each service, so that each
 [[Provider]] works out-of-the-box.
 
 These API keys are provided as a community resource by the backend services
@@ -25,19 +25,19 @@ free tier, which (depending on the service) includes many advantages:
 - useful **metric tracking** for performance tuning and to analyze your customer behaviour
 - more **advanced APIs**, such as archive data or advanced log queries
 
-_subsection: Etherscan @<api-keys--etherscan>
+_subsection: Vaporscan @<api-keys--vaporscan>
 
-Etherscan is an Ethereum block explorer, which is possibly the most useful
-developer tool for building and debugging Ethereum applications.
+Vaporscan is an Vapory block explorer, which is possibly the most useful
+developer tool for building and debugging Vapory applications.
 
 They offer an extensive collection of API endpoints which provide all the
-operations required to interact with the Ethereum Blockchain.
+operations required to interact with the Vapory Blockchain.
 
-[Sign up for a free API key on Etherscan](link-etherscan-signup)
+[Sign up for a free API key on Vaporscan](link-vaporscan-signup)
 
 **Benefits:**
 
-- higher rate limit (since you are not using the [shared rate limit](link-etherscan-ratelimit))
+- higher rate limit (since you are not using the [shared rate limit](link-vaporscan-ratelimit))
 - customer usage metrics
 
 _subsection: INFURA @<api-keys--infura>
@@ -108,8 +108,8 @@ const network = "homestead";
 // Specify your own API keys
 // Each is optional, and if you omit it the default
 // API key for that service will be used.
-const provider = ethers.getDefaultProvider(network, {
-    etherscan: YOUR_ETHERSCAN_API_KEY,
+const provider = vapors.getDefaultProvider(network, {
+    vaporscan: YOUR_VAPORSCAN_API_KEY,
     infura: YOUR_INFURA_PROJECT_ID,
     // Or if using a project secret:
     // infura: {

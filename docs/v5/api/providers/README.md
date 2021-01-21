@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -10,7 +10,7 @@ Providers
 Default Provider
 ----------------
 
-#### *ethers* . **getDefaultProvider**( [ network , [ options ] ] ) => *[Provider](/v5/api/providers/provider/)*
+#### *vapors* . **getDefaultProvider**( [ network , [ options ] ] ) => *[Provider](/v5/api/providers/provider/)*
 
 Returns a new Provider, backed by multiple services, connected to *network*. If no *network* is provided, **homestead** (i.e. mainnet) is used.
 
@@ -27,7 +27,7 @@ Option Properties
 
 It is highly recommended for production services to acquire and specify an API Key for each service.
 
-The default API Keys used by ethers are shared across all users, so services may throttle all services that are using the default API Keys during periods of load without realizing it.
+The default API Keys used by vapors are shared across all users, so services may throttle all services that are using the default API Keys during periods of load without realizing it.
 
 Many services also have monitoring and usage metrics, which are only available if an API Key is specified. This allows tracking how many requests are being sent and which methods are being used the most.
 
@@ -53,7 +53,7 @@ Provider Documentation
 * [Provider](provider)
   * [Accounts Methods](provider)
   * [Blocks Methods](provider)
-  * [Ethereum Naming Service (ENS) Methods](provider)
+  * [Vapory Naming Service (ENS) Methods](provider)
   * [Logs Methods](provider)
   * [Network Status Methods](provider)
   * [Transactions Methods](provider)
@@ -64,7 +64,7 @@ Provider Documentation
   * [JsonRpcUncheckedSigner](jsonrpc-provider)
   * [Node-Specific Methods](jsonrpc-provider)
 * [API Providers](api-providers)
-  * [EtherscanProvider](api-providers)
+  * [VaporscanProvider](api-providers)
   * [InfuraProvider](api-providers)
   * [AlchemyProvider](api-providers)
   * [CloudflareProvider](api-providers)

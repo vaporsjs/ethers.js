@@ -26,7 +26,7 @@ declare module "*.json" {
     export default value;
 }
 
-declare module "ethereumjs-util" {
+declare module "vaporyjs-util" {
     export function privateToAddress(privateKey: Buffer | Uint8Array): Buffer | Uint8Array;
     export function toChecksumAddress(address: string): string;
     export function keccak256(data: string): Buffer;

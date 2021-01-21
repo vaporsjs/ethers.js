@@ -1,30 +1,30 @@
 "use strict";
 
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 
 import { version } from "./_version";
 
-const logger = new ethers.utils.Logger(version);
+const logger = new vapors.utils.Logger(version);
 
-export class MetamaskProvider extends ethers.providers.Web3Provider {
+export class MetamaskProvider extends vapors.providers.Web3Provider {
 
     _pollingAccount: any;
     _pollAccountFunc: () => void;
 
-    constructor(ethereum?: ethers.providers.ExternalProvider) {
-        if (!ethereum) {
-            ethereum = (<any>global).ethereum;
-            if (!ethereum) {
-                logger.throwError("could not auto-detect global.ethereum", ethers.errors.UNSUPPORTED_OPERATION, {
-                    operation: "window.ethereum"
+    constructor(vapory?: vapors.providers.ExternalProvider) {
+        if (!vapory) {
+            vapory = (<any>global).vapory;
+            if (!vapory) {
+                logger.throwError("could not auto-detect global.vapory", vapors.errors.UNSUPPORTED_OPERATION, {
+                    operation: "window.vapory"
                 });
             }
         }
 
-        super(ethereum);
+        super(vapory);
 
         let _account: string = null;
-        ethers.utils.defineReadOnly(this, "_pollAccountFunc", () => {
+        vapors.utils.defineReadOnly(this, "_pollAccountFunc", () => {
             let account: string = null;
             if (account === _account) { return; }
             console.log("poll");
@@ -32,10 +32,10 @@ export class MetamaskProvider extends ethers.providers.Web3Provider {
             _account = account;
         });
 
-        super(ethereum);
+        super(vapory);
     }
 
-    getSigner(addressOrIndex?: string | number): ethers.providers.JsonRpcSigner {
+    getSigner(addressOrIndex?: string | number): vapors.providers.JsonRpcSigner {
         if (!this.enabled) { return null }
         return super.getSigner(addressOrIndex);
     }
@@ -57,7 +57,7 @@ export class MetamaskProvider extends ethers.providers.Web3Provider {
         this._pollingAccount = null;
     }
 
-    on(eventName: ethers.providers.EventType, listener: ethers.providers.Listener): this {
+    on(eventName: vapors.providers.EventType, listener: vapors.providers.Listener): this {
         super.on(eventName, listener);
         if (this.listenerCount("account") > 0) {
             this._startPollingAccount();
@@ -65,7 +65,7 @@ export class MetamaskProvider extends ethers.providers.Web3Provider {
         return this;
     }
 
-    off(eventName: ethers.providers.EventType, listener?: ethers.providers.Listener): this {
+    off(eventName: vapors.providers.EventType, listener?: vapors.providers.Listener): this {
         super.off(eventName, listener);
         if (this.listenerCount("account") === 0) {
             this._stopPollingAccount();

@@ -13,17 +13,17 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var address_1 = require("@ethersproject/address");
-var bignumber_1 = require("@ethersproject/bignumber");
-var bytes_1 = require("@ethersproject/bytes");
-var hash_1 = require("@ethersproject/hash");
-var keccak256_1 = require("@ethersproject/keccak256");
-var properties_1 = require("@ethersproject/properties");
+var address_1 = require("@vaporsproject/address");
+var bignumber_1 = require("@vaporsproject/bignumber");
+var bytes_1 = require("@vaporsproject/bytes");
+var hash_1 = require("@vaporsproject/hash");
+var keccak256_1 = require("@vaporsproject/keccak256");
+var properties_1 = require("@vaporsproject/properties");
 var abi_coder_1 = require("./abi-coder");
 var abstract_coder_1 = require("./coders/abstract-coder");
 exports.checkResultErrors = abstract_coder_1.checkResultErrors;
 var fragments_1 = require("./fragments");
-var logger_1 = require("@ethersproject/logger");
+var logger_1 = require("@vaporsproject/logger");
 var _version_1 = require("./_version");
 var logger = new logger_1.Logger(_version_1.version);
 var LogDescription = /** @class */ (function (_super) {

@@ -50,23 +50,23 @@ _subsection: Functions @<display-logic--functions>
 
 _heading: Formatting @<display-logic--formatting>
 
-_property: ethers.utils.commify(value) => string  @<utils-commify> @SRC<units>
+_property: vapors.utils.commify(value) => string  @<utils-commify> @SRC<units>
 Returns a string with value grouped by 3 digits, separated by ``,``.
 
 
 _heading: Conversion @<unit-conversion>
 
-_property: ethers.utils.formatUnits(value [ , unit = "ether" ] ) => string  @<utils-formatUnits> @SRC<units>
+_property: vapors.utils.formatUnits(value [ , unit = "ether" ] ) => string  @<utils-formatUnits> @SRC<units>
 Returns a string representation of //value// formatted with //unit//
 digits (if it is a number) or to the unit specified (if a string).
 
-_property: ethers.utils.formatEther(value) => string  @<utils-formatEther> @SRC<units>
+_property: vapors.utils.formatEther(value) => string  @<utils-formatEther> @SRC<units>
 The equivalent to calling ``formatUnits(value, "ether")``.
 
-_property: ethers.utils.parseUnits(value [ , unit = "ether" ] ) => [BigNumber](BigNumber)  @<utils-parseUnits> @SRC<units>
+_property: vapors.utils.parseUnits(value [ , unit = "ether" ] ) => [BigNumber](BigNumber)  @<utils-parseUnits> @SRC<units>
 Returns a [BigNumber](BigNumber) representation of //value//, parsed with
 //unit// digits (if it is a number) or from the unit specified (if
 a string).
 
-_property: ethers.utils.parseEther(value) => [BigNumber](BigNumber)  @<utils-parseEther> @SRC<units>
+_property: vapors.utils.parseEther(value) => [BigNumber](BigNumber)  @<utils-parseEther> @SRC<units>
 The equivalent to calling ``parseUnits(value, "ether")``.

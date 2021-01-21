@@ -32,7 +32,7 @@ const log_1 = require("../log");
 const npm = __importStar(require("../npm"));
 const path_1 = require("../path");
 const utils_1 = require("../utils");
-const USER_AGENT = "ethers-dist@0.0.1";
+const USER_AGENT = "vapors-dist@0.0.1";
 const TAG = "latest";
 const forcePublish = (process.argv.slice(2).indexOf("--publish") >= 0);
 function putObject(s3, info) {
@@ -145,7 +145,7 @@ exports.invalidate = invalidate;
             yield npm.publish(path, info, options);
             local.updateJson(pathJson, { gitHead: undefined }, true);
         }
-        if (publishNames.indexOf("ethers") >= 0 || forcePublish) {
+        if (publishNames.indexOf("vapors") >= 0 || forcePublish) {
             const change = changelog_1.getLatestChange();
             const awsAccessId = yield config_1.config.get("aws-upload-scripts-accesskey");
             const awsSecretKey = yield config_1.config.get("aws-upload-scripts-secretkey");
@@ -154,7 +154,7 @@ exports.invalidate = invalidate;
                 // The password above already succeeded
                 const username = yield config_1.config.get("github-user");
                 const password = yield config_1.config.get("github-release");
-                const hash = createHash("sha384").update(fs_1.default.readFileSync(path_1.resolve("packages/ethers/dist/ethers.umd.min.js"))).digest("base64");
+                const hash = createHash("sha384").update(fs_1.default.readFileSync(path_1.resolve("packages/vapors/dist/vapors.umd.min.js"))).digest("base64");
                 const gitCommit = yield git_1.getGitTag(path_1.resolve("CHANGELOG.md"));
                 let content = change.content.trim();
                 content += '\n\n----\n\n';
@@ -163,7 +163,7 @@ exports.invalidate = invalidate;
                 content += '<script type="text/javascript"\n';
                 content += `        integrity="sha384-${hash}"\n`;
                 content += '        crossorigin="anonymous"\n';
-                content += `        src="https:/\/cdn-cors.ethers.io/lib/ethers-${change.version.substring(1)}.umd.min.js">\n`;
+                content += `        src="https:/\/cdn-cors.vapors.io/lib/vapors-${change.version.substring(1)}.umd.min.js">\n`;
                 content += '</script>\n';
                 content += '```';
                 // Publish the release
@@ -171,7 +171,7 @@ exports.invalidate = invalidate;
                 const link = yield github_1.createRelease(username, password, change.version, change.title, content, beta, gitCommit);
                 console.log(`${log_1.colorify.bold("Published release:")} ${link}`);
             }
-            // Upload libs to the CDN (as ethers-v5.0 and ethers-5.0.x)
+            // Upload libs to the CDN (as vapors-v5.0 and vapors-5.0.x)
             {
                 const bucketNameLib = yield config_1.config.get("aws-upload-scripts-bucket");
                 const originRootLib = yield config_1.config.get("aws-upload-scripts-root");
@@ -182,47 +182,47 @@ exports.invalidate = invalidate;
                     accessKeyId: awsAccessId,
                     secretAccessKey: awsSecretKey
                 });
-                // Upload the libs to ethers-v5.0 and ethers-5.0.x
+                // Upload the libs to vapors-v5.0 and vapors-5.0.x
                 const fileInfos = [
-                    // The CORS-enabled versions on cdn-cors.ethers.io
+                    // The CORS-enabled versions on cdn-cors.vapors.io
                     {
                         bucketName: bucketNameCors,
                         originRoot: originRootCors,
                         suffix: "-cors",
-                        filename: "packages/ethers/dist/ethers.esm.min.js",
-                        key: `ethers-${change.version.substring(1)}.esm.min.js`
+                        filename: "packages/vapors/dist/vapors.esm.min.js",
+                        key: `vapors-${change.version.substring(1)}.esm.min.js`
                     },
                     {
                         bucketName: bucketNameCors,
                         originRoot: originRootCors,
                         suffix: "-cors",
-                        filename: "packages/ethers/dist/ethers.umd.min.js",
-                        key: `ethers-${change.version.substring(1)}.umd.min.js`
+                        filename: "packages/vapors/dist/vapors.umd.min.js",
+                        key: `vapors-${change.version.substring(1)}.umd.min.js`
                     },
-                    // The non-CORS-enabled versions on cdn.ethers.io
+                    // The non-CORS-enabled versions on cdn.vapors.io
                     {
                         bucketName: bucketNameLib,
                         originRoot: originRootLib,
-                        filename: "packages/ethers/dist/ethers.esm.min.js",
-                        key: `ethers-${change.version.substring(1)}.esm.min.js`
-                    },
-                    {
-                        bucketName: bucketNameLib,
-                        originRoot: originRootLib,
-                        filename: "packages/ethers/dist/ethers.umd.min.js",
-                        key: `ethers-${change.version.substring(1)}.umd.min.js`
+                        filename: "packages/vapors/dist/vapors.esm.min.js",
+                        key: `vapors-${change.version.substring(1)}.esm.min.js`
                     },
                     {
                         bucketName: bucketNameLib,
                         originRoot: originRootLib,
-                        filename: "packages/ethers/dist/ethers.esm.min.js",
-                        key: "ethers-5.0.esm.min.js"
+                        filename: "packages/vapors/dist/vapors.umd.min.js",
+                        key: `vapors-${change.version.substring(1)}.umd.min.js`
                     },
                     {
                         bucketName: bucketNameLib,
                         originRoot: originRootLib,
-                        filename: "packages/ethers/dist/ethers.umd.min.js",
-                        key: "ethers-5.0.umd.min.js"
+                        filename: "packages/vapors/dist/vapors.esm.min.js",
+                        key: "vapors-5.0.esm.min.js"
+                    },
+                    {
+                        bucketName: bucketNameLib,
+                        originRoot: originRootLib,
+                        filename: "packages/vapors/dist/vapors.umd.min.js",
+                        key: "vapors-5.0.umd.min.js"
                     },
                 ];
                 for (let i = 0; i < fileInfos.length; i++) {
@@ -234,7 +234,7 @@ exports.invalidate = invalidate;
                         ContentType: "application/javascript; charset=utf-8",
                         Key: (originRoot + key)
                     });
-                    console.log(`${log_1.colorify.bold("Uploaded:")} https://cdn${suffix || ""}.ethers.io/lib/${key}`);
+                    console.log(`${log_1.colorify.bold("Uploaded:")} https://cdn${suffix || ""}.vapors.io/lib/${key}`);
                 }
             }
             // Flush the edge caches

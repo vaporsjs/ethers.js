@@ -1,6 +1,6 @@
 "use strict";
 
-import { getAddress } from "@ethersproject/address";
+import { getAddress } from "@vaporsproject/address";
 
 
 export function isCrowdsaleWallet(json: string): boolean {
@@ -9,7 +9,7 @@ export function isCrowdsaleWallet(json: string): boolean {
         data = JSON.parse(json);
     } catch (error) { return false; }
 
-    return (data.encseed && data.ethaddr);
+    return (data.encseed && data.vapaddr);
 }
 
 export function isKeystoreWallet(json: string): boolean {
@@ -33,7 +33,7 @@ export function isKeystoreWallet(json: string): boolean {
 export function getJsonWalletAddress(json: string): string {
     if (isCrowdsaleWallet(json)) {
         try {
-            return getAddress(JSON.parse(json).ethaddr);
+            return getAddress(JSON.parse(json).vapaddr);
         } catch (error) { return null; }
     }
 

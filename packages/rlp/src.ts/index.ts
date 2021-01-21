@@ -1,10 +1,10 @@
 "use strict";
 
-//See: https://github.com/ethereum/wiki/wiki/RLP
+//See: https://github.com/vaporyco/wiki/wiki/RLP
 
-import { arrayify, BytesLike, hexlify, isBytesLike } from "@ethersproject/bytes";
+import { arrayify, BytesLike, hexlify, isBytesLike } from "@vaporsproject/bytes";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 

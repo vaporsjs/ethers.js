@@ -1,9 +1,9 @@
 "use strict";
 
-import { BigNumber } from "@ethersproject/bignumber";
-import { defineReadOnly } from "@ethersproject/properties";
+import { BigNumber } from "@vaporsproject/bignumber";
+import { defineReadOnly } from "@vaporsproject/properties";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 

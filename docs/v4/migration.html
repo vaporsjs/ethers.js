@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Migration Guides &mdash; ethers.js 4.0.0 documentation</title>
+  <title>Migration Guides &mdash; vapors.js 4.0.0 documentation</title>
   
 
   
@@ -26,8 +26,8 @@
 
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Notes" href="notes.html" />
@@ -50,7 +50,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> ethers.js
+            <a href="index.html" class="icon icon-home"> vapors.js
           
 
           
@@ -91,8 +91,8 @@
 <li class="toctree-l1"><a class="reference internal" href="api-advanced.html">Low-Level API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cookbook.html">Cookbook</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Migration Guides</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#migrating-from-web3-to-ethers-v4">Migrating from Web3 to ethers v4</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#migrating-from-ethers-v3-to-ethers-v4">Migrating from ethers v3 to ethers v4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#migrating-from-web3-to-vapors-v4">Migrating from Web3 to vapors v4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#migrating-from-vapors-v3-to-vapors-v4">Migrating from vapors v3 to vapors v4</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#constants">Constants</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#deploying-contracts">Deploying Contracts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#encrypted-wallets">Encrypted Wallets</a></li>
@@ -127,7 +127,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ethers.js</a>
+          <a href="index.html">vapors.js</a>
         
       </nav>
 
@@ -179,28 +179,28 @@
             
   <div class="section" id="migration-guides">
 <span id="migration"></span><h1>Migration Guides<a class="headerlink" href="#migration-guides" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="migrating-from-web3-to-ethers-v4">
-<h2>Migrating from Web3 to ethers v4<a class="headerlink" href="#migrating-from-web3-to-ethers-v4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="migrating-from-web3-to-vapors-v4">
+<h2>Migrating from Web3 to vapors v4<a class="headerlink" href="#migrating-from-web3-to-vapors-v4" title="Permalink to this headline">¶</a></h2>
 <p>Todo: This is coming soon.</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="migrating-from-ethers-v3-to-ethers-v4">
-<h2>Migrating from ethers v3 to ethers v4<a class="headerlink" href="#migrating-from-ethers-v3-to-ethers-v4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="migrating-from-vapors-v3-to-vapors-v4">
+<h2>Migrating from vapors v3 to vapors v4<a class="headerlink" href="#migrating-from-vapors-v3-to-vapors-v4" title="Permalink to this headline">¶</a></h2>
 <p>A lot of the functionality has remained the same, but there has been some
 slight refactoring and improved paradigms.</p>
 <hr class="docutils" />
 <div class="section" id="constants">
 <h3>Constants<a class="headerlink" href="#constants" title="Permalink to this headline">¶</a></h3>
-<p>All constants have moved from the utils to the root ethers object.</p>
+<p>All constants have moved from the utils to the root vapors object.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text"><em>Constants — ethers v3</em></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">one</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">constants</span><span class="p">.</span><span class="nx">One</span><span class="p">;</span>
+<div class="code-block-caption"><span class="caption-text"><em>Constants — vapors v3</em></span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">one</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">constants</span><span class="p">.</span><span class="nx">One</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text"><em>Constants — ethers v4</em></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">one</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">constants</span><span class="p">.</span><span class="nx">One</span><span class="p">;</span>
+<div class="code-block-caption"><span class="caption-text"><em>Constants — vapors v4</em></span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">one</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">constants</span><span class="p">.</span><span class="nx">One</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -215,15 +215,15 @@ such as the details of how <em>init transaction</em> behave.</p>
 process, so there are far less calls to utility functions after a deployment
 required to populate databases and track status.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text"><em>ethers v3</em></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>vapors v3</em></span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">tx</span> <span class="o">=</span> <span class="nx">Contract</span><span class="p">.</span><span class="nx">getDeployTransaction</span><span class="p">(</span><span class="nx">bytecode</span><span class="p">,</span> <span class="nx">abi</span><span class="p">,</span> <span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">);</span>
 
 <span class="c1">// overrides</span>
 <span class="nx">tx</span><span class="p">.</span><span class="nx">gasLimit</span> <span class="o">=</span> <span class="mi">1500000</span><span class="p">;</span>
 
 <span class="nx">wallet</span><span class="p">.</span><span class="nx">sendTransaction</span><span class="p">(</span><span class="nx">tx</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">tx</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">contractAddress</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getContractAddress</span><span class="p">(</span><span class="nx">tx</span><span class="p">);</span>
-    <span class="kd">let</span> <span class="nx">contract</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">contractAddress</span><span class="p">,</span> <span class="nx">abi</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">contractAddress</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getContractAddress</span><span class="p">(</span><span class="nx">tx</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">contract</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Contract</span><span class="p">(</span><span class="nx">contractAddress</span><span class="p">,</span> <span class="nx">abi</span><span class="p">,</span> <span class="nx">wallet</span><span class="p">);</span>
     <span class="nx">provider</span><span class="p">.</span><span class="nx">waitForTransaction</span><span class="p">(</span><span class="nx">tx</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">tx</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
         <span class="nx">provider</span><span class="p">.</span><span class="nx">getTransactionReceipt</span><span class="p">(</span><span class="nx">tx</span><span class="p">.</span><span class="nx">hash</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">receipt</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="nx">receipt</span><span class="p">.</span><span class="nx">status</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
@@ -237,9 +237,9 @@ required to populate databases and track status.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text"><em>Deploy a Contract — ethers v4</em></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Deploy a Contract — vapors v4</em></span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Construct a Contract Factory</span>
-<span class="kd">let</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">ContractFactory</span><span class="p">(</span><span class="nx">abi</span><span class="p">,</span> <span class="nx">bytecode</span><span class="p">,</span> <span class="nx">signer</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">ContractFactory</span><span class="p">(</span><span class="nx">abi</span><span class="p">,</span> <span class="nx">bytecode</span><span class="p">,</span> <span class="nx">signer</span><span class="p">);</span>
 
 <span class="c1">// Deploy automatically detects gasLimit and all other parameters</span>
 <span class="c1">// Overrides can optionally be passed as an extra parameter</span>
@@ -278,9 +278,9 @@ required to populate databases and track status.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text"><em>Deploy a Contract with async/await — ethers v4</em></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Deploy a Contract with async/await — vapors v4</em></span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">async</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">let</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">ContractFactory</span><span class="p">(</span><span class="nx">abi</span><span class="p">,</span> <span class="nx">bytecode</span><span class="p">,</span> <span class="nx">signer</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">ContractFactory</span><span class="p">(</span><span class="nx">abi</span><span class="p">,</span> <span class="nx">bytecode</span><span class="p">,</span> <span class="nx">signer</span><span class="p">);</span>
 
     <span class="kd">let</span> <span class="nx">contract</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">factory</span><span class="p">.</span><span class="nx">deploy</span><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">);</span>
 
@@ -298,12 +298,12 @@ required to populate databases and track status.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text"><em>Get Deployment Transaction — ethers v4</em></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Get Deployment Transaction — vapors v4</em></span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// If you still need the deployment transaction, and don&#39;t wish to</span>
 <span class="c1">// actually deploy, you can much more easily just use the Interface</span>
 <span class="c1">// object without the need for a provider or signer.</span>
 
-<span class="kd">let</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">ContractFactory</span><span class="p">(</span><span class="nx">abi</span><span class="p">,</span> <span class="nx">bytecode</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">factory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">ContractFactory</span><span class="p">(</span><span class="nx">abi</span><span class="p">,</span> <span class="nx">bytecode</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">tx</span> <span class="o">=</span> <span class="nx">factory</span><span class="p">.</span><span class="nx">getDeployTransaction</span><span class="p">(</span><span class="nx">arg1</span><span class="p">,</span> <span class="nx">arg2</span><span class="p">);</span>
 </pre></div>
@@ -314,27 +314,27 @@ required to populate databases and track status.</p>
 <div class="section" id="encrypted-wallets">
 <h3>Encrypted Wallets<a class="headerlink" href="#encrypted-wallets" title="Permalink to this headline">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text"><em>Checking JSON Wallets — ethers v3</em></span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">isJsonWallet</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">isEncryptedWallet</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
+<div class="code-block-caption"><span class="caption-text"><em>Checking JSON Wallets — vapors v3</em></span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">isJsonWallet</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">isEncryptedWallet</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-text"><em>Checking JSON Wallets — ethers v4</em></span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">address</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getJsonWalletAddress</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
+<div class="code-block-caption"><span class="caption-text"><em>Checking JSON Wallets — vapors v4</em></span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">address</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getJsonWalletAddress</span><span class="p">(</span><span class="nx">json</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">isJsonWallet</span> <span class="o">=</span> <span class="p">(</span><span class="nx">address</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-text"><em>Decrypting JSON Wallets — ethers v3</em></span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">fromEncryptedWallet</span><span class="p">(</span><span class="nx">json</span><span class="p">,</span> <span class="nx">password</span><span class="p">);</span>
+<div class="code-block-caption"><span class="caption-text"><em>Decrypting JSON Wallets — vapors v3</em></span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">fromEncryptedWallet</span><span class="p">(</span><span class="nx">json</span><span class="p">,</span> <span class="nx">password</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-text"><em>Decrypting JSON Wallets — ethers v4</em></span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">fromEncryptedJson</span><span class="p">(</span><span class="nx">json</span><span class="p">,</span> <span class="nx">password</span><span class="p">);</span>
+<div class="code-block-caption"><span class="caption-text"><em>Decrypting JSON Wallets — vapors v4</em></span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">fromEncryptedJson</span><span class="p">(</span><span class="nx">json</span><span class="p">,</span> <span class="nx">password</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -348,7 +348,7 @@ web browser.</p>
 since rather than modifying the <cite>this</cite> inside the callbacks, an additional
 rich object is passed along.</p>
 <div class="literal-block-wrapper docutils container" id="id11">
-<div class="code-block-caption"><span class="caption-text"><em>Events — ethers v3</em></span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Events — vapors v3</em></span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Solidity: event SomeEvent(address foo, uint256 bar)</span>
 <span class="nx">contract</span><span class="p">.</span><span class="nx">onsomeevent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">foo</span><span class="p">,</span> <span class="nx">bar</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">,</span> <span class="nx">bar</span><span class="p">);</span>
@@ -360,7 +360,7 @@ rich object is passed along.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id12">
-<div class="code-block-caption"><span class="caption-text"><em>Listening to an Event — ethers v4</em></span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Listening to an Event — vapors v4</em></span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Solidity: event SomeEvent(address foo, uint256 bar)</span>
 <span class="nx">contract</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;SomeEvent&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">foo</span><span class="p">,</span> <span class="nx">bar</span><span class="p">,</span> <span class="nx">eventInfo</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">foo</span><span class="p">,</span> <span class="nx">bar</span><span class="p">);</span>
@@ -379,7 +379,7 @@ rich object is passed along.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id13">
-<div class="code-block-caption"><span class="caption-text"><em>Indexed Events — ethers v3</em></span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Indexed Events — vapors v3</em></span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Detecting a parameters is an indexed hash, and not a value</span>
 <span class="nx">contract</span><span class="p">.</span><span class="nx">someEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">foo</span><span class="p">.</span><span class="nx">indexed</span><span class="p">)</span> <span class="p">{</span>
@@ -390,8 +390,8 @@ rich object is passed along.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id14">
-<div class="code-block-caption"><span class="caption-text"><em>Indexed Events — ethers v4</em></span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">Indexed</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">types</span><span class="p">.</span><span class="nx">Indexed</span><span class="p">;</span>
+<div class="code-block-caption"><span class="caption-text"><em>Indexed Events — vapors v4</em></span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">Indexed</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">types</span><span class="p">.</span><span class="nx">Indexed</span><span class="p">;</span>
 
 <span class="c1">// Detecting a parameters is an indexed hash, and not a value</span>
 <span class="nx">contract</span><span class="p">.</span><span class="nx">someEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
@@ -403,7 +403,7 @@ rich object is passed along.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id15">
-<div class="code-block-caption"><span class="caption-text"><em>Filtering Events — ethers v4</em></span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Filtering Events — vapors v4</em></span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Solidity: event SomeEvent(address indexed foo, uint256 bar)</span>
 <span class="kd">let</span> <span class="nx">address</span> <span class="o">=</span> <span class="s1">&#39;0x8B40a2E27C5E87aa66DfA7F80BF675176F49DCA7&#39;</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">filter</span> <span class="o">=</span> <span class="nx">contract</span><span class="p">.</span><span class="nx">filters</span><span class="p">.</span><span class="nx">SomeEvent</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
@@ -426,7 +426,7 @@ rich object is passed along.</p>
 </div>
 <p>If there are multiple events with the same name:</p>
 <div class="literal-block-wrapper docutils container" id="id16">
-<div class="code-block-caption"><span class="caption-text"><em>Event Name Collision — ethers v4</em></span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Event Name Collision — vapors v4</em></span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Solidity</span>
 <span class="c1">// - event SomeEvent(address foo, uint256 bar)</span>
 <span class="c1">// - event SomeEvent(address foo, address bar)</span>
@@ -449,16 +449,16 @@ rich object is passed along.</p>
 on the Provider object in v3. In v4, it has moved to utils, since there
 are other common cases where it may be useful.</p>
 <div class="literal-block-wrapper docutils container" id="id17">
-<div class="code-block-caption"><span class="caption-text"><em>Fetching JSON — ethers v3</em></span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">Provider</span><span class="p">.</span><span class="nx">fetchJson</span><span class="p">(</span><span class="nx">url</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">object</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<div class="code-block-caption"><span class="caption-text"><em>Fetching JSON — vapors v3</em></span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">vapors</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">Provider</span><span class="p">.</span><span class="nx">fetchJson</span><span class="p">(</span><span class="nx">url</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">object</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="c1">// ...</span>
 <span class="p">});</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id18">
-<div class="code-block-caption"><span class="caption-text"><em>Fetching JSON — ethers v4</em></span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">fetchJson</span><span class="p">(</span><span class="nx">url</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">object</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<div class="code-block-caption"><span class="caption-text"><em>Fetching JSON — vapors v4</em></span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">fetchJson</span><span class="p">(</span><span class="nx">url</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">object</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="c1">// ...</span>
 <span class="p">});</span>
 </pre></div>
@@ -474,19 +474,19 @@ to working with an ABI. Most of the changes are to simplify the interaction,
 so while there will probably be changes required, if you use this class, the
 complexity and size of your code should be reduced.</p>
 <div class="literal-block-wrapper docutils container" id="id19">
-<div class="code-block-caption"><span class="caption-text"><em>Interface — ethers v3</em></span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">iface</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Interface</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span> <span class="nx">abi</span><span class="p">,</span> <span class="nx">providerOrSigner</span><span class="p">);</span>
+<div class="code-block-caption"><span class="caption-text"><em>Interface — vapors v3</em></span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">iface</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Interface</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span> <span class="nx">abi</span><span class="p">,</span> <span class="nx">providerOrSigner</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id20">
-<div class="code-block-caption"><span class="caption-text"><em>Interface — ethers v4</em></span><a class="headerlink" href="#id20" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">iface</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">Interface</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span> <span class="nx">abi</span><span class="p">,</span> <span class="nx">providerOrSigner</span><span class="p">);</span>
+<div class="code-block-caption"><span class="caption-text"><em>Interface — vapors v4</em></span><a class="headerlink" href="#id20" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">iface</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">Interface</span><span class="p">(</span><span class="nx">address</span><span class="p">,</span> <span class="nx">abi</span><span class="p">,</span> <span class="nx">providerOrSigner</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id21">
-<div class="code-block-caption"><span class="caption-text"><em>Function Description — ethers v3</em></span><a class="headerlink" href="#id21" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Function Description — vapors v3</em></span><a class="headerlink" href="#id21" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">address</span> <span class="o">=</span> <span class="s2">&quot;0x8B40a2E27C5E87aa66DfA7F80BF675176F49DCA7&quot;</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
 
@@ -506,7 +506,7 @@ complexity and size of your code should be reduced.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id22">
-<div class="code-block-caption"><span class="caption-text"><em>Function Description — ethers v4</em></span><a class="headerlink" href="#id22" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Function Description — vapors v4</em></span><a class="headerlink" href="#id22" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">address</span> <span class="o">=</span> <span class="s2">&quot;0x8B40a2E27C5E87aa66DfA7F80BF675176F49DCA7&quot;</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
 
@@ -530,11 +530,11 @@ complexity and size of your code should be reduced.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id23">
-<div class="code-block-caption"><span class="caption-text"><em>Event Description — ethers v3</em></span><a class="headerlink" href="#id23" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Event Description — vapors v3</em></span><a class="headerlink" href="#id23" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Solidity: event SomeEvent(address foo, uint256 bar)</span>
 <span class="kd">let</span> <span class="nx">eventInfo</span> <span class="o">=</span> <span class="nx">iface</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">SomeEvent</span><span class="p">;</span>
 <span class="c1">// eventInfo</span>
-<span class="c1">// - topics: [ ethers.utils.id(&quot;SomeEvent(address,uint256)&quot;) ]</span>
+<span class="c1">// - topics: [ vapors.utils.id(&quot;SomeEvent(address,uint256)&quot;) ]</span>
 <span class="c1">// - anonymous: false</span>
 <span class="c1">// - name: &quot;SomeEvent&quot;</span>
 <span class="c1">// - signature: &quot;SomeEvent(address,uint256)&quot;</span>
@@ -545,7 +545,7 @@ complexity and size of your code should be reduced.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id24">
-<div class="code-block-caption"><span class="caption-text"><em>Event Description — ethers v4</em></span><a class="headerlink" href="#id24" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Event Description — vapors v4</em></span><a class="headerlink" href="#id24" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Solidity: event SomeEvent(address foo, uint256 bar)</span>
 <span class="kd">let</span> <span class="nx">eventInfo</span> <span class="o">=</span> <span class="nx">iface</span><span class="p">.</span><span class="nx">events</span><span class="p">.</span><span class="nx">SomeEvent</span><span class="p">;</span>
 <span class="c1">// eventInfo</span>
@@ -553,7 +553,7 @@ complexity and size of your code should be reduced.</p>
 <span class="c1">// - signature: &quot;SomeEvent(address,bar)&quot;</span>
 <span class="c1">// - inputs: [ { name: &quot;foo&quot;, type: &quot;address&quot; }, { name: &quot;bar&quot;, type: &quot;uint256&quot; } ]</span>
 <span class="c1">// - anonymous: false</span>
-<span class="c1">// - topic: ethers.utils.id(&quot;SomeEvent(address,uint256)&quot;)</span>
+<span class="c1">// - topic: vapors.utils.id(&quot;SomeEvent(address,uint256)&quot;)</span>
 <span class="c1">// - encodeTopics: (Array&lt;any&gt;) =&gt; Array&lt;string&gt;</span>
 <span class="c1">// - decode: (data, topics) =&gt; Result</span>
 
@@ -572,24 +572,24 @@ complexity and size of your code should be reduced.</p>
 <div class="section" id="networks">
 <h3>Networks<a class="headerlink" href="#networks" title="Permalink to this headline">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id25">
-<div class="code-block-caption"><span class="caption-text"><em>Getting Network Info - ethers v3</em></span><a class="headerlink" href="#id25" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">network</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">(</span><span class="s1">&#39;ropsten&#39;</span><span class="p">)</span>
+<div class="code-block-caption"><span class="caption-text"><em>Getting Network Info - vapors v3</em></span><a class="headerlink" href="#id25" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">network</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">(</span><span class="s1">&#39;ropsten&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id26">
-<div class="code-block-caption"><span class="caption-text"><em>Getting Network Info - ethers v4</em></span><a class="headerlink" href="#id26" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">network</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">(</span><span class="s1">&#39;ropsten&#39;</span><span class="p">);</span>
+<div class="code-block-caption"><span class="caption-text"><em>Getting Network Info - vapors v4</em></span><a class="headerlink" href="#id26" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">network</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">(</span><span class="s1">&#39;ropsten&#39;</span><span class="p">);</span>
 
 <span class="c1">// Networks may now also be found by their network ID</span>
-<span class="kd">let</span> <span class="nx">network</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">network</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 
 <span class="c1">// And networks can be validated as an object</span>
-<span class="kd">let</span> <span class="nx">network</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;custom&quot;</span><span class="p">,</span> <span class="nx">chainId</span><span class="o">:</span> <span class="mi">1337</span> <span class="p">});</span>
+<span class="kd">let</span> <span class="nx">network</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;custom&quot;</span><span class="p">,</span> <span class="nx">chainId</span><span class="o">:</span> <span class="mi">1337</span> <span class="p">});</span>
 
 <span class="c1">// Validation fails; this will throw an error, since Rinkeby is not</span>
 <span class="c1">// chain ID 1 (homestead is)</span>
-<span class="kd">let</span> <span class="nx">network</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;rinkeby&quot;</span><span class="p">,</span> <span class="nx">chainId</span><span class="o">:</span> <span class="mi">1</span> <span class="p">});</span>
+<span class="kd">let</span> <span class="nx">network</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">({</span> <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;rinkeby&quot;</span><span class="p">,</span> <span class="nx">chainId</span><span class="o">:</span> <span class="mi">1</span> <span class="p">});</span>
 </pre></div>
 </div>
 </div>
@@ -600,14 +600,14 @@ complexity and size of your code should be reduced.</p>
 <p>The transaction parsing was moved out of the Wallet and into its own class
 in the utilities, along with a general serialization API.</p>
 <div class="literal-block-wrapper docutils container" id="id27">
-<div class="code-block-caption"><span class="caption-text"><em>ethers v3</em></span><a class="headerlink" href="#id27" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">tx</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">parseTransaction</span><span class="p">(</span><span class="nx">rawTransaction</span><span class="p">);</span>
+<div class="code-block-caption"><span class="caption-text"><em>vapors v3</em></span><a class="headerlink" href="#id27" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">tx</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">parseTransaction</span><span class="p">(</span><span class="nx">rawTransaction</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id28">
-<div class="code-block-caption"><span class="caption-text"><em>ethers v4</em></span><a class="headerlink" href="#id28" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">tx</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseTransaction</span><span class="p">(</span><span class="nx">rawTransaction</span><span class="p">);</span>
+<div class="code-block-caption"><span class="caption-text"><em>vapors v4</em></span><a class="headerlink" href="#id28" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">tx</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseTransaction</span><span class="p">(</span><span class="nx">rawTransaction</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -616,7 +616,7 @@ in the utilities, along with a general serialization API.</p>
 <div class="section" id="custom-signer">
 <h3>Custom Signer<a class="headerlink" href="#custom-signer" title="Permalink to this headline">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id29">
-<div class="code-block-caption"><span class="caption-text"><em>Custome Signer — ethers v3</em></span><a class="headerlink" href="#id29" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Custome Signer — vapors v3</em></span><a class="headerlink" href="#id29" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">signer</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1">// Required</span>
     <span class="nx">getAddress</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
@@ -631,14 +631,14 @@ in the utilities, along with a general serialization API.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id30">
-<div class="code-block-caption"><span class="caption-text"><em>Custom Signer — JavaScript — ethers v4</em></span><a class="headerlink" href="#id30" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Custom Signer — JavaScript — vapors v4</em></span><a class="headerlink" href="#id30" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">CustomSigner</span> <span class="p">{</span>
-    <span class="nx">ethers</span><span class="p">.</span><span class="nx">Signer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="nx">vapors</span><span class="p">.</span><span class="nx">Signer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 
     <span class="c1">// Optional</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">provider</span> <span class="o">=</span> <span class="nx">provider</span><span class="p">;</span>
 <span class="p">}</span>
-<span class="nx">inherits</span><span class="p">(</span><span class="nx">CustomSigner</span><span class="p">,</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Signer</span><span class="p">);</span>
+<span class="nx">inherits</span><span class="p">(</span><span class="nx">CustomSigner</span><span class="p">,</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Signer</span><span class="p">);</span>
 
 <span class="c1">// Required</span>
 <span class="nx">CustomSigner</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getAddress</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span>
@@ -651,17 +651,17 @@ in the utilities, along with a general serialization API.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id31">
-<div class="code-block-caption"><span class="caption-text"><em>Custom Signer — TypeScript — ethers v4</em></span><a class="headerlink" href="#id31" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Custom Signer — TypeScript — vapors v4</em></span><a class="headerlink" href="#id31" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span>
     <span class="nx">Signer</span><span class="p">,</span>
     <span class="nx">utils</span>
-<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;ethers&#39;</span><span class="p">;</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vapors&#39;</span><span class="p">;</span>
 
 <span class="kr">import</span> <span class="p">{</span>
     <span class="nx">Provider</span><span class="p">,</span>
     <span class="nx">TransactionRequest</span><span class="p">,</span>
     <span class="nx">TransactionReqponse</span>
-<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;ethers/providers&#39;</span><span class="p">;</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;vapors/providers&#39;</span><span class="p">;</span>
 
 <span class="kr">class</span> <span class="nx">CustomSigner</span> <span class="kr">extends</span> <span class="nx">Signer</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">provider</span> <span class="o">=</span> <span class="nx">provider</span><span class="p">;</span>
@@ -684,7 +684,7 @@ in the utilities, along with a general serialization API.</p>
         <span class="p">});</span>
     <span class="p">};</span>
 
-    <span class="nx">signMessage</span><span class="p">(</span><span class="nx">message</span><span class="o">:</span> <span class="nx">string</span> <span class="o">|</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">Arrayish</span><span class="p">)</span><span class="o">:</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">string</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="nx">signMessage</span><span class="p">(</span><span class="nx">message</span><span class="o">:</span> <span class="nx">string</span> <span class="o">|</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">Arrayish</span><span class="p">)</span><span class="o">:</span> <span class="nb">Promise</span><span class="o">&lt;</span><span class="nx">string</span><span class="o">&gt;</span> <span class="p">{</span>
         <span class="kd">let</span> <span class="nx">dataToSign</span><span class="o">:</span> <span class="nx">Uint8Array</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">hashMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">);;</span>
         <span class="c1">// Sign ths dataToSign and resolve teh flat-format signature</span>
     <span class="p">};</span>
@@ -702,14 +702,14 @@ in the utilities, along with a general serialization API.</p>
 <div class="section" id="default-provider">
 <h3>Default Provider<a class="headerlink" href="#default-provider" title="Permalink to this headline">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id32">
-<div class="code-block-caption"><span class="caption-text"><em>Default Provider — ethers v3</em></span><a class="headerlink" href="#id32" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
+<div class="code-block-caption"><span class="caption-text"><em>Default Provider — vapors v3</em></span><a class="headerlink" href="#id32" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id33">
-<div class="code-block-caption"><span class="caption-text"><em>Default Provider — ethers v4</em></span><a class="headerlink" href="#id33" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
+<div class="code-block-caption"><span class="caption-text"><em>Default Provider — vapors v4</em></span><a class="headerlink" href="#id33" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
 </pre></div>
 </div>
 </div>
@@ -718,13 +718,13 @@ in the utilities, along with a general serialization API.</p>
 <div class="section" id="big-number">
 <h3>Big Number<a class="headerlink" href="#big-number" title="Permalink to this headline">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id34">
-<div class="code-block-caption"><span class="caption-text"><em>isBigNumber — ethers v3</em></span><a class="headerlink" href="#id34" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">checkBigNumber</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">isBigNumber</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<div class="code-block-caption"><span class="caption-text"><em>isBigNumber — vapors v3</em></span><a class="headerlink" href="#id34" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">checkBigNumber</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">isBigNumber</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id35">
-<div class="code-block-caption"><span class="caption-text"><em>isBigNumber — ethers v4</em></span><a class="headerlink" href="#id35" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>isBigNumber — vapors v4</em></span><a class="headerlink" href="#id35" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">checkBigNumber</span> <span class="o">=</span> <span class="nx">BigNumber</span><span class="p">.</span><span class="nx">isBigNumber</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -734,10 +734,10 @@ in the utilities, along with a general serialization API.</p>
 <div class="section" id="jsonrpcprovider">
 <h3>JsonRpcProvider<a class="headerlink" href="#jsonrpcprovider" title="Permalink to this headline">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id36">
-<div class="code-block-caption"><span class="caption-text"><em>Connecting — ethers v3</em></span><a class="headerlink" href="#id36" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Connecting — vapors v3</em></span><a class="headerlink" href="#id36" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:8545&quot;</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">network</span> <span class="o">=</span> <span class="s2">&quot;rinkeby&quot;</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">JsonRpcProvider</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">network</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">JsonRpcProvider</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">network</span><span class="p">);</span>
 
 <span class="c1">// Even if the network was wrong, this would mostly seem to work and</span>
 <span class="c1">// fail once the chain ID was attempted</span>
@@ -748,12 +748,12 @@ in the utilities, along with a general serialization API.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id37">
-<div class="code-block-caption"><span class="caption-text"><em>Connecting — ethers v4</em></span><a class="headerlink" href="#id37" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Connecting — vapors v4</em></span><a class="headerlink" href="#id37" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// In v4, the network is automatically determined; you may override</span>
 <span class="c1">// the network, but it must match, or it will fail early</span>
 
 <span class="kd">let</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:8545&quot;</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">JsonRpcProvider</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">JsonRpcProvider</span><span class="p">(</span><span class="nx">url</span><span class="p">);</span>
 
 <span class="c1">// The network is now an asynchronous property:</span>
 <span class="nx">provider</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">network</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
@@ -775,7 +775,7 @@ in the utilities, along with a general serialization API.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id38">
-<div class="code-block-caption"><span class="caption-text"><em>Sending Transactions — ethers v3</em></span><a class="headerlink" href="#id38" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Sending Transactions — vapors v3</em></span><a class="headerlink" href="#id38" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">provider</span><span class="p">.</span><span class="nx">sendTransaction</span><span class="p">(</span><span class="nx">rawTransaction</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">hash</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="c1">// Just a transaction hash</span>
 <span class="p">});</span>
@@ -783,7 +783,7 @@ in the utilities, along with a general serialization API.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id39">
-<div class="code-block-caption"><span class="caption-text"><em>Sending Transactions — ethers v4</em></span><a class="headerlink" href="#id39" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>Sending Transactions — vapors v4</em></span><a class="headerlink" href="#id39" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">provider</span><span class="p">.</span><span class="nx">sendTransaction</span><span class="p">(</span><span class="nx">rawTransaction</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">transaction</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="c1">// A full Transaction Response is returned</span>
     <span class="c1">// - from</span>
@@ -809,14 +809,14 @@ in the utilities, along with a general serialization API.</p>
 utilities, along with a few other functions of the elliptic curve cryptographic
 exposed.</p>
 <div class="literal-block-wrapper docutils container" id="id40">
-<div class="code-block-caption"><span class="caption-text"><em>ethers v3</em></span><a class="headerlink" href="#id40" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">signingAddress</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">verifyMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">signature</span><span class="p">);</span>
+<div class="code-block-caption"><span class="caption-text"><em>vapors v3</em></span><a class="headerlink" href="#id40" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">signingAddress</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">.</span><span class="nx">verifyMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">signature</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id41">
-<div class="code-block-caption"><span class="caption-text"><em>ethers v4</em></span><a class="headerlink" href="#id41" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">signingAddress</span> <span class="o">=</span> <span class="nx">ethers</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">verifyMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">signature</span><span class="p">);</span>
+<div class="code-block-caption"><span class="caption-text"><em>vapors v4</em></span><a class="headerlink" href="#id41" title="Permalink to this code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">signingAddress</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">verifyMessage</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">signature</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>

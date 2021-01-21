@@ -1,14 +1,14 @@
 "use strict";
 
-import { Block, TransactionReceipt, TransactionResponse } from "@ethersproject/abstract-provider";
-import { getAddress, getContractAddress } from "@ethersproject/address";
-import { BigNumber } from "@ethersproject/bignumber";
-import { hexDataLength, hexDataSlice, hexValue, hexZeroPad, isHexString } from "@ethersproject/bytes";
-import { AddressZero } from "@ethersproject/constants";
-import { shallowCopy } from "@ethersproject/properties";
-import { parse as parseTransaction } from "@ethersproject/transactions";
+import { Block, TransactionReceipt, TransactionResponse } from "@vaporsproject/abstract-provider";
+import { getAddress, getContractAddress } from "@vaporsproject/address";
+import { BigNumber } from "@vaporsproject/bignumber";
+import { hexDataLength, hexDataSlice, hexValue, hexZeroPad, isHexString } from "@vaporsproject/bytes";
+import { AddressZero } from "@vaporsproject/constants";
+import { shallowCopy } from "@vaporsproject/properties";
+import { parse as parseTransaction } from "@vaporsproject/transactions";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 
@@ -484,7 +484,7 @@ export function showThrottleMessage() {
     console.log("signing up for your own API keys to improve performance, increase your");
     console.log("request rate/limit and enable other perks, such as metrics and advanced APIs.");
     console.log("");
-    console.log("For more details: https:/\/docs.ethers.io/api-keys/");
+    console.log("For more details: https:/\/docs.vapors.io/api-keys/");
     console.log("==========================");
 }
 

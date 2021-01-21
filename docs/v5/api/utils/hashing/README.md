@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -10,27 +10,27 @@ Hashing Algorithms
 Cryptographic Hash Functions
 ----------------------------
 
-#### *ethers* . *utils* . **id**( text ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
+#### *vapors* . *utils* . **id**( text ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
 
-The Ethereum Identity function computes the [KECCAK256](https://en.wikipedia.org/wiki/SHA-3) hash of the *text* bytes.
+The Vapory Identity function computes the [KECCAK256](https://en.wikipedia.org/wiki/SHA-3) hash of the *text* bytes.
 
 
-#### *ethers* . *utils* . **keccak256**( aBytesLike ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
+#### *vapors* . *utils* . **keccak256**( aBytesLike ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
 
 Returns the [KECCAK256](https://en.wikipedia.org/wiki/SHA-3) digest *aBytesLike*.
 
 
-#### *ethers* . *utils* . **ripemd160**( aBytesLike ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 20 > >*
+#### *vapors* . *utils* . **ripemd160**( aBytesLike ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 20 > >*
 
 Returns the [RIPEMD-160](https://en.m.wikipedia.org/wiki/RIPEMD) digest of *aBytesLike*.
 
 
-#### *ethers* . *utils* . **sha256**( aBytesLike ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
+#### *vapors* . *utils* . **sha256**( aBytesLike ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
 
 Returns the [SHA2-256](https://en.wikipedia.org/wiki/SHA-2) digest of *aBytesLike*.
 
 
-#### *ethers* . *utils* . **sha512**( aBytesLike ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 64 > >*
+#### *vapors* . *utils* . **sha512**( aBytesLike ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 64 > >*
 
 Returns the [SHA2-512](https://en.wikipedia.org/wiki/SHA-2) digest of *aBytesLike*.
 
@@ -114,19 +114,19 @@ utils.sha512("0x1234")
 HMAC
 ----
 
-#### *ethers* . *utils* . **computeHmac**( algorithm , key , data ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
+#### *vapors* . *utils* . **computeHmac**( algorithm , key , data ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
 
 Returns the [HMAC](https://en.wikipedia.org/wiki/HMAC) of *data* with *key* using the [Algorithm](/v5/api/utils/hashing/#utils--hmac-supported-algorithm) *algorithm*.
 
 
 ### HMAC Supported Algorithms
 
-#### *ethers* . *utils* . *SupportedAlgorithm* . **sha256** => *string*
+#### *vapors* . *utils* . *SupportedAlgorithm* . **sha256** => *string*
 
 Use the [SHA2-256](https://en.wikipedia.org/wiki/SHA-2) hash algorithm.
 
 
-#### *ethers* . *utils* . *SupportedAlgorithm* . **sha512** => *string*
+#### *vapors* . *utils* . *SupportedAlgorithm* . **sha512** => *string*
 
 Use the [SHA2-512](https://en.wikipedia.org/wiki/SHA-2) hash algorithm.
 
@@ -141,9 +141,9 @@ utils.computeHmac("sha256", key, data)
 Hashing Helpers
 ---------------
 
-#### *ethers* . *utils* . **hashMessage**( message ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
+#### *vapors* . *utils* . **hashMessage**( message ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
 
-Computes the [EIP-191](https://eips.ethereum.org/EIPS/eip-191) personal message digest of *message*. Personal messages are converted to UTF-8 bytes and prefixed with `\x19Ethereum Signed Message:` and the length of *message*.
+Computes the [EIP-191](https://eips.vapory.org/EIPS/eip-191) personal message digest of *message*. Personal messages are converted to UTF-8 bytes and prefixed with `\x19Vapory Signed Message:` and the length of *message*.
 
 
 ```javascript
@@ -176,7 +176,7 @@ utils.hashMessage(utils.arrayify("0x42"))
 // '0xd18c12b87124f9ceb7e1d3a5d06a5ac92ecab15931417e8d1558d9a263f99d63'
 ```
 
-#### *ethers* . *utils* . **namehash**( name ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
+#### *vapors* . *utils* . **namehash**( name ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
 
 Returns the [ENS Namehash](https://docs.ens.domains/contract-api-reference/name-processing#hashing-names) of *name*.
 
@@ -188,7 +188,7 @@ utils.namehash("")
 utils.namehash("eth")
 // '0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae'
 
-utils.namehash("ricmoo.firefly.eth")
+utils.namehash("ricmoo.firefly.vap")
 // '0x0bcad17ecf260d6506c6b97768bdc2acfb6694445d27ffd3f9c1cfbee4a9bd6d'
 
 utils.namehash("ricmoo.xyz")
@@ -199,10 +199,10 @@ utils.namehash("ricmoo.xyz")
 
 #### Experimental Feature (this exported class name will change)
 
-This is still an experimental feature. If using it, please specify the **exact** version of ethers you are using (e.g. spcify `"5.0.18"`, **not** `"^5.0.18"`) as the exported class name will be renamed from `_TypedDataEncoder` to `TypedDataEncoder` once it has been used in the field a bit.
+This is still an experimental feature. If using it, please specify the **exact** version of vapors you are using (e.g. spcify `"5.0.18"`, **not** `"^5.0.18"`) as the exported class name will be renamed from `_TypedDataEncoder` to `TypedDataEncoder` once it has been used in the field a bit.
 
 
-#### *ethers* . *utils* . *_TypedDataEncoder* . **from**( types ) => *[TypedDataEncoder]*
+#### *vapors* . *utils* . *_TypedDataEncoder* . **from**( types ) => *[TypedDataEncoder]*
 
 Creates a new **TypedDataEncoder** for *types*. This object is a fairly low-level object that most developers should not require using instances directly.
 
@@ -211,7 +211,7 @@ Most developers will find the static class methods below the most useful.
 
 #### *TypedDataEncoder* . **encode**( domain , types , values ) => *string*
 
-Encodes the Returns the hashed [EIP-712](https://eips.ethereum.org/EIPS/eip-712) domain.
+Encodes the Returns the hashed [EIP-712](https://eips.vapory.org/EIPS/eip-712) domain.
 
 
 #### *TypedDataEncoder* . **getPayload**( domain , types , value ) => *any*
@@ -223,17 +223,17 @@ All domain values and entries in value are normalized and the types are verified
 
 #### *TypedDataEncoder* . **getPrimaryType**( types ) => *string*
 
-Constructs a directed acyclic graph of the types and returns the root type, which can be used as the **primaryType** for [EIP-712](https://eips.ethereum.org/EIPS/eip-712) payloads.
+Constructs a directed acyclic graph of the types and returns the root type, which can be used as the **primaryType** for [EIP-712](https://eips.vapory.org/EIPS/eip-712) payloads.
 
 
 #### *TypedDataEncoder* . **hash**( domain , types , values ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
 
-Returns the computed [EIP-712](https://eips.ethereum.org/EIPS/eip-712) hash.
+Returns the computed [EIP-712](https://eips.vapory.org/EIPS/eip-712) hash.
 
 
 #### *TypedDataEncoder* . **hashDomain**( domain ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
 
-Returns the hashed [EIP-712](https://eips.ethereum.org/EIPS/eip-712) domain.
+Returns the hashed [EIP-712](https://eips.vapory.org/EIPS/eip-712) domain.
 
 
 #### *TypedDataEncoder* . **resolveNames**( domain , types , value , resolveName ) => *Promise< any >*
@@ -340,17 +340,17 @@ TypedDataEncoder.hashDomain(domain)
 Solidity Hashing Algorithms
 ---------------------------
 
-#### *ethers* . *utils* . **solidityPack**( types , values ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
+#### *vapors* . *utils* . **solidityPack**( types , values ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString) >*
 
 Returns the non-standard encoded *values* packed according to their respective type in *types*.
 
 
-#### *ethers* . *utils* . **solidityKeccak256**( types , values ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
+#### *vapors* . *utils* . **solidityKeccak256**( types , values ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
 
 Returns the [KECCAK256](https://en.wikipedia.org/wiki/SHA-3) of the non-standard encoded *values* packed according to their respective type in *types*.
 
 
-#### *ethers* . *utils* . **soliditySha256**( types , values ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
+#### *vapors* . *utils* . **soliditySha256**( types , values ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
 
 Returns the [SHA2-256](https://en.wikipedia.org/wiki/SHA-2) of the non-standard encoded *values* packed according to their respective type in *types*.
 

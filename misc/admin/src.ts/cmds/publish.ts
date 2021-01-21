@@ -14,7 +14,7 @@ import * as npm from "../npm";
 import { resolve } from "../path";
 import { loadJson, repeat } from "../utils";
 
-const USER_AGENT = "ethers-dist@0.0.1";
+const USER_AGENT = "vapors-dist@0.0.1";
 const TAG = "latest";
 
 const forcePublish = (process.argv.slice(2).indexOf("--publish") >= 0);
@@ -147,7 +147,7 @@ export function invalidate(cloudfront: AWS.CloudFront, distributionId: string): 
         local.updateJson(pathJson, { gitHead: undefined }, true);
     }
 
-    if (publishNames.indexOf("ethers") >= 0 || forcePublish) {
+    if (publishNames.indexOf("vapors") >= 0 || forcePublish) {
         const change = getLatestChange();
 
         const awsAccessId = await config.get("aws-upload-scripts-accesskey");
@@ -159,7 +159,7 @@ export function invalidate(cloudfront: AWS.CloudFront, distributionId: string): 
             const username = await config.get("github-user");
             const password = await config.get("github-release");
 
-            const hash = createHash("sha384").update(fs.readFileSync(resolve("packages/ethers/dist/ethers.umd.min.js"))).digest("base64");
+            const hash = createHash("sha384").update(fs.readFileSync(resolve("packages/vapors/dist/vapors.umd.min.js"))).digest("base64");
 
             const gitCommit = await getGitTag(resolve("CHANGELOG.md"));
 
@@ -170,7 +170,7 @@ export function invalidate(cloudfront: AWS.CloudFront, distributionId: string): 
             content += '<script type="text/javascript"\n';
             content += `        integrity="sha384-${ hash }"\n`;
             content += '        crossorigin="anonymous"\n';
-            content += `        src="https:/\/cdn-cors.ethers.io/lib/ethers-${ change.version.substring(1) }.umd.min.js">\n`;
+            content += `        src="https:/\/cdn-cors.vapors.io/lib/vapors-${ change.version.substring(1) }.umd.min.js">\n`;
             content += '</script>\n';
             content += '```';
 
@@ -180,7 +180,7 @@ export function invalidate(cloudfront: AWS.CloudFront, distributionId: string): 
             console.log(`${ colorify.bold("Published release:") } ${ link }`);
         }
 
-        // Upload libs to the CDN (as ethers-v5.0 and ethers-5.0.x)
+        // Upload libs to the CDN (as vapors-v5.0 and vapors-5.0.x)
         {
             const bucketNameLib = await config.get("aws-upload-scripts-bucket");
             const originRootLib = await config.get("aws-upload-scripts-root");
@@ -194,48 +194,48 @@ export function invalidate(cloudfront: AWS.CloudFront, distributionId: string): 
                 secretAccessKey: awsSecretKey
             });
 
-            // Upload the libs to ethers-v5.0 and ethers-5.0.x
+            // Upload the libs to vapors-v5.0 and vapors-5.0.x
             const fileInfos: Array<{ bucketName: string, originRoot: string, filename: string, key: string, suffix?: string }> = [
-                // The CORS-enabled versions on cdn-cors.ethers.io
+                // The CORS-enabled versions on cdn-cors.vapors.io
                 {
                     bucketName: bucketNameCors,
                     originRoot: originRootCors,
                     suffix: "-cors",
-                    filename: "packages/ethers/dist/ethers.esm.min.js",
-                    key: `ethers-${ change.version.substring(1) }.esm.min.js`
+                    filename: "packages/vapors/dist/vapors.esm.min.js",
+                    key: `vapors-${ change.version.substring(1) }.esm.min.js`
                 },
                 {
                     bucketName: bucketNameCors,
                     originRoot: originRootCors,
                     suffix: "-cors",
-                    filename: "packages/ethers/dist/ethers.umd.min.js",
-                    key: `ethers-${ change.version.substring(1) }.umd.min.js`
+                    filename: "packages/vapors/dist/vapors.umd.min.js",
+                    key: `vapors-${ change.version.substring(1) }.umd.min.js`
                 },
 
-                // The non-CORS-enabled versions on cdn.ethers.io
+                // The non-CORS-enabled versions on cdn.vapors.io
                 {
                     bucketName: bucketNameLib,
                     originRoot: originRootLib,
-                    filename: "packages/ethers/dist/ethers.esm.min.js",
-                    key: `ethers-${ change.version.substring(1) }.esm.min.js`
+                    filename: "packages/vapors/dist/vapors.esm.min.js",
+                    key: `vapors-${ change.version.substring(1) }.esm.min.js`
                 },
                 {
                     bucketName: bucketNameLib,
                     originRoot: originRootLib,
-                    filename: "packages/ethers/dist/ethers.umd.min.js",
-                    key: `ethers-${ change.version.substring(1) }.umd.min.js`
+                    filename: "packages/vapors/dist/vapors.umd.min.js",
+                    key: `vapors-${ change.version.substring(1) }.umd.min.js`
                 },
                 {
                     bucketName: bucketNameLib,
                     originRoot: originRootLib,
-                    filename: "packages/ethers/dist/ethers.esm.min.js",
-                    key: "ethers-5.0.esm.min.js"
+                    filename: "packages/vapors/dist/vapors.esm.min.js",
+                    key: "vapors-5.0.esm.min.js"
                 },
                 {
                     bucketName: bucketNameLib,
                     originRoot: originRootLib,
-                    filename: "packages/ethers/dist/ethers.umd.min.js",
-                    key: "ethers-5.0.umd.min.js"
+                    filename: "packages/vapors/dist/vapors.umd.min.js",
+                    key: "vapors-5.0.umd.min.js"
                 },
             ];
 
@@ -248,7 +248,7 @@ export function invalidate(cloudfront: AWS.CloudFront, distributionId: string): 
                     ContentType: "application/javascript; charset=utf-8",
                     Key: (originRoot + key)
                 });
-                console.log(`${ colorify.bold("Uploaded:") } https://cdn${ suffix || "" }.ethers.io/lib/${ key }`);
+                console.log(`${ colorify.bold("Uploaded:") } https://cdn${ suffix || "" }.vapors.io/lib/${ key }`);
             }
         }
 

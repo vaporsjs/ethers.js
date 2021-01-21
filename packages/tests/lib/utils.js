@@ -1,7 +1,7 @@
 /* istanbul ignore file */
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-var ethers_1 = require("ethers");
+var vapors_1 = require("vapors");
 function randomBytes(seed, lower, upper) {
     if (!upper) {
         upper = lower;
@@ -9,17 +9,17 @@ function randomBytes(seed, lower, upper) {
     if (upper === 0 && upper === lower) {
         return new Uint8Array(0);
     }
-    var result = ethers_1.ethers.utils.arrayify(ethers_1.ethers.utils.keccak256(ethers_1.ethers.utils.toUtf8Bytes(seed)));
+    var result = vapors_1.vapors.utils.arrayify(vapors_1.vapors.utils.keccak256(vapors_1.vapors.utils.toUtf8Bytes(seed)));
     while (result.length < upper) {
-        result = ethers_1.ethers.utils.concat([result, ethers_1.ethers.utils.keccak256(ethers_1.ethers.utils.concat([seed, result]))]);
+        result = vapors_1.vapors.utils.concat([result, vapors_1.vapors.utils.keccak256(vapors_1.vapors.utils.concat([seed, result]))]);
     }
-    var top = ethers_1.ethers.utils.arrayify(ethers_1.ethers.utils.keccak256(result));
+    var top = vapors_1.vapors.utils.arrayify(vapors_1.vapors.utils.keccak256(result));
     var percent = ((top[0] << 16) | (top[1] << 8) | top[2]) / 0x01000000;
     return result.slice(0, lower + Math.floor((upper - lower) * percent));
 }
 exports.randomBytes = randomBytes;
 function randomHexString(seed, lower, upper) {
-    return ethers_1.ethers.utils.hexlify(randomBytes(seed, lower, upper));
+    return vapors_1.vapors.utils.hexlify(randomBytes(seed, lower, upper));
 }
 exports.randomHexString = randomHexString;
 function randomNumber(seed, lower, upper) {

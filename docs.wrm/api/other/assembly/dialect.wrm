@@ -1,7 +1,7 @@
-_section: Ethers ASM Dialect @<asm-dialect>
+_section: Vapors ASM Dialect @<asm-dialect>
 
-This provides a quick, high-level overview of the **Ethers ASM Dialect**
-for EVM, which is defined by the [Ethers ASM Dialect Grammar](link-ethers-asm-grammar)
+This provides a quick, high-level overview of the **Vapors ASM Dialect**
+for EVM, which is defined by the [Vapors ASM Dialect Grammar](link-vapors-asm-grammar)
 
 Once a program is compiled by a higher level language into ASM (assembly),
 or hand-coded directly in ASM, it needs to be assembled into bytecode.
@@ -14,7 +14,7 @@ deployment bootstrap has the runtime embedded in it) and computing the
 necessary offsets for jump operations.
 
 The [Command-Line Assembler](cli-asm) can be used to assemble an
-//Ethers ASM Dialect// file or to disassemble bytecode into its
+//Vapors ASM Dialect// file or to disassemble bytecode into its
 human-readable (ish) opcodes and literals.
 
 
@@ -50,18 +50,18 @@ byte value.
 
 _subsection: Comments @<asm-dialect-comment>
 
-To enter a comment in the **Ethers ASM Dialect**, any text following
+To enter a comment in the **Vapors ASM Dialect**, any text following
 a semi-colon (i.e. ``;``) is ignored by the assembler.
 
 
 _subsection: Scopes @<asm-dialect-scope>
 
-A common case in Ethereum is to have one program embedded in another.
+A common case in Vapory is to have one program embedded in another.
 
 The most common use of this is embedding a Contract **runtime bytecode**
 within a **deployment bytecode**, which can be used as **init code**.
 
-When deploying a program to Ethereum, an **init transaction** is used. An
+When deploying a program to Vapory, an **init transaction** is used. An
 //init transaction// has a null ``to`` address and contains bytecode in
 the ``data``. This ``data`` bytecode is a program, that when executed
 returns some other bytecode as a result, this result is the bytecode
@@ -76,7 +76,7 @@ A scope may access the offset of any child [[asm-dialect-datasegment]] or
 child [[asm-dialect-scope]] (with respect to itself) and may access the length
 of any [[asm-dialect-datasegment]] or [[asm-dialect-scope]] anywhere in the program.
 
-Every program in the **Ethers ASM Dialect** has a top-level scope named ``_``.
+Every program in the **Vapors ASM Dialect** has a top-level scope named ``_``.
 
 
 _subsection: Data Segment @<asm-dialect-datasegment>

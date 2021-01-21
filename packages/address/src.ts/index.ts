@@ -1,11 +1,11 @@
 "use strict";
 
-import { arrayify, BytesLike, concat, hexDataLength, hexDataSlice, isHexString, stripZeros } from "@ethersproject/bytes";
-import { BigNumber, BigNumberish, _base16To36, _base36To16 } from "@ethersproject/bignumber";
-import { keccak256 } from "@ethersproject/keccak256";
-import { encode } from "@ethersproject/rlp";
+import { arrayify, BytesLike, concat, hexDataLength, hexDataSlice, isHexString, stripZeros } from "@vaporsproject/bytes";
+import { BigNumber, BigNumberish, _base16To36, _base36To16 } from "@vaporsproject/bignumber";
+import { keccak256 } from "@vaporsproject/keccak256";
+import { encode } from "@vaporsproject/rlp";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 
@@ -126,7 +126,7 @@ export function getIcapAddress(address: string): string {
     return "XE" + ibanChecksum("XE00" + base36) + base36;
 }
 
-// http://ethereum.stackexchange.com/questions/760/how-is-the-address-of-an-ethereum-contract-computed
+// http://vapory.stackexchange.com/questions/760/how-is-the-address-of-an-vapory-contract-computed
 export function getContractAddress(transaction: { from: string, nonce: BigNumberish }) {
     let from: string = null;
     try {

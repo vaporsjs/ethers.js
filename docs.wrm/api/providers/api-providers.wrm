@@ -1,9 +1,9 @@
 _section: API Providers @<api-providers>
 
 There are many services which offer a web API for accessing
-the Ethereum Blockchain. These Providers allow connecting
+the Vapory Blockchain. These Providers allow connecting
 to them, which simplifies development, since you do not need
-to run your own instance or cluster of Ethereum nodes.
+to run your own instance or cluster of Vapory nodes.
 
 However, this reliance on third-party services can reduce
 resilience, security and increase the amount of required trust.
@@ -11,13 +11,13 @@ To mitigate these issues, it is recommended you use a
 [Default Provider](providers-getDefaultProvider).
 
 
-_subsection: EtherscanProvider @<EtherscanProvider> @inherit<[[Provider]]> @src<providers:class.EtherscanProvider>
+_subsection: VaporscanProvider @<VaporscanProvider> @inherit<[[Provider]]> @src<providers:class.VaporscanProvider>
 
-The **EtherscanProvider** is backed by a combination of the various
-[Etherscan APIs](link-etherscan-api).
+The **VaporscanProvider** is backed by a combination of the various
+[Vaporscan APIs](link-vaporscan-api).
 
-_property: new ethers.providers.EtherscanProvider([ network = "homestead", [ apiKey ] ])
-Create a new **EtherscanProvider** connected to //network// with the
+_property: new vapors.providers.VaporscanProvider([ network = "homestead", [ apiKey ] ])
+Create a new **VaporscanProvider** connected to //network// with the
 optional //apiKey//.
 
 The //network// may be specified as a **string** for a common
@@ -27,14 +27,14 @@ network name, a **number** for a common chain ID or a
 If no //apiKey// is provided, a shared API key will be used,
 which may result in reduced performance and throttled requests.
 It is highly recommended for production, you register with
-[Etherscan](link-etherscan) for your own API key.
+[Vaporscan](link-vaporscan) for your own API key.
 
 _note: Note: Default API keys
 If no //apiKey// is provided, a shared API key will be used,
 which may result in reduced performance and throttled requests.
 
 It is highly recommended for production, you register with
-[Etherscan](link-etherscan) for your own API key.
+[Vaporscan](link-vaporscan) for your own API key.
 
 
 _definition: **Supported Networks**
@@ -45,32 +45,32 @@ _definition: **Supported Networks**
 - G&ouml;rli (clique testnet)
 - Kovan (proof-of-authority testnet)
 
-_code: Etherscan Examples @lang<javascript>
+_code: Vaporscan Examples @lang<javascript>
 
 // <hide>
-const EtherscanProvider = ethers.providers.EtherscanProvider;
+const VaporscanProvider = vapors.providers.VaporscanProvider;
 const apiKey = "...";
 // </hide>
 
 // Connect to mainnet (homestead)
-provider = new EtherscanProvider();
+provider = new VaporscanProvider();
 
 // Connect to rinkeby testnet (these are equivalent)
-provider = new EtherscanProvider("rinkeby");
-provider = new EtherscanProvider(4);
+provider = new VaporscanProvider("rinkeby");
+provider = new VaporscanProvider(4);
 
-const network = ethers.providers.getNetwork("rinkeby");
+const network = vapors.providers.getNetwork("rinkeby");
 // <hide>
 delete network._defaultProvider;
 network
 // </hide>
 //!
 
-provider = new EtherscanProvider(network);
+provider = new VaporscanProvider(network);
 
 // Connect to mainnet (homestead) with an API key
-provider = new EtherscanProvider(null, apiKey);
-provider = new EtherscanProvider("homestead", apiKey);
+provider = new VaporscanProvider(null, apiKey);
+provider = new VaporscanProvider("homestead", apiKey);
 
 
 _property: provider.getHistory(address) => Array<History> @src<providers>
@@ -80,9 +80,9 @@ _property: provider.getHistory(address) => Array<History> @src<providers>
 _subsection: InfuraProvider @<InfuraProvider> @INHERIT<[[UrlJsonRpcProvider]]> @src<providers:class.InfuraProvider>
 
 The **InfuraProvider** is backed by the popular [INFURA](link-infura)
-Ethereum service.
+Vapory service.
 
-_property: new ethers.providers.InfuraProvider([ network = "homestead", [ apiKey ] ]) @SRC<providers>
+_property: new vapors.providers.InfuraProvider([ network = "homestead", [ apiKey ] ]) @SRC<providers>
 Create a new **InfuraProvider** connected to //network// with
 the optional //apiKey//.
 
@@ -120,7 +120,7 @@ _definition: **Supported Networks**
 _code: INFURA Examples @lang<javascript>
 
 // <hide>
-const InfuraProvider = ethers.providers.InfuraProvider;
+const InfuraProvider = vapors.providers.InfuraProvider;
 const projectId = "...";
 const projectSecret = "...";
 // </hide>
@@ -129,7 +129,7 @@ const projectSecret = "...";
 provider = new InfuraProvider();
 
 // Connect to the ropsten testnet
-// (see EtherscanProvider above for other network examples)
+// (see VaporscanProvider above for other network examples)
 provider = new InfuraProvider("ropsten");
 
 // Connect to mainnet with a Project ID (these are equivalent)
@@ -153,7 +153,7 @@ _subsection: AlchemyProvider @<AlchemyProvider> @inherit<[[UrlJsonRpcProvider]]>
 
 The **AlchemyProvider** is backed by [Alchemy](link-alchemy).
 
-_property: new ethers.providers.AlchemyProvider([ network = "homestead", [ apiKey ] ])
+_property: new vapors.providers.AlchemyProvider([ network = "homestead", [ apiKey ] ])
 Create a new **AlchemyProvider** connected to //network// with
 the optional //apiKey//.
 
@@ -179,7 +179,7 @@ _definition: **Supported Networks**
 _code: Alchemy Examples @lang<javascript>
 
 // <hide>
-const AlchemyProvider = ethers.providers.AlchemyProvider;
+const AlchemyProvider = vapors.providers.AlchemyProvider;
 const apiKey = "...";
 // </hide>
 
@@ -187,7 +187,7 @@ const apiKey = "...";
 provider = new AlchemyProvider();
 
 // Connect to the ropsten testnet
-// (see EtherscanProvider above for other network examples)
+// (see VaporscanProvider above for other network examples)
 provider = new AlchemyProvider("ropsten");
 
 // Connect to mainnet with an API key (these are equivalent)
@@ -203,9 +203,9 @@ provider.destroy();
 
 _subsection: CloudflareProvider @<CloudflareProvider> @inherit<[[UrlJsonRpcProvider]]> @src<providers:class.CloudflareProvider>
 
-The CloudflareProvider is backed by the [Cloudflare Ethereum Gateway](link-cloudflare).
+The CloudflareProvider is backed by the [Cloudflare Vapory Gateway](link-cloudflare).
 
-_property: new ethers.providers.CloudflareProvider()
+_property: new vapors.providers.CloudflareProvider()
 Create a new **CloudflareProvider** connected to mainnet (i.e. "homestead").
 
 _definition: **Supported Networks**
@@ -215,7 +215,7 @@ _definition: **Supported Networks**
 _code: Cloudflare Examples @lang<javascript>
 
 // <hide>
-const CloudflareProvider = ethers.providers.CloudflareProvider;
+const CloudflareProvider = vapors.providers.CloudflareProvider;
 // </hide>
 
 // Connect to mainnet (homestead)

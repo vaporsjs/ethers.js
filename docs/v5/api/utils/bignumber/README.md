@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -40,7 +40,7 @@ A JavaScript [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Re
 Creating Instances
 ------------------
 
-#### *ethers* . *BigNumber* . **from**( aBigNumberish ) => *[BigNumber](/v5/api/utils/bignumber/)*
+#### *vapors* . *BigNumber* . **from**( aBigNumberish ) => *[BigNumber](/v5/api/utils/bignumber/)*
 
 Returns an instance of a **BigNumber** for *aBigNumberish*.
 
@@ -198,7 +198,7 @@ Returns the value of *BigNumber* as a base-16, `0x`-prefixed [DataHexString](/v5
 
 ### Inspection
 
-#### *ethers* . *BigNumber* . **isBigNumber**( object ) => *boolean*
+#### *vapors* . *BigNumber* . **isBigNumber**( object ) => *boolean*
 
 Returns true if and only if the *object* is a BigNumber object.
 
@@ -226,7 +226,7 @@ Notes
 
 To remedy this, all numbers (which can be large) are stored and manipulated as [Big Numbers](/v5/api/utils/bignumber/).
 
-The functions [parseEther( etherString )](/v5/api/utils/display-logic/#utils-parseEther) and [formatEther( wei )](/v5/api/utils/display-logic/#utils-formatEther) can be used to convert between string representations, which are displayed to or entered by the user and Big Number representations which can have mathematical operations handled safely.
+The functions [parseEther( vaporString )](/v5/api/utils/display-logic/#utils-parseEther) and [formatEther( wei )](/v5/api/utils/display-logic/#utils-formatEther) can be used to convert between string representations, which are displayed to or entered by the user and Big Number representations which can have mathematical operations handled safely.
 
 
 ### Why not BigNumber.js, BN.js, BigDecimal, etc?

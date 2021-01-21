@@ -1,10 +1,10 @@
 _section: Providers @<providers>
 
 A **Provider** is an abstraction of a connection to the
-Ethereum network, providing a concise, consistent interface
-to standard Ethereum node functionality.
+Vapory network, providing a concise, consistent interface
+to standard Vapory node functionality.
 
-The ethers.js library provides several options which should
+The vapors.js library provides several options which should
 cover the vast majority of use-cases, but also includes the
 necessary functions and classes for sub-classing if a more
 custom configuration is necessary.
@@ -15,7 +15,7 @@ Most users should use the [[providers-getDefaultProvider]].
 _subsection: Default Provider @<providers-getDefaultProvider>
 
 The default provider is the safest, easiest way to begin
-developing on //Ethereum//, and it is also robust enough
+developing on //Vapory//, and it is also robust enough
 for use in production.
 
 It creates a [[FallbackProvider]] connected to as many backend
@@ -29,7 +29,7 @@ This ensures that if a backend has become out-of-sync, or if it
 has been compromised that its responses are dropped in favor of
 responses that match the majority.
 
-_property: ethers.getDefaultProvider([ network, [ options ] ]) => [[Provider]]
+_property: vapors.getDefaultProvider([ network, [ options ] ]) => [[Provider]]
 Returns a new Provider, backed by multiple services, connected
 to //network//. If no //network// is provided, **homestead**
 (i.e. mainnet) is used.
@@ -42,7 +42,7 @@ The //options// is an object, with the following properties:
 _table: Option Properties
 
 $Alchemy:     [[link-alchemy]] API Token
-$Etherscan:   [[link-etherscan]] API Token
+$Vaporscan:   [[link-vaporscan]] API Token
 $Infura:      [[link-infura]] Project ID or ``{ projectId, projectSecret }``
 $Pocket:      [[link-pocket]] Application ID or ``{ applicationId, applicationSecretKey }``
 $Quorum:      The number of backends that must agree
@@ -50,7 +50,7 @@ $Quorum:      The number of backends that must agree
 
 |    **Property**    |  **Description**  |
 |    //alchemy//     | $Alchemy          |
-|   //etherscan//    | $Etherscan        |
+|   //vaporscan//    | $Vaporscan        |
 |    //infura//      | $Infura           |
 |    //pocket//      | $Pocket           |
 |    //quorum//      | $Quorum           |
@@ -60,7 +60,7 @@ _note: Note: API Keys
 It is highly recommended for production services to acquire
 and specify an API Key for each service.
 
-The default API Keys used by ethers are shared across all users,
+The default API Keys used by vapors are shared across all users,
 so services may throttle all services that are using the default
 API Keys during periods of load without realizing it.
 
@@ -74,7 +74,7 @@ available when specifying an API Key.
 
 _subsection: Networks
 
-There are several official common Ethereum networks as well as custom
+There are several official common Vapory networks as well as custom
 networks and other compatible projects.
 
 Any API that accept a [[providers-Networkish]] can be passed a common name (such as

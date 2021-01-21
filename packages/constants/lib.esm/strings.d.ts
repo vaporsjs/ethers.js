@@ -1,1 +1,1 @@
-export declare const EtherSymbol = "\u039E";
+export declare const VaporSymbol = "\u039E";

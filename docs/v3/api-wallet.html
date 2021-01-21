@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Wallets &mdash; ethers.js 3.0.0 documentation</title>
+  <title>Wallets &mdash; vapors.js 3.0.0 documentation</title>
   
 
   
@@ -30,16 +30,16 @@
   
 
   
-    <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
   
-    <link rel="stylesheet" href="_static/css/ethers.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/vapors.css" type="text/css" />
   
 
   
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="ethers.js 3.0.0 documentation" href="index.html"/>
+    <link rel="top" title="vapors.js 3.0.0 documentation" href="index.html"/>
         <link rel="up" title="Application Programming Interface (API)" href="api.html"/>
         <link rel="next" title="Providers API" href="api-providers.html"/>
         <link rel="prev" title="Application Programming Interface (API)" href="api.html"/> 
@@ -61,7 +61,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> ethers.js
+            <a href="index.html" class="icon icon-home"> vapors.js
           
 
           
@@ -145,7 +145,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">ethers.js</a>
+          <a href="index.html">vapors.js</a>
         
       </nav>
 
@@ -199,25 +199,25 @@
   <div class="section" id="wallets">
 <span id="api-wallet"></span><h1>Wallets<a class="headerlink" href="#wallets" title="Permalink to this headline">¶</a></h1>
 <p>A <strong>wallet</strong> manages a private/public key pair which is used to cryptographically sign
-transactions and prove ownership on the Ethereum network.</p>
+transactions and prove ownership on the Vapory network.</p>
 <hr class="docutils" />
 <div class="section" id="creating-instances">
 <h2>Creating Instances<a class="headerlink" href="#creating-instances" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
-<dt>new <sup>ethers</sup> . Wallet( privateKey [ , provider ] )</dt>
+<dt>new <sup>vapors</sup> . Wallet( privateKey [ , provider ] )</dt>
 <dd>Creates a new instance from <em>privateKey</em> and optionally connect a provider</dd>
-<dt><sup>ethers . Wallet</sup> . createRandom ( [ options ] )</dt>
+<dt><sup>vapors . Wallet</sup> . createRandom ( [ options ] )</dt>
 <dd>Creates a new random wallet; <em>options</em> may specify <code class="docutils literal"><span class="pre">extraEntropy</span></code> to stir into
 the random source (make sure this wallet is stored somewhere safe; if lost there
 is no way to recover it)</dd>
-<dt><sup>ethers . Wallet</sup> . fromEncryptedWallet ( json, password [ , progressCallback ] )</dt>
+<dt><sup>vapors . Wallet</sup> . fromEncryptedWallet ( json, password [ , progressCallback ] )</dt>
 <dd>Decrypt an encrypted Secret Storage JSON Wallet (from Geth, or that was
 created using <em>prototype.encrypt</em> )</dd>
-<dt><sup>ethers . Wallet</sup> . fromMnemonic ( mnemonic [ , path ] )</dt>
+<dt><sup>vapors . Wallet</sup> . fromMnemonic ( mnemonic [ , path ] )</dt>
 <dd><p class="first">Generate a BIP39 + BIP32 wallet from a <em>mnemonic</em> deriving path</p>
 <p class="last"><strong>default:</strong> <em>path</em>=”m/44’/60’/0’/0/0”</p>
 </dd>
-<dt><sup>ethers . Wallet</sup> . fromBrainWallet ( username , password [ , progressCallback ] )</dt>
+<dt><sup>vapors . Wallet</sup> . fromBrainWallet ( username , password [ , progressCallback ] )</dt>
 <dd>Generate a wallet from a username and password</dd>
 </dl>
 <div class="section" id="examples">
@@ -276,7 +276,7 @@ created using <em>prototype.encrypt</em> )</dd>
 </pre></div>
 </div>
 <p><strong>Brain Wallet</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;support@ethers.io&quot;</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">username</span> <span class="o">=</span> <span class="s2">&quot;support@vapors.io&quot;</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;password123&quot;</span><span class="p">;</span>
 <span class="n">Wallet</span><span class="o">.</span><span class="n">fromBrainWallet</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">wallet</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Address: &quot;</span> <span class="o">+</span> <span class="n">wallet</span><span class="o">.</span><span class="n">address</span><span class="p">);</span>
@@ -296,7 +296,7 @@ created using <em>prototype.encrypt</em> )</dd>
 <dd>The private key of a wallet; keep this secret</dd>
 <dt><sup>prototype</sup> . provider</dt>
 <dd>Optional; a connected <a class="reference internal" href="api-providers.html#provider"><span class="std std-ref">Provider</span></a> which allows the wallet to connect to
-the Ethereum network to query its state and send transactions</dd>
+the Vapory network to query its state and send transactions</dd>
 <dt><sup>prototype</sup> . getAddress ( )</dt>
 <dd>A function which returns the address; for Wallet, this simply returns the
 <a class="reference internal" href="#address">address</a> property</dd>
@@ -312,10 +312,10 @@ See <a class="reference internal" href="api-providers.html#transactionrequest"><
 <div class="section" id="id1">
 <h3><em>Examples</em><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p><strong>Signing Transactions</strong></p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ethers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">Wallet</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">Wallet</span><span class="p">;</span>
-<span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
-<span class="n">var</span> <span class="n">providers</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="p">;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">vapors</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">Wallet</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">Wallet</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">providers</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="p">;</span>
 
 <span class="n">var</span> <span class="n">privateKey</span> <span class="o">=</span> <span class="s2">&quot;0x0123456789012345678901234567890123456789012345678901234567890123&quot;</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">wallet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Wallet</span><span class="p">(</span><span class="n">privateKey</span><span class="p">);</span>
@@ -346,7 +346,7 @@ See <a class="reference internal" href="api-providers.html#transactionrequest"><
 <span class="o">//</span>   <span class="s2">&quot;f67ad827fbe4410a32967cbc32a06ffb0b4ac0855f146ff82bef010f6f2729b4&quot;</span> <span class="o">+</span>
 <span class="o">//</span>   <span class="s2">&quot;24c57b3be967e2074220fca13e79&quot;</span>
 
-<span class="o">//</span> <span class="n">This</span> <span class="n">can</span> <span class="n">now</span> <span class="n">be</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Ethereum</span> <span class="n">network</span>
+<span class="o">//</span> <span class="n">This</span> <span class="n">can</span> <span class="n">now</span> <span class="n">be</span> <span class="n">sent</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Vapory</span> <span class="n">network</span>
 <span class="n">var</span> <span class="n">provider</span> <span class="o">=</span> <span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
 <span class="n">provider</span><span class="o">.</span><span class="n">sendTransaction</span><span class="p">(</span><span class="n">signedTransaction</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="nb">hash</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;Hash: &#39;</span> <span class="o">+</span> <span class="nb">hash</span><span class="p">);</span>
@@ -400,8 +400,8 @@ transaction details.</dd>
 <h3><em>Examples</em><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p><strong>Query the Network</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">privateKey</span> <span class="o">=</span> <span class="s1">&#39;0x0123456789012345678901234567890123456789012345678901234567890123&#39;</span><span class="p">;</span>
-<span class="n">var</span> <span class="n">wallet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ethers</span><span class="o">.</span><span class="n">Wallet</span><span class="p">(</span><span class="n">privateKey</span><span class="p">);</span>
-<span class="n">wallet</span><span class="o">.</span><span class="n">provider</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
+<span class="n">var</span> <span class="n">wallet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">vapors</span><span class="o">.</span><span class="n">Wallet</span><span class="p">(</span><span class="n">privateKey</span><span class="p">);</span>
+<span class="n">wallet</span><span class="o">.</span><span class="n">provider</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
 
 <span class="n">var</span> <span class="n">balancePromise</span> <span class="o">=</span> <span class="n">wallet</span><span class="o">.</span><span class="n">getBalance</span><span class="p">();</span>
 
@@ -418,12 +418,12 @@ transaction details.</dd>
 </div>
 <p><strong>Transfer Ether</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">privateKey</span> <span class="o">=</span> <span class="s1">&#39;0x0123456789012345678901234567890123456789012345678901234567890123&#39;</span><span class="p">;</span>
-<span class="n">var</span> <span class="n">wallet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ethers</span><span class="o">.</span><span class="n">Wallet</span><span class="p">(</span><span class="n">privateKey</span><span class="p">);</span>
-<span class="n">wallet</span><span class="o">.</span><span class="n">provider</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
+<span class="n">var</span> <span class="n">wallet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">vapors</span><span class="o">.</span><span class="n">Wallet</span><span class="p">(</span><span class="n">privateKey</span><span class="p">);</span>
+<span class="n">wallet</span><span class="o">.</span><span class="n">provider</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
 
 <span class="o">//</span> <span class="n">We</span> <span class="n">must</span> <span class="k">pass</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">amount</span> <span class="k">as</span> <span class="n">wei</span> <span class="p">(</span><span class="mi">1</span> <span class="n">ether</span> <span class="o">=</span> <span class="mf">1e18</span> <span class="n">wei</span><span class="p">),</span> <span class="n">so</span> <span class="n">we</span> <span class="n">use</span>
 <span class="o">//</span> <span class="n">this</span> <span class="n">convenience</span> <span class="n">function</span> <span class="n">to</span> <span class="n">convert</span> <span class="n">ether</span> <span class="n">to</span> <span class="n">wei</span><span class="o">.</span>
-<span class="n">var</span> <span class="n">amount</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">parseEther</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">amount</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">parseEther</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">);</span>
 
 <span class="n">var</span> <span class="n">address</span> <span class="o">=</span> <span class="s1">&#39;0x88a5c2d9919e46f883eb62f7b8dd9d0cc45bc290&#39;</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">sendPromise</span> <span class="o">=</span> <span class="n">wallet</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">amount</span><span class="p">);</span>
@@ -448,8 +448,8 @@ transaction details.</dd>
 </div>
 <p><strong>Sending (Complex) Transactions</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">privateKey</span> <span class="o">=</span> <span class="s1">&#39;0x0123456789012345678901234567890123456789012345678901234567890123&#39;</span><span class="p">;</span>
-<span class="n">var</span> <span class="n">wallet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ethers</span><span class="o">.</span><span class="n">Wallet</span><span class="p">(</span><span class="n">privateKey</span><span class="p">);</span>
-<span class="n">wallet</span><span class="o">.</span><span class="n">provider</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">(</span><span class="s1">&#39;ropsten&#39;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">wallet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">vapors</span><span class="o">.</span><span class="n">Wallet</span><span class="p">(</span><span class="n">privateKey</span><span class="p">);</span>
+<span class="n">wallet</span><span class="o">.</span><span class="n">provider</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">(</span><span class="s1">&#39;ropsten&#39;</span><span class="p">);</span>
 
 <span class="n">var</span> <span class="n">transaction</span> <span class="o">=</span> <span class="p">{</span>
     <span class="o">//</span> <span class="n">Recommendation</span><span class="p">:</span> <span class="n">omit</span> <span class="n">nonce</span><span class="p">;</span> <span class="n">the</span> <span class="n">provider</span> <span class="n">will</span> <span class="n">query</span> <span class="n">the</span> <span class="n">network</span>
@@ -469,7 +469,7 @@ transaction details.</dd>
     <span class="n">data</span><span class="p">:</span> <span class="s2">&quot;0x&quot;</span><span class="p">,</span>
 
     <span class="o">//</span> <span class="n">Optional</span>
-    <span class="n">value</span><span class="p">:</span> <span class="n">ethers</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">parseEther</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">),</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">parseEther</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">),</span>
 
     <span class="o">//</span> <span class="n">Recommendation</span><span class="p">:</span> <span class="n">omit</span> <span class="n">chainId</span><span class="p">;</span> <span class="n">the</span> <span class="n">provider</span> <span class="n">will</span> <span class="n">populate</span> <span class="n">this</span>
     <span class="o">//</span> <span class="n">chaindId</span><span class="p">:</span> <span class="n">providers</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">homestead</span><span class="o">.</span><span class="n">chainId</span>
@@ -502,11 +502,11 @@ transaction details.</dd>
 <div class="section" id="id3">
 <h3><em>Examples</em><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Mainnet</span><span class="p">:</span>
-<span class="n">var</span> <span class="n">ethers</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;ethers&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">Wallet</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">Wallet</span><span class="p">;</span>
-<span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">ethers</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">vapors</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;vapors&#39;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">Wallet</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">Wallet</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">utils</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">privateKey</span> <span class="o">=</span> <span class="s1">&#39;0x0123456789012345678901234567890123456789012345678901234567890123&#39;</span><span class="p">;</span>
-<span class="n">var</span> <span class="n">wallet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">ethers</span><span class="o">.</span><span class="n">Wallet</span><span class="p">(</span><span class="n">privateKey</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">wallet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">vapors</span><span class="o">.</span><span class="n">Wallet</span><span class="p">(</span><span class="n">privateKey</span><span class="p">);</span>
 
 <span class="n">var</span> <span class="n">raw</span> <span class="o">=</span> <span class="s2">&quot;0xf87083154262850500cf6e0083015f9094c149be1bcdfa69a94384b46a1f913&quot;</span> <span class="o">+</span>
             <span class="s2">&quot;50e5f81c1ab880de6c75de74c236c8025a05b13ef45ce3faf69d1f40f9d15b007&quot;</span> <span class="o">+</span>
@@ -523,7 +523,7 @@ transaction details.</dd>
     <span class="n">data</span><span class="p">:</span> <span class="s2">&quot;0x&quot;</span><span class="p">,</span>
 
     <span class="o">//</span> <span class="n">This</span> <span class="n">ensures</span> <span class="n">the</span> <span class="n">transaction</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">replayed</span> <span class="n">on</span> <span class="n">different</span> <span class="n">networks</span>
-    <span class="n">chainId</span><span class="p">:</span> <span class="n">ethers</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">homestead</span><span class="o">.</span><span class="n">chainId</span>
+    <span class="n">chainId</span><span class="p">:</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">homestead</span><span class="o">.</span><span class="n">chainId</span>
 <span class="p">};</span>
 
 <span class="n">var</span> <span class="n">signedTransaction</span> <span class="o">=</span> <span class="n">wallet</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">transaction</span><span class="p">);</span>
@@ -549,7 +549,7 @@ transaction details.</dd>
 <div class="section" id="verifying-messages">
 <h2>Verifying Messages<a class="headerlink" href="#verifying-messages" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
-<dt><sup>ethers . Wallet</sup> . verifyMessage ( message , signature )</dt>
+<dt><sup>vapors . Wallet</sup> . verifyMessage ( message , signature )</dt>
 <dd>Returns the address that signed <em>message</em> with <em>signature</em>.</dd>
 </dl>
 <div class="section" id="id4">

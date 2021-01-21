@@ -7,10 +7,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = __importDefault(require("fs"));
 var module_1 = __importDefault(require("module"));
 var path_1 = require("path");
-var ethers_1 = require("ethers");
+var vapors_1 = require("vapors");
 ;
 function populateOptions(options) {
-    options = ethers_1.ethers.utils.shallowCopy(options || {});
+    options = vapors_1.vapors.utils.shallowCopy(options || {});
     if (options.filename && !options.basedir) {
         options.basedir = path_1.dirname(options.filename);
     }
@@ -88,7 +88,7 @@ function _compile(_solc, source, options) {
             }
             result.push({
                 name: name_1,
-                interface: new ethers_1.ethers.utils.Interface(contract.abi),
+                interface: new vapors_1.vapors.utils.Interface(contract.abi),
                 bytecode: "0x" + contract.evm.bytecode.object,
                 runtime: "0x" + contract.evm.deployedBytecode.object,
                 compiler: compilerVersion
@@ -98,7 +98,7 @@ function _compile(_solc, source, options) {
     return result;
 }
 // Creates a require which will first search from the current location,
-// and for solc will fallback onto the version included in @ethersproject/cli
+// and for solc will fallback onto the version included in @vaporsproject/cli
 function customRequire(path) {
     // Node 8.x does not support createRequireFromPath
     var createRequire = (module_1.default.createRequireFromPath || (function (path) {

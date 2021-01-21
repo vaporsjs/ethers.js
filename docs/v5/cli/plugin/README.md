@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -113,7 +113,7 @@ ArgParser
 ---------
 
 ```
-/home/ethers> ethers --account wallet.json --yes send ricmoo.eth 1.0
+/home/vapors> vapors --account wallet.json --yes send ricmoo.vap 1.0
 #  An Option ----------^                     ^   ^
 #    - name =  "account"                     |   |
 #    - value = "wallet.json"                 |   |
@@ -122,7 +122,7 @@ ArgParser
 #    - value = true                              |
 #  Arguments ------------------------------------+
 #    - count = 3
-#    - [ "send", "ricmoo.eth", "1.0" ]
+#    - [ "send", "ricmoo.vap", "1.0" ]
 ```
 
 

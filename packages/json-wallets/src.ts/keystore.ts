@@ -3,19 +3,19 @@
 import aes from "aes-js";
 import scrypt from "scrypt-js";
 
-import { ExternallyOwnedAccount } from "@ethersproject/abstract-signer";
-import { getAddress } from "@ethersproject/address";
-import { arrayify, Bytes, BytesLike, concat, hexlify } from "@ethersproject/bytes";
-import { defaultPath, entropyToMnemonic, HDNode, Mnemonic, mnemonicToEntropy } from "@ethersproject/hdnode";
-import { keccak256 } from "@ethersproject/keccak256";
-import { pbkdf2 as _pbkdf2 } from "@ethersproject/pbkdf2";
-import { randomBytes } from "@ethersproject/random";
-import { Description } from "@ethersproject/properties";
-import { computeAddress } from "@ethersproject/transactions";
+import { ExternallyOwnedAccount } from "@vaporsproject/abstract-signer";
+import { getAddress } from "@vaporsproject/address";
+import { arrayify, Bytes, BytesLike, concat, hexlify } from "@vaporsproject/bytes";
+import { defaultPath, entropyToMnemonic, HDNode, Mnemonic, mnemonicToEntropy } from "@vaporsproject/hdnode";
+import { keccak256 } from "@vaporsproject/keccak256";
+import { pbkdf2 as _pbkdf2 } from "@vaporsproject/pbkdf2";
+import { randomBytes } from "@vaporsproject/random";
+import { Description } from "@vaporsproject/properties";
+import { computeAddress } from "@vaporsproject/transactions";
 
 import { getPassword, looseArrayify, searchPath, uuidV4, zpad } from "./utils";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "@vaporsproject/logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 
@@ -108,16 +108,16 @@ function _getAccount(data: any, key: Uint8Array): KeystoreAccount {
         privateKey: hexlify(privateKey)
     };
 
-    // Version 0.1 x-ethers metadata must contain an encrypted mnemonic phrase
-    if (searchPath(data, "x-ethers/version") === "0.1") {
-        const mnemonicCiphertext = looseArrayify(searchPath(data, "x-ethers/mnemonicCiphertext"));
-        const mnemonicIv = looseArrayify(searchPath(data, "x-ethers/mnemonicCounter"));
+    // Version 0.1 x-vapors metadata must contain an encrypted mnemonic phrase
+    if (searchPath(data, "x-vapors/version") === "0.1") {
+        const mnemonicCiphertext = looseArrayify(searchPath(data, "x-vapors/mnemonicCiphertext"));
+        const mnemonicIv = looseArrayify(searchPath(data, "x-vapors/mnemonicCounter"));
 
         const mnemonicCounter = new aes.Counter(mnemonicIv);
         const mnemonicAesCtr = new aes.ModeOfOperation.ctr(mnemonicKey, mnemonicCounter);
 
-        const path = searchPath(data, "x-ethers/path") || defaultPath;
-        const locale = searchPath(data, "x-ethers/locale") || "en";
+        const path = searchPath(data, "x-vapors/path") || defaultPath;
+        const locale = searchPath(data, "x-vapors/locale") || "en";
 
         const entropy = arrayify(mnemonicAesCtr.decrypt(mnemonicCiphertext));
 
@@ -267,7 +267,7 @@ export function encrypt(account: ExternallyOwnedAccount, password: Bytes | strin
     }
 
     let client = options.client;
-    if (!client) { client = "ethers.js"; }
+    if (!client) { client = "vapors.js"; }
 
     // Check/generate the salt
     let salt: Uint8Array = null;
@@ -305,7 +305,7 @@ export function encrypt(account: ExternallyOwnedAccount, password: Bytes | strin
 
     // We take 64 bytes:
     //   - 32 bytes   As normal for the Web3 secret storage (derivedKey, macPrefix)
-    //   - 32 bytes   AES key to encrypt mnemonic with (required here to be Ethers Wallet)
+    //   - 32 bytes   AES key to encrypt mnemonic with (required here to be Vapors Wallet)
     return scrypt.scrypt(passwordBytes, salt, N, r, p, 64, progressCallback).then((key) => {
         key = arrayify(key);
 
@@ -324,7 +324,7 @@ export function encrypt(account: ExternallyOwnedAccount, password: Bytes | strin
         // Compute the message authentication code, used to check the password
         const mac = keccak256(concat([macPrefix, ciphertext]))
 
-        // See: https://github.com/ethereum/wiki/wiki/Web3-Secret-Storage-Definition
+        // See: https://github.com/vaporyco/wiki/wiki/Web3-Secret-Storage-Definition
         const data: { [key: string]: any } = {
             address: account.address.substring(2).toLowerCase(),
             id: uuidV4(uuidRandom),
@@ -361,7 +361,7 @@ export function encrypt(account: ExternallyOwnedAccount, password: Bytes | strin
                                zpad(now.getUTCMinutes(), 2) + "-" +
                                zpad(now.getUTCSeconds(), 2) + ".0Z"
                               );
-            data["x-ethers"] = {
+            data["x-vapors"] = {
                 client: client,
                 gethFilename: ("UTC--" + timestamp + "--" + data.address),
                 mnemonicCounter: hexlify(mnemonicIv).substring(2),

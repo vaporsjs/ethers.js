@@ -11,11 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import fs from "fs";
 import { basename } from "path";
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 import * as scrypt from "scrypt-js";
 import { getChoice, getPassword, getProgressBar } from "./prompt";
 import { version } from "./_version";
-const logger = new ethers.utils.Logger(version);
+const logger = new vapors.utils.Logger(version);
 class UsageError extends Error {
 }
 /////////////////////////////
@@ -24,8 +24,8 @@ class UsageError extends Error {
 const signerStates = new WeakMap();
 
 class SignerState {
-    signerFunc: () => Promise<ethers.Signer>;
-    signer: ethers.Signer;
+    signerFunc: () => Promise<vapors.Signer>;
+    signer: vapors.Signer;
     alwaysAllow: boolean;
 
     static get(wrapper: WrappedSigner): SignerState {
@@ -105,13 +105,13 @@ export function dump(header, info) {
 // This wraps our signers to prevent the private keys and mnemonics from being exposed.
 // It is also in charge of user-interaction, requesting permission before signing or
 // sending.
-class WrappedSigner extends ethers.Signer {
+class WrappedSigner extends vapors.Signer {
     constructor(addressPromise, signerFunc, plugin) {
         super();
         signerFuncs.set(this, signerFunc);
-        ethers.utils.defineReadOnly(this, "addressPromise", addressPromise);
-        ethers.utils.defineReadOnly(this, "provider", plugin.provider);
-        ethers.utils.defineReadOnly(this, "plugin", plugin);
+        vapors.utils.defineReadOnly(this, "addressPromise", addressPromise);
+        vapors.utils.defineReadOnly(this, "provider", plugin.provider);
+        vapors.utils.defineReadOnly(this, "plugin", plugin);
     }
     connect(provider) {
         throw new Error("unsupported for now...");
@@ -128,10 +128,10 @@ class WrappedSigner extends ethers.Signer {
             let info = {};
             if (typeof (message) === "string") {
                 info["Message"] = JSON.stringify(message);
-                info["Message (hex)"] = ethers.utils.hexlify(ethers.utils.toUtf8Bytes(message));
+                info["Message (hex)"] = vapors.utils.hexlify(vapors.utils.toUtf8Bytes(message));
             }
             else {
-                let bytes = ethers.utils.arrayify(message);
+                let bytes = vapors.utils.arrayify(message);
                 for (let i = 0; i < bytes.length; i++) {
                     let c = bytes[i];
                     if (c < 32 || c > 126) {
@@ -140,14 +140,14 @@ class WrappedSigner extends ethers.Signer {
                     }
                 }
                 if (bytes) {
-                    info["Message"] = ethers.utils.toUtf8String(bytes);
+                    info["Message"] = vapors.utils.toUtf8String(bytes);
                 }
-                info["Message (hex)"] = ethers.utils.hexlify(message);
+                info["Message (hex)"] = vapors.utils.hexlify(message);
             }
             dump("Message:", info);
             yield isAllowed(this, "Sign Message?");
             let result = yield signer.signMessage(message);
-            let signature = ethers.utils.splitSignature(result);
+            let signature = vapors.utils.splitSignature(result);
             dump("Signature", {
                 Flat: result,
                 r: signature.r,
@@ -161,7 +161,7 @@ class WrappedSigner extends ethers.Signer {
     }
     populateTransaction(transactionRequest) {
         return __awaiter(this, void 0, void 0, function* () {
-            transactionRequest = ethers.utils.shallowCopy(transactionRequest);
+            transactionRequest = vapors.utils.shallowCopy(transactionRequest);
             if (this.plugin.gasPrice != null) {
                 transactionRequest.gasPrice = this.plugin.gasPrice;
             }
@@ -179,7 +179,7 @@ class WrappedSigner extends ethers.Signer {
         return __awaiter(this, void 0, void 0, function* () {
             let signer = yield getSigner(this);
             let network = yield this.provider.getNetwork();
-            let tx = yield ethers.utils.resolveProperties(transactionRequest);
+            let tx = yield vapors.utils.resolveProperties(transactionRequest);
             let info = {};
             if (tx.to != null) {
                 info["To"] = tx.to;
@@ -187,19 +187,19 @@ class WrappedSigner extends ethers.Signer {
             if (tx.from != null) {
                 info["From"] = tx.from;
             }
-            info["Value"] = (ethers.utils.formatEther(tx.value || 0) + " ether");
+            info["Value"] = (vapors.utils.formatEther(tx.value || 0) + " ether");
             if (tx.nonce != null) {
                 info["Nonce"] = tx.nonce;
             }
             info["Data"] = tx.data;
-            info["Gas Limit"] = ethers.BigNumber.from(tx.gasLimit || 0).toString();
-            info["Gas Price"] = (ethers.utils.formatUnits(tx.gasPrice || 0, "gwei") + " gwei"),
+            info["Gas Limit"] = vapors.BigNumber.from(tx.gasLimit || 0).toString();
+            info["Gas Price"] = (vapors.utils.formatUnits(tx.gasPrice || 0, "gwei") + " gwei"),
                 info["Chain ID"] = (tx.chainId || 0);
             info["Network"] = network.name;
             dump("Transaction:", info);
             yield isAllowed(this, "Sign Transaction?");
             let result = yield signer.signTransaction(transactionRequest);
-            let signature = ethers.utils.splitSignature(result);
+            let signature = vapors.utils.splitSignature(result);
             dump("Signature:", {
                 Signature: result,
                 r: signature.r,
@@ -216,7 +216,7 @@ class WrappedSigner extends ethers.Signer {
             let signer = yield getSigner(this);
             let network = yield this.provider.getNetwork();
             let tx = yield this.populateTransaction(transactionRequest);
-            tx = yield ethers.utils.resolveProperties(tx);
+            tx = yield vapors.utils.resolveProperties(tx);
             let info = {};
             if (tx.to != null) {
                 info["To"] = tx.to;
@@ -224,13 +224,13 @@ class WrappedSigner extends ethers.Signer {
             if (tx.from != null) {
                 info["From"] = tx.from;
             }
-            info["Value"] = (ethers.utils.formatEther(tx.value || 0) + " ether");
+            info["Value"] = (vapors.utils.formatEther(tx.value || 0) + " ether");
             if (tx.nonce != null) {
                 info["Nonce"] = tx.nonce;
             }
             info["Data"] = tx.data;
-            info["Gas Limit"] = ethers.BigNumber.from(tx.gasLimit || 0).toString();
-            info["Gas Price"] = (ethers.utils.formatUnits(tx.gasPrice || 0, "gwei") + " gwei"),
+            info["Gas Limit"] = vapors.BigNumber.from(tx.gasLimit || 0).toString();
+            info["Gas Price"] = (vapors.utils.formatUnits(tx.gasPrice || 0, "gwei") + " gwei"),
                 info["Chain ID"] = (tx.chainId || 0);
             info["Network"] = network.name;
             dump("Transaction:", info);
@@ -245,8 +245,8 @@ class WrappedSigner extends ethers.Signer {
                     dump("Success:", {
                         "Block Number": receipt.blockNumber,
                         "Block Hash": receipt.blockHash,
-                        "Gas Used": ethers.utils.commify(receipt.gasUsed.toString()),
-                        "Fee": (ethers.utils.formatEther(receipt.gasUsed.mul(tx.gasPrice)) + " ether")
+                        "Gas Used": vapors.utils.commify(receipt.gasUsed.toString()),
+                        "Fee": (vapors.utils.formatEther(receipt.gasUsed.mul(tx.gasPrice)) + " ether")
                     });
                 }
                 catch (error) {
@@ -264,12 +264,12 @@ class WrappedSigner extends ethers.Signer {
         });
     }
 }
-class OfflineProvider extends ethers.providers.BaseProvider {
+class OfflineProvider extends vapors.providers.BaseProvider {
     perform(method, params) {
         if (method === "sendTransaction") {
             console.log("Signed Transaction:");
             console.log(params.signedTransaction);
-            return Promise.resolve(ethers.utils.keccak256(params.signedTransaction));
+            return Promise.resolve(vapors.utils.keccak256(params.signedTransaction));
         }
         return super.perform(method, params);
     }
@@ -278,8 +278,8 @@ class OfflineProvider extends ethers.providers.BaseProvider {
 // Argument Parser
 export class ArgParser {
     constructor(args) {
-        ethers.utils.defineReadOnly(this, "_args", args);
-        ethers.utils.defineReadOnly(this, "_consumed", args.map((a) => false));
+        vapors.utils.defineReadOnly(this, "_args", args);
+        vapors.utils.defineReadOnly(this, "_consumed", args.map((a) => false));
     }
     _finalizeArgs() {
         let args = [];
@@ -378,46 +378,46 @@ function loadAccount(arg, plugin, preventFile) {
             return loadAccount(content, plugin, true);
         }
         // Raw private key
-        if (ethers.utils.isHexString(arg, 32)) {
-            const signer = new ethers.Wallet(arg, plugin.provider);
+        if (vapors.utils.isHexString(arg, 32)) {
+            const signer = new vapors.Wallet(arg, plugin.provider);
             return Promise.resolve(new WrappedSigner(signer.getAddress(), () => Promise.resolve(signer), plugin));
         }
         // Mnemonic
-        if (ethers.utils.isValidMnemonic(arg)) {
+        if (vapors.utils.isValidMnemonic(arg)) {
             const mnemonic = arg;
             let signerPromise = null;
             if (plugin.mnemonicPassword) {
                 signerPromise = getPassword("Password (mnemonic): ").then((password) => {
-                    let node = ethers.utils.HDNode.fromMnemonic(mnemonic, password).derivePath(ethers.utils.defaultPath);
-                    return new ethers.Wallet(node.privateKey, plugin.provider);
+                    let node = vapors.utils.HDNode.fromMnemonic(mnemonic, password).derivePath(vapors.utils.defaultPath);
+                    return new vapors.Wallet(node.privateKey, plugin.provider);
                 });
             }
             else if (plugin._xxxMnemonicPasswordHard) {
                 signerPromise = getPassword("Password (mnemonic; experimental - hard): ").then((password) => {
-                    let passwordBytes = ethers.utils.toUtf8Bytes(password, ethers.utils.UnicodeNormalizationForm.NFKC);
-                    let saltBytes = ethers.utils.arrayify(ethers.utils.HDNode.fromMnemonic(mnemonic).privateKey);
+                    let passwordBytes = vapors.utils.toUtf8Bytes(password, vapors.utils.UnicodeNormalizationForm.NFKC);
+                    let saltBytes = vapors.utils.arrayify(vapors.utils.HDNode.fromMnemonic(mnemonic).privateKey);
                     let progressBar = getProgressBar("Decrypting");
                     return scrypt.scrypt(passwordBytes, saltBytes, (1 << 20), 8, 1, 32, progressBar).then((key) => {
-                        const derivedPassword = ethers.utils.hexlify(key).substring(2);
-                        const node = ethers.utils.HDNode.fromMnemonic(mnemonic, derivedPassword).derivePath(ethers.utils.defaultPath);
-                        return new ethers.Wallet(node.privateKey, plugin.provider);
+                        const derivedPassword = vapors.utils.hexlify(key).substring(2);
+                        const node = vapors.utils.HDNode.fromMnemonic(mnemonic, derivedPassword).derivePath(vapors.utils.defaultPath);
+                        return new vapors.Wallet(node.privateKey, plugin.provider);
                     });
                 });
             }
             else {
-                signerPromise = Promise.resolve(ethers.Wallet.fromMnemonic(arg).connect(plugin.provider));
+                signerPromise = Promise.resolve(vapors.Wallet.fromMnemonic(arg).connect(plugin.provider));
             }
             return Promise.resolve(new WrappedSigner(signerPromise.then((wallet) => wallet.getAddress()), () => signerPromise, plugin));
         }
         // Check for a JSON wallet
         try {
             let content = fs.readFileSync(arg).toString();
-            let address = ethers.utils.getJsonWalletAddress(content);
+            let address = vapors.utils.getJsonWalletAddress(content);
             if (address) {
                 return Promise.resolve(new WrappedSigner(Promise.resolve(address), () => __awaiter(this, void 0, void 0, function* () {
                     let password = yield getPassword(`Password (${arg}): `);
                     let progressBar = getProgressBar("Decrypting");
-                    return ethers.Wallet.fromEncryptedJson(content, password, progressBar).then((wallet) => {
+                    return vapors.Wallet.fromEncryptedJson(content, password, progressBar).then((wallet) => {
                         return wallet.connect(plugin.provider);
                     });
                 }), plugin));
@@ -458,38 +458,38 @@ export class Plugin {
             let providers = [];
             let rpc = [];
             argParser.consumeOptions("rpc").forEach((url) => {
-                let provider = new ethers.providers.JsonRpcProvider(url);
+                let provider = new vapors.providers.JsonRpcProvider(url);
                 providers.push(provider);
                 rpc.push(provider);
             });
             if (argParser.consumeFlag("alchemy")) {
-                providers.push(new ethers.providers.AlchemyProvider(network));
+                providers.push(new vapors.providers.AlchemyProvider(network));
             }
-            if (argParser.consumeFlag("etherscan")) {
-                providers.push(new ethers.providers.EtherscanProvider(network));
+            if (argParser.consumeFlag("vaporscan")) {
+                providers.push(new vapors.providers.VaporscanProvider(network));
             }
             if (argParser.consumeFlag("infura")) {
-                providers.push(new ethers.providers.InfuraProvider(network));
+                providers.push(new vapors.providers.InfuraProvider(network));
             }
             if (argParser.consumeFlag("nodesmith")) {
-                providers.push(new ethers.providers.NodesmithProvider(network));
+                providers.push(new vapors.providers.NodesmithProvider(network));
             }
             if (argParser.consumeFlag("offline")) {
                 providers.push(new OfflineProvider(network));
             }
             if (providers.length === 1) {
-                ethers.utils.defineReadOnly(this, "provider", providers[0]);
+                vapors.utils.defineReadOnly(this, "provider", providers[0]);
             }
             else if (providers.length) {
-                ethers.utils.defineReadOnly(this, "provider", new ethers.providers.FallbackProvider(providers));
+                vapors.utils.defineReadOnly(this, "provider", new vapors.providers.FallbackProvider(providers));
             }
             else {
-                ethers.utils.defineReadOnly(this, "provider", ethers.getDefaultProvider(network));
+                vapors.utils.defineReadOnly(this, "provider", vapors.getDefaultProvider(network));
             }
             /////////////////////
             // Accounts
-            ethers.utils.defineReadOnly(this, "mnemonicPassword", argParser.consumeFlag("mnemonic-password"));
-            ethers.utils.defineReadOnly(this, "_xxxMnemonicPasswordHard", argParser.consumeFlag("xxx-mnemonic-password"));
+            vapors.utils.defineReadOnly(this, "mnemonicPassword", argParser.consumeFlag("mnemonic-password"));
+            vapors.utils.defineReadOnly(this, "_xxxMnemonicPasswordHard", argParser.consumeFlag("xxx-mnemonic-password"));
             let accounts = [];
             let accountOptions = argParser.consumeMultiOptions(["account", "account-rpc", "account-void"]);
             for (let i = 0; i < accountOptions.length; i++) {
@@ -513,7 +513,7 @@ export class Plugin {
                                 signer = rpc[0].getSigner(parseInt(account.value));
                             }
                             else {
-                                signer = rpc[0].getSigner(ethers.utils.getAddress(account.value));
+                                signer = rpc[0].getSigner(vapors.utils.getAddress(account.value));
                             }
                             accounts.push(new WrappedSigner(signer.getAddress(), () => Promise.resolve(signer), this));
                         }
@@ -524,39 +524,39 @@ export class Plugin {
                     case "account-void": {
                         let addressPromise = this.provider.resolveName(account.value);
                         let signerPromise = addressPromise.then((addr) => {
-                            return new ethers.VoidSigner(addr, this.provider);
+                            return new vapors.VoidSigner(addr, this.provider);
                         });
                         accounts.push(new WrappedSigner(addressPromise, () => signerPromise, this));
                         break;
                     }
                 }
             }
-            ethers.utils.defineReadOnly(this, "accounts", Object.freeze(accounts));
+            vapors.utils.defineReadOnly(this, "accounts", Object.freeze(accounts));
             /////////////////////
             // Transaction Options
             const gasPrice = argParser.consumeOption("gas-price");
             if (gasPrice) {
-                ethers.utils.defineReadOnly(this, "gasPrice", ethers.utils.parseUnits(gasPrice, "gwei"));
+                vapors.utils.defineReadOnly(this, "gasPrice", vapors.utils.parseUnits(gasPrice, "gwei"));
             }
             else {
-                ethers.utils.defineReadOnly(this, "gasPrice", null);
+                vapors.utils.defineReadOnly(this, "gasPrice", null);
             }
             const gasLimit = argParser.consumeOption("gas-limit");
             if (gasLimit) {
-                ethers.utils.defineReadOnly(this, "gasLimit", ethers.BigNumber.from(gasLimit));
+                vapors.utils.defineReadOnly(this, "gasLimit", vapors.BigNumber.from(gasLimit));
             }
             else {
-                ethers.utils.defineReadOnly(this, "gasLimit", null);
+                vapors.utils.defineReadOnly(this, "gasLimit", null);
             }
             const nonce = argParser.consumeOption("nonce");
             if (nonce) {
-                this.nonce = ethers.BigNumber.from(nonce).toNumber();
+                this.nonce = vapors.BigNumber.from(nonce).toNumber();
             }
             // Now wait for all asynchronous options to load
             runners.push(this.provider.getNetwork().then((network) => {
-                ethers.utils.defineReadOnly(this, "network", Object.freeze(network));
+                vapors.utils.defineReadOnly(this, "network", Object.freeze(network));
             }, (error) => {
-                ethers.utils.defineReadOnly(this, "network", Object.freeze({
+                vapors.utils.defineReadOnly(this, "network", Object.freeze({
                     chainId: 0,
                     name: "no-network"
                 }));
@@ -577,14 +577,14 @@ export class Plugin {
     }
     getAddress(addressOrName, message, allowZero) {
         try {
-            return Promise.resolve(ethers.utils.getAddress(addressOrName));
+            return Promise.resolve(vapors.utils.getAddress(addressOrName));
         }
         catch (error) { }
         return this.provider.resolveName(addressOrName).then((address) => {
             if (address == null) {
                 this.throwError("ENS name not configured - " + addressOrName);
             }
-            if (address === ethers.constants.AddressZero && !allowZero) {
+            if (address === vapors.constants.AddressZero && !allowZero) {
                 this.throwError(message || "cannot use the zero address");
             }
             return address;
@@ -611,7 +611,7 @@ class CheckPlugin extends Plugin {
 }
 export class CLI {
     constructor(defaultCommand, options) {
-        ethers.utils.defineReadOnly(this, "options", {
+        vapors.utils.defineReadOnly(this, "options", {
             account: true,
             provider: true,
             transaction: true,
@@ -632,53 +632,53 @@ export class CLI {
             });
         }
         Object.freeze(this.options);
-        ethers.utils.defineReadOnly(this, "defaultCommand", defaultCommand || null);
-        ethers.utils.defineReadOnly(this, "plugins", {});
+        vapors.utils.defineReadOnly(this, "defaultCommand", defaultCommand || null);
+        vapors.utils.defineReadOnly(this, "plugins", {});
     }
     static getAppName() {
         try {
             return basename(process.mainModule.filename).split(".")[0];
         }
         catch (error) { }
-        return "ethers";
+        return "vapors";
     }
     // @TODO: Better way to specify default; i.e. may not have args
     addPlugin(command, plugin) {
         if (this.standAlone) {
-            logger.throwError("only setPlugin or addPlugin may be used at once", ethers.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("only setPlugin or addPlugin may be used at once", vapors.errors.UNSUPPORTED_OPERATION, {
                 operation: "addPlugin"
             });
         }
         else if (this.plugins[command]) {
-            logger.throwError("command already exists", ethers.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("command already exists", vapors.errors.UNSUPPORTED_OPERATION, {
                 operation: "addPlugin",
                 command: command
             });
         }
-        ethers.utils.defineReadOnly(this.plugins, command, plugin);
+        vapors.utils.defineReadOnly(this.plugins, command, plugin);
     }
     setPlugin(plugin) {
         if (Object.keys(this.plugins).length !== 0) {
-            logger.throwError("only setPlugin or addPlugin may be used at once", ethers.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("only setPlugin or addPlugin may be used at once", vapors.errors.UNSUPPORTED_OPERATION, {
                 operation: "setPlugin"
             });
         }
         if (this.standAlone) {
-            logger.throwError("cannot setPlugin more than once", ethers.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("cannot setPlugin more than once", vapors.errors.UNSUPPORTED_OPERATION, {
                 operation: "setPlugin"
             });
         }
-        ethers.utils.defineReadOnly(this, "standAlone", plugin);
+        vapors.utils.defineReadOnly(this, "standAlone", plugin);
     }
     showUsage(message, status) {
         // Limit:    |                                                                             |
         console.log("Usage:");
         if (this.standAlone) {
-            let help = ethers.utils.getStatic(this.standAlone, "getHelp")();
+            let help = vapors.utils.getStatic(this.standAlone, "getHelp")();
             console.log(`   ${CLI.getAppName()} ${help.name} [ OPTIONS ]`);
             console.log("");
             let lines = [];
-            let optionHelp = ethers.utils.getStatic(this.standAlone, "getOptionHelp")();
+            let optionHelp = vapors.utils.getStatic(this.standAlone, "getOptionHelp")();
             optionHelp.forEach((help) => {
                 lines.push("  " + help.name + repeat(" ", 28 - help.name.length) + help.help);
             });
@@ -702,7 +702,7 @@ export class CLI {
             let lines = [];
             for (let cmd in this.plugins) {
                 let plugin = this.plugins[cmd];
-                let help = ethers.utils.getStatic(plugin, "getHelp")();
+                let help = vapors.utils.getStatic(plugin, "getHelp")();
                 if (help == null) {
                     continue;
                 }
@@ -715,7 +715,7 @@ export class CLI {
                     helpLine += repeat(" ", 30 - helpLine.length);
                     lines.push(helpLine + help.help);
                 }
-                let optionHelp = ethers.utils.getStatic(plugin, "getOptionHelp")();
+                let optionHelp = vapors.utils.getStatic(plugin, "getOptionHelp")();
                 optionHelp.forEach((help) => {
                     lines.push("      " + help.name + repeat(" ", 27 - help.name.length) + help.help);
                 });
@@ -750,7 +750,7 @@ export class CLI {
         if (this.options.provider) {
             console.log("PROVIDER OPTIONS (default: all + homestead)");
             console.log("  --alchemy                   Include Alchemy");
-            console.log("  --etherscan                 Include Etherscan");
+            console.log("  --vaporscan                 Include Vaporscan");
             console.log("  --infura                    Include INFURA");
             console.log("  --nodesmith                 Include nodesmith");
             console.log("  --rpc URL                   Include a custom JSON-RPC");

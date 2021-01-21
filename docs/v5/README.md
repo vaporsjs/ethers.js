@@ -1,13 +1,13 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
 Documentation
 =============
 
-What is Ethers?
+What is Vapors?
 ---------------
 
 Features
@@ -20,11 +20,11 @@ Developer Documentation
   * [Installing](getting-started)
   * [Importing](getting-started)
   * [Common Terminology](getting-started)
-  * [Connecting to Ethereum: Metamask](getting-started)
-  * [Connecting to Ethereum: RPC](getting-started)
+  * [Connecting to Vapory: Metamask](getting-started)
+  * [Connecting to Vapory: RPC](getting-started)
   * [Contracts](getting-started)
   * [Signing Messages](getting-started)
-* [Ethereum Basics](concepts)
+* [Vapory Basics](concepts)
   * [Events](concepts/events)
     * [Solidity Topics](concepts/events)
     * [Logs and Filtering](concepts/events)
@@ -36,7 +36,7 @@ Developer Documentation
   * [Best Practices](concepts/best-practices)
     * [Network Changes](concepts/best-practices)
 * [Provider API Keys](api-keys)
-  * [Etherscan](api-keys)
+  * [Vaporscan](api-keys)
   * [INFURA](api-keys)
   * [Alchemy](api-keys)
   * [Pocket Gateway](api-keys)
@@ -46,7 +46,7 @@ Developer Documentation
     * [Provider](api/providers/provider)
       * [Accounts Methods](api/providers/provider)
       * [Blocks Methods](api/providers/provider)
-      * [Ethereum Naming Service (ENS) Methods](api/providers/provider)
+      * [Vapory Naming Service (ENS) Methods](api/providers/provider)
       * [Logs Methods](api/providers/provider)
       * [Network Status Methods](api/providers/provider)
       * [Transactions Methods](api/providers/provider)
@@ -57,7 +57,7 @@ Developer Documentation
       * [JsonRpcUncheckedSigner](api/providers/jsonrpc-provider)
       * [Node-Specific Methods](api/providers/jsonrpc-provider)
     * [API Providers](api/providers/api-providers)
-      * [EtherscanProvider](api/providers/api-providers)
+      * [VaporscanProvider](api/providers/api-providers)
       * [InfuraProvider](api/providers/api-providers)
       * [AlchemyProvider](api/providers/api-providers)
       * [CloudflareProvider](api/providers/api-providers)
@@ -187,7 +187,7 @@ Developer Documentation
       * [Languages](api/utils/wordlists)
   * [Other Libraries](api/other)
     * [Assembly](api/other/assembly)
-      * [Ethers ASM Dialect](api/other/assembly/dialect)
+      * [Vapors ASM Dialect](api/other/assembly/dialect)
         * [Opcodes](api/other/assembly/dialect)
         * [Labels](api/other/assembly/dialect)
         * [Literals](api/other/assembly/dialect)
@@ -211,15 +211,15 @@ Developer Documentation
     * [EIP1193Bridge](api/experimental)
     * [NonceManager](api/experimental)
 * [Command Line Interfaces](cli)
-  * [Sandbox Utility](cli/ethers)
-    * [Help](cli/ethers)
-    * [Examples](cli/ethers)
+  * [Sandbox Utility](cli/vapors)
+    * [Help](cli/vapors)
+    * [Examples](cli/vapors)
   * [Assembler](cli/asm)
     * [Help](cli/asm)
     * [Example Input Files](cli/asm)
     * [Assembler Examples](cli/asm)
     * [Disassembler Examples](cli/asm)
-  * [Ethereum Naming Service](cli/ens)
+  * [Vapory Naming Service](cli/ens)
     * [Help](cli/ens)
     * [Examples](cli/ens)
   * [TypeScript](cli/typescript)
@@ -240,12 +240,12 @@ Developer Documentation
     * [Contracts](migration/web3)
     * [Numbers](migration/web3)
     * [Utilities](migration/web3)
-  * [Migration: From Ethers v4](migration/ethers-v4)
-    * [BigNumber](migration/ethers-v4)
-    * [Contracts](migration/ethers-v4)
-    * [Errors](migration/ethers-v4)
-    * [Interface](migration/ethers-v4)
-    * [Wallet](migration/ethers-v4)
+  * [Migration: From Vapors v4](migration/vapors-v4)
+    * [BigNumber](migration/vapors-v4)
+    * [Contracts](migration/vapors-v4)
+    * [Errors](migration/vapors-v4)
+    * [Interface](migration/vapors-v4)
+    * [Wallet](migration/vapors-v4)
 * [Testing](testing)
   * [Supported Platforms](testing)
   * [Test Suites](testing)

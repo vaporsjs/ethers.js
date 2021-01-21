@@ -9,23 +9,23 @@ import { dirname, resolve } from "path";
 import _module from "module";
 import vm from "vm";
 
-import { ethers } from "ethers";
+import { vapors } from "vapors";
 
 import { Opcode } from "./opcodes";
 
 import { parse as _parse, parser as _parser } from "./_parser";
 
 import { version } from "./_version";
-const logger = new ethers.utils.Logger(version);
+const logger = new vapors.utils.Logger(version);
 
 const Guard = { };
 
-function hexConcat(values: Array<Opcode | ethers.utils.BytesLike>): string {
-    return ethers.utils.hexlify(ethers.utils.concat(values.map((v) => {
+function hexConcat(values: Array<Opcode | vapors.utils.BytesLike>): string {
+    return vapors.utils.hexlify(vapors.utils.concat(values.map((v) => {
         if (v instanceof Opcode) { return [ v.value ]; }
         if (typeof(v) === "number") {
             if (v >= 0 && v <= 255 && !(v % 1)) {
-                return ethers.utils.hexlify(v);
+                return vapors.utils.hexlify(v);
             } else {
                 throw new Error("invalid number: " + v);
             }
@@ -48,10 +48,10 @@ class Script {
     private _context: { context: any };
 
     constructor(filename: string, callback: (name: string, context: any) => any) {
-        ethers.utils.defineReadOnly(this, "filename", filename);
+        vapors.utils.defineReadOnly(this, "filename", filename);
 
-        ethers.utils.defineReadOnly(this, "contextObject", this._baseContext(callback));
-        ethers.utils.defineReadOnly(this, "context", vm.createContext(this.contextObject));
+        vapors.utils.defineReadOnly(this, "contextObject", this._baseContext(callback));
+        vapors.utils.defineReadOnly(this, "context", vm.createContext(this.contextObject));
     }
 
     _baseContext(callback: (name: string, context: any) => any): any {
@@ -62,44 +62,44 @@ class Script {
             console: console,
             Uint8Array: Uint8Array,
 
-            ethers: ethers,
-            utils: ethers.utils,
+            vapors: vapors,
+            utils: vapors.utils,
 
-            BigNumber: ethers.BigNumber,
+            BigNumber: vapors.BigNumber,
 
-            arrayify: ethers.utils.arrayify,
+            arrayify: vapors.utils.arrayify,
             concat: hexConcat,
-            hexlify: ethers.utils.hexlify,
-            zeroPad: function(value: ethers.utils.BytesLike, length: number) {
-                return ethers.utils.hexlify(ethers.utils.zeroPad(value, length));
+            hexlify: vapors.utils.hexlify,
+            zeroPad: function(value: vapors.utils.BytesLike, length: number) {
+                return vapors.utils.hexlify(vapors.utils.zeroPad(value, length));
             },
 
-            id: ethers.utils.id,
-            keccak256: ethers.utils.keccak256,
-            namehash: ethers.utils.namehash,
-            sha256: ethers.utils.sha256,
+            id: vapors.utils.id,
+            keccak256: vapors.utils.keccak256,
+            namehash: vapors.utils.namehash,
+            sha256: vapors.utils.sha256,
 
-            parseEther: ethers.utils.parseEther,
-            formatEther: ethers.utils.formatEther,
-            parseUnits: ethers.utils.parseUnits,
-            formatUnits: ethers.utils.formatUnits,
+            parseEther: vapors.utils.parseEther,
+            formatEther: vapors.utils.formatEther,
+            parseUnits: vapors.utils.parseUnits,
+            formatUnits: vapors.utils.formatUnits,
 
             randomBytes: function(length: number): string {
-                return ethers.utils.hexlify(ethers.utils.randomBytes(length));
+                return vapors.utils.hexlify(vapors.utils.randomBytes(length));
             },
 
-            toUtf8Bytes: ethers.utils.toUtf8Bytes,
-            toUtf8String: ethers.utils.toUtf8String,
-            formatBytes32String: ethers.utils.formatBytes32String,
-            parseBytes32String: ethers.utils.parseBytes32String,
+            toUtf8Bytes: vapors.utils.toUtf8Bytes,
+            toUtf8String: vapors.utils.toUtf8String,
+            formatBytes32String: vapors.utils.formatBytes32String,
+            parseBytes32String: vapors.utils.parseBytes32String,
 
             Opcode: Opcode,
 
             sighash: function(signature: string): string {
-               return ethers.utils.id(ethers.utils.FunctionFragment.from(signature).format()).substring(0, 10);
+               return vapors.utils.id(vapors.utils.FunctionFragment.from(signature).format()).substring(0, 10);
             },
             topichash: function(signature: string): string {
-               return ethers.utils.id(ethers.utils.EventFragment.from(signature).format());
+               return vapors.utils.id(vapors.utils.EventFragment.from(signature).format());
             },
 
             assemble: assemble,
@@ -161,12 +161,12 @@ export abstract class Node {
         if (guard !== Guard) { throwError("cannot instantiate class", location); }
         logger.checkAbstract(new.target, Node);
 
-        ethers.utils.defineReadOnly(this, "location", Object.freeze(location));
+        vapors.utils.defineReadOnly(this, "location", Object.freeze(location));
 
-        ethers.utils.defineReadOnly(this, "tag", `node-${ nextTag++ }-${ this.constructor.name }`);
+        vapors.utils.defineReadOnly(this, "tag", `node-${ nextTag++ }-${ this.constructor.name }`);
 
         for (const key in options) {
-            ethers.utils.defineReadOnly<any, any>(this, key, options[key]);
+            vapors.utils.defineReadOnly<any, any>(this, key, options[key]);
         }
     }
 
@@ -216,16 +216,16 @@ export abstract class ValueNode extends Node {
         super(guard, location, options);
     }
 
-    getPushLiteral(value: ethers.utils.BytesLike | ethers.utils.Hexable | number) {
+    getPushLiteral(value: vapors.utils.BytesLike | vapors.utils.Hexable | number) {
         // Convert value into a hexstring
-        const hex = ethers.utils.hexlify(value);
+        const hex = vapors.utils.hexlify(value);
 
         if (hex === "0x") {
             throwError("invalid literal: 0x", this.location);
         }
 
         // Make sure it will fit into a push
-        const length = ethers.utils.hexDataLength(hex);
+        const length = vapors.utils.hexDataLength(hex);
         if (length === 0 || length > 32) {
             throwError(`literal out of range: ${ hex }`, this.location);
         }
@@ -248,10 +248,10 @@ export class LiteralNode extends ValueNode {
             if (this.value.substring(0, 2) === "0x") {
                 visit(this, this.value);
             } else {
-                visit(this, ethers.BigNumber.from(this.value).toHexString());
+                visit(this, vapors.BigNumber.from(this.value).toHexString());
             }
         } else {
-            visit(this, this.getPushLiteral(ethers.BigNumber.from(this.value)));
+            visit(this, this.getPushLiteral(vapors.BigNumber.from(this.value)));
         }
         assembler.end(this);
     }
@@ -328,8 +328,8 @@ export class LinkNode extends ValueNode {
                 for (let w = 1; w <= 5; w++) {
                     if (w > 4) { throwError("jump too large!", this.location); }
                     literal = this.getPushLiteral(here - value + w);
-                    if (ethers.utils.hexDataLength(literal) <= w) {
-                        literal = ethers.utils.hexZeroPad(literal, w);
+                    if (vapors.utils.hexDataLength(literal) <= w) {
+                        literal = vapors.utils.hexZeroPad(literal, w);
                         break;
                     }
                 }
@@ -383,7 +383,7 @@ export class OpcodeNode extends ValueNode {
         }
 
         // Append this opcode
-        visit(this, ethers.utils.hexlify(this.opcode.value));
+        visit(this, vapors.utils.hexlify(this.opcode.value));
 
         assembler.end(this);
     }
@@ -420,7 +420,7 @@ export abstract class LabelledNode extends Node {
 
     constructor(guard: any, location: Location, name: string, values?: { [ key: string ]: any }) {
         logger.checkAbstract(new.target, LabelledNode);
-        values = ethers.utils.shallowCopy(values || { });
+        values = vapors.utils.shallowCopy(values || { });
         values.name = name;
         super(guard, location, values);
     }
@@ -429,7 +429,7 @@ export abstract class LabelledNode extends Node {
 export class LabelNode extends LabelledNode {
     async assemble(assembler: Assembler, visit: AssembleVisitFunc): Promise<void> {
         assembler.start(this);
-        visit(this, ethers.utils.hexlify(Opcode.from("JUMPDEST").value));
+        visit(this, vapors.utils.hexlify(Opcode.from("JUMPDEST").value));
         assembler.end(this);
     }
 
@@ -456,7 +456,7 @@ export class PaddingNode extends ValueNode {
 
         const padding = new Uint8Array(this._length);
         padding.fill(0);
-        visit(this, ethers.utils.hexlify(padding));
+        visit(this, vapors.utils.hexlify(padding));
 
         assembler.end(this);
     }
@@ -468,7 +468,7 @@ export class DataNode extends LabelledNode {
 
     constructor(guard: any, location: Location, name: string, data: string) {
         super(guard, location, name, { data });
-        ethers.utils.defineReadOnly(this, "padding", new PaddingNode(Guard, this.location));
+        vapors.utils.defineReadOnly(this, "padding", new PaddingNode(Guard, this.location));
     }
 
     async assemble(assembler: Assembler, visit: AssembleVisitFunc): Promise<void> {
@@ -485,7 +485,7 @@ export class DataNode extends LabelledNode {
         // We pad data if is contains PUSH opcodes that would overrun
         // the data, which could eclipse valid operations (since the
         // VM won't execute or jump within PUSH operations)
-        const bytecode = ethers.utils.concat(this.data.map((d) => assembler.getBytecode(d)));
+        const bytecode = vapors.utils.concat(this.data.map((d) => assembler.getBytecode(d)));
 
         // Replay the data as bytecode, skipping PUSH data
         let i = 0;
@@ -527,9 +527,9 @@ export class EvaluationNode extends ValueNode {
         const result: any = await assembler.evaluate(this.script, this);
         if (this.verbatim) {
             if (typeof(result) === "number") {
-                visit(this, ethers.BigNumber.from(result).toHexString());
+                visit(this, vapors.BigNumber.from(result).toHexString());
             } else {
-                visit(this, ethers.utils.hexlify(result));
+                visit(this, vapors.utils.hexlify(result));
             }
         } else {
             visit(this, this.getPushLiteral(result));
@@ -607,14 +607,14 @@ export function disassemble(bytecode: string): Bytecode {
     const ops: Array<Operation> = [ ];
     const offsets: { [ offset: number ]: Operation } = { };
 
-    const bytes = ethers.utils.arrayify(bytecode, { allowMissingPrefix: true });
+    const bytes = vapors.utils.arrayify(bytecode, { allowMissingPrefix: true });
 
     let i = 0;
     let oob = false;
     while (i < bytes.length) {
         let opcode = Opcode.from(bytes[i]);
         if (!opcode) {
-            opcode = new Opcode(`unknown (${ ethers.utils.hexlify(bytes[i]) })`, bytes[i], 0, 0);
+            opcode = new Opcode(`unknown (${ vapors.utils.hexlify(bytes[i]) })`, bytes[i], 0, 0);
         } else if (oob && opcode.mnemonic === "JUMPDEST") {
             opcode = new Opcode(`JUMPDEST (invalid; OOB!!)`, bytes[i], 0, 0);
         }
@@ -631,8 +631,8 @@ export function disassemble(bytecode: string): Bytecode {
 
         const push = opcode.isPush();
         if (push) {
-            const data = ethers.utils.hexlify(bytes.slice(i, i + push));
-            if (ethers.utils.hexDataLength(data) === push) {
+            const data = vapors.utils.hexlify(bytes.slice(i, i + push));
+            if (vapors.utils.hexDataLength(data) === push) {
                 op.pushValue = data;
                 op.length += push;
                 i += push;
@@ -666,7 +666,7 @@ export function disassemble(bytecode: string): Bytecode {
         if (offset < bytes.length) {
             result.set(bytes.slice(offset));
         }
-        return ethers.utils.arrayify(result);
+        return vapors.utils.arrayify(result);
     };
 
     (<Bytecode>ops).byteLength = bytes.length;
@@ -680,7 +680,7 @@ export function formatBytecode(bytecode: Array<Operation>): string {
     bytecode.forEach((op) => {
         const opcode = op.opcode;
 
-        let offset = ethers.utils.hexZeroPad(ethers.utils.hexlify(op.offset), 2);
+        let offset = vapors.utils.hexZeroPad(vapors.utils.hexlify(op.offset), 2);
         if (opcode.isValidJumpDest()) {
             offset += "*";
         } else {
@@ -741,8 +741,8 @@ class Assembler {
     _parents: { [ tag: string ]: Node };
 
     constructor(root: Node, positionIndependentCode?: boolean) {
-        ethers.utils.defineReadOnly(this, "root", root);
-        ethers.utils.defineReadOnly(this, "positionIndependentCode", !!positionIndependentCode);
+        vapors.utils.defineReadOnly(this, "root", root);
+        vapors.utils.defineReadOnly(this, "positionIndependentCode", !!positionIndependentCode);
 
         const nodes: { [ tag: string ]: NodeState } = { };
         const labels: { [ name: string ]: LabelledNode } = { };
@@ -762,7 +762,7 @@ class Assembler {
                 if (labels[node.name]) {
                     logger.throwError(
                         ("duplicate label: " + node.name),
-                        ethers.utils.Logger.errors.UNSUPPORTED_OPERATION,
+                        vapors.utils.Logger.errors.UNSUPPORTED_OPERATION,
                         { }
                     );
                 }
@@ -778,7 +778,7 @@ class Assembler {
                 if (!target) {
                     logger.throwError(
                         ("missing label: " + node.label),
-                        ethers.utils.Logger.errors.UNSUPPORTED_OPERATION,
+                        vapors.utils.Logger.errors.UNSUPPORTED_OPERATION,
                         { }
                     );
                 }
@@ -790,10 +790,10 @@ class Assembler {
             });
         });
 
-        ethers.utils.defineReadOnly(this, "labels", Object.freeze(labels));
-        ethers.utils.defineReadOnly(this, "nodes", Object.freeze(nodes));
+        vapors.utils.defineReadOnly(this, "labels", Object.freeze(labels));
+        vapors.utils.defineReadOnly(this, "nodes", Object.freeze(nodes));
 
-        ethers.utils.defineReadOnly(this, "_parents", Object.freeze(parents));
+        vapors.utils.defineReadOnly(this, "_parents", Object.freeze(parents));
     }
 
     // Link operations
@@ -855,10 +855,10 @@ class Assembler {
         const info = this.nodes[target.tag];
 
         // Return the offset is relative to its scope
-        const bytes = Array.prototype.slice.call(ethers.utils.arrayify(info.bytecode));
+        const bytes = Array.prototype.slice.call(vapors.utils.arrayify(info.bytecode));
 
-        ethers.utils.defineReadOnly(bytes, "ast", target);
-        ethers.utils.defineReadOnly(bytes, "source", target.location.source);
+        vapors.utils.defineReadOnly(bytes, "ast", target);
+        vapors.utils.defineReadOnly(bytes, "source", target.location.source);
 
         if (!((target instanceof DataNode) || (target instanceof ScopeNode))) {
             throwError("invalid link value lookup", source.location);
@@ -877,7 +877,7 @@ class Assembler {
             Object.defineProperty(bytes, "offset", {
                 get: function() { throwError(`cannot access ${ target.name }.offset from ${ source.tag }`, this.location); }
             });
-            ethers.utils.defineReadOnly(bytes, "_freeze", function() { });
+            vapors.utils.defineReadOnly(bytes, "_freeze", function() { });
         }
 
         // Add the offset relative to the scope; unless the offset has
@@ -885,10 +885,10 @@ class Assembler {
         if (safeOffset) {
             bytes.offset = info.offset - this.nodes[sourceScope.tag].offset;
             let frozen = false;
-            ethers.utils.defineReadOnly(bytes, "_freeze", function() {
+            vapors.utils.defineReadOnly(bytes, "_freeze", function() {
                  if (frozen) { return; }
                  frozen = true;
-                 ethers.utils.defineReadOnly(bytes, "offset", bytes.offset);
+                 vapors.utils.defineReadOnly(bytes, "offset", bytes.offset);
             });
         }
 
@@ -1062,11 +1062,11 @@ class CodeGenerationAssembler extends Assembler {
     constructor(root: Node, options: AssemblerOptions) {
         super(root, !!options.positionIndependentCode);
 
-        ethers.utils.defineReadOnly(this, "retry", ((options.retry != null) ? options.retry: 512));
-        ethers.utils.defineReadOnly(this, "filename", resolve(options.filename || "./contract.asm"));
-        ethers.utils.defineReadOnly(this, "defines", Object.freeze(options.defines || { }));
+        vapors.utils.defineReadOnly(this, "retry", ((options.retry != null) ? options.retry: 512));
+        vapors.utils.defineReadOnly(this, "filename", resolve(options.filename || "./contract.asm"));
+        vapors.utils.defineReadOnly(this, "defines", Object.freeze(options.defines || { }));
 
-        ethers.utils.defineReadOnly(this, "_stack", [ ]);
+        vapors.utils.defineReadOnly(this, "_stack", [ ]);
 
         this.reset();
     }
@@ -1131,7 +1131,7 @@ class CodeGenerationAssembler extends Assembler {
             } else {
                 this._checks.push(() => {
                     const check = <DataSource>super.getLinkValue(target, source);
-                    if (check.offset === result.offset && ethers.utils.hexlify(check) === ethers.utils.hexlify(result)) {
+                    if (check.offset === result.offset && vapors.utils.hexlify(check) === vapors.utils.hexlify(result)) {
                         return true;
                     }
                     return false;
@@ -1140,7 +1140,7 @@ class CodeGenerationAssembler extends Assembler {
         } catch (error) {
             this._checks.push(() => {
                 const check = <DataSource>super.getLinkValue(target, source);
-                return (ethers.utils.hexlify(check) === ethers.utils.hexlify(result));
+                return (vapors.utils.hexlify(check) === vapors.utils.hexlify(result));
             });
         }
 
@@ -1218,7 +1218,7 @@ class CodeGenerationAssembler extends Assembler {
                 ]);
             });
 
-            offset += ethers.utils.hexDataLength(bytecode);
+            offset += vapors.utils.hexDataLength(bytecode);
         });
 
         this._runChecks();
@@ -1259,7 +1259,7 @@ class CodeGenerationAssembler extends Assembler {
 
         return logger.throwError(
             `unable to assemble; ${ this.retry } attempts failed to generate stable bytecode`,
-            ethers.utils.Logger.errors.UNKNOWN_ERROR,
+            vapors.utils.Logger.errors.UNKNOWN_ERROR,
             { }
         );
     }
@@ -1304,7 +1304,7 @@ export function parse(code: string, options?: ParserOptions): Node {
     };
 
     // We use this in the _parser to convert locations to source
-    _parser.yy._ethersLocation = function(loc?: _Location): Location {
+    _parser.yy._vaporsLocation = function(loc?: _Location): Location {
 
         // The _ scope should call with null to get the full source
         if (loc == null) {
@@ -1331,7 +1331,7 @@ export function parse(code: string, options?: ParserOptions): Node {
     const result = Node.from(_parse(code));
 
     // Nuke the source code lookup callback
-    _parser.yy._ethersLocation = null;
+    _parser.yy._vaporsLocation = null;
 
     // Semantic Checks
     const checker = new SemanticChecker(result);

@@ -4,7 +4,7 @@ Explain contract here...
 
 _subsection: Creating Instances @<Contract--creating>
 
-_property: new ethers.Contract(address, abi, signerOrProvider) @src<contracts:constructor.Contract>
+_property: new vapors.Contract(address, abi, signerOrProvider) @src<contracts:constructor.Contract>
 
 _property: contract.attach(addressOrName) => [[Contract]]  @<Contract-attach> @SRC<contracts:Contract.attach>
 Returns a new instance of the **Contract** attached to a new

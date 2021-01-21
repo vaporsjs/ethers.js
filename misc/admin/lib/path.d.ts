@@ -10,4 +10,4 @@ export declare const packages: ReadonlyArray<string>;
 export declare function getPackagePath(name: string): string;
 export declare function getDirname(name: string): string;
 export declare function getPackageJsonPath(name: string): string;
-export declare function isEthers(name: string): boolean;
+export declare function isVapors(name: string): boolean;

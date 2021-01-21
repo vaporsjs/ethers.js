@@ -1,6 +1,6 @@
 -----
 
-Documentation: [html](https://docs.ethers.io/)
+Documentation: [html](https://docs.vapors.io/)
 
 -----
 
@@ -236,7 +236,7 @@ The amount (in wei) this transaction is sending.
 
 #### *transactionRequest* . **chainId** => *number | Promise< number >*
 
-The chain ID this transaction is authorized on, as specified by [EIP-155](https://eips.ethereum.org/EIPS/eip-155).
+The chain ID this transaction is authorized on, as specified by [EIP-155](https://eips.vapory.org/EIPS/eip-155).
 
 If the chain ID is 0 will disable EIP-155 and the transaction will be valid on any network. This can be **dangerous** and care should be taken, since it allows transactions to be replayed on networks that were possibly not intended.
 
@@ -301,7 +301,7 @@ The index of this transaction in the list of transactions included in the block 
 
 The intermediate state root of a receipt.
 
-Only transactions included in blocks **before** the [Byzantium Hard Fork](https://eips.ethereum.org/EIPS/eip-609) have this property, as it was replaced by the `status` property.
+Only transactions included in blocks **before** the [Byzantium Hard Fork](https://eips.vapory.org/EIPS/eip-609) have this property, as it was replaced by the `status` property.
 
 The property is generally of little use to developers. At the time it could be used to verify a state transition with a fraud-proof only considering the single transaction; without it the full block must be considered.
 
@@ -350,11 +350,11 @@ This is generally of little interest to developers.
 
 #### *receipt* . **byzantium** => *boolean*
 
-This is true if the block is in a [post-Byzantium Hard Fork](https://eips.ethereum.org/EIPS/eip-609) block.
+This is true if the block is in a [post-Byzantium Hard Fork](https://eips.vapory.org/EIPS/eip-609) block.
 
 
 #### *receipt* . **status** => *boolean*
 
-The status of a transaction is 1 is successful or 0 if it was reverted. Only transactions included in blocks [post-Byzantium Hard Fork](https://eips.ethereum.org/EIPS/eip-609) have this property.
+The status of a transaction is 1 is successful or 0 if it was reverted. Only transactions included in blocks [post-Byzantium Hard Fork](https://eips.vapory.org/EIPS/eip-609) have this property.
 
 
