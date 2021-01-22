@@ -33,7 +33,7 @@ keccak ltc namehash ripemd RLP scrypt secp sha xdai
 
 blockhash
 
-bitcoin vapory finney gwei kwei mwei satoshi szabo wei weth
+bitcoin vapory finney gwei kwei mwei satoshi szabo wei wvap
 
 crowdsale hexlify hd hdnode underpriced
 
@@ -48,8 +48,8 @@ ABIEncoder testcase numberish Wordlist
 abi addr api app arg arrayify asm basex bigint bignumber bn byte
 bytecode callback calldata charset checksum ciphertext cli codepoint
 commify config
-contenthash ctr ctrl debug dd dklen eexist encseed eof ethaddr
-ethseed vapors eval exec filename func gz gzip hid http https hw iv
+contenthash ctr ctrl debug dd dklen eexist encseed eof vapaddr
+vapseed vapors eval exec filename func gz gzip hid http https hw iv
 info init ipc json kdf kdfparams labelhash lang lib mm multihash nfc
 nfkc nfd nfkd nodehash notok nowait nullish oob opcode pbkdf pc plugin
 pragma pre prf repl rpc sighash topichash solc stdin stdout subclasses
@@ -68,7 +68,7 @@ goerli homestead kotti kovan mainnet morden mordor rinkeby
 ropsten testnet
 
 // Demo words
-args foo eth foo foobar ll localhost passwd ricmoo tx xxx yna
+args foo vap foo foobar ll localhost passwd ricmoo tx xxx yna
 
 // nameprep tags
 ALCat BiDi LCat nameprep

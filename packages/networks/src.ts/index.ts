@@ -21,7 +21,7 @@ function isRenetworkable(value: any): value is Renetworkable {
     return (value && typeof(value.renetwork) === "function");
 }
 
-function ethDefaultProvider(network: string | Network): Renetworkable {
+function vapDefaultProvider(network: string | Network): Renetworkable {
     const func = function(providers: any, options?: any): any {
         if (options == null) { options = { }; }
         const providerList: Array<any> = [];
@@ -66,7 +66,7 @@ function ethDefaultProvider(network: string | Network): Renetworkable {
     };
 
     func.renetwork = function(network: Network) {
-        return ethDefaultProvider(network);
+        return vapDefaultProvider(network);
     };
 
     return func;
@@ -90,16 +90,16 @@ function etcDefaultProvider(url: string, network: string | Network): Renetworkab
 
 const homestead: Network = {
     chainId: 1,
-    ensAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+    vnsAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
     name: "homestead",
-    _defaultProvider: ethDefaultProvider("homestead")
+    _defaultProvider: vapDefaultProvider("homestead")
 };
 
 const ropsten: Network = {
     chainId: 3,
-    ensAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+    vnsAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
     name: "ropsten",
-    _defaultProvider: ethDefaultProvider("ropsten")
+    _defaultProvider: vapDefaultProvider("ropsten")
 };
 
 const classicMordor: Network = {
@@ -127,22 +127,22 @@ const networks: { [name: string]: Network } = {
 
     rinkeby: {
         chainId: 4,
-        ensAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+        vnsAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
         name: "rinkeby",
-        _defaultProvider: ethDefaultProvider("rinkeby")
+        _defaultProvider: vapDefaultProvider("rinkeby")
     },
 
     kovan: {
         chainId: 42,
         name: "kovan",
-        _defaultProvider: ethDefaultProvider("kovan")
+        _defaultProvider: vapDefaultProvider("kovan")
     },
 
     goerli: {
         chainId: 5,
-        ensAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+        vnsAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
         name: "goerli",
-        _defaultProvider: ethDefaultProvider("goerli")
+        _defaultProvider: vapDefaultProvider("goerli")
      },
 
 
@@ -185,7 +185,7 @@ export function getNetwork(network: Networkish): Network {
                 return {
                     name: standard.name,
                     chainId: standard.chainId,
-                    ensAddress: (standard.ensAddress || null),
+                    vnsAddress: (standard.vnsAddress || null),
                     _defaultProvider: (standard._defaultProvider || null)
                 };
             }
@@ -203,7 +203,7 @@ export function getNetwork(network: Networkish): Network {
         return {
             name: standard.name,
             chainId: standard.chainId,
-            ensAddress: standard.ensAddress,
+            vnsAddress: standard.vnsAddress,
             _defaultProvider: (standard._defaultProvider || null)
         };
     }
@@ -234,11 +234,11 @@ export function getNetwork(network: Networkish): Network {
         }
     }
 
-    // Standard Network (allow overriding the ENS address)
+    // Standard Network (allow overriding the VNS address)
     return {
         name: network.name,
         chainId: standard.chainId,
-        ensAddress: (network.ensAddress || standard.ensAddress || null),
+        vnsAddress: (network.vnsAddress || standard.vnsAddress || null),
         _defaultProvider: defaultProvider
     };
 }

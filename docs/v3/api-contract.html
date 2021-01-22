@@ -250,7 +250,7 @@ overloaded functions, use the full typed signature of the functions (e.g.
 <code class="docutils literal"><span class="pre">contract[&quot;foobar(address,uint256)&quot;]</span></code>).</p>
 <dl class="docutils">
 <dt><sup>prototype</sup> . address</dt>
-<dd>The address (or ENS name) of the contract.</dd>
+<dd>The address (or VNS name) of the contract.</dd>
 <dt><sup>prototype</sup> . interface</dt>
 <dd>The <a class="reference internal" href="api-advanced.html#api-interface"><span class="std std-ref">Interface</span></a> meta-class of the parsed
 ABI. Generally, this should not need to be accessed directly.</dd>
@@ -390,7 +390,7 @@ prefix) to a callback that is triggered when the event occurs.</dd>
     <span class="n">gasLimit</span><span class="p">:</span> <span class="mi">250000</span><span class="p">,</span>
     <span class="n">gasPrice</span><span class="p">:</span> <span class="mi">9000000000</span><span class="p">,</span>
     <span class="n">nonce</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="n">value</span><span class="p">:</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">parseEther</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">parseVapor</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span>
 <span class="p">};</span>
 
 <span class="n">var</span> <span class="n">sendPromise</span> <span class="o">=</span> <span class="n">contract</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">,</span> <span class="n">overrideOptions</span><span class="p">);</span>

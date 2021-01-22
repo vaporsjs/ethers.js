@@ -174,7 +174,7 @@ An attempt to call a blockchain contract (getter) resulted in a revert or other 
 
 The account is attempting to make a transaction which costs more than is available.
 
-A sending account must have enough ether to pay for the value, the gas limit (at the gas price) as well as the intrinsic cost of data. The intrinsic cost of data is 4 gas for each zero byte and 68 gas for each non-zero byte.
+A sending account must have enough vapor to pay for the value, the gas limit (at the gas price) as well as the intrinsic cost of data. The intrinsic cost of data is 4 gas for each zero byte and 68 gas for each non-zero byte.
 
 
 #### *Logger* . *errors* . **NETWORK_ERROR**

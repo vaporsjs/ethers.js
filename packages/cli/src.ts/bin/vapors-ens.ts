@@ -11,7 +11,7 @@ import { version } from "../_version";
 
 const logger = new vapors.utils.Logger(version);
 
-const ensAbi = [
+const vnsAbi = [
     "function setOwner(bytes32 node, address owner) external @500000",
     "function setSubnodeOwner(bytes32 node, bytes32 label, address owner) external @500000",
     "function setResolver(bytes32 node, address resolver) external @500000",
@@ -25,12 +25,12 @@ const deedAbi = [
     "function owner() view returns (address)"
 ];
 
-const ethLegacyRegistrarAbi = [
+const vapLegacyRegistrarAbi = [
     "function entries(bytes32 _hash) view returns (uint8 state, address owner, uint registrationDate, uint value, uint highestBid)",
     "function transferRegistrars(bytes32 _hash) @500000",
 ];
 
-const ethControllerAbi = [
+const vapControllerAbi = [
     "function rentPrice(string memory name, uint duration) view public returns(uint)",
     "function available(string memory label) public view returns(bool)",
     "function makeCommitment(string memory name, address owner, bytes32 secret) pure public returns(bytes32)",
@@ -39,7 +39,7 @@ const ethControllerAbi = [
     "function renew(string calldata name, uint duration) payable @500000",
 ];
 
-const ethRegistrarAbi = [
+const vapRegistrarAbi = [
     "function ownerOf(uint256 tokenId) view returns (address)",
     "function reclaim(uint256 id, address owner) @500000",
     "function safeTransferFrom(address from, address to, uint256 tokenId) @500000",
@@ -78,47 +78,47 @@ function listify(words: Array<string>): string {
 let cli = new CLI();
 
 abstract class EnsPlugin extends Plugin {
-    _ethAddressCache: { [ addressOrInterfaceId: string ]: string };
+    _vapAddressCache: { [ addressOrInterfaceId: string ]: string };
 
     constructor() {
         super();
-        vapors.utils.defineReadOnly(this, "_ethAddressCache", { });
+        vapors.utils.defineReadOnly(this, "_vapAddressCache", { });
     }
 
     getEns(): vapors.Contract {
-        return new vapors.Contract(this.network.ensAddress, ensAbi, this.accounts[0] || this.provider);
+        return new vapors.Contract(this.network.vnsAddress, vnsAbi, this.accounts[0] || this.provider);
     }
 
     async getResolver(nodehash: string): Promise<vapors.Contract> {
-        if (!this._ethAddressCache[nodehash]) {
-            this._ethAddressCache[nodehash] = await this.getEns().resolver(nodehash);
+        if (!this._vapAddressCache[nodehash]) {
+            this._vapAddressCache[nodehash] = await this.getEns().resolver(nodehash);
         }
-        return new vapors.Contract(this._ethAddressCache[nodehash], resolverAbi, this.accounts[0] || this.provider);
+        return new vapors.Contract(this._vapAddressCache[nodehash], resolverAbi, this.accounts[0] || this.provider);
     }
 
-    async getEthInterfaceAddress(interfaceId: string): Promise<string> {
-        let ethNodehash = vapors.utils.namehash("eth");
-        if (!this._ethAddressCache[interfaceId]) {
-            let resolver = await this.getResolver(ethNodehash);
-            this._ethAddressCache[interfaceId] = await resolver.interfaceImplementer(ethNodehash, interfaceId);
+    async getVapInterfaceAddress(interfaceId: string): Promise<string> {
+        let vapNodehash = vapors.utils.namehash("vap");
+        if (!this._vapAddressCache[interfaceId]) {
+            let resolver = await this.getResolver(vapNodehash);
+            this._vapAddressCache[interfaceId] = await resolver.interfaceImplementer(vapNodehash, interfaceId);
         }
-        return this._ethAddressCache[interfaceId];
+        return this._vapAddressCache[interfaceId];
     }
 
-    async getEthController(): Promise<vapors.Contract> {
-        let address = await this.getEthInterfaceAddress(InterfaceID_Controller);
-        return new vapors.Contract(address, ethControllerAbi, this.accounts[0] || this.provider);
+    async getVapController(): Promise<vapors.Contract> {
+        let address = await this.getVapInterfaceAddress(InterfaceID_Controller);
+        return new vapors.Contract(address, vapControllerAbi, this.accounts[0] || this.provider);
     }
 
-    async getEthLegacyRegistrar(): Promise<vapors.Contract> {
-        let address = await this.getEthInterfaceAddress(InterfaceID_Legacy);
-        return new vapors.Contract(address, ethLegacyRegistrarAbi, this.accounts[0] || this.provider);
+    async getVapLegacyRegistrar(): Promise<vapors.Contract> {
+        let address = await this.getVapInterfaceAddress(InterfaceID_Legacy);
+        return new vapors.Contract(address, vapLegacyRegistrarAbi, this.accounts[0] || this.provider);
     }
 
-    async getEthRegistrar(): Promise<vapors.Contract> {
-        //let address = await this.getEthInterfaceAddress(InterfaceID_ERC721);
-        let address = await this.getEns().owner(vapors.utils.namehash("eth"));
-        return new vapors.Contract(address, ethRegistrarAbi, this.accounts[0] || this.provider);
+    async getVapRegistrar(): Promise<vapors.Contract> {
+        //let address = await this.getVapInterfaceAddress(InterfaceID_ERC721);
+        let address = await this.getEns().owner(vapors.utils.namehash("vap"));
+        return new vapors.Contract(address, vapRegistrarAbi, this.accounts[0] || this.provider);
     }
 }
 
@@ -142,11 +142,11 @@ class LookupPlugin extends EnsPlugin {
     async run(): Promise<void> {
         await super.run();
 
-        let ens = this.getEns();
+        let vns = this.getEns();
 
-        let controller = await this.getEthController();
-        let registrar = await this.getEthRegistrar();
-        let legacyRegistrar = await this.getEthLegacyRegistrar();
+        let controller = await this.getVapController();
+        let registrar = await this.getVapRegistrar();
+        let legacyRegistrar = await this.getVapLegacyRegistrar();
 
         for (let i = 0; i < this.names.length; i++) {
             let name = this.names[i];
@@ -157,13 +157,13 @@ class LookupPlugin extends EnsPlugin {
                 Nodehash: nodehash
             };
 
-            let owner = await ens.owner(nodehash);
+            let owner = await vns.owner(nodehash);
             let resolverAddress: string = null;
             if (owner === vapors.constants.AddressZero) {
                 owner = null;
             } else {
                 details.Controller = owner;
-                details.Resolver = await ens.resolver(nodehash).then((address: string) => {
+                details.Resolver = await vns.resolver(nodehash).then((address: string) => {
                     if (address === vapors.constants.AddressZero) {
                         return "(not configured)";
                     }
@@ -173,7 +173,7 @@ class LookupPlugin extends EnsPlugin {
             }
 
             let comps = name.split(".");
-            if (comps.length === 2 && comps[1] === "eth") {
+            if (comps.length === 2 && comps[1] === "vap") {
                 details.Labelhash = vapors.utils.id(comps[0].toLowerCase()); // @TODO: nameprep
 
                 details.Available = await controller.available(comps[0]);
@@ -191,8 +191,8 @@ class LookupPlugin extends EnsPlugin {
 
                         details.Registrant = await deed.owner();
                         details.Registrar = "Legacy";
-                        details["Deed Value"] = (vapors.utils.formatEther(entry.value) + " ether");
-                        details["Highest Bid"] = (vapors.utils.formatEther(entry.highestBid) + " ether");
+                        details["Deed Value"] = (vapors.utils.formatVapor(entry.value) + " vapor");
+                        details["Highest Bid"] = (vapors.utils.formatVapor(entry.highestBid) + " vapor");
                     }
                 }
             }
@@ -303,7 +303,7 @@ abstract class ControllerPlugin extends AccountPlugin {
     async _setValue(key: string, value: string): Promise<void> {
         if (key === "name") {
             let comps = value.split(".");
-            if (comps.length !== 2 || comps[1] !== "eth") {
+            if (comps.length !== 2 || comps[1] !== "vap") {
                 this.throwError("Invalid NAME");
             }
             await super._setValue("label", comps[0]);
@@ -360,21 +360,21 @@ class CommitPlugin extends ControllerPlugin {
 
     async run(): Promise<void> {
         await super.run();
-        let ethController = await this.getEthController();
+        let vapController = await this.getVapController();
 
-        let commitment = await ethController.makeCommitment(this.label, this.owner, this.salt);
-        let fee = await ethController.rentPrice(this.label, this.duration);
+        let commitment = await vapController.makeCommitment(this.label, this.owner, this.salt);
+        let fee = await vapController.rentPrice(this.label, this.duration);
 
         this.dump("Commit: " + this.name, {
             Nodehash: this.nodehash,
             Owner: this.owner,
             Salt: this.salt,
             Duration: (this.duration + " seconds (informational)"),
-            Fee: vapors.utils.formatEther(fee) + " (informational)",
+            Fee: vapors.utils.formatVapor(fee) + " (informational)",
             Commitment: commitment
         });
 
-        await ethController.commit(commitment);
+        await vapController.commit(commitment);
     }
 }
 cli.addPlugin("commit", CommitPlugin);
@@ -390,19 +390,19 @@ class RevealPlugin extends ControllerPlugin {
 
     async run(): Promise<void> {
         await super.run();
-        let ethController = await this.getEthController();
+        let vapController = await this.getVapController();
 
-        let fee = await ethController.rentPrice(this.label, this.duration);
+        let fee = await vapController.rentPrice(this.label, this.duration);
 
         this.dump("Reveal: " + this.name, {
             Nodehash: this.nodehash,
             Owner: this.owner,
             Salt: this.salt,
             Duration: (this.duration + " seconds"),
-            Fee: vapors.utils.formatEther(fee),
+            Fee: vapors.utils.formatVapor(fee),
         });
 
-        await ethController.register(this.label, this.owner, this.duration, this.salt, {
+        await vapController.register(this.label, this.owner, this.duration, this.salt, {
             value: fee.mul(11).div(10)
         });
     }
@@ -734,13 +734,13 @@ class MigrateRegistrarPlugin extends AccountPlugin {
 
         // Only Top-Level names can be migrated
         let comps = this.name.split(".");
-        if (comps.length !== 2 || comps[1] !== "eth") {
+        if (comps.length !== 2 || comps[1] !== "vap") {
             this.throwError("Not a top-level .vap name");
         }
         await super._setValue("label", comps[0]);
 
-        let ethLegacyRegistrar = await this.getEthLegacyRegistrar();
-        let entry: any = await ethLegacyRegistrar.entries(vapors.utils.id(comps[0]));
+        let vapLegacyRegistrar = await this.getVapLegacyRegistrar();
+        let entry: any = await vapLegacyRegistrar.entries(vapors.utils.id(comps[0]));
 
         // Only owned names can be migrated
         if (States[entry.state] !== "Owned") {
@@ -765,11 +765,11 @@ class MigrateRegistrarPlugin extends AccountPlugin {
 
         this.dump("Migrate Registrar: " + this.name, {
             "Nodehash": this.nodehash,
-            "Highest Bid": (vapors.utils.formatEther(this.highestBid) + " ether"),
-            "Deed Value": (vapors.utils.formatEther(this.deedValue) + " ether"),
+            "Highest Bid": (vapors.utils.formatVapor(this.highestBid) + " vapor"),
+            "Deed Value": (vapors.utils.formatVapor(this.deedValue) + " vapor"),
         });
 
-        let legacyRegistrar = await this.getEthLegacyRegistrar();
+        let legacyRegistrar = await this.getVapLegacyRegistrar();
         await legacyRegistrar.transferRegistrars(vapors.utils.id(this.label));
     }
 }
@@ -794,7 +794,7 @@ class TransferPlugin extends AccountPlugin {
             await super._setValue(key, address);
         } else if (key === "name") {
             let comps = value.split(".");
-            if (comps.length !== 2 || comps[1] !== "eth") {
+            if (comps.length !== 2 || comps[1] !== "vap") {
                 this.throwError("Not a top-level .vap name");
             }
             await super._setValue("label", comps[0]);
@@ -812,7 +812,7 @@ class TransferPlugin extends AccountPlugin {
             "New Owner": this.new_owner,
         });
 
-        let registrar = await this.getEthRegistrar();
+        let registrar = await this.getVapRegistrar();
         await registrar.safeTransferFrom(this.accounts[0].getAddress(), this.new_owner, vapors.utils.id(this.label));
     }
 }
@@ -831,13 +831,13 @@ class ReclaimPlugin extends AddressAccountPlugin {
     async _setValue(key: string, value: string): Promise<void> {
         if (key === "name") {
             let comps = value.split(".");
-            if (comps.length !== 2 || comps[1] !== "eth") {
+            if (comps.length !== 2 || comps[1] !== "vap") {
                 this.throwError("Not a top-level .vap name");
             }
 
             let account = await this.accounts[0].getAddress();
 
-            let registrar = await this.getEthRegistrar();
+            let registrar = await this.getVapRegistrar();
             let ownerOf: string = null;
             try {
                 ownerOf = await registrar.ownerOf(vapors.utils.id(comps[0]));
@@ -862,7 +862,7 @@ class ReclaimPlugin extends AddressAccountPlugin {
             "Address": this.address,
         });
 
-        let registrar = await this.getEthRegistrar();
+        let registrar = await this.getVapRegistrar();
         await registrar.reclaim(vapors.utils.id(this.label), this.address);
     }
 }
@@ -956,7 +956,7 @@ class RenewPlugin extends EnsPlugin {
         const labels: Array<string> = [ ];
         args.forEach((arg) => {
             const comps = arg.split(".");
-            if (comps.length !== 2 || comps[1] !== "eth") {
+            if (comps.length !== 2 || comps[1] !== "vap") {
                 this.throwError(`name not supported ${ JSON.stringify(arg) }`);
             }
             labels.push(comps[0]);
@@ -968,14 +968,14 @@ class RenewPlugin extends EnsPlugin {
     async run(): Promise<void> {
         await super.run();
 
-        const ethController = await this.getEthController();
-        const ethRegistrar = await this.getEthRegistrar();
+        const vapController = await this.getVapController();
+        const vapRegistrar = await this.getVapRegistrar();
 
         for (let i = 0; i < this.labels.length; i++) {
             const label = this.labels[i];
             console.log(label);
 
-            const expiration = (await ethRegistrar.nameExpires(vapors.utils.id(label))).toNumber();
+            const expiration = (await vapRegistrar.nameExpires(vapors.utils.id(label))).toNumber();
             if (expiration === 0) {
                 this.throwError(`not registered: ${ label }`);
             }
@@ -985,16 +985,16 @@ class RenewPlugin extends EnsPlugin {
                 this.throwError(`bad duration: ${ duration }`);
             }
 
-            const fee = (await ethController.rentPrice(label, duration)).mul(11).div(10);
+            const fee = (await vapController.rentPrice(label, duration)).mul(11).div(10);
 
             this.dump(`Renew: ${ label }.vap`, {
                 "Current Expiry": formatDate(new Date(expiration * 1000)),
                 "Duration":       `${ (duration / (24 * 60 * 60)) } days`,
                 "Until":          formatDate(new Date((expiration + duration) * 1000)),
-                "Fee":            `${ vapors.utils.formatEther(fee) } (+10% buffer)`,
+                "Fee":            `${ vapors.utils.formatVapor(fee) } (+10% buffer)`,
             });
 
-            await ethController.renew(label, duration, {
+            await vapController.renew(label, duration, {
                 value: fee
             });
         }

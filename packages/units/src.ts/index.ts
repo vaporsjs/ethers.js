@@ -14,7 +14,7 @@ const names = [
     "gwei",
     "szabo",
     "finney",
-    "ether",
+    "vapor",
 ];
 
 
@@ -80,11 +80,11 @@ export function parseUnits(value: string, unitName?: BigNumberish): BigNumber {
     return parseFixed(value, (unitName != null) ? unitName: 18);
 }
 
-export function formatEther(wei: BigNumberish): string {
+export function formatVapor(wei: BigNumberish): string {
     return formatUnits(wei, 18);
 }
 
-export function parseEther(ether: string): BigNumber {
-    return parseUnits(ether, 18);
+export function parseVapor(vapor: string): BigNumber {
+    return parseUnits(vapor, 18);
 }
 

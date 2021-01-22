@@ -190,7 +190,7 @@
 
 <span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
 
-<span class="c1">// Geth</span>
+<span class="c1">// Gvap</span>
 <span class="kd">let</span> <span class="nx">dirname</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">HOME</span><span class="p">,</span> <span class="s1">&#39;.vapory&#39;</span><span class="p">,</span> <span class="s1">&#39;keystore&#39;</span><span class="p">);</span>
 
 <span class="c1">// Parity (use the name of your chain for chainDirectory, such as &quot;homestead&quot;)</span>
@@ -209,7 +209,7 @@
     <span class="c1">// Look up the balance</span>
     <span class="kd">let</span> <span class="nx">balance</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">provider</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">(</span><span class="nx">address</span><span class="p">);</span>
 
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">address</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatEther</span><span class="p">(</span><span class="nx">balance</span><span class="p">));</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">address</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatVapor</span><span class="p">(</span><span class="nx">balance</span><span class="p">));</span>
 <span class="p">});</span>
 </pre></div>
 </div>

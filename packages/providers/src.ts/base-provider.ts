@@ -224,9 +224,9 @@ const coinInfos: { [ coinType: string ]: CoinInfo } = {
     "0":   { symbol: "btc",  p2pkh: 0x00, p2sh: 0x05, prefix: "bc" },
     "2":   { symbol: "ltc",  p2pkh: 0x30, p2sh: 0x32, prefix: "ltc" },
     "3":   { symbol: "doge", p2pkh: 0x1e, p2sh: 0x16 },
-    "60":  { symbol: "eth",  ilk: "eth" },
-    "61":  { symbol: "etc",  ilk: "eth" },
-    "700": { symbol: "xdai", ilk: "eth" },
+    "60":  { symbol: "vap",  ilk: "vap" },
+    "61":  { symbol: "etc",  ilk: "vap" },
+    "700": { symbol: "xdai", ilk: "vap" },
 };
 
 function bytes32ify(value: number): string {
@@ -275,7 +275,7 @@ export class Resolver implements EnsResolver {
             });
         }
 
-        if (coinInfo.ilk === "eth") {
+        if (coinInfo.ilk === "vap") {
             return this.provider.formatter.address(hexBytes);
         }
 
@@ -1092,7 +1092,7 @@ export class BaseProvider extends Provider implements EnsProvider {
     async _getAddress(addressOrName: string | Promise<string>): Promise<string> {
         const address = await this.resolveName(addressOrName);
         if (address == null) {
-            logger.throwError("ENS name not configured", Logger.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("VNS name not configured", Logger.errors.UNSUPPORTED_OPERATION, {
                 operation: `resolveName(${ JSON.stringify(addressOrName) })`
             });
         }
@@ -1231,7 +1231,7 @@ export class BaseProvider extends Provider implements EnsProvider {
                 return undefined;
             }
 
-            // "geth-etc" returns receipts before they are ready
+            // "gvap-etc" returns receipts before they are ready
             if (result.blockHash == null) { return undefined; }
 
             const receipt = this.formatter.receipt(result);
@@ -1262,9 +1262,9 @@ export class BaseProvider extends Provider implements EnsProvider {
         return Formatter.arrayOf(this.formatter.filterLog.bind(this.formatter))(logs);
     }
 
-    async getEtherPrice(): Promise<number> {
+    async getVaporPrice(): Promise<number> {
         await this.getNetwork();
-        return this.perform("getEtherPrice", { });
+        return this.perform("getVaporPrice", { });
     }
 
     async _getBlockTag(blockTag: BlockTag | Promise<BlockTag>): Promise<BlockTag> {
@@ -1295,18 +1295,18 @@ export class BaseProvider extends Provider implements EnsProvider {
         // Get the resolver from the blockchain
         const network = await this.getNetwork();
 
-        // No ENS...
-        if (!network.ensAddress) {
+        // No VNS...
+        if (!network.vnsAddress) {
             logger.throwError(
-                "network does not support ENS",
+                "network does not support VNS",
                 Logger.errors.UNSUPPORTED_OPERATION,
-                { operation: "ENS", network: network.name }
+                { operation: "VNS", network: network.name }
             );
         }
 
         // keccak256("resolver(bytes32)")
         const transaction = {
-            to: network.ensAddress,
+            to: network.vnsAddress,
             data: ("0x0178b8bf" + namehash(name).substring(2))
         };
 
@@ -1325,7 +1325,7 @@ export class BaseProvider extends Provider implements EnsProvider {
         }
 
         if (typeof(name) !== "string") {
-            logger.throwArgumentError("invalid ENS name", "name", name);
+            logger.throwArgumentError("invalid VNS name", "name", name);
         }
 
         // Get the addr from the resovler

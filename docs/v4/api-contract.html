@@ -215,10 +215,10 @@ by a Contract.</p>
 <blockquote>
 <div><p>A <strong>Constant</strong> method may not add, remove or change any data in the storage, nor
 log any events, and may only call <strong>Constant</strong> methods on other contracts. These
-methods are free (<strong>no</strong> <em>Ether</em> is required) to call. The result from them may also
+methods are free (<strong>no</strong> <em>Vapor</em> is required) to call. The result from them may also
 be returned to the caller.</p>
-<p>A <strong>Non-Constant</strong> method requires a fee (in <em>Ether</em>) to be paid, but may perform any
-state-changing operation desired, log events, send ether and call <strong>Non-Constant</strong>
+<p>A <strong>Non-Constant</strong> method requires a fee (in <em>Vapor</em>) to be paid, but may perform any
+state-changing operation desired, log events, send vapor and call <strong>Non-Constant</strong>
 methods on other Contracts. These methods <strong>cannot</strong> return their result to the caller.
 These methods must be triggered by a transaction, sent by an Externally Owned Account (EOA)
 either directly or indirectly (i.e. called from another contract), and are required
@@ -535,7 +535,7 @@ the <strong>Contract</strong> object.</p>
 <h3>Prototype<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt><sup>prototype</sup> . address</dt>
-<dd>The address (or ENS name) of the contract.</dd>
+<dd>The address (or VNS name) of the contract.</dd>
 <dt><sup>prototype</sup> . deployTransaction</dt>
 <dd>If the contract was deployed by a ContractFactory, this is the transaction
 used to deploy it, otherwise it is null.</dd>
@@ -644,7 +644,7 @@ transaction (or call) overrides.</p>
     <span class="nx">nonce</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span>
 
     <span class="c1">// The amount to send with the transaction (i.e. msg.value)</span>
-    <span class="nx">value</span><span class="o">:</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">parseEther</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">),</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">parseVapor</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">),</span>
 
     <span class="c1">// The chain ID (or network ID) to use</span>
     <span class="nx">chainId</span><span class="o">:</span> <span class="mi">1</span>

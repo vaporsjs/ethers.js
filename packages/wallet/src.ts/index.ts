@@ -133,10 +133,10 @@ export class Wallet extends Signer implements ExternallyOwnedAccount, TypedDataS
     }
 
     async _signTypedData(domain: TypedDataDomain, types: Record<string, Array<TypedDataField>>, value: Record<string, any>): Promise<string> {
-        // Populate any ENS names
+        // Populate any VNS names
         const populated = await _TypedDataEncoder.resolveNames(domain, types, value, (name: string) => {
             if (this.provider == null) {
-                logger.throwError("cannot resolve ENS names without a provider", Logger.errors.UNSUPPORTED_OPERATION, {
+                logger.throwError("cannot resolve VNS names without a provider", Logger.errors.UNSUPPORTED_OPERATION, {
                     operation: "resolveName",
                     value: name
                 });

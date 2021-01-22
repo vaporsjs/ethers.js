@@ -18,7 +18,7 @@ import * as RLP from "@vaporsproject/rlp";
 import { computePublicKey, recoverPublicKey, SigningKey } from "@vaporsproject/signing-key";
 import { formatBytes32String, nameprep, parseBytes32String, _toEscapedUtf8String, toUtf8Bytes, toUtf8CodePoints, toUtf8String, Utf8ErrorFuncs } from "@vaporsproject/strings";
 import { computeAddress, parse as parseTransaction, recoverAddress, serialize as serializeTransaction } from "@vaporsproject/transactions";
-import { commify, formatEther, parseEther, formatUnits, parseUnits } from "@vaporsproject/units";
+import { commify, formatVapor, parseVapor, formatUnits, parseUnits } from "@vaporsproject/units";
 import { verifyMessage, verifyTypedData } from "@vaporsproject/wallet";
 import { _fetchData, fetchJson, poll } from "@vaporsproject/web";
 
@@ -124,8 +124,8 @@ export {
     getCreate2Address,
     isAddress,
 
-    formatEther,
-    parseEther,
+    formatVapor,
+    parseVapor,
 
     formatUnits,
     parseUnits,

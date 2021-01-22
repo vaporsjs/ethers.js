@@ -184,11 +184,11 @@ Vapory in JavaScript.</p>
 <p>The first problem many encounter when dealing with Vapory is the concept of numbers. Most
 common currencies are broken down with very little granulairty. For example, there are only
 100 cents in a single dollar. However, there are  10<sup>18</sup> <strong>wei</strong> in a single
-<strong>ether</strong>.</p>
+<strong>vapor</strong>.</p>
 <p>JavaScript uses <a class="reference external" href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">IEEE 754 double-precision binary floating point</a> numbers to represent
 numeric values. As a result, there are <em>holes</em> in the integer set after
 9,007,199,254,740,991; which is problematic for <em>Vapory</em> because that is only
-around 0.009 ether (in wei).</p>
+around 0.009 vapor (in wei).</p>
 <p>To demonstrate how this may be an issue in your code, consider:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="p">(</span><span class="n">Number</span><span class="o">.</span><span class="n">MAX_SAFE_INTEGER</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">Number</span><span class="o">.</span><span class="n">MAX_SAFE_INTEGER</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">false</span>
@@ -196,7 +196,7 @@ around 0.009 ether (in wei).</p>
 </div>
 <p>To remedy this, all numbers (which can be large) are stored and manipulated
 as <a class="reference internal" href="api-utils.html#bignumber"><span class="std std-ref">Big Numbers</span></a>.</p>
-<p>The functions <a class="reference internal" href="api-utils.html#parseether"><span class="std std-ref">parseEther( vaporString )</span></a> and <a class="reference internal" href="api-utils.html#formatether"><span class="std std-ref">formatEther( wei )</span></a> can be used to convert between
+<p>The functions <a class="reference internal" href="api-utils.html#parsevapor"><span class="std std-ref">parseVapor( vaporString )</span></a> and <a class="reference internal" href="api-utils.html#formatvapor"><span class="std std-ref">formatVapor( wei )</span></a> can be used to convert between
 string representations, which are displayed to or entered by the user and Big Number representations
 which can have mathematical operations handled safely.</p>
 <hr class="docutils" />

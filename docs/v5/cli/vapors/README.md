@@ -18,19 +18,19 @@ COMMANDS (default: sandbox)
    sandbox                    Run a REPL VM environment with vapors
    init FILENAME              Create a new JSON wallet
       [ --force ]                Overwrite any existing files
-   fund TARGET                Fund TARGET with testnet ether
-   info [ TARGET ... ]        Dump info for accounts, addresses and ENS names
-   send TARGET ETHER          Send ETHER ether to TARGET form accounts[0]
+   fund TARGET                Fund TARGET with testnet vapor
+   info [ TARGET ... ]        Dump info for accounts, addresses and VNS names
+   send TARGET VAPOR          Send VAPOR vapor to TARGET form accounts[0]
       [ --allow-zero ]           Allow sending to the address zero
       [ --data DATA ]            Include data in the transaction
-   sweep TARGET               Send all ether from accounts[0] to TARGET
+   sweep TARGET               Send all vapor from accounts[0] to TARGET
    sign-message MESSAGE       Sign a MESSAGE with accounts[0]
       [ --hex ]                  The message content is hex encoded
    eval CODE                  Run CODE in a VM with vapors
    run FILENAME               Run FILENAME in a VM with vapors
    wait HASH                  Wait for a transaction HASH to be mined
-   wrap-ether VALUE           Deposit VALUE into Wrapped Ether (WETH)
-   unwrap-ether VALUE         Withdraw VALUE from Wrapped Ether (WETH)
+   wrap-vapor VALUE           Deposit VALUE into Wrapped Vapor (WVAP)
+   unwrap-vapor VALUE         Withdraw VALUE from Wrapped Vapor (WVAP)
    send-token TOKEN ADDRESS VALUE
                               Send VALUE tokens (at TOKEN) to ADDRESS
    compile FILENAME           Compiles a Solidity contract
@@ -46,7 +46,7 @@ ACCOUNT OPTIONS
   --account 'MNEMONIC'        Use a mnemonic (insecure *)
   --account -                 Use secure entry for a raw key or mnemonic
   --account-void ADDRESS      Use an address as a void signer
-  --account-void ENS_NAME     Add the resolved address as a void signer
+  --account-void VNS_NAME     Add the resolved address as a void signer
   --account-rpc ADDRESS       Add the address from a JSON-RPC provider
   --account-rpc INDEX         Add the index from a JSON-RPC provider
   --mnemonic-password         Prompt for a password for mnemonics
@@ -99,14 +99,14 @@ Transaction Hash: 0x8dc55b8f8dc8076acded97f9e3ed7d6162460c0221e2769806006b6d7d11
 ```
 
 ```
-# Sending ether
+# Sending vapor
 /home/ricmoo> vapors --account wallet.json send ricmoo.firefly.vap 0.123
 Password (wallet.json): ******
 Decrypting... 100%
 Transaction:
   To:         0x8ba1f109551bD432803012645Ac136ddd64DBA72
   From:       0xaB7C8803962c0f2F5BBBe3FA8bf41cd82AA1923C
-  Value:      0.123 ether
+  Value:      0.123 vapor
   Nonce:      96
   Data:       0x
   Gas Limit:  21000
@@ -132,7 +132,7 @@ Decrypting... 100%
 Transaction:
   To:         0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359
   From:       0xaB7C8803962c0f2F5BBBe3FA8bf41cd82AA1923C
-  Value:      0.0 ether
+  Value:      0.0 vapor
   Nonce:      95
   Data:       0xa9059cbb0000000000000000000000008ba1f109551bd432803012645ac136ddd64dba720000000000000000000000000000000000000000000000000de0b6b3a7640000
   Gas Limit:  37538
@@ -167,7 +167,7 @@ Signature
 /home/vapors> vapors --network ropsten \
                --account wallet.json \
                eval \
-               'accounts[0].getBalance().then(b => formatEther(b))'
+               'accounts[0].getBalance().then(b => formatVapor(b))'
 3.141592653589793238
 ```
 

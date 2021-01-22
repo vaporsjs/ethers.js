@@ -3,6 +3,6 @@ _section: Command Line Interfaces
 _toc:
     vapors
     asm
-    ens
+    vns
     typescript
     plugin

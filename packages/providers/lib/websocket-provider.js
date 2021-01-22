@@ -133,7 +133,7 @@ var WebSocketProvider = /** @class */ (function (_super) {
                     });
                 }
             }
-            else if (result.method === "eth_subscription") {
+            else if (result.method === "vap_subscription") {
                 // Subscription...
                 var sub = _this._subs[result.params.subscription];
                 if (sub) {
@@ -235,7 +235,7 @@ var WebSocketProvider = /** @class */ (function (_super) {
                         subIdPromise = this._subIds[tag];
                         if (subIdPromise == null) {
                             subIdPromise = Promise.all(param).then(function (param) {
-                                return _this.send("eth_subscribe", param);
+                                return _this.send("vap_subscribe", param);
                             });
                             this._subIds[tag] = subIdPromise;
                         }
@@ -328,7 +328,7 @@ var WebSocketProvider = /** @class */ (function (_super) {
                 return;
             }
             delete _this._subs[subId];
-            _this.send("eth_unsubscribe", [subId]);
+            _this.send("vap_unsubscribe", [subId]);
         });
     };
     WebSocketProvider.prototype.destroy = function () {

@@ -71,7 +71,7 @@ The nonce for *transaction*. Each transaction sent to the network from an accoun
 
 #### *transaction* . **gasLimit** => *[BigNumber](/v5/api/utils/bignumber/)*
 
-The gas limit for *transaction*. An account must have enough ether to cover the gas (at the specified **gasPrice**). Any unused gas is refunded at the end of the transaction, and if there is insufficient gas to complete execution, the effects of the transaction are reverted, but the gas is **fully consumed** and an out-of-gas error occurs.
+The gas limit for *transaction*. An account must have enough vapor to cover the gas (at the specified **gasPrice**). Any unused gas is refunded at the end of the transaction, and if there is insufficient gas to complete execution, the effects of the transaction are reverted, but the gas is **fully consumed** and an out-of-gas error occurs.
 
 
 #### *transaction* . **gasPrice** => *[BigNumber](/v5/api/utils/bignumber/)*

@@ -36,14 +36,14 @@ export class CrowdsaleAccount extends Description<_CrowdsaleAccount> implements 
     }
 }
 
-// See: https://github.com/vaporyco/pyethsaletool
+// See: https://github.com/vaporyco/pyvapsaletool
 export function decrypt(json: string, password: Bytes | string): ExternallyOwnedAccount {
     const data = JSON.parse(json);
 
     password = getPassword(password);
 
     // Vapory Address
-    const ethaddr = getAddress(searchPath(data, "ethaddr"));
+    const vapaddr = getAddress(searchPath(data, "vapaddr"));
 
     // Encrypted Seed
     const encseed = looseArrayify(searchPath(data, "encseed"));
@@ -72,7 +72,7 @@ export function decrypt(json: string, password: Bytes | string): ExternallyOwned
 
     return new CrowdsaleAccount ({
         _isCrowdsaleAccount: true,
-        address: ethaddr,
+        address: vapaddr,
         privateKey: privateKey
     });
 }

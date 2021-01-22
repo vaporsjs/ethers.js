@@ -176,7 +176,7 @@ describe("Test Contract Transaction Population", function () {
             assert.equal(tx.from, testAddressCheck, "from address matches");
         });
     });
-    it("allows ENS 'from' overrides", function () {
+    it("allows VNS 'from' overrides", function () {
         return __awaiter(this, void 0, void 0, function* () {
             this.timeout(20000);
             const tx = yield contractConnected.populateTransaction.balanceOf(testAddress, {

@@ -1,8 +1,8 @@
 _section: Assembler @<cli-asm>
 
 The assembler Command-Line utility allows you to assemble the
-[Vapors ASM Dialect](asm-dialect) into deployable EVM bytecode
-and disassemble EVM bytecode into human-readable mnemonics.
+[Vapors ASM Dialect](asm-dialect) into deployable VVM bytecode
+and disassemble VVM bytecode into human-readable mnemonics.
 
 
 _subsection: Help

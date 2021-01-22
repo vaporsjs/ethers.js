@@ -9,11 +9,11 @@ A complete Vapory wallet implementation and utilities in JavaScript (and TypeScr
 **Features:**
 
 - Keep your private keys in your client, **safe** and sound
-- Import and export **JSON wallets** (Geth, Parity and crowdsale)
+- Import and export **JSON wallets** (Gvap, Parity and crowdsale)
 - Import and export BIP 39 **mnemonic phrases** (12 word backup phrases) and **HD Wallets** (English as well as Czech, French, Italian, Japanese, Korean, Simplified Chinese, Spanish, Traditional Chinese)
 - Meta-classes create JavaScript objects from any contract ABI, including **ABIv2** and **Human-Readable ABI**
 - Connect to Vapory nodes over [JSON-RPC](https://github.com/vaporyco/wiki/wiki/JSON-RPC), [INFURA](https://infura.io), [Vaporscan](https://vaporscan.io), [Alchemy](https://alchemyapi.io) or [MetaMask](https://metamask.io)
-- **ENS names** are first-class citizens; they can be used anywhere an Vapory addresses can be used
+- **VNS names** are first-class citizens; they can be used anywhere an Vapory addresses can be used
 - **Tiny** (~104kb compressed; 322kb uncompressed)
 - **Modular** packages; include only what you need
 - **Complete** functionality for all your Vapory desires

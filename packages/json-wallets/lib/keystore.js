@@ -362,7 +362,7 @@ function encrypt(account, password, options, progressCallback) {
                 utils_1.zpad(now.getUTCSeconds(), 2) + ".0Z");
             data["x-vapors"] = {
                 client: client,
-                gethFilename: ("UTC--" + timestamp + "--" + data.address),
+                gvapFilename: ("UTC--" + timestamp + "--" + data.address),
                 mnemonicCounter: bytes_1.hexlify(mnemonicIv).substring(2),
                 mnemonicCiphertext: bytes_1.hexlify(mnemonicCiphertext).substring(2),
                 path: path,

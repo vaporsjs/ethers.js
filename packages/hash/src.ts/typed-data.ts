@@ -401,17 +401,17 @@ export class TypedDataEncoder {
         return keccak256(TypedDataEncoder.encode(domain, types, value));
     }
 
-    // Replaces all address types with ENS names with their looked up address
+    // Replaces all address types with VNS names with their looked up address
     static async resolveNames(domain: TypedDataDomain, types: Record<string, Array<TypedDataField>>, value: Record<string, any>, resolveName: (name: string) => Promise<string>): Promise<{ domain: TypedDataDomain, value: any }> {
         // Make a copy to isolate it from the object passed in
         domain = shallowCopy(domain);
 
-        // Look up all ENS names
-        const ensCache: Record<string, string> = { };
+        // Look up all VNS names
+        const vnsCache: Record<string, string> = { };
 
         // Do we need to look up the domain's verifyingContract?
         if (domain.verifyingContract && !isHexString(domain.verifyingContract, 20)) {
-            ensCache[domain.verifyingContract] = "0x";
+            vnsCache[domain.verifyingContract] = "0x";
         }
 
         // We are going to use the encoder to visit all the base values
@@ -420,24 +420,24 @@ export class TypedDataEncoder {
         // Get a list of all the addresses
         encoder.visit(value, (type: string, value: any) => {
             if (type === "address" && !isHexString(value, 20)) {
-                ensCache[value] = "0x";
+                vnsCache[value] = "0x";
             }
             return value;
         });
 
         // Lookup each name
-        for (const name in ensCache) {
-            ensCache[name] = await resolveName(name);
+        for (const name in vnsCache) {
+            vnsCache[name] = await resolveName(name);
         }
 
         // Replace the domain verifyingContract if needed
-        if (domain.verifyingContract && ensCache[domain.verifyingContract]) {
-            domain.verifyingContract = ensCache[domain.verifyingContract];
+        if (domain.verifyingContract && vnsCache[domain.verifyingContract]) {
+            domain.verifyingContract = vnsCache[domain.verifyingContract];
         }
 
-        // Replace all ENS names with their address
+        // Replace all VNS names with their address
         value = encoder.visit(value, (type: string, value: any) => {
-            if (type === "address" && ensCache[value]) { return ensCache[value]; }
+            if (type === "address" && vnsCache[value]) { return vnsCache[value]; }
             return value;
         });
 

@@ -49,7 +49,7 @@ Transaction Hash: 0x457c1d8b58170c73a02afa2816e877de41d6337a483d4af9cbd674d2b478
 /home/ricmoo> vapors eval 'id("Hello...")'
 0x9cd41c139084dafa62261ce045f504e3c697fa303c87a78b241a9f8ae65bae88
 
-/home/ricmoo> vapors --network ropsten eval '(new Contract(provider.network.ensAddress, [ "function owner(bytes32) view returns (address)" ], provider)).owner(namehash("eth"))'
+/home/ricmoo> vapors --network ropsten eval '(new Contract(provider.network.vnsAddress, [ "function owner(bytes32) view returns (address)" ], provider)).owner(namehash("vap"))'
 0x227Fcb6Ddf14880413EF4f1A3dF2Bbb32bcb29d7
 ```
 
@@ -86,12 +86,12 @@ COMMANDS (default: sandbox)
    sandbox                    Run a REPL VM environment with vapors
    init FILENAME              Create a new JSON wallet
       [ --force ]                Overwrite any existing files
-   fund TARGET                Fund TARGET with testnet ether
-   info [ TARGET ... ]        Dump info for accounts, addresses and ENS names
-   send TARGET ETHER          Send ETHER ether to TARGET form accounts[0]
+   fund TARGET                Fund TARGET with testnet vapor
+   info [ TARGET ... ]        Dump info for accounts, addresses and VNS names
+   send TARGET VAPOR          Send VAPOR vapor to TARGET form accounts[0]
       [ --allow-zero ]           Allow sending to the address zero
       [ --data DATA ]            Include data in the transaction
-   sweep TARGET               Send all ether from accounts[0] to TARGET
+   sweep TARGET               Send all vapor from accounts[0] to TARGET
    sign-message MESSAGE       Sign a MESSAGE with accounts[0]
       [ --hex ]                  The message content is hex encoded
    eval CODE                  Run CODE in a VM with vapors
@@ -110,7 +110,7 @@ ACCOUNT OPTIONS
   --account 'MNEMONIC'        Use a mnemonic (insecure *)
   --account -                 Use secure entry for a raw key or mnemonic
   --account-void ADDRESS      Use an address as a void signer
-  --account-void ENS_NAME     Add the resolved address as a void signer
+  --account-void VNS_NAME     Add the resolved address as a void signer
   --account-rpc ADDRESS       Add the address from a JSON-RPC provider
   --account-rpc INDEX         Add the index from a JSON-RPC provider
   --mnemonic-password         Prompt for a password for mnemonics
@@ -144,17 +144,17 @@ OTHER OPTIONS
 
 -----
 
-Vapory Naming Service (ENS)
+Vapory Naming Service (VNS)
 =============================
 
-These tools help manage ENS names.
+These tools help manage VNS names.
 
 Help (--help)
 -------------
 
 ```
 Usage:
-   vapors-ens COMMAND [ ARGS ] [ OPTIONS ]
+   vapors-vns COMMAND [ ARGS ] [ OPTIONS ]
 
 COMMANDS
    lookup [ NAME | ADDRESS [ ... ] ]

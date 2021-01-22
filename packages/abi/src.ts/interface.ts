@@ -298,7 +298,7 @@ export class Interface {
         ]));
     }
 
-    // Decode the result from a function call (e.g. from eth_call)
+    // Decode the result from a function call (e.g. from vap_call)
     decodeFunctionResult(functionFragment: FunctionFragment | string, data: BytesLike): Result {
         if (typeof(functionFragment) === "string") {
             functionFragment = this.getFunction(functionFragment);
@@ -331,7 +331,7 @@ export class Interface {
         });
     }
 
-    // Encode the result for a function call (e.g. for eth_call)
+    // Encode the result for a function call (e.g. for vap_call)
     encodeFunctionResult(functionFragment: FunctionFragment | string, values?: Array<any>): string {
         if (typeof(functionFragment) === "string") {
             functionFragment = this.getFunction(functionFragment);
@@ -340,7 +340,7 @@ export class Interface {
         return hexlify(this._abiCoder.encode(functionFragment.outputs, values || [ ]));
     }
 
-    // Create the filter for the event with search criteria (e.g. for eth_filterLog)
+    // Create the filter for the event with search criteria (e.g. for vap_filterLog)
     encodeFilterTopics(eventFragment: EventFragment, values: Array<any>): Array<string | Array<string>> {
         if (typeof(eventFragment) === "string") {
             eventFragment = this.getEvent(eventFragment);

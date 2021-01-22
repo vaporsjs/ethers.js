@@ -14,7 +14,7 @@ import { Base58 } from "@vaporsproject/basex";
 import { CLI, Plugin } from '../cli';
 import { version } from "../_version";
 const logger = new vapors.utils.Logger(version);
-const ensAbi = [
+const vnsAbi = [
     "function setOwner(bytes32 node, address owner) external @500000",
     "function setSubnodeOwner(bytes32 node, bytes32 label, address owner) external @500000",
     "function setResolver(bytes32 node, address resolver) external @500000",
@@ -25,11 +25,11 @@ const States = Object.freeze(["Open", "Auction", "Owned", "Forbidden", "Reveal",
 const deedAbi = [
     "function owner() view returns (address)"
 ];
-const ethLegacyRegistrarAbi = [
+const vapLegacyRegistrarAbi = [
     "function entries(bytes32 _hash) view returns (uint8 state, address owner, uint registrationDate, uint value, uint highestBid)",
     "function transferRegistrars(bytes32 _hash) @500000",
 ];
-const ethControllerAbi = [
+const vapControllerAbi = [
     "function rentPrice(string memory name, uint duration) view public returns(uint)",
     "function available(string memory label) public view returns(bool)",
     "function makeCommitment(string memory name, address owner, bytes32 secret) pure public returns(bytes32)",
@@ -37,7 +37,7 @@ const ethControllerAbi = [
     "function register(string calldata name, address owner, uint duration, bytes32 secret) payable @500000",
     "function renew(string calldata name, uint duration) payable @500000",
 ];
-const ethRegistrarAbi = [
+const vapRegistrarAbi = [
     "function ownerOf(uint256 tokenId) view returns (address)",
     "function reclaim(uint256 id, address owner) @500000",
     "function safeTransferFrom(address from, address to, uint256 tokenId) @500000",
@@ -72,46 +72,46 @@ let cli = new CLI();
 class EnsPlugin extends Plugin {
     constructor() {
         super();
-        vapors.utils.defineReadOnly(this, "_ethAddressCache", {});
+        vapors.utils.defineReadOnly(this, "_vapAddressCache", {});
     }
     getEns() {
-        return new vapors.Contract(this.network.ensAddress, ensAbi, this.accounts[0] || this.provider);
+        return new vapors.Contract(this.network.vnsAddress, vnsAbi, this.accounts[0] || this.provider);
     }
     getResolver(nodehash) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!this._ethAddressCache[nodehash]) {
-                this._ethAddressCache[nodehash] = yield this.getEns().resolver(nodehash);
+            if (!this._vapAddressCache[nodehash]) {
+                this._vapAddressCache[nodehash] = yield this.getEns().resolver(nodehash);
             }
-            return new vapors.Contract(this._ethAddressCache[nodehash], resolverAbi, this.accounts[0] || this.provider);
+            return new vapors.Contract(this._vapAddressCache[nodehash], resolverAbi, this.accounts[0] || this.provider);
         });
     }
-    getEthInterfaceAddress(interfaceId) {
+    getVapInterfaceAddress(interfaceId) {
         return __awaiter(this, void 0, void 0, function* () {
-            let ethNodehash = vapors.utils.namehash("eth");
-            if (!this._ethAddressCache[interfaceId]) {
-                let resolver = yield this.getResolver(ethNodehash);
-                this._ethAddressCache[interfaceId] = yield resolver.interfaceImplementer(ethNodehash, interfaceId);
+            let vapNodehash = vapors.utils.namehash("vap");
+            if (!this._vapAddressCache[interfaceId]) {
+                let resolver = yield this.getResolver(vapNodehash);
+                this._vapAddressCache[interfaceId] = yield resolver.interfaceImplementer(vapNodehash, interfaceId);
             }
-            return this._ethAddressCache[interfaceId];
+            return this._vapAddressCache[interfaceId];
         });
     }
-    getEthController() {
+    getVapController() {
         return __awaiter(this, void 0, void 0, function* () {
-            let address = yield this.getEthInterfaceAddress(InterfaceID_Controller);
-            return new vapors.Contract(address, ethControllerAbi, this.accounts[0] || this.provider);
+            let address = yield this.getVapInterfaceAddress(InterfaceID_Controller);
+            return new vapors.Contract(address, vapControllerAbi, this.accounts[0] || this.provider);
         });
     }
-    getEthLegacyRegistrar() {
+    getVapLegacyRegistrar() {
         return __awaiter(this, void 0, void 0, function* () {
-            let address = yield this.getEthInterfaceAddress(InterfaceID_Legacy);
-            return new vapors.Contract(address, ethLegacyRegistrarAbi, this.accounts[0] || this.provider);
+            let address = yield this.getVapInterfaceAddress(InterfaceID_Legacy);
+            return new vapors.Contract(address, vapLegacyRegistrarAbi, this.accounts[0] || this.provider);
         });
     }
-    getEthRegistrar() {
+    getVapRegistrar() {
         return __awaiter(this, void 0, void 0, function* () {
-            //let address = await this.getEthInterfaceAddress(InterfaceID_ERC721);
-            let address = yield this.getEns().owner(vapors.utils.namehash("eth"));
-            return new vapors.Contract(address, ethRegistrarAbi, this.accounts[0] || this.provider);
+            //let address = await this.getVapInterfaceAddress(InterfaceID_ERC721);
+            let address = yield this.getEns().owner(vapors.utils.namehash("vap"));
+            return new vapors.Contract(address, vapRegistrarAbi, this.accounts[0] || this.provider);
         });
     }
 }
@@ -137,24 +137,24 @@ class LookupPlugin extends EnsPlugin {
         });
         return __awaiter(this, void 0, void 0, function* () {
             yield _super.run.call(this);
-            let ens = this.getEns();
-            let controller = yield this.getEthController();
-            let registrar = yield this.getEthRegistrar();
-            let legacyRegistrar = yield this.getEthLegacyRegistrar();
+            let vns = this.getEns();
+            let controller = yield this.getVapController();
+            let registrar = yield this.getVapRegistrar();
+            let legacyRegistrar = yield this.getVapLegacyRegistrar();
             for (let i = 0; i < this.names.length; i++) {
                 let name = this.names[i];
                 let nodehash = vapors.utils.namehash(name);
                 let details = {
                     Nodehash: nodehash
                 };
-                let owner = yield ens.owner(nodehash);
+                let owner = yield vns.owner(nodehash);
                 let resolverAddress = null;
                 if (owner === vapors.constants.AddressZero) {
                     owner = null;
                 }
                 else {
                     details.Controller = owner;
-                    details.Resolver = yield ens.resolver(nodehash).then((address) => {
+                    details.Resolver = yield vns.resolver(nodehash).then((address) => {
                         if (address === vapors.constants.AddressZero) {
                             return "(not configured)";
                         }
@@ -163,7 +163,7 @@ class LookupPlugin extends EnsPlugin {
                     });
                 }
                 let comps = name.split(".");
-                if (comps.length === 2 && comps[1] === "eth") {
+                if (comps.length === 2 && comps[1] === "vap") {
                     details.Labelhash = vapors.utils.id(comps[0].toLowerCase()); // @TODO: nameprep
                     details.Available = yield controller.available(comps[0]);
                     if (!details.Available) {
@@ -179,8 +179,8 @@ class LookupPlugin extends EnsPlugin {
                             let deed = new vapors.Contract(entry.owner, deedAbi, this.provider);
                             details.Registrant = yield deed.owner();
                             details.Registrar = "Legacy";
-                            details["Deed Value"] = (vapors.utils.formatEther(entry.value) + " ether");
-                            details["Highest Bid"] = (vapors.utils.formatEther(entry.highestBid) + " ether");
+                            details["Deed Value"] = (vapors.utils.formatVapor(entry.value) + " vapor");
+                            details["Highest Bid"] = (vapors.utils.formatVapor(entry.highestBid) + " vapor");
                         }
                     }
                 }
@@ -291,7 +291,7 @@ class ControllerPlugin extends AccountPlugin {
         return __awaiter(this, void 0, void 0, function* () {
             if (key === "name") {
                 let comps = value.split(".");
-                if (comps.length !== 2 || comps[1] !== "eth") {
+                if (comps.length !== 2 || comps[1] !== "vap") {
                     this.throwError("Invalid NAME");
                 }
                 yield _super._setValue.call(this, "label", comps[0]);
@@ -353,18 +353,18 @@ class CommitPlugin extends ControllerPlugin {
         });
         return __awaiter(this, void 0, void 0, function* () {
             yield _super.run.call(this);
-            let ethController = yield this.getEthController();
-            let commitment = yield ethController.makeCommitment(this.label, this.owner, this.salt);
-            let fee = yield ethController.rentPrice(this.label, this.duration);
+            let vapController = yield this.getVapController();
+            let commitment = yield vapController.makeCommitment(this.label, this.owner, this.salt);
+            let fee = yield vapController.rentPrice(this.label, this.duration);
             this.dump("Commit: " + this.name, {
                 Nodehash: this.nodehash,
                 Owner: this.owner,
                 Salt: this.salt,
                 Duration: (this.duration + " seconds (informational)"),
-                Fee: vapors.utils.formatEther(fee) + " (informational)",
+                Fee: vapors.utils.formatVapor(fee) + " (informational)",
                 Commitment: commitment
             });
-            yield ethController.commit(commitment);
+            yield vapController.commit(commitment);
         });
     }
 }
@@ -382,16 +382,16 @@ class RevealPlugin extends ControllerPlugin {
         });
         return __awaiter(this, void 0, void 0, function* () {
             yield _super.run.call(this);
-            let ethController = yield this.getEthController();
-            let fee = yield ethController.rentPrice(this.label, this.duration);
+            let vapController = yield this.getVapController();
+            let fee = yield vapController.rentPrice(this.label, this.duration);
             this.dump("Reveal: " + this.name, {
                 Nodehash: this.nodehash,
                 Owner: this.owner,
                 Salt: this.salt,
                 Duration: (this.duration + " seconds"),
-                Fee: vapors.utils.formatEther(fee),
+                Fee: vapors.utils.formatVapor(fee),
             });
-            yield ethController.register(this.label, this.owner, this.duration, this.salt, {
+            yield vapController.register(this.label, this.owner, this.duration, this.salt, {
                 value: fee.mul(11).div(10)
             });
         });
@@ -704,12 +704,12 @@ class MigrateRegistrarPlugin extends AccountPlugin {
             yield _super.prepareArgs.call(this, args);
             // Only Top-Level names can be migrated
             let comps = this.name.split(".");
-            if (comps.length !== 2 || comps[1] !== "eth") {
+            if (comps.length !== 2 || comps[1] !== "vap") {
                 this.throwError("Not a top-level .vap name");
             }
             yield _super._setValue.call(this, "label", comps[0]);
-            let ethLegacyRegistrar = yield this.getEthLegacyRegistrar();
-            let entry = yield ethLegacyRegistrar.entries(vapors.utils.id(comps[0]));
+            let vapLegacyRegistrar = yield this.getVapLegacyRegistrar();
+            let entry = yield vapLegacyRegistrar.entries(vapors.utils.id(comps[0]));
             // Only owned names can be migrated
             if (States[entry.state] !== "Owned") {
                 this.throwError("Name not present in the Legacy registrar");
@@ -733,10 +733,10 @@ class MigrateRegistrarPlugin extends AccountPlugin {
             yield _super.run.call(this);
             this.dump("Migrate Registrar: " + this.name, {
                 "Nodehash": this.nodehash,
-                "Highest Bid": (vapors.utils.formatEther(this.highestBid) + " ether"),
-                "Deed Value": (vapors.utils.formatEther(this.deedValue) + " ether"),
+                "Highest Bid": (vapors.utils.formatVapor(this.highestBid) + " vapor"),
+                "Deed Value": (vapors.utils.formatVapor(this.deedValue) + " vapor"),
             });
-            let legacyRegistrar = yield this.getEthLegacyRegistrar();
+            let legacyRegistrar = yield this.getVapLegacyRegistrar();
             yield legacyRegistrar.transferRegistrars(vapors.utils.id(this.label));
         });
     }
@@ -760,7 +760,7 @@ class TransferPlugin extends AccountPlugin {
             }
             else if (key === "name") {
                 let comps = value.split(".");
-                if (comps.length !== 2 || comps[1] !== "eth") {
+                if (comps.length !== 2 || comps[1] !== "vap") {
                     this.throwError("Not a top-level .vap name");
                 }
                 yield _super._setValue.call(this, "label", comps[0]);
@@ -781,7 +781,7 @@ class TransferPlugin extends AccountPlugin {
                 Nodehash: this.nodehash,
                 "New Owner": this.new_owner,
             });
-            let registrar = yield this.getEthRegistrar();
+            let registrar = yield this.getVapRegistrar();
             yield registrar.safeTransferFrom(this.accounts[0].getAddress(), this.new_owner, vapors.utils.id(this.label));
         });
     }
@@ -801,11 +801,11 @@ class ReclaimPlugin extends AddressAccountPlugin {
         return __awaiter(this, void 0, void 0, function* () {
             if (key === "name") {
                 let comps = value.split(".");
-                if (comps.length !== 2 || comps[1] !== "eth") {
+                if (comps.length !== 2 || comps[1] !== "vap") {
                     this.throwError("Not a top-level .vap name");
                 }
                 let account = yield this.accounts[0].getAddress();
-                let registrar = yield this.getEthRegistrar();
+                let registrar = yield this.getVapRegistrar();
                 let ownerOf = null;
                 try {
                     ownerOf = yield registrar.ownerOf(vapors.utils.id(comps[0]));
@@ -831,7 +831,7 @@ class ReclaimPlugin extends AddressAccountPlugin {
                 "Nodehash": this.nodehash,
                 "Address": this.address,
             });
-            let registrar = yield this.getEthRegistrar();
+            let registrar = yield this.getVapRegistrar();
             yield registrar.reclaim(vapors.utils.id(this.label), this.address);
         });
     }
@@ -922,7 +922,7 @@ class RenewPlugin extends EnsPlugin {
             const labels = [];
             args.forEach((arg) => {
                 const comps = arg.split(".");
-                if (comps.length !== 2 || comps[1] !== "eth") {
+                if (comps.length !== 2 || comps[1] !== "vap") {
                     this.throwError(`name not supported ${JSON.stringify(arg)}`);
                 }
                 labels.push(comps[0]);
@@ -936,12 +936,12 @@ class RenewPlugin extends EnsPlugin {
         });
         return __awaiter(this, void 0, void 0, function* () {
             yield _super.run.call(this);
-            const ethController = yield this.getEthController();
-            const ethRegistrar = yield this.getEthRegistrar();
+            const vapController = yield this.getVapController();
+            const vapRegistrar = yield this.getVapRegistrar();
             for (let i = 0; i < this.labels.length; i++) {
                 const label = this.labels[i];
                 console.log(label);
-                const expiration = (yield ethRegistrar.nameExpires(vapors.utils.id(label))).toNumber();
+                const expiration = (yield vapRegistrar.nameExpires(vapors.utils.id(label))).toNumber();
                 if (expiration === 0) {
                     this.throwError(`not registered: ${label}`);
                 }
@@ -949,14 +949,14 @@ class RenewPlugin extends EnsPlugin {
                 if (duration < 0) {
                     this.throwError(`bad duration: ${duration}`);
                 }
-                const fee = (yield ethController.rentPrice(label, duration)).mul(11).div(10);
+                const fee = (yield vapController.rentPrice(label, duration)).mul(11).div(10);
                 this.dump(`Renew: ${label}.vap`, {
                     "Current Expiry": formatDate(new Date(expiration * 1000)),
                     "Duration": `${(duration / (24 * 60 * 60))} days`,
                     "Until": formatDate(new Date((expiration + duration) * 1000)),
-                    "Fee": `${vapors.utils.formatEther(fee)} (+10% buffer)`,
+                    "Fee": `${vapors.utils.formatVapor(fee)} (+10% buffer)`,
                 });
-                yield ethController.renew(label, duration, {
+                yield vapController.renew(label, duration, {
                     value: fee
                 });
             }
@@ -985,4 +985,4 @@ cli.addPlugin("renew", RenewPlugin);
  *    reclaim NAME --address OWNER
  */
 cli.run(process.argv.slice(2));
-//# sourceMappingURL=vapors-ens.js.map
+//# sourceMappingURL=vapors-vns.js.map

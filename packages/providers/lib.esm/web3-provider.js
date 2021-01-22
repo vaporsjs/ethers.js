@@ -7,8 +7,8 @@ import { JsonRpcProvider } from "./json-rpc-provider";
 let _nextId = 1;
 function buildWeb3LegacyFetcher(provider, sendFunc) {
     return function (method, params) {
-        // Metamask complains about eth_sign (and on some versions hangs)
-        if (method == "eth_sign" && provider.isMetaMask) {
+        // Metamask complains about vap_sign (and on some versions hangs)
+        if (method == "vap_sign" && provider.isMetaMask) {
             // https://github.com/vaporyco/go-vapory/wiki/Management-APIs#personal_sign
             method = "personal_sign";
             params = [params[1], params[0]];
@@ -40,8 +40,8 @@ function buildEip1193Fetcher(provider) {
         if (params == null) {
             params = [];
         }
-        // Metamask complains about eth_sign (and on some versions hangs)
-        if (method == "eth_sign" && provider.isMetaMask) {
+        // Metamask complains about vap_sign (and on some versions hangs)
+        if (method == "vap_sign" && provider.isMetaMask) {
             // https://github.com/vaporyco/go-vapory/wiki/Management-APIs#personal_sign
             method = "personal_sign";
             params = [params[1], params[0]];

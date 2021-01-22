@@ -233,7 +233,7 @@ export abstract class Provider implements OnceBlockable {
     // Bloom-filter Queries
     abstract getLogs(filter: Filter): Promise<Array<Log>>;
 
-    // ENS
+    // VNS
     abstract resolveName(name: string | Promise<string>): Promise<string>;
     abstract lookupAddress(address: string | Promise<string>): Promise<string>;
 
@@ -272,12 +272,12 @@ export abstract class Provider implements OnceBlockable {
 
 /*
     static getResolver(network: Network, callable: CallTransactionable, namehash: string): string {
-        // No ENS...
-        if (!network.ensAddress) {
+        // No VNS...
+        if (!network.vnsAddress) {
             errors.throwError(
-                "network does support ENS",
+                "network does support VNS",
                 errors.UNSUPPORTED_OPERATION,
-                { operation: "ENS", network: network.name }
+                { operation: "VNS", network: network.name }
             );
         }
 
@@ -288,7 +288,7 @@ export abstract class Provider implements OnceBlockable {
 
         // keccak256("resolver(bytes32)")
         let data = "0x0178b8bf" + namehash.substring(2);
-        let transaction = { to: network.ensAddress, data: data };
+        let transaction = { to: network.vnsAddress, data: data };
 
         return provider.call(transaction).then((data) => {
             return provider.formatter.callAddress(data);

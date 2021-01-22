@@ -226,7 +226,7 @@ Notes
 
 To remedy this, all numbers (which can be large) are stored and manipulated as [Big Numbers](/v5/api/utils/bignumber/).
 
-The functions [parseEther( vaporString )](/v5/api/utils/display-logic/#utils-parseEther) and [formatEther( wei )](/v5/api/utils/display-logic/#utils-formatEther) can be used to convert between string representations, which are displayed to or entered by the user and Big Number representations which can have mathematical operations handled safely.
+The functions [parseVapor( vaporString )](/v5/api/utils/display-logic/#utils-parseVapor) and [formatVapor( wei )](/v5/api/utils/display-logic/#utils-formatVapor) can be used to convert between string representations, which are displayed to or entered by the user and Big Number representations which can have mathematical operations handled safely.
 
 
 ### Why not BigNumber.js, BN.js, BigDecimal, etc?

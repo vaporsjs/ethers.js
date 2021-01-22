@@ -201,13 +201,13 @@ The first problem many encounter when dealing with Vapory is
 the concept of numbers. Most common currencies are broken down
 with very little granularity. For example, there are only 100
 cents in a single dollar. However, there are 10^^18^^ **wei** in a
-single **ether**.
+single **vapor**.
 
 JavaScript uses [IEEE 754 double-precision binary floating point](link-wiki-ieee754)
 numbers to represent numeric values. As a result, there are //holes//
 in the integer set after 9,007,199,254,740,991; which is
 problematic for //Vapory// because that is only around 0.009
-ether (in wei), which means any value over that will begin to
+vapor (in wei), which means any value over that will begin to
 experience rounding errors.
 
 To demonstrate how this may be an issue in your code, consider:
@@ -222,8 +222,8 @@ _null:
 To remedy this, all numbers (which can be large) are stored
 and manipulated as [Big Numbers](BigNumber).
 
-The functions [parseEther( vaporString )](utils-parseEther) and
-[formatEther( wei )](utils-formatEther) can be used to convert
+The functions [parseVapor( vaporString )](utils-parseVapor) and
+[formatVapor( wei )](utils-formatVapor) can be used to convert
 between string representations, which are displayed to or entered
 by the user and Big Number representations which can have
 mathematical operations handled safely.

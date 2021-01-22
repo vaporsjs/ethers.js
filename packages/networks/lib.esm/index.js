@@ -6,7 +6,7 @@ const logger = new Logger(version);
 function isRenetworkable(value) {
     return (value && typeof (value.renetwork) === "function");
 }
-function ethDefaultProvider(network) {
+function vapDefaultProvider(network) {
     const func = function (providers, options) {
         if (options == null) {
             options = {};
@@ -52,7 +52,7 @@ function ethDefaultProvider(network) {
         return providerList[0];
     };
     func.renetwork = function (network) {
-        return ethDefaultProvider(network);
+        return vapDefaultProvider(network);
     };
     return func;
 }
@@ -70,15 +70,15 @@ function etcDefaultProvider(url, network) {
 }
 const homestead = {
     chainId: 1,
-    ensAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+    vnsAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
     name: "homestead",
-    _defaultProvider: ethDefaultProvider("homestead")
+    _defaultProvider: vapDefaultProvider("homestead")
 };
 const ropsten = {
     chainId: 3,
-    ensAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+    vnsAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
     name: "ropsten",
-    _defaultProvider: ethDefaultProvider("ropsten")
+    _defaultProvider: vapDefaultProvider("ropsten")
 };
 const classicMordor = {
     chainId: 63,
@@ -100,20 +100,20 @@ const networks = {
     testnet: ropsten,
     rinkeby: {
         chainId: 4,
-        ensAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+        vnsAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
         name: "rinkeby",
-        _defaultProvider: ethDefaultProvider("rinkeby")
+        _defaultProvider: vapDefaultProvider("rinkeby")
     },
     kovan: {
         chainId: 42,
         name: "kovan",
-        _defaultProvider: ethDefaultProvider("kovan")
+        _defaultProvider: vapDefaultProvider("kovan")
     },
     goerli: {
         chainId: 5,
-        ensAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+        vnsAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
         name: "goerli",
-        _defaultProvider: ethDefaultProvider("goerli")
+        _defaultProvider: vapDefaultProvider("goerli")
     },
     // ETC (See: #351)
     classic: {
@@ -151,7 +151,7 @@ export function getNetwork(network) {
                 return {
                     name: standard.name,
                     chainId: standard.chainId,
-                    ensAddress: (standard.ensAddress || null),
+                    vnsAddress: (standard.vnsAddress || null),
                     _defaultProvider: (standard._defaultProvider || null)
                 };
             }
@@ -169,7 +169,7 @@ export function getNetwork(network) {
         return {
             name: standard.name,
             chainId: standard.chainId,
-            ensAddress: standard.ensAddress,
+            vnsAddress: standard.vnsAddress,
             _defaultProvider: (standard._defaultProvider || null)
         };
     }
@@ -196,11 +196,11 @@ export function getNetwork(network) {
             defaultProvider = standard._defaultProvider;
         }
     }
-    // Standard Network (allow overriding the ENS address)
+    // Standard Network (allow overriding the VNS address)
     return {
         name: network.name,
         chainId: standard.chainId,
-        ensAddress: (network.ensAddress || standard.ensAddress || null),
+        vnsAddress: (network.vnsAddress || standard.vnsAddress || null),
         _defaultProvider: defaultProvider
     };
 }

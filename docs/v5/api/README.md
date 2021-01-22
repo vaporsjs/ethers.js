@@ -11,7 +11,7 @@ Application Programming Interface
   * [Provider](providers/provider)
     * [Accounts Methods](providers/provider)
     * [Blocks Methods](providers/provider)
-    * [Vapory Naming Service (ENS) Methods](providers/provider)
+    * [Vapory Naming Service (VNS) Methods](providers/provider)
     * [Logs Methods](providers/provider)
     * [Network Status Methods](providers/provider)
     * [Transactions Methods](providers/provider)

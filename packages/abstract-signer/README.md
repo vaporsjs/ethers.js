@@ -4,7 +4,7 @@ Abstract Signer
 This sub-module is part of the [vapors project](https://github.com/vaporsjs/vapors.js).
 
 It is an abstraction of an Vapory account, which may be backed by a [private key](https://www.npmjs.com/package/@vaporsproject/wallet),
-signing service (such as Geth or Parity with key managment enabled, or a
+signing service (such as Gvap or Parity with key managment enabled, or a
 dedicated signing service such as Clef),
 [hardware wallets](https://www.npmjs.com/package/@vaporsproject/hardware-wallets), etc.
 

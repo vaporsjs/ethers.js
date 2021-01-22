@@ -33,7 +33,7 @@ function checkNetworks(networks) {
         if (result) {
             // Make sure the network matches the previous networks
             if (!(result.name === network.name && result.chainId === network.chainId &&
-                ((result.ensAddress === network.ensAddress) || (result.ensAddress == null && network.ensAddress == null)))) {
+                ((result.vnsAddress === network.vnsAddress) || (result.vnsAddress == null && network.vnsAddress == null)))) {
                 logger.throwArgumentError("provider mismatch", "networks", networks);
             }
         }
@@ -209,7 +209,7 @@ function getProcessFunc(provider, method, params) {
                 values.sort();
                 return values[Math.floor(values.length / 2)];
             };
-        case "getEtherPrice":
+        case "getVaporPrice":
             // Returns the median price. Malicious actors must compromise at
             // least 50% of the nodes to lie (in a meaningful way).
             return function (configs) {
@@ -302,9 +302,9 @@ function getRunner(config, currentBlockNumber, method, params) {
             case "getBlockNumber":
             case "getGasPrice":
                 return provider[method]();
-            case "getEtherPrice":
-                if (provider.getEtherPrice) {
-                    return provider.getEtherPrice();
+            case "getVaporPrice":
+                if (provider.getVaporPrice) {
+                    return provider.getVaporPrice();
                 }
                 break;
             case "getBalance":

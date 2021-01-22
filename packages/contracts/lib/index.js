@@ -87,7 +87,7 @@ function resolveName(resolver, nameOrPromise) {
                     }
                     catch (error) { }
                     if (!resolver) {
-                        logger.throwError("a provider or signer is needed to resolve ENS names", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+                        logger.throwError("a provider or signer is needed to resolve VNS names", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                             operation: "resolveName"
                         });
                     }
@@ -95,14 +95,14 @@ function resolveName(resolver, nameOrPromise) {
                 case 2:
                     address = _a.sent();
                     if (address == null) {
-                        logger.throwArgumentError("resolver or addr is not configured for ENS name", "name", name);
+                        logger.throwArgumentError("resolver or addr is not configured for VNS name", "name", name);
                     }
                     return [2 /*return*/, address];
             }
         });
     });
 }
-// Recursively replaces ENS names with promises to resolve the name and resolves all properties
+// Recursively replaces VNS names with promises to resolve the name and resolves all properties
 function resolveAddresses(resolver, value, paramType) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
@@ -632,8 +632,8 @@ var Contract = /** @class */ (function () {
                 properties_1.defineReadOnly(this, "resolvedAddress", Promise.resolve(address_1.getAddress(addressOrName)));
             }
             catch (error) {
-                // Without a provider, we cannot use ENS names
-                logger.throwError("provider is required to use ENS name as contract address", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+                // Without a provider, we cannot use VNS names
+                logger.throwError("provider is required to use VNS name as contract address", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                     operation: "new Contract"
                 });
             }
@@ -1105,8 +1105,8 @@ var ContractFactory = /** @class */ (function () {
         if (compilerOutput.bytecode) {
             bytecode = compilerOutput.bytecode;
         }
-        else if (compilerOutput.evm && compilerOutput.evm.bytecode) {
-            bytecode = compilerOutput.evm.bytecode;
+        else if (compilerOutput.vvm && compilerOutput.vvm.bytecode) {
+            bytecode = compilerOutput.vvm.bytecode;
         }
         return new this(abi, bytecode, signer);
     };

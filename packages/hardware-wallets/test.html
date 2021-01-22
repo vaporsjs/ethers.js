@@ -16,7 +16,7 @@
                 const address = await signer.getAddress();
                 console.log(address);
 
-                const tx = await signer.populateTransaction({ to: "ricmoo.vap", value: vapors.utils.parseEther("1.0") });
+                const tx = await signer.populateTransaction({ to: "ricmoo.vap", value: vapors.utils.parseVapor("1.0") });
                 console.log(tx);
                 delete tx.from;
                 const signedTx = await signer.signTransaction(tx);

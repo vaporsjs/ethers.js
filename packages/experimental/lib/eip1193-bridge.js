@@ -76,7 +76,7 @@ var _Eip1193Bridge = /** @class */ (function (_super) {
     _Eip1193Bridge.prototype.send = function (method, params) {
         return __awaiter(this, void 0, void 0, function () {
             function throwUnsupported(message) {
-                return logger.throwError("eth_sign requires a signer", vapors_1.vapors.utils.Logger.errors.UNSUPPORTED_OPERATION, {
+                return logger.throwError("vap_sign requires a signer", vapors_1.vapors.utils.Logger.errors.UNSUPPORTED_OPERATION, {
                     method: method,
                     params: params
                 });
@@ -88,38 +88,38 @@ var _Eip1193Bridge = /** @class */ (function (_super) {
                         coerce = function (value) { return value; };
                         _a = method;
                         switch (_a) {
-                            case "eth_gasPrice": return [3 /*break*/, 1];
-                            case "eth_accounts": return [3 /*break*/, 3];
-                            case "eth_blockNumber": return [3 /*break*/, 6];
-                            case "eth_chainId": return [3 /*break*/, 8];
-                            case "eth_getBalance": return [3 /*break*/, 10];
-                            case "eth_getStorageAt": return [3 /*break*/, 12];
-                            case "eth_getTransactionCount": return [3 /*break*/, 13];
-                            case "eth_getBlockTransactionCountByHash": return [3 /*break*/, 15];
-                            case "eth_getBlockTransactionCountByNumber": return [3 /*break*/, 15];
-                            case "eth_getCode": return [3 /*break*/, 17];
-                            case "eth_sendRawTransaction": return [3 /*break*/, 19];
-                            case "eth_call": return [3 /*break*/, 21];
+                            case "vap_gasPrice": return [3 /*break*/, 1];
+                            case "vap_accounts": return [3 /*break*/, 3];
+                            case "vap_blockNumber": return [3 /*break*/, 6];
+                            case "vap_chainId": return [3 /*break*/, 8];
+                            case "vap_getBalance": return [3 /*break*/, 10];
+                            case "vap_getStorageAt": return [3 /*break*/, 12];
+                            case "vap_getTransactionCount": return [3 /*break*/, 13];
+                            case "vap_getBlockTransactionCountByHash": return [3 /*break*/, 15];
+                            case "vap_getBlockTransactionCountByNumber": return [3 /*break*/, 15];
+                            case "vap_getCode": return [3 /*break*/, 17];
+                            case "vap_sendRawTransaction": return [3 /*break*/, 19];
+                            case "vap_call": return [3 /*break*/, 21];
                             case "estimateGas": return [3 /*break*/, 23];
-                            case "eth_getBlockByHash": return [3 /*break*/, 25];
-                            case "eth_getBlockByNumber": return [3 /*break*/, 25];
-                            case "eth_getTransactionByHash": return [3 /*break*/, 29];
-                            case "eth_getTransactionReceipt": return [3 /*break*/, 31];
-                            case "eth_sign": return [3 /*break*/, 33];
-                            case "eth_sendTransaction": return [3 /*break*/, 35];
-                            case "eth_getUncleCountByBlockHash": return [3 /*break*/, 37];
-                            case "eth_getUncleCountByBlockNumber": return [3 /*break*/, 37];
-                            case "eth_getTransactionByBlockHashAndIndex": return [3 /*break*/, 38];
-                            case "eth_getTransactionByBlockNumberAndIndex": return [3 /*break*/, 38];
-                            case "eth_getUncleByBlockHashAndIndex": return [3 /*break*/, 38];
-                            case "eth_getUncleByBlockNumberAndIndex": return [3 /*break*/, 38];
-                            case "eth_newFilter": return [3 /*break*/, 38];
-                            case "eth_newBlockFilter": return [3 /*break*/, 38];
-                            case "eth_newPendingTransactionFilter": return [3 /*break*/, 38];
-                            case "eth_uninstallFilter": return [3 /*break*/, 38];
-                            case "eth_getFilterChanges": return [3 /*break*/, 38];
-                            case "eth_getFilterLogs": return [3 /*break*/, 38];
-                            case "eth_getLogs": return [3 /*break*/, 38];
+                            case "vap_getBlockByHash": return [3 /*break*/, 25];
+                            case "vap_getBlockByNumber": return [3 /*break*/, 25];
+                            case "vap_getTransactionByHash": return [3 /*break*/, 29];
+                            case "vap_getTransactionReceipt": return [3 /*break*/, 31];
+                            case "vap_sign": return [3 /*break*/, 33];
+                            case "vap_sendTransaction": return [3 /*break*/, 35];
+                            case "vap_getUncleCountByBlockHash": return [3 /*break*/, 37];
+                            case "vap_getUncleCountByBlockNumber": return [3 /*break*/, 37];
+                            case "vap_getTransactionByBlockHashAndIndex": return [3 /*break*/, 38];
+                            case "vap_getTransactionByBlockNumberAndIndex": return [3 /*break*/, 38];
+                            case "vap_getUncleByBlockHashAndIndex": return [3 /*break*/, 38];
+                            case "vap_getUncleByBlockNumberAndIndex": return [3 /*break*/, 38];
+                            case "vap_newFilter": return [3 /*break*/, 38];
+                            case "vap_newBlockFilter": return [3 /*break*/, 38];
+                            case "vap_newPendingTransactionFilter": return [3 /*break*/, 38];
+                            case "vap_uninstallFilter": return [3 /*break*/, 38];
+                            case "vap_getFilterChanges": return [3 /*break*/, 38];
+                            case "vap_getFilterLogs": return [3 /*break*/, 38];
+                            case "vap_getLogs": return [3 /*break*/, 38];
                         }
                         return [3 /*break*/, 39];
                     case 1: return [4 /*yield*/, this.provider.getGasPrice()];
@@ -189,7 +189,7 @@ var _Eip1193Bridge = /** @class */ (function (_super) {
                     case 32: return [2 /*return*/, _b.sent()];
                     case 33:
                         if (!this.signer) {
-                            return [2 /*return*/, throwUnsupported("eth_sign requires an account")];
+                            return [2 /*return*/, throwUnsupported("vap_sign requires an account")];
                         }
                         return [4 /*yield*/, this.signer.getAddress()];
                     case 34:
@@ -200,7 +200,7 @@ var _Eip1193Bridge = /** @class */ (function (_super) {
                         return [2 /*return*/, this.signer.signMessage(vapors_1.vapors.utils.arrayify(params[1]))];
                     case 35:
                         if (!this.signer) {
-                            return [2 /*return*/, throwUnsupported("eth_sign requires an account")];
+                            return [2 /*return*/, throwUnsupported("vap_sign requires an account")];
                         }
                         req = vapors_1.vapors.providers.JsonRpcProvider.hexlifyTransaction(params[0]);
                         return [4 /*yield*/, this.signer.sendTransaction(req)];

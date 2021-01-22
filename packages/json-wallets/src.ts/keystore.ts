@@ -363,7 +363,7 @@ export function encrypt(account: ExternallyOwnedAccount, password: Bytes | strin
                               );
             data["x-vapors"] = {
                 client: client,
-                gethFilename: ("UTC--" + timestamp + "--" + data.address),
+                gvapFilename: ("UTC--" + timestamp + "--" + data.address),
                 mnemonicCounter: hexlify(mnemonicIv).substring(2),
                 mnemonicCiphertext: hexlify(mnemonicCiphertext).substring(2),
                 path: path,

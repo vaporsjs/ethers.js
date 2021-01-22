@@ -46,8 +46,8 @@ export interface Wordlist {
 }
 export interface Unit {
     name: string;
-    ether: string;
-    ether_format: string;
+    vapor: string;
+    vapor_format: string;
     wei: string;
     kwei?: string;
     mwei?: string;

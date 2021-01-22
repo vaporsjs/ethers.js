@@ -79,14 +79,14 @@ function _compile(_solc, source, options) {
         for (let name in output.contracts[filename]) {
             let contract = output.contracts[filename][name];
             // Skip empty contracts
-            if (!contract.evm.bytecode.object) {
+            if (!contract.vvm.bytecode.object) {
                 continue;
             }
             result.push({
                 name: name,
                 interface: new vapors.utils.Interface(contract.abi),
-                bytecode: "0x" + contract.evm.bytecode.object,
-                runtime: "0x" + contract.evm.deployedBytecode.object,
+                bytecode: "0x" + contract.vvm.bytecode.object,
+                runtime: "0x" + contract.vvm.deployedBytecode.object,
                 compiler: compilerVersion
             });
         }

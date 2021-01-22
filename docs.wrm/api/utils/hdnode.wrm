@@ -50,7 +50,7 @@ The (compresses) public key for this HDNode.
 
 _property: hdNode.fingerprint => string<[[DataHexString]]<4>>
 The fingerprint is meant as an index to quickly match parent and
-children nodes together, however collisions may occur and software
+children nodes togvapor, however collisions may occur and software
 should verify matching nodes.
 
 Most developers will not need to use this.

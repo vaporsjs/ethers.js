@@ -3,7 +3,7 @@
   "bin": {
     "vapors": "./lib/bin/vapors.js",
     "vapors-asm": "./lib/bin/vapors-asm.js",
-    "vapors-ens": "./lib/bin/vapors-ens.js",
+    "vapors-vns": "./lib/bin/vapors-vns.js",
     "vapors-ts": "./lib/bin/vapors-ts.js"
   },
   "dependencies": {

@@ -263,7 +263,7 @@ not running your own Vapory node.</p>
 <p class="last"><strong>Also See:</strong> INFURA provider-specific <a class="reference internal" href="#provider-infura-properties"><span class="std std-ref">Properties</span></a></p>
 </dd>
 <dt>new <sup>vapors . providers</sup> . JsonRpcProvider( [ urlOrInfo <sup>= “http://localhost:8545”</sup> ] [ , network ] )</dt>
-<dd><p class="first">Connect to the <a class="reference external" href="https://github.com/vaporyco/wiki/wiki/JSON-RPC">JSON-RPC API</a> URL <em>urlorInfo</em> of an Vapory node, such as <a class="reference external" href="https://ethcore.io/parity.html">Parity</a> or <a class="reference external" href="https://gvap.vapory.org">Geth</a>.</p>
+<dd><p class="first">Connect to the <a class="reference external" href="https://github.com/vaporyco/wiki/wiki/JSON-RPC">JSON-RPC API</a> URL <em>urlorInfo</em> of an Vapory node, such as <a class="reference external" href="https://ethcore.io/parity.html">Parity</a> or <a class="reference external" href="https://gvap.vapory.org">Gvap</a>.</p>
 <p>The <em>urlOrInfo</em> may also be specified as an object with the properties:</p>
 <ul class="simple">
 <li><strong>url</strong> — the JSON-RPC URL (required)</li>
@@ -287,7 +287,7 @@ providers and the <strong>must</strong> match each other.</p>
 </dd>
 <dt>new <sup>vapors . providers</sup> . IpcProvider( path [ , network ] )</dt>
 <dd><p class="first">Connect to the <a class="reference external" href="https://github.com/vaporyco/wiki/wiki/JSON-RPC">JSON-RPC API</a> <em>path</em> over IPC (named pipes) to an Vapory node, such
-as <a class="reference external" href="https://ethcore.io/parity.html">Parity</a> or <a class="reference external" href="https://gvap.vapory.org">Geth</a>.</p>
+as <a class="reference external" href="https://ethcore.io/parity.html">Parity</a> or <a class="reference external" href="https://gvap.vapory.org">Gvap</a>.</p>
 <p>The <em>network</em> is also automatically detected if not specified; see the above
 description of <em>network</em> for JsonRpcProvider for details.</p>
 <p class="last"><strong>Also See:</strong> IPC provider-specific <a class="reference internal" href="#provider-ipc-properties"><span class="std std-ref">Properties</span></a> and <a class="reference internal" href="#provider-jsonrpc-extra"><span class="std std-ref">Operations</span></a></p>
@@ -314,7 +314,7 @@ description of <em>network</em> for JsonRpcProvider for details.</p>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id11">
-<div class="code-block-caption"><span class="caption-text"><em>connect to a Geth or Parity node</em></span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>connect to a Gvap or Parity node</em></span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// When using the JSON-RPC API, the network will be automatically detected</span>
 
 
@@ -455,8 +455,8 @@ transaction. (See: <a class="reference internal" href="#blocktag"><span class="s
 
 <span class="nx">provider</span><span class="p">.</span><span class="nx">getBalance</span><span class="p">(</span><span class="nx">address</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">balance</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
 
-    <span class="c1">// balance is a BigNumber (in wei); format is as a sting (in ether)</span>
-    <span class="kd">let</span> <span class="nx">vaporString</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatEther</span><span class="p">(</span><span class="nx">balance</span><span class="p">);</span>
+    <span class="c1">// balance is a BigNumber (in wei); format is as a sting (in vapor)</span>
+    <span class="kd">let</span> <span class="nx">vaporString</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatVapor</span><span class="p">(</span><span class="nx">balance</span><span class="p">);</span>
 
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Balance: &quot;</span> <span class="o">+</span> <span class="nx">vaporString</span><span class="p">);</span>
 <span class="p">});</span>
@@ -541,22 +541,22 @@ transaction. (See: <a class="reference internal" href="#blocktag"><span class="s
 <hr class="docutils" />
 </div>
 <div class="section" id="vapory-naming-service">
-<span id="provider-ens"></span><h2>Vapory Naming Service<a class="headerlink" href="#vapory-naming-service" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="https://ens.domains">Vapory Naming Service</a> (ENS) allows easy to remember and use names to be
+<span id="provider-vns"></span><h2>Vapory Naming Service<a class="headerlink" href="#vapory-naming-service" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://ens.domains">Vapory Naming Service</a> (VNS) allows easy to remember and use names to be
 assigned to Vapory addresses. Any provider operation which takes an address
-may also take an ENS name.</p>
-<p>ENS also provides the ability for a reverse lookup, which determines the name
+may also take an VNS name.</p>
+<p>VNS also provides the ability for a reverse lookup, which determines the name
 for an address if it has been configured.</p>
 <dl class="docutils">
-<dt><sup>prototype</sup> . resolveName ( ensName ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>Promise&lt;Address&gt;</sup></dt>
+<dt><sup>prototype</sup> . resolveName ( vnsName ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>Promise&lt;Address&gt;</sup></dt>
 <dd>Returns a <a class="reference internal" href="notes.html#promise"><span class="std std-ref">Promise</span></a> which resolves to the address of that the <em>ensName</em>
 resolves to (or <em>null</em> is not configured).</dd>
 <dt><sup>prototype</sup> . lookupAddress ( address ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>Promise&lt;string&gt;</sup></dt>
-<dd>Returns a <a class="reference internal" href="notes.html#promise"><span class="std std-ref">Promise</span></a> which resolves to the ENS name that <em>address</em> resolves
+<dd>Returns a <a class="reference internal" href="notes.html#promise"><span class="std std-ref">Promise</span></a> which resolves to the VNS name that <em>address</em> resolves
 to (or <em>null</em> if not configured).</dd>
 </dl>
 <div class="literal-block-wrapper docutils container" id="id18">
-<div class="code-block-caption"><span class="caption-text"><em>resolve an ENS name to an address</em></span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>resolve an VNS name to an address</em></span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">provider</span><span class="p">.</span><span class="nx">resolveName</span><span class="p">(</span><span class="s2">&quot;registrar.firefly.vap&quot;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">address</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Address: &quot;</span> <span class="o">+</span> <span class="nx">address</span><span class="p">);</span>
     <span class="c1">// &quot;0x6fC21092DA55B392b045eD78F4732bff3C580e2c&quot;</span>
@@ -565,7 +565,7 @@ to (or <em>null</em> if not configured).</dd>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id19">
-<div class="code-block-caption"><span class="caption-text"><em>lookup the ENS name of an address</em></span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>lookup the VNS name of an address</em></span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">address</span> <span class="o">=</span> <span class="s2">&quot;0x6fC21092DA55B392b045eD78F4732bff3C580e2c&quot;</span><span class="p">;</span>
 <span class="nx">provider</span><span class="p">.</span><span class="nx">lookupAddress</span><span class="p">(</span><span class="nx">address</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">address</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Name: &quot;</span> <span class="o">+</span> <span class="nx">address</span><span class="p">);</span>
@@ -626,7 +626,7 @@ so that further processing may be done.</p>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
     <span class="c1">// &quot;0x000000000000000000000000000000000000000000000000016345785d8a0000&quot;</span>
 
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatEther</span><span class="p">(</span><span class="nx">result</span><span class="p">));</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatVapor</span><span class="p">(</span><span class="nx">result</span><span class="p">));</span>
     <span class="c1">// &quot;0.1&quot;</span>
 <span class="p">});</span>
 </pre></div>
@@ -639,7 +639,7 @@ so that further processing may be done.</p>
 
 <span class="kd">let</span> <span class="nx">transaction</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">to</span><span class="o">:</span> <span class="s2">&quot;ricmoo.firefly.vap&quot;</span><span class="p">,</span>
-    <span class="nx">value</span><span class="o">:</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseEther</span><span class="p">(</span><span class="s2">&quot;0.1&quot;</span><span class="p">)</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseVapor</span><span class="p">(</span><span class="s2">&quot;0.1&quot;</span><span class="p">)</span>
 <span class="p">};</span>
 
 <span class="c1">// Send the transaction</span>
@@ -682,7 +682,7 @@ match the <em>filter</em>. (See <a class="reference internal" href="#filter"><sp
 <div class="code-block-caption"><span class="caption-text"><em>get contract storage value</em></span><a class="headerlink" href="#id23" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">contractEnsName</span> <span class="o">=</span> <span class="s1">&#39;registrar.firefly.vap&#39;</span><span class="p">;</span>
 
-<span class="c1">// Position 0 in the FireflyRegistrar contract holds the ENS address</span>
+<span class="c1">// Position 0 in the FireflyRegistrar contract holds the VNS address</span>
 
 <span class="kd">let</span> <span class="nx">storagePromise</span> <span class="o">=</span> <span class="nx">provider</span><span class="p">.</span><span class="nx">getStorageAt</span><span class="p">(</span><span class="nx">contractEnsName</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
 
@@ -925,16 +925,16 @@ one of the testnets (e.g. “ropsten”, “rinkeby” or “kovan”) or altern
 <div><ul class="simple">
 <li><em>name</em> — the name of the network (e.g. “homestead”, “rinkeby”)</li>
 <li><em>chainId</em> — the chain ID (network ID) of the connected network</li>
-<li><em>ensAddress</em> — the address of ENS if it is deployed to the network, otherwise <em>null</em></li>
+<li><em>ensAddress</em> — the address of VNS if it is deployed to the network, otherwise <em>null</em></li>
 </ul>
 </div></blockquote>
-<p>If a network does not have the ENS contract deployed to it, names cannot be resolved to addresses.</p>
+<p>If a network does not have the VNS contract deployed to it, names cannot be resolved to addresses.</p>
 <div class="literal-block-wrapper docutils container" id="id30">
 <div class="code-block-caption"><span class="caption-text"><em>get a standard network</em></span><a class="headerlink" href="#id30" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">network</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">getNetwork</span><span class="p">(</span><span class="s1">&#39;homestead&#39;</span><span class="p">);</span>
 <span class="c1">// {</span>
 <span class="c1">//    chainId: 1,</span>
-<span class="c1">//    ensAddress: &quot;0x314159265dd8dbb310642f98f50c066173c1259b&quot;,</span>
+<span class="c1">//    vnsAddress: &quot;0x314159265dd8dbb310642f98f50c066173c1259b&quot;,</span>
 <span class="c1">//    name: &quot;homestead&quot;</span>
 <span class="c1">// }</span>
 </pre></div>
@@ -960,7 +960,7 @@ which resolves to the expected type.</p>
 <div class="code-block-caption"><span class="caption-text"><em>Example</em></span><a class="headerlink" href="#id32" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="c1">// Required unless deploying a contract (in which case omit)</span>
-    <span class="nx">to</span><span class="o">:</span> <span class="nx">addressOrName</span><span class="p">,</span>  <span class="c1">// the target address or ENS name</span>
+    <span class="nx">to</span><span class="o">:</span> <span class="nx">addressOrName</span><span class="p">,</span>  <span class="c1">// the target address or VNS name</span>
 
     <span class="c1">// These are optional/meaningless for call and estimateGas</span>
     <span class="nx">nonce</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>           <span class="c1">// the transaction nonce</span>
@@ -1001,7 +1001,7 @@ which resolves to the expected type.</p>
     <span class="nx">gasLimit</span><span class="o">:</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">bigNumberify</span><span class="p">(</span><span class="s2">&quot;90000&quot;</span><span class="p">),</span>
     <span class="nx">gasPrice</span><span class="o">:</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">bigNumberify</span><span class="p">(</span><span class="s2">&quot;21488430592&quot;</span><span class="p">),</span>
     <span class="nx">nonce</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="nx">value</span><span class="o">:</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">parseEther</span><span class="p">(</span><span class="mf">1.0017071732629267</span><span class="p">),</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">parseVapor</span><span class="p">(</span><span class="mf">1.0017071732629267</span><span class="p">),</span>
 
     <span class="c1">// The chain ID; 0 indicates replay-attack vulnerable</span>
     <span class="c1">// (eg. 1 = Homestead mainnet, 3 = Ropsten testnet)</span>
@@ -1111,7 +1111,7 @@ for the vast majority of filters, a single topic is usually sufficient (see the 
     <span class="c1">// Note: This may be used for getLogs, but not as a provider Event (i.e. .on)</span>
     <span class="nx">blockHash</span><span class="o">:</span> <span class="nx">blockHash</span><span class="p">,</span>
 
-    <span class="c1">// Optional; An address (or ENS name) to filter by</span>
+    <span class="c1">// Optional; An address (or VNS name) to filter by</span>
     <span class="nx">address</span><span class="o">:</span> <span class="nx">addressOrName</span><span class="p">,</span>
 
     <span class="c1">// Optional; A (possibly nested) list of topics</span>
@@ -1129,8 +1129,8 @@ for the vast majority of filters, a single topic is usually sufficient (see the 
 <div class="section" id="vaporscan">
 <span id="provider-vaporscan-extra"></span><h3>Vaporscan<a class="headerlink" href="#vaporscan" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
-<dt><sup>prototype</sup> . getEtherPrice ( )</dt>
-<dd>Returns a <a class="reference internal" href="notes.html#promise"><span class="std std-ref">Promise</span></a> with the price of ether in USD.</dd>
+<dt><sup>prototype</sup> . getVaporPrice ( )</dt>
+<dd>Returns a <a class="reference internal" href="notes.html#promise"><span class="std std-ref">Promise</span></a> with the price of vapor in USD.</dd>
 <dt><sup>prototype</sup> . getHistory ( addressOrName [ , startBlock <sup>= 0</sup> [ , endBlock <sup>= “latest”</sup> ] ] )</dt>
 <dd>Returns a <a class="reference internal" href="notes.html#promise"><span class="std std-ref">Promise</span></a> with an array of <a class="reference internal" href="#transaction-response"><span class="std std-ref">Transaction Responses</span></a>
 for each transaction to or from <em>addressOrName</em> between <em>startBlock</em> and <em>endBlock</em> (inclusive).</dd>
@@ -1140,8 +1140,8 @@ for each transaction to or from <em>addressOrName</em> between <em>startBlock</e
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">vaporscanProvider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">providers</span><span class="p">.</span><span class="nx">VaporscanProvider</span><span class="p">();</span>
 
 <span class="c1">// Getting the current Vapory price</span>
-<span class="nx">vaporscanProvider</span><span class="p">.</span><span class="nx">getEtherPrice</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Ether price in USD: &quot;</span> <span class="o">+</span> <span class="nx">price</span><span class="p">);</span>
+<span class="nx">vaporscanProvider</span><span class="p">.</span><span class="nx">getVaporPrice</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">price</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Vapor price in USD: &quot;</span> <span class="o">+</span> <span class="nx">price</span><span class="p">);</span>
 <span class="p">});</span>
 
 

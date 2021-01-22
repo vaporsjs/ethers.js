@@ -102,23 +102,23 @@ provider.getBlockWithTransactions(100004)
 </span><span class="result ok">//     }
 </span><span class="result ok">//   ]
 </span><span class="result ok">// } }
-</span></div><a name="Provider--ens-methods"></a><a name="Provider--Provider--ens-methods"></a><h2 class="show-anchors"><div>Vapory Naming Service (ENS) Methods<div class="anchors"><a class="self" href="/v5/api/providers/provider/#Provider--ens-methods"></a></div></div></h2><p>The <a href="https://ens.domains/">Vapory Naming Service</a> (ENS) allows a short and easy-to-remember ENS Name to be attached to any set of keys and values.</p>
+</span></div><a name="Provider--vns-methods"></a><a name="Provider--Provider--vns-methods"></a><h2 class="show-anchors"><div>Vapory Naming Service (VNS) Methods<div class="anchors"><a class="self" href="/v5/api/providers/provider/#Provider--vns-methods"></a></div></div></h2><p>The <a href="https://ens.domains/">Vapory Naming Service</a> (VNS) allows a short and easy-to-remember VNS Name to be attached to any set of keys and values.</p>
 
 <p>One of the most common uses for this is to use a simple name to refer to an <a href="/v5/api/utils/address/#address">Vapory Address</a>.</p>
 
-<p>In the vapors API, nearly anywhere that accepts an address, an ENS name may be used instead, which can simplify code and make reading and debugging much simpler.</p>
+<p>In the vapors API, nearly anywhere that accepts an address, an VNS name may be used instead, which can simplify code and make reading and debugging much simpler.</p>
 
-<p>The provider offers some basic operations to help resolve and work with ENS names.</p>
+<p>The provider offers some basic operations to help resolve and work with VNS names.</p>
 
-<a name="Provider-lookupAddress"></a><div class="property show-anchors"><div class="signature"><span class="path">provider</span><span class="symbol">.</span><span class="method">lookupAddress</span><span class="symbol">(</span> <span class="param">address</span> <span class="symbol">)</span> <span class="arrow">&rArr;</span> <span class="returns">Promise&lt; string &gt;</span><div class="anchors"><a class="self" href="/v5/api/providers/provider/#Provider-lookupAddress"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/providers/src.ts/base-provider.ts#L1338">source</a></div></div><div class="body"><p>Performs a reverse lookup of the <i>address</i> in ENS using the <i>Reverse Registrar</i>. If the name does not exist, or the forward lookup does not match, <code class="inline">null</code> is returned.</p>
+<a name="Provider-lookupAddress"></a><div class="property show-anchors"><div class="signature"><span class="path">provider</span><span class="symbol">.</span><span class="method">lookupAddress</span><span class="symbol">(</span> <span class="param">address</span> <span class="symbol">)</span> <span class="arrow">&rArr;</span> <span class="returns">Promise&lt; string &gt;</span><div class="anchors"><a class="self" href="/v5/api/providers/provider/#Provider-lookupAddress"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/providers/src.ts/base-provider.ts#L1338">source</a></div></div><div class="body"><p>Performs a reverse lookup of the <i>address</i> in VNS using the <i>Reverse Registrar</i>. If the name does not exist, or the forward lookup does not match, <code class="inline">null</code> is returned.</p>
 
 </div></div><a name="Provider-ResolveName"></a><div class="property show-anchors"><div class="signature"><span class="path">provider</span><span class="symbol">.</span><span class="method">resolveName</span><span class="symbol">(</span> <span class="param">name</span> <span class="symbol">)</span> <span class="arrow">&rArr;</span> <span class="returns">Promise&lt; string&lt; <a href="/v5/api/utils/address/#address">Address</a> &gt; &gt;</span><div class="anchors"><a class="self" href="/v5/api/providers/provider/#Provider-ResolveName"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/providers/src.ts/base-provider.ts#L1316">source</a></div></div><div class="body"><p>Looks up the address of <i>name</i>. If the name is not owned, or does not have a <i>Resolver</i> configured, or the <i>Resolver</i> does not have an address configured, <code class="inline">null</code> is returned.</p>
 
-</div></div><div class="code-title"><div>ENS Examples</div></div><div class="code"><span class="comment">// Reverse lookup of an ENS by address...
+</div></div><div class="code-title"><div>VNS Examples</div></div><div class="code"><span class="comment">// Reverse lookup of an VNS by address...
 </span>provider.lookupAddress("0x6fC21092DA55B392b045eD78F4732bff3C580e2c");
 <span class="result ok">// { Promise: 'registrar.firefly.vap' }
 </span>
-<span class="comment">// Lookup an address of an ENS name...
+<span class="comment">// Lookup an address of an VNS name...
 </span>provider.resolveName("ricmoo.firefly.vap");
 <span class="result ok">// { Promise: '0x8ba1f109551bD432803012645Ac136ddd64DBA72' }
 </span></div><a name="Provider--log-methods"></a><a name="Provider--Provider--log-methods"></a><h2 class="show-anchors"><div>Logs Methods<div class="anchors"><a class="self" href="/v5/api/providers/provider/#Provider--log-methods"></a></div></div></h2>
@@ -137,7 +137,7 @@ provider.getBlockWithTransactions(100004)
 </span>provider.getNetwork()
 <span class="result ok">// {
 </span><span class="result ok">//   chainId: 1,
-</span><span class="result ok">//   ensAddress: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
+</span><span class="result ok">//   vnsAddress: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
 </span><span class="result ok">//   name: 'homestead'
 </span><span class="result ok">// }
 </span>
@@ -154,7 +154,7 @@ provider.getBlockWithTransactions(100004)
 </span>utils.formatUnits(gasPrice, "gwei")
 <span class="result ok">// '46.2'
 </span></div><a name="Provider--transaction-methods"></a><a name="Provider--Provider--transaction-methods"></a><h2 class="show-anchors"><div>Transactions Methods<div class="anchors"><a class="self" href="/v5/api/providers/provider/#Provider--transaction-methods"></a></div></div></h2>
-<a name="Provider-call"></a><div class="property show-anchors"><div class="signature"><span class="path">provider</span><span class="symbol">.</span><span class="method">call</span><span class="symbol">(</span> <span class="param">transaction</span> <span class="symbol">[</span> <span class="symbol">,</span> <span class="param">blockTag</span> = <span class="param">latest</span> <span class="symbol">]</span> <span class="symbol">)</span> <span class="arrow">&rArr;</span> <span class="returns">Promise&lt; string&lt; <a href="/v5/api/utils/bytes/#DataHexString">DataHexString</a> &gt; &gt;</span><div class="anchors"><a class="self" href="/v5/api/providers/provider/#Provider-call"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/providers/src.ts/base-provider.ts#L1075">source</a></div></div><div class="body"><p>Returns the result of executing the <i>transaction</i>, using <i>call</i>. A call does not require any ether, but cannot change any state. This is useful for calling getters on Contracts.</p>
+<a name="Provider-call"></a><div class="property show-anchors"><div class="signature"><span class="path">provider</span><span class="symbol">.</span><span class="method">call</span><span class="symbol">(</span> <span class="param">transaction</span> <span class="symbol">[</span> <span class="symbol">,</span> <span class="param">blockTag</span> = <span class="param">latest</span> <span class="symbol">]</span> <span class="symbol">)</span> <span class="arrow">&rArr;</span> <span class="returns">Promise&lt; string&lt; <a href="/v5/api/utils/bytes/#DataHexString">DataHexString</a> &gt; &gt;</span><div class="anchors"><a class="self" href="/v5/api/providers/provider/#Provider-call"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/providers/src.ts/base-provider.ts#L1075">source</a></div></div><div class="body"><p>Returns the result of executing the <i>transaction</i>, using <i>call</i>. A call does not require any vapor, but cannot change any state. This is useful for calling getters on Contracts.</p>
 
 </div></div><a name="Provider-estimateGas"></a><div class="property show-anchors"><div class="signature"><span class="path">provider</span><span class="symbol">.</span><span class="method">estimateGas</span><span class="symbol">(</span> <span class="param">transaction</span> <span class="symbol">)</span> <span class="arrow">&rArr;</span> <span class="returns">Promise&lt; <a href="/v5/api/utils/bignumber/">BigNumber</a> &gt;</span><div class="anchors"><a class="self" href="/v5/api/providers/provider/#Provider-estimateGas"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/providers/src.ts/base-provider.ts#L1084">source</a></div></div><div class="body"><p>Returns an estimate of the amount of gas that would be required to submit <i>transaction</i> to the network.</p>
 

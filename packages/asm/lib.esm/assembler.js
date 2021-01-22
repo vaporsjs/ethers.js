@@ -68,8 +68,8 @@ class Script {
             keccak256: vapors.utils.keccak256,
             namehash: vapors.utils.namehash,
             sha256: vapors.utils.sha256,
-            parseEther: vapors.utils.parseEther,
-            formatEther: vapors.utils.formatEther,
+            parseVapor: vapors.utils.parseVapor,
+            formatVapor: vapors.utils.formatVapor,
             parseUnits: vapors.utils.parseUnits,
             formatUnits: vapors.utils.formatUnits,
             randomBytes: function (length) {

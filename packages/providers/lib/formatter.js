@@ -284,7 +284,7 @@ var Formatter = /** @class */ (function () {
         }
         else {
             var chainId = transaction.networkId;
-            // geth-etc returns chainId
+            // gvap-etc returns chainId
             if (chainId == null && result.v == null) {
                 chainId = transaction.chainId;
             }

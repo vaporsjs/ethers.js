@@ -143,12 +143,12 @@ utils.computeHmac("sha256", key, data)
 </span><span class="comment">// Note: similarly, this is the hash of the 1 byte [ 0x42 ]
 </span>utils.hashMessage(utils.arrayify("0x42"))
 <span class="result ok">// '0xd18c12b87124f9ceb7e1d3a5d06a5ac92ecab15931417e8d1558d9a263f99d63'
-</span></div><a name="utils-namehash"></a><div class="property show-anchors"><div class="signature"><span class="path">vapors</span><span class="symbol">.</span><span class="path">utils</span><span class="symbol">.</span><span class="method">namehash</span><span class="symbol">(</span> <span class="param">name</span> <span class="symbol">)</span> <span class="arrow">&rArr;</span> <span class="returns">string&lt; <a href="/v5/api/utils/bytes/#DataHexString">DataHexString</a>&lt; 32 &gt; &gt;</span><div class="anchors"><a class="self" href="/v5/api/utils/hashing/#utils-namehash"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/hash/src.ts/namehash.ts#L27">source</a></div></div><div class="body"><p>Returns the <a href="https://docs.ens.domains/contract-api-reference/name-processing#hashing-names">ENS Namehash</a> of <i>name</i>.</p>
+</span></div><a name="utils-namehash"></a><div class="property show-anchors"><div class="signature"><span class="path">vapors</span><span class="symbol">.</span><span class="path">utils</span><span class="symbol">.</span><span class="method">namehash</span><span class="symbol">(</span> <span class="param">name</span> <span class="symbol">)</span> <span class="arrow">&rArr;</span> <span class="returns">string&lt; <a href="/v5/api/utils/bytes/#DataHexString">DataHexString</a>&lt; 32 &gt; &gt;</span><div class="anchors"><a class="self" href="/v5/api/utils/hashing/#utils-namehash"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/hash/src.ts/namehash.ts#L27">source</a></div></div><div class="body"><p>Returns the <a href="https://docs.vns.domains/contract-api-reference/name-processing#hashing-names">VNS Namehash</a> of <i>name</i>.</p>
 
 </div></div><div class="code-title"><div>Namehash</div></div><div class="code">utils.namehash("")
 <span class="result ok">// '0x0000000000000000000000000000000000000000000000000000000000000000'
 </span>
-utils.namehash("eth")
+utils.namehash("vap")
 <span class="result ok">// '0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae'
 </span>
 utils.namehash("ricmoo.firefly.vap")
@@ -172,7 +172,7 @@ utils.namehash("ricmoo.xyz")
 
 </div></div><a name="TypedDataEncoder-encode"></a><div class="property show-anchors"><div class="signature"><span class="path">TypedDataEncoder</span><span class="symbol">.</span><span class="method">encode</span><span class="symbol">(</span> <span class="param">domain</span> <span class="symbol">,</span> <span class="param">types</span> <span class="symbol">,</span> <span class="param">values</span> <span class="symbol">)</span> <span class="arrow">&rArr;</span> <span class="returns">string</span><div class="anchors"><a class="self" href="/v5/api/utils/hashing/#TypedDataEncoder-encode"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/hash/src.ts/typed-data.ts#L392">source</a></div></div><div class="body"><p>Encodes the Returns the hashed <a href="https://eips.vapory.org/EIPS/eip-712">EIP-712</a> domain.</p>
 
-</div></div><a name="TypedDataEncoder-getPayload"></a><div class="property show-anchors"><div class="signature"><span class="path">TypedDataEncoder</span><span class="symbol">.</span><span class="method">getPayload</span><span class="symbol">(</span> <span class="param">domain</span> <span class="symbol">,</span> <span class="param">types</span> <span class="symbol">,</span> <span class="param">value</span> <span class="symbol">)</span> <span class="arrow">&rArr;</span> <span class="returns">any</span><div class="anchors"><a class="self" href="/v5/api/utils/hashing/#TypedDataEncoder-getPayload"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/hash/src.ts/typed-data.ts#L447">source</a></div></div><div class="body"><p>Returns the standard payload used by various JSON-RPC <code class="inline">eth_signTypedData*</code> calls.</p>
+</div></div><a name="TypedDataEncoder-getPayload"></a><div class="property show-anchors"><div class="signature"><span class="path">TypedDataEncoder</span><span class="symbol">.</span><span class="method">getPayload</span><span class="symbol">(</span> <span class="param">domain</span> <span class="symbol">,</span> <span class="param">types</span> <span class="symbol">,</span> <span class="param">value</span> <span class="symbol">)</span> <span class="arrow">&rArr;</span> <span class="returns">any</span><div class="anchors"><a class="self" href="/v5/api/utils/hashing/#TypedDataEncoder-getPayload"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/hash/src.ts/typed-data.ts#L447">source</a></div></div><div class="body"><p>Returns the standard payload used by various JSON-RPC <code class="inline">vap_signTypedData*</code> calls.</p>
 
 <p>All domain values and entries in value are normalized and the types are verified.</p>
 
@@ -185,7 +185,7 @@ utils.namehash("ricmoo.xyz")
 </div></div><a name="TypedDataEncoder-resolveNames"></a><div class="property show-anchors"><div class="signature"><span class="path">TypedDataEncoder</span><span class="symbol">.</span><span class="method">resolveNames</span><span class="symbol">(</span> <span class="param">domain</span> <span class="symbol">,</span> <span class="param">types</span> <span class="symbol">,</span> <span class="param">value</span> <span class="symbol">,</span> <span class="param">resolveName</span> <span class="symbol">)</span> <span class="arrow">&rArr;</span> <span class="returns">Promise&lt; any &gt;</span><div class="anchors"><a class="self" href="/v5/api/utils/hashing/#TypedDataEncoder-resolveNames"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/hash/src.ts/typed-data.ts#L405">source</a></div></div><div class="body"><p>Returns a copy of value, where any leaf value with a type of <code class="inline">address</code> will have been recursively replacedwith the value of calling <i>resolveName</i> with that value.</p>
 
 </div></div><div class="code-title"><div>Typed Data Example</div></div><div class="code">const domain = {
-    name: 'Ether Mail',
+    name: 'Vapor Mail',
     version: '1',
     chainId: 1,
     verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC'
@@ -225,7 +225,7 @@ TypedDataEncoder.getPayload(domain, types, value)
 <span class="result ok">// {
 </span><span class="result ok">//   domain: {
 </span><span class="result ok">//     chainId: '1',
-</span><span class="result ok">//     name: 'Ether Mail',
+</span><span class="result ok">//     name: 'Vapor Mail',
 </span><span class="result ok">//     verifyingContract: '0xcccccccccccccccccccccccccccccccccccccccc',
 </span><span class="result ok">//     version: '1'
 </span><span class="result ok">//   },

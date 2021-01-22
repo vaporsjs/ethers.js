@@ -569,7 +569,7 @@ Object.keys(blockchainData).forEach(function (network) {
     // - balance
     // - code
     // - storage
-    // - ENS name
+    // - VNS name
     tests.addresses.forEach(function (test) {
         if (test.balance) {
             addSimpleTest("fetches account balance: " + test.address, function (provider) {
@@ -589,7 +589,7 @@ Object.keys(blockchainData).forEach(function (network) {
             });
         }
         if (test.name) {
-            addSimpleTest("fetches ENS name: " + test.address, function (provider) {
+            addSimpleTest("fetches VNS name: " + test.address, function (provider) {
                 return provider.resolveName(test.name);
             }, test.address);
         }
@@ -716,7 +716,7 @@ Object.keys(blockchainData).forEach(function (network) {
     addErrorTest(vapors_1.vapors.utils.Logger.errors.UNPREDICTABLE_GAS_LIMIT, function (provider) { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             return [2 /*return*/, provider.estimateGas({
-                    to: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e" // ENS contract
+                    to: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e" // VNS contract
                 })];
         });
     }); });
@@ -912,9 +912,9 @@ describe("Extra tests", function () {
 /*
 describe("Test extra Vaporscan operations", function() {
     let provider = new providers.VaporscanProvider();
-    it("fethces the current price of ether", function() {
+    it("fethces the current price of vapor", function() {
         this.timeout(20000);
-        return provider.getEtherPrice().then(function(price) {
+        return provider.getVaporPrice().then(function(price) {
             assert.ok(typeof(price) === "number", "Vaporscan price returns a number");
             assert.ok(price > 0.0, "Vaporscan price returns non-zero");
         });

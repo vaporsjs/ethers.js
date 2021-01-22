@@ -51,7 +51,7 @@ non-replayability of a transaction. This must be equal to the current
 number of transactions ever sent to the network by the **from** address.
 
 _property: transaction.gasLimit => [[BigNumber]]
-The gas limit for //transaction//. An account must have enough ether to
+The gas limit for //transaction//. An account must have enough vapor to
 cover the gas (at the specified **gasPrice**). Any unused gas is
 refunded at the end of the transaction, and if there is insufficient gas
 to complete execution, the effects of the transaction are reverted, but

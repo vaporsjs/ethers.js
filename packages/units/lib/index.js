@@ -11,7 +11,7 @@ var names = [
     "gwei",
     "szabo",
     "finney",
-    "ether",
+    "vapor",
 ];
 // Some environments have issues with RegEx that contain back-tracking, so we cannot
 // use them.
@@ -79,12 +79,12 @@ function parseUnits(value, unitName) {
     return bignumber_1.parseFixed(value, (unitName != null) ? unitName : 18);
 }
 exports.parseUnits = parseUnits;
-function formatEther(wei) {
+function formatVapor(wei) {
     return formatUnits(wei, 18);
 }
-exports.formatEther = formatEther;
-function parseEther(ether) {
-    return parseUnits(ether, 18);
+exports.formatVapor = formatVapor;
+function parseVapor(vapor) {
+    return parseUnits(vapor, 18);
 }
-exports.parseEther = parseEther;
+exports.parseVapor = parseVapor;
 //# sourceMappingURL=index.js.map

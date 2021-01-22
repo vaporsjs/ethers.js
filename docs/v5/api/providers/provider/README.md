@@ -115,12 +115,12 @@ provider.getBlockWithTransactions(100004)
 // } }
 ```
 
-Vapory Naming Service (ENS) Methods
+Vapory Naming Service (VNS) Methods
 -------------------------------------
 
 #### *provider* . **lookupAddress**( address ) => *Promise< string >*
 
-Performs a reverse lookup of the *address* in ENS using the *Reverse Registrar*. If the name does not exist, or the forward lookup does not match, `null` is returned.
+Performs a reverse lookup of the *address* in VNS using the *Reverse Registrar*. If the name does not exist, or the forward lookup does not match, `null` is returned.
 
 
 #### *provider* . **resolveName**( name ) => *Promise< string< [Address](/v5/api/utils/address/#address) > >*
@@ -129,11 +129,11 @@ Looks up the address of *name*. If the name is not owned, or does not have a *Re
 
 
 ```javascript
-// Reverse lookup of an ENS by address...
+// Reverse lookup of an VNS by address...
 provider.lookupAddress("0x6fC21092DA55B392b045eD78F4732bff3C580e2c");
 // { Promise: 'registrar.firefly.vap' }
 
-// Lookup an address of an ENS name...
+// Lookup an address of an VNS name...
 provider.resolveName("ricmoo.firefly.vap");
 // { Promise: '0x8ba1f109551bD432803012645Ac136ddd64DBA72' }
 ```
@@ -171,7 +171,7 @@ Returns a *best guess* of the [Gas Price](/v5/concepts/gas/#gas-price) to use in
 provider.getNetwork()
 // {
 //   chainId: 1,
-//   ensAddress: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
+//   vnsAddress: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
 //   name: 'homestead'
 // }
 
@@ -194,7 +194,7 @@ Transactions Methods
 
 #### *provider* . **call**( transaction [ , blockTag = latest ] ) => *Promise< string< [DataHexString](/v5/api/utils/bytes/#DataHexString) > >*
 
-Returns the result of executing the *transaction*, using *call*. A call does not require any ether, but cannot change any state. This is useful for calling getters on Contracts.
+Returns the result of executing the *transaction*, using *call*. A call does not require any vapor, but cannot change any state. This is useful for calling getters on Contracts.
 
 
 #### *provider* . **estimateGas**( transaction ) => *Promise< [BigNumber](/v5/api/utils/bignumber/) >*

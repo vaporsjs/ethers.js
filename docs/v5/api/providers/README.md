@@ -37,13 +37,13 @@ Some services also provide additional paid features, which are only available wh
 Networks
 --------
 
-### Custom ENS Contract
+### Custom VNS Contract
 
 ```
 const network = {
     name: "dev",
     chianId: 1337,
-    ensAddress: customEnsAddress
+    vnsAddress: customEnsAddress
 };
 ```
 
@@ -53,7 +53,7 @@ Provider Documentation
 * [Provider](provider)
   * [Accounts Methods](provider)
   * [Blocks Methods](provider)
-  * [Vapory Naming Service (ENS) Methods](provider)
+  * [Vapory Naming Service (VNS) Methods](provider)
   * [Logs Methods](provider)
   * [Network Status Methods](provider)
   * [Transactions Methods](provider)

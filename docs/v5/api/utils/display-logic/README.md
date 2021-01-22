@@ -30,23 +30,23 @@ Returns a string with value grouped by 3 digits, separated by `,`.
 
 ### Conversion
 
-#### *vapors* . *utils* . **formatUnits**( value [ , unit = "ether" ] ) => *string*
+#### *vapors* . *utils* . **formatUnits**( value [ , unit = "vapor" ] ) => *string*
 
 Returns a string representation of *value* formatted with *unit* digits (if it is a number) or to the unit specified (if a string).
 
 
-#### *vapors* . *utils* . **formatEther**( value ) => *string*
+#### *vapors* . *utils* . **formatVapor**( value ) => *string*
 
-The equivalent to calling `formatUnits(value, "ether")`.
+The equivalent to calling `formatUnits(value, "vapor")`.
 
 
-#### *vapors* . *utils* . **parseUnits**( value [ , unit = "ether" ] ) => *[BigNumber](/v5/api/utils/bignumber/)*
+#### *vapors* . *utils* . **parseUnits**( value [ , unit = "vapor" ] ) => *[BigNumber](/v5/api/utils/bignumber/)*
 
 Returns a [BigNumber](/v5/api/utils/bignumber/) representation of *value*, parsed with *unit* digits (if it is a number) or from the unit specified (if a string).
 
 
-#### *vapors* . *utils* . **parseEther**( value ) => *[BigNumber](/v5/api/utils/bignumber/)*
+#### *vapors* . *utils* . **parseVapor**( value ) => *[BigNumber](/v5/api/utils/bignumber/)*
 
-The equivalent to calling `parseUnits(value, "ether")`.
+The equivalent to calling `parseUnits(value, "vapor")`.
 
 

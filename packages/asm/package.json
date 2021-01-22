@@ -3,7 +3,7 @@
   "dependencies": {
     "vapors": "^5.0.13"
   },
-  "description": "ASM libraries and tools for the Vapory EVM.",
+  "description": "ASM libraries and tools for the Vapory VVM.",
   "vapory": "donations.vapors.vap",
   "funding": [
     {
@@ -18,7 +18,7 @@
   "keywords": [
     "Vapory",
     "asm",
-    "evm"
+    "vvm"
   ],
   "license": "MIT",
   "main": "./lib/index.js",

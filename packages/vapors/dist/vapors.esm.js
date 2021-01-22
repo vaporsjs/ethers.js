@@ -6881,7 +6881,7 @@ const NegativeOne$1 = ( /*#__PURE__*/BigNumber.from(-1));
 const Zero$1 = ( /*#__PURE__*/BigNumber.from(0));
 const One = ( /*#__PURE__*/BigNumber.from(1));
 const Two = ( /*#__PURE__*/BigNumber.from(2));
-const WeiPerEther = ( /*#__PURE__*/BigNumber.from("1000000000000000000"));
+const WeiPerVapor = ( /*#__PURE__*/BigNumber.from("1000000000000000000"));
 const MaxUint256 = ( /*#__PURE__*/BigNumber.from("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"));
 
 const HashZero = "0x0000000000000000000000000000000000000000000000000000000000000000";
@@ -6898,7 +6898,7 @@ var index$1 = /*#__PURE__*/Object.freeze({
 	Zero: Zero$1,
 	One: One,
 	Two: Two,
-	WeiPerEther: WeiPerEther,
+	WeiPerVapor: WeiPerVapor,
 	MaxUint256: MaxUint256,
 	HashZero: HashZero,
 	VaporSymbol: VaporSymbol
@@ -7951,38 +7951,38 @@ class TypedDataEncoder {
     static hash(domain, types, value) {
         return keccak256(TypedDataEncoder.encode(domain, types, value));
     }
-    // Replaces all address types with ENS names with their looked up address
+    // Replaces all address types with VNS names with their looked up address
     static resolveNames(domain, types, value, resolveName) {
         return __awaiter$1(this, void 0, void 0, function* () {
             // Make a copy to isolate it from the object passed in
             domain = shallowCopy(domain);
-            // Look up all ENS names
-            const ensCache = {};
+            // Look up all VNS names
+            const vnsCache = {};
             // Do we need to look up the domain's verifyingContract?
             if (domain.verifyingContract && !isHexString(domain.verifyingContract, 20)) {
-                ensCache[domain.verifyingContract] = "0x";
+                vnsCache[domain.verifyingContract] = "0x";
             }
             // We are going to use the encoder to visit all the base values
             const encoder = TypedDataEncoder.from(types);
             // Get a list of all the addresses
             encoder.visit(value, (type, value) => {
                 if (type === "address" && !isHexString(value, 20)) {
-                    ensCache[value] = "0x";
+                    vnsCache[value] = "0x";
                 }
                 return value;
             });
             // Lookup each name
-            for (const name in ensCache) {
-                ensCache[name] = yield resolveName(name);
+            for (const name in vnsCache) {
+                vnsCache[name] = yield resolveName(name);
             }
             // Replace the domain verifyingContract if needed
-            if (domain.verifyingContract && ensCache[domain.verifyingContract]) {
-                domain.verifyingContract = ensCache[domain.verifyingContract];
+            if (domain.verifyingContract && vnsCache[domain.verifyingContract]) {
+                domain.verifyingContract = vnsCache[domain.verifyingContract];
             }
-            // Replace all ENS names with their address
+            // Replace all VNS names with their address
             value = encoder.visit(value, (type, value) => {
-                if (type === "address" && ensCache[value]) {
-                    return ensCache[value];
+                if (type === "address" && vnsCache[value]) {
+                    return vnsCache[value];
                 }
                 return value;
             });
@@ -8268,7 +8268,7 @@ class Interface {
             this._encodeParams(functionFragment.inputs, values || [])
         ]));
     }
-    // Decode the result from a function call (e.g. from eth_call)
+    // Decode the result from a function call (e.g. from vap_call)
     decodeFunctionResult(functionFragment, data) {
         if (typeof (functionFragment) === "string") {
             functionFragment = this.getFunction(functionFragment);
@@ -8297,14 +8297,14 @@ class Interface {
             reason: reason
         });
     }
-    // Encode the result for a function call (e.g. for eth_call)
+    // Encode the result for a function call (e.g. for vap_call)
     encodeFunctionResult(functionFragment, values) {
         if (typeof (functionFragment) === "string") {
             functionFragment = this.getFunction(functionFragment);
         }
         return hexlify(this._abiCoder.encode(functionFragment.outputs, values || []));
     }
-    // Create the filter for the event with search criteria (e.g. for eth_filterLog)
+    // Create the filter for the event with search criteria (e.g. for vap_filterLog)
     encodeFilterTopics(eventFragment, values) {
         if (typeof (eventFragment) === "string") {
             eventFragment = this.getEvent(eventFragment);
@@ -8848,18 +8848,18 @@ function resolveName(resolver, nameOrPromise) {
         }
         catch (error) { }
         if (!resolver) {
-            logger$g.throwError("a provider or signer is needed to resolve ENS names", Logger.errors.UNSUPPORTED_OPERATION, {
+            logger$g.throwError("a provider or signer is needed to resolve VNS names", Logger.errors.UNSUPPORTED_OPERATION, {
                 operation: "resolveName"
             });
         }
         const address = yield resolver.resolveName(name);
         if (address == null) {
-            logger$g.throwArgumentError("resolver or addr is not configured for ENS name", "name", name);
+            logger$g.throwArgumentError("resolver or addr is not configured for VNS name", "name", name);
         }
         return address;
     });
 }
-// Recursively replaces ENS names with promises to resolve the name and resolves all properties
+// Recursively replaces VNS names with promises to resolve the name and resolves all properties
 function resolveAddresses(resolver, value, paramType) {
     return __awaiter$3(this, void 0, void 0, function* () {
         if (Array.isArray(paramType)) {
@@ -9313,8 +9313,8 @@ class Contract {
                 defineReadOnly(this, "resolvedAddress", Promise.resolve(getAddress(addressOrName)));
             }
             catch (error) {
-                // Without a provider, we cannot use ENS names
-                logger$g.throwError("provider is required to use ENS name as contract address", Logger.errors.UNSUPPORTED_OPERATION, {
+                // Without a provider, we cannot use VNS names
+                logger$g.throwError("provider is required to use VNS name as contract address", Logger.errors.UNSUPPORTED_OPERATION, {
                     operation: "new Contract"
                 });
             }
@@ -9728,7 +9728,7 @@ class ContractFactory {
             }
             // Make sure the call matches the constructor signature
             logger$g.checkArgumentCount(args.length, this.interface.deploy.inputs.length, " in Contract constructor");
-            // Resolve ENS names and promises in the arguments
+            // Resolve VNS names and promises in the arguments
             const params = yield resolveAddresses(this.signer, args, this.interface.deploy.inputs);
             params.push(overrides);
             // Get the deployment transaction (with optional overrides)
@@ -9759,8 +9759,8 @@ class ContractFactory {
         if (compilerOutput.bytecode) {
             bytecode = compilerOutput.bytecode;
         }
-        else if (compilerOutput.evm && compilerOutput.evm.bytecode) {
-            bytecode = compilerOutput.evm.bytecode;
+        else if (compilerOutput.vvm && compilerOutput.vvm.bytecode) {
+            bytecode = compilerOutput.vvm.bytecode;
         }
         return new this(abi, bytecode, signer);
     }
@@ -15741,7 +15741,7 @@ function decrypt(json, password) {
     const data = JSON.parse(json);
     password = getPassword(password);
     // Vapory Address
-    const ethaddr = getAddress(searchPath(data, "ethaddr"));
+    const vapaddr = getAddress(searchPath(data, "ethaddr"));
     // Encrypted Seed
     const encseed = looseArrayify(searchPath(data, "encseed"));
     if (!encseed || (encseed.length % 16) !== 0) {
@@ -15762,7 +15762,7 @@ function decrypt(json, password) {
     const privateKey = keccak256(seedHexBytes);
     return new CrowdsaleAccount({
         _isCrowdsaleAccount: true,
-        address: ethaddr,
+        address: vapaddr,
         privateKey: privateKey
     });
 }
@@ -16597,7 +16597,7 @@ function encrypt(account, password, options, progressCallback) {
                 zpad(now.getUTCSeconds(), 2) + ".0Z");
             data["x-vapors"] = {
                 client: client,
-                gethFilename: ("UTC--" + timestamp + "--" + data.address),
+                gvapFilename: ("UTC--" + timestamp + "--" + data.address),
                 mnemonicCounter: hexlify(mnemonicIv).substring(2),
                 mnemonicCiphertext: hexlify(mnemonicCiphertext).substring(2),
                 path: path,
@@ -16739,10 +16739,10 @@ class Wallet extends Signer {
     }
     _signTypedData(domain, types, value) {
         return __awaiter$5(this, void 0, void 0, function* () {
-            // Populate any ENS names
+            // Populate any VNS names
             const populated = yield TypedDataEncoder.resolveNames(domain, types, value, (name) => {
                 if (this.provider == null) {
-                    logger$p.throwError("cannot resolve ENS names without a provider", Logger.errors.UNSUPPORTED_OPERATION, {
+                    logger$p.throwError("cannot resolve VNS names without a provider", Logger.errors.UNSUPPORTED_OPERATION, {
                         operation: "resolveName",
                         value: name
                     });
@@ -16809,7 +16809,7 @@ const logger$q = new Logger(version$k);
 function isRenetworkable(value) {
     return (value && typeof (value.renetwork) === "function");
 }
-function ethDefaultProvider(network) {
+function vapDefaultProvider(network) {
     const func = function (providers, options) {
         if (options == null) {
             options = {};
@@ -16855,7 +16855,7 @@ function ethDefaultProvider(network) {
         return providerList[0];
     };
     func.renetwork = function (network) {
-        return ethDefaultProvider(network);
+        return vapDefaultProvider(network);
     };
     return func;
 }
@@ -16873,15 +16873,15 @@ function etcDefaultProvider(url, network) {
 }
 const homestead = {
     chainId: 1,
-    ensAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+    vnsAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
     name: "homestead",
-    _defaultProvider: ethDefaultProvider("homestead")
+    _defaultProvider: vapDefaultProvider("homestead")
 };
 const ropsten = {
     chainId: 3,
-    ensAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+    vnsAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
     name: "ropsten",
-    _defaultProvider: ethDefaultProvider("ropsten")
+    _defaultProvider: vapDefaultProvider("ropsten")
 };
 const classicMordor = {
     chainId: 63,
@@ -16903,20 +16903,20 @@ const networks = {
     testnet: ropsten,
     rinkeby: {
         chainId: 4,
-        ensAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+        vnsAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
         name: "rinkeby",
-        _defaultProvider: ethDefaultProvider("rinkeby")
+        _defaultProvider: vapDefaultProvider("rinkeby")
     },
     kovan: {
         chainId: 42,
         name: "kovan",
-        _defaultProvider: ethDefaultProvider("kovan")
+        _defaultProvider: vapDefaultProvider("kovan")
     },
     goerli: {
         chainId: 5,
-        ensAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+        vnsAddress: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
         name: "goerli",
-        _defaultProvider: ethDefaultProvider("goerli")
+        _defaultProvider: vapDefaultProvider("goerli")
     },
     // ETC (See: #351)
     classic: {
@@ -16954,7 +16954,7 @@ function getNetwork(network) {
                 return {
                     name: standard.name,
                     chainId: standard.chainId,
-                    ensAddress: (standard.ensAddress || null),
+                    vnsAddress: (standard.vnsAddress || null),
                     _defaultProvider: (standard._defaultProvider || null)
                 };
             }
@@ -16972,7 +16972,7 @@ function getNetwork(network) {
         return {
             name: standard.name,
             chainId: standard.chainId,
-            ensAddress: standard.ensAddress,
+            vnsAddress: standard.vnsAddress,
             _defaultProvider: (standard._defaultProvider || null)
         };
     }
@@ -16999,11 +16999,11 @@ function getNetwork(network) {
             defaultProvider = standard._defaultProvider;
         }
     }
-    // Standard Network (allow overriding the ENS address)
+    // Standard Network (allow overriding the VNS address)
     return {
         name: network.name,
         chainId: standard.chainId,
-        ensAddress: (network.ensAddress || standard.ensAddress || null),
+        vnsAddress: (network.vnsAddress || standard.vnsAddress || null),
         _defaultProvider: defaultProvider
     };
 }
@@ -17892,7 +17892,7 @@ class Formatter {
         }
         else {
             let chainId = transaction.networkId;
-            // geth-etc returns chainId
+            // gvap-etc returns chainId
             if (chainId == null && result.v == null) {
                 chainId = transaction.chainId;
             }
@@ -18178,9 +18178,9 @@ const coinInfos = {
     "0": { symbol: "btc", p2pkh: 0x00, p2sh: 0x05, prefix: "bc" },
     "2": { symbol: "ltc", p2pkh: 0x30, p2sh: 0x32, prefix: "ltc" },
     "3": { symbol: "doge", p2pkh: 0x1e, p2sh: 0x16 },
-    "60": { symbol: "eth", ilk: "eth" },
-    "61": { symbol: "etc", ilk: "eth" },
-    "700": { symbol: "xdai", ilk: "eth" },
+    "60": { symbol: "vap", ilk: "vap" },
+    "61": { symbol: "etc", ilk: "vap" },
+    "700": { symbol: "xdai", ilk: "vap" },
 };
 function bytes32ify(value) {
     return hexZeroPad(BigNumber.from(value).toHexString(), 32);
@@ -18218,7 +18218,7 @@ class Resolver {
                 operation: `getAddress(${coinType})`
             });
         }
-        if (coinInfo.ilk === "eth") {
+        if (coinInfo.ilk === "vap") {
             return this.provider.formatter.address(hexBytes);
         }
         const bytes = arrayify(hexBytes);
@@ -18946,7 +18946,7 @@ class BaseProvider extends Provider {
         return __awaiter$8(this, void 0, void 0, function* () {
             const address = yield this.resolveName(addressOrName);
             if (address == null) {
-                logger$t.throwError("ENS name not configured", Logger.errors.UNSUPPORTED_OPERATION, {
+                logger$t.throwError("VNS name not configured", Logger.errors.UNSUPPORTED_OPERATION, {
                     operation: `resolveName(${JSON.stringify(addressOrName)})`
                 });
             }
@@ -19072,7 +19072,7 @@ class BaseProvider extends Provider {
                     }
                     return undefined;
                 }
-                // "geth-etc" returns receipts before they are ready
+                // "gvap-etc" returns receipts before they are ready
                 if (result.blockHash == null) {
                     return undefined;
                 }
@@ -19106,10 +19106,10 @@ class BaseProvider extends Provider {
             return Formatter.arrayOf(this.formatter.filterLog.bind(this.formatter))(logs);
         });
     }
-    getEtherPrice() {
+    getVaporPrice() {
         return __awaiter$8(this, void 0, void 0, function* () {
             yield this.getNetwork();
-            return this.perform("getEtherPrice", {});
+            return this.perform("getVaporPrice", {});
         });
     }
     _getBlockTag(blockTag) {
@@ -19142,13 +19142,13 @@ class BaseProvider extends Provider {
         return __awaiter$8(this, void 0, void 0, function* () {
             // Get the resolver from the blockchain
             const network = yield this.getNetwork();
-            // No ENS...
-            if (!network.ensAddress) {
-                logger$t.throwError("network does not support ENS", Logger.errors.UNSUPPORTED_OPERATION, { operation: "ENS", network: network.name });
+            // No VNS...
+            if (!network.vnsAddress) {
+                logger$t.throwError("network does not support VNS", Logger.errors.UNSUPPORTED_OPERATION, { operation: "VNS", network: network.name });
             }
             // keccak256("resolver(bytes32)")
             const transaction = {
-                to: network.ensAddress,
+                to: network.vnsAddress,
                 data: ("0x0178b8bf" + namehash(name).substring(2))
             };
             return this.formatter.callAddress(yield this.call(transaction));
@@ -19168,7 +19168,7 @@ class BaseProvider extends Provider {
                 }
             }
             if (typeof (name) !== "string") {
-                logger$t.throwArgumentError("invalid ENS name", "name", name);
+                logger$t.throwArgumentError("invalid VNS name", "name", name);
             }
             // Get the addr from the resovler
             const resolver = yield this.getResolver(name);
@@ -19434,7 +19434,7 @@ class JsonRpcSigner extends Signer {
         if (this._address) {
             return Promise.resolve(this._address);
         }
-        return this.provider.send("eth_accounts", []).then((accounts) => {
+        return this.provider.send("vap_accounts", []).then((accounts) => {
             if (accounts.length <= this._index) {
                 logger$u.throwError("unknown account #" + this._index, Logger.errors.UNSUPPORTED_OPERATION, {
                     operation: "getAddress"
@@ -19451,7 +19451,7 @@ class JsonRpcSigner extends Signer {
             }
             return address;
         });
-        // The JSON-RPC for eth_sendTransaction uses 90000 gas; if the user
+        // The JSON-RPC for vap_sendTransaction uses 90000 gas; if the user
         // wishes to use this, it is easy to specify explicitly, otherwise
         // we look it up for them.
         if (transaction.gasLimit == null) {
@@ -19472,7 +19472,7 @@ class JsonRpcSigner extends Signer {
                 tx.from = sender;
             }
             const hexTx = this.provider.constructor.hexlifyTransaction(tx, { from: true });
-            return this.provider.send("eth_sendTransaction", [hexTx]).then((hash) => {
+            return this.provider.send("vap_sendTransaction", [hexTx]).then((hash) => {
                 return hash;
             }, (error) => {
                 return checkError("sendTransaction", error, hexTx);
@@ -19503,18 +19503,18 @@ class JsonRpcSigner extends Signer {
         return __awaiter$9(this, void 0, void 0, function* () {
             const data = ((typeof (message) === "string") ? toUtf8Bytes(message) : message);
             const address = yield this.getAddress();
-            // https://github.com/vaporyco/wiki/wiki/JSON-RPC#eth_sign
-            return yield this.provider.send("eth_sign", [address.toLowerCase(), hexlify(data)]);
+            // https://github.com/vaporyco/wiki/wiki/JSON-RPC#vap_sign
+            return yield this.provider.send("vap_sign", [address.toLowerCase(), hexlify(data)]);
         });
     }
     _signTypedData(domain, types, value) {
         return __awaiter$9(this, void 0, void 0, function* () {
-            // Populate any ENS names (in-place)
+            // Populate any VNS names (in-place)
             const populated = yield TypedDataEncoder.resolveNames(domain, types, value, (name) => {
                 return this.provider.resolveName(name);
             });
             const address = yield this.getAddress();
-            return yield this.provider.send("eth_signTypedData_v4", [
+            return yield this.provider.send("vap_signTypedData_v4", [
                 address.toLowerCase(),
                 JSON.stringify(TypedDataEncoder.getPayload(populated.domain, types, populated.value))
             ]);
@@ -19588,7 +19588,7 @@ class JsonRpcProvider extends BaseProvider {
             yield timer(0);
             let chainId = null;
             try {
-                chainId = yield this.send("eth_chainId", []);
+                chainId = yield this.send("vap_chainId", []);
             }
             catch (error) {
                 try {
@@ -19621,7 +19621,7 @@ class JsonRpcProvider extends BaseProvider {
         return this.getSigner(addressOrIndex).connectUnchecked();
     }
     listAccounts() {
-        return this.send("eth_accounts", []).then((accounts) => {
+        return this.send("vap_accounts", []).then((accounts) => {
             return accounts.map((a) => this.formatter.address(a));
         });
     }
@@ -19658,44 +19658,44 @@ class JsonRpcProvider extends BaseProvider {
     prepareRequest(method, params) {
         switch (method) {
             case "getBlockNumber":
-                return ["eth_blockNumber", []];
+                return ["vap_blockNumber", []];
             case "getGasPrice":
-                return ["eth_gasPrice", []];
+                return ["vap_gasPrice", []];
             case "getBalance":
-                return ["eth_getBalance", [getLowerCase(params.address), params.blockTag]];
+                return ["vap_getBalance", [getLowerCase(params.address), params.blockTag]];
             case "getTransactionCount":
-                return ["eth_getTransactionCount", [getLowerCase(params.address), params.blockTag]];
+                return ["vap_getTransactionCount", [getLowerCase(params.address), params.blockTag]];
             case "getCode":
-                return ["eth_getCode", [getLowerCase(params.address), params.blockTag]];
+                return ["vap_getCode", [getLowerCase(params.address), params.blockTag]];
             case "getStorageAt":
-                return ["eth_getStorageAt", [getLowerCase(params.address), params.position, params.blockTag]];
+                return ["vap_getStorageAt", [getLowerCase(params.address), params.position, params.blockTag]];
             case "sendTransaction":
-                return ["eth_sendRawTransaction", [params.signedTransaction]];
+                return ["vap_sendRawTransaction", [params.signedTransaction]];
             case "getBlock":
                 if (params.blockTag) {
-                    return ["eth_getBlockByNumber", [params.blockTag, !!params.includeTransactions]];
+                    return ["vap_getBlockByNumber", [params.blockTag, !!params.includeTransactions]];
                 }
                 else if (params.blockHash) {
-                    return ["eth_getBlockByHash", [params.blockHash, !!params.includeTransactions]];
+                    return ["vap_getBlockByHash", [params.blockHash, !!params.includeTransactions]];
                 }
                 return null;
             case "getTransaction":
-                return ["eth_getTransactionByHash", [params.transactionHash]];
+                return ["vap_getTransactionByHash", [params.transactionHash]];
             case "getTransactionReceipt":
-                return ["eth_getTransactionReceipt", [params.transactionHash]];
+                return ["vap_getTransactionReceipt", [params.transactionHash]];
             case "call": {
                 const hexlifyTransaction = getStatic(this.constructor, "hexlifyTransaction");
-                return ["eth_call", [hexlifyTransaction(params.transaction, { from: true }), params.blockTag]];
+                return ["vap_call", [hexlifyTransaction(params.transaction, { from: true }), params.blockTag]];
             }
             case "estimateGas": {
                 const hexlifyTransaction = getStatic(this.constructor, "hexlifyTransaction");
-                return ["eth_estimateGas", [hexlifyTransaction(params.transaction, { from: true })]];
+                return ["vap_estimateGas", [hexlifyTransaction(params.transaction, { from: true })]];
             }
             case "getLogs":
                 if (params.filter && params.filter.address != null) {
                     params.filter.address = getLowerCase(params.filter.address);
                 }
-                return ["eth_getLogs", [params.filter]];
+                return ["vap_getLogs", [params.filter]];
             default:
                 break;
         }
@@ -19726,11 +19726,11 @@ class JsonRpcProvider extends BaseProvider {
             return;
         }
         const self = this;
-        const pendingFilter = this.send("eth_newPendingTransactionFilter", []);
+        const pendingFilter = this.send("vap_newPendingTransactionFilter", []);
         this._pendingFilter = pendingFilter;
         pendingFilter.then(function (filterId) {
             function poll() {
-                self.send("eth_getFilterChanges", [filterId]).then(function (hashes) {
+                self.send("vap_getFilterChanges", [filterId]).then(function (hashes) {
                     if (self._pendingFilter != pendingFilter) {
                         return null;
                     }
@@ -19750,7 +19750,7 @@ class JsonRpcProvider extends BaseProvider {
                     });
                 }).then(function () {
                     if (self._pendingFilter != pendingFilter) {
-                        self.send("eth_uninstallFilter", [filterId]);
+                        self.send("vap_uninstallFilter", [filterId]);
                         return;
                     }
                     setTimeout(function () { poll(); }, 0);
@@ -19912,7 +19912,7 @@ class WebSocketProvider extends JsonRpcProvider {
                     });
                 }
             }
-            else if (result.method === "eth_subscription") {
+            else if (result.method === "vap_subscription") {
                 // Subscription...
                 const sub = this._subs[result.params.subscription];
                 if (sub) {
@@ -19997,7 +19997,7 @@ class WebSocketProvider extends JsonRpcProvider {
             let subIdPromise = this._subIds[tag];
             if (subIdPromise == null) {
                 subIdPromise = Promise.all(param).then((param) => {
-                    return this.send("eth_subscribe", param);
+                    return this.send("vap_subscribe", param);
                 });
                 this._subIds[tag] = subIdPromise;
             }
@@ -20083,7 +20083,7 @@ class WebSocketProvider extends JsonRpcProvider {
                 return;
             }
             delete this._subs[subId];
-            this.send("eth_unsubscribe", [subId]);
+            this.send("vap_unsubscribe", [subId]);
         });
     }
     destroy() {
@@ -20118,7 +20118,7 @@ var __awaiter$b = (window && window.__awaiter) || function (thisArg, _arguments,
 };
 const logger$w = new Logger(version$m);
 // A StaticJsonRpcProvider is useful when you *know* for certain that
-// the backend will never change, as it never calls eth_chainId to
+// the backend will never change, as it never calls vap_chainId to
 // verify its backend. However, if the backend does change, the effects
 // are undefined and may include:
 // - inconsistent results
@@ -20230,19 +20230,19 @@ class AlchemyProvider extends UrlJsonRpcProvider {
         let host = null;
         switch (network.name) {
             case "homestead":
-                host = "eth-mainnet.alchemyapi.io/v2/";
+                host = "vap-mainnet.alchemyapi.io/v2/";
                 break;
             case "ropsten":
-                host = "eth-ropsten.alchemyapi.io/v2/";
+                host = "vap-ropsten.alchemyapi.io/v2/";
                 break;
             case "rinkeby":
-                host = "eth-rinkeby.alchemyapi.io/v2/";
+                host = "vap-rinkeby.alchemyapi.io/v2/";
                 break;
             case "goerli":
-                host = "eth-goerli.alchemyapi.io/v2/";
+                host = "vap-goerli.alchemyapi.io/v2/";
                 break;
             case "kovan":
-                host = "eth-kovan.alchemyapi.io/v2/";
+                host = "vap-kovan.alchemyapi.io/v2/";
                 break;
             default:
                 logger$x.throwArgumentError("unsupported network", "network", arguments[0]);
@@ -20297,7 +20297,7 @@ class CloudflareProvider extends UrlJsonRpcProvider {
             perform: { get: () => super.perform }
         });
         return __awaiter$c(this, void 0, void 0, function* () {
-            // The Cloudflare provider does not support eth_blockNumber,
+            // The Cloudflare provider does not support vap_blockNumber,
             // so we get the latest block and pull it from that
             if (method === "getBlockNumber") {
                 const block = yield _super.perform.call(this, "getBlock", { blockTag: "latest" });
@@ -20516,10 +20516,10 @@ class VaporscanProvider extends BaseProvider {
             });
             switch (method) {
                 case "getBlockNumber":
-                    url += "?module=proxy&action=eth_blockNumber" + apiKey;
+                    url += "?module=proxy&action=vap_blockNumber" + apiKey;
                     return get(url, null);
                 case "getGasPrice":
-                    url += "?module=proxy&action=eth_gasPrice" + apiKey;
+                    url += "?module=proxy&action=vap_gasPrice" + apiKey;
                     return get(url, null);
                 case "getBalance":
                     // Returns base-10 result
@@ -20527,22 +20527,22 @@ class VaporscanProvider extends BaseProvider {
                     url += "&tag=" + params.blockTag + apiKey;
                     return get(url, null, getResult$1);
                 case "getTransactionCount":
-                    url += "?module=proxy&action=eth_getTransactionCount&address=" + params.address;
+                    url += "?module=proxy&action=vap_getTransactionCount&address=" + params.address;
                     url += "&tag=" + params.blockTag + apiKey;
                     return get(url, null);
                 case "getCode":
-                    url += "?module=proxy&action=eth_getCode&address=" + params.address;
+                    url += "?module=proxy&action=vap_getCode&address=" + params.address;
                     url += "&tag=" + params.blockTag + apiKey;
                     return get(url, null);
                 case "getStorageAt":
-                    url += "?module=proxy&action=eth_getStorageAt&address=" + params.address;
+                    url += "?module=proxy&action=vap_getStorageAt&address=" + params.address;
                     url += "&position=" + params.position;
                     url += "&tag=" + params.blockTag + apiKey;
                     return get(url, null);
                 case "sendTransaction":
                     return get(url, {
                         module: "proxy",
-                        action: "eth_sendRawTransaction",
+                        action: "vap_sendRawTransaction",
                         hex: params.signedTransaction,
                         apikey: this.apiKey
                     }).catch((error) => {
@@ -20550,7 +20550,7 @@ class VaporscanProvider extends BaseProvider {
                     });
                 case "getBlock":
                     if (params.blockTag) {
-                        url += "?module=proxy&action=eth_getBlockByNumber&tag=" + params.blockTag;
+                        url += "?module=proxy&action=vap_getBlockByNumber&tag=" + params.blockTag;
                         if (params.includeTransactions) {
                             url += "&boolean=true";
                         }
@@ -20562,11 +20562,11 @@ class VaporscanProvider extends BaseProvider {
                     }
                     throw new Error("getBlock by blockHash not implemented");
                 case "getTransaction":
-                    url += "?module=proxy&action=eth_getTransactionByHash&txhash=" + params.transactionHash;
+                    url += "?module=proxy&action=vap_getTransactionByHash&txhash=" + params.transactionHash;
                     url += apiKey;
                     return get(url, null);
                 case "getTransactionReceipt":
-                    url += "?module=proxy&action=eth_getTransactionReceipt&txhash=" + params.transactionHash;
+                    url += "?module=proxy&action=vap_getTransactionReceipt&txhash=" + params.transactionHash;
                     url += apiKey;
                     return get(url, null);
                 case "call": {
@@ -20575,7 +20575,7 @@ class VaporscanProvider extends BaseProvider {
                     }
                     const postData = getTransactionPostData(params.transaction);
                     postData.module = "proxy";
-                    postData.action = "eth_call";
+                    postData.action = "vap_call";
                     postData.apikey = this.apiKey;
                     try {
                         return yield get(url, postData);
@@ -20587,7 +20587,7 @@ class VaporscanProvider extends BaseProvider {
                 case "estimateGas": {
                     const postData = getTransactionPostData(params.transaction);
                     postData.module = "proxy";
-                    postData.action = "eth_estimateGas";
+                    postData.action = "vap_estimateGas";
                     postData.apikey = this.apiKey;
                     try {
                         return yield get(url, postData);
@@ -20640,11 +20640,11 @@ class VaporscanProvider extends BaseProvider {
                     }
                     return logs;
                 }
-                case "getEtherPrice":
+                case "getVaporPrice":
                     if (this.network.name !== "homestead") {
                         return 0.0;
                     }
-                    url += "?module=stats&action=ethprice";
+                    url += "?module=stats&action=vapprice";
                     url += apiKey;
                     return parseFloat((yield get(url, null, getResult$1)).vapusd);
                 default:
@@ -20743,7 +20743,7 @@ function checkNetworks(networks) {
         if (result) {
             // Make sure the network matches the previous networks
             if (!(result.name === network.name && result.chainId === network.chainId &&
-                ((result.ensAddress === network.ensAddress) || (result.ensAddress == null && network.ensAddress == null)))) {
+                ((result.vnsAddress === network.vnsAddress) || (result.vnsAddress == null && network.vnsAddress == null)))) {
                 logger$A.throwArgumentError("provider mismatch", "networks", networks);
             }
         }
@@ -20919,7 +20919,7 @@ function getProcessFunc(provider, method, params) {
                 values.sort();
                 return values[Math.floor(values.length / 2)];
             };
-        case "getEtherPrice":
+        case "getVaporPrice":
             // Returns the median price. Malicious actors must compromise at
             // least 50% of the nodes to lie (in a meaningful way).
             return function (configs) {
@@ -21012,9 +21012,9 @@ function getRunner(config, currentBlockNumber, method, params) {
             case "getBlockNumber":
             case "getGasPrice":
                 return provider[method]();
-            case "getEtherPrice":
-                if (provider.getEtherPrice) {
-                    return provider.getEtherPrice();
+            case "getVaporPrice":
+                if (provider.getVaporPrice) {
+                    return provider.getVaporPrice();
                 }
                 break;
             case "getBalance":
@@ -21457,7 +21457,7 @@ class PocketProvider extends UrlJsonRpcProvider {
         let host = null;
         switch (network ? network.name : "unknown") {
             case "homestead":
-                host = "eth-mainnet.gateway.pokt.network";
+                host = "vap-mainnet.gateway.pokt.network";
                 break;
             default:
                 logger$D.throwError("unsupported network", Logger.errors.INVALID_ARGUMENT, {
@@ -21487,8 +21487,8 @@ const logger$E = new Logger(version$m);
 let _nextId = 1;
 function buildWeb3LegacyFetcher(provider, sendFunc) {
     return function (method, params) {
-        // Metamask complains about eth_sign (and on some versions hangs)
-        if (method == "eth_sign" && provider.isMetaMask) {
+        // Metamask complains about vap_sign (and on some versions hangs)
+        if (method == "vap_sign" && provider.isMetaMask) {
             // https://github.com/vaporyco/go-vapory/wiki/Management-APIs#personal_sign
             method = "personal_sign";
             params = [params[1], params[0]];
@@ -21520,8 +21520,8 @@ function buildEip1193Fetcher(provider) {
         if (params == null) {
             params = [];
         }
-        // Metamask complains about eth_sign (and on some versions hangs)
-        if (method == "eth_sign" && provider.isMetaMask) {
+        // Metamask complains about vap_sign (and on some versions hangs)
+        if (method == "vap_sign" && provider.isMetaMask) {
             // https://github.com/vaporyco/go-vapory/wiki/Management-APIs#personal_sign
             method = "personal_sign";
             params = [params[1], params[0]];
@@ -21744,7 +21744,7 @@ const names = [
     "gwei",
     "szabo",
     "finney",
-    "ether",
+    "vapor",
 ];
 // Some environments have issues with RegEx that contain back-tracking, so we cannot
 // use them.
@@ -21809,11 +21809,11 @@ function parseUnits(value, unitName) {
     }
     return parseFixed(value, (unitName != null) ? unitName : 18);
 }
-function formatEther(wei) {
+function formatVapor(wei) {
     return formatUnits(wei, 18);
 }
-function parseEther(ether) {
-    return parseUnits(ether, 18);
+function parseVapor(vapor) {
+    return parseUnits(vapor, 18);
 }
 
 "use strict";
@@ -21879,8 +21879,8 @@ var utils$1 = /*#__PURE__*/Object.freeze({
 	getContractAddress: getContractAddress,
 	getCreate2Address: getCreate2Address,
 	isAddress: isAddress,
-	formatEther: formatEther,
-	parseEther: parseEther,
+	formatVapor: formatVapor,
+	parseVapor: parseVapor,
 	formatUnits: formatUnits,
 	parseUnits: parseUnits,
 	commify: commify,

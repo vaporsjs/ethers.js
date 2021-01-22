@@ -1,17 +1,17 @@
 _section: Display Logic and Input @<display-logic>
 
 When creating an Application, it is useful to convert between
-user-friendly strings (usually displaying **ether**) and the
+user-friendly strings (usually displaying **vapor**) and the
 machine-readable values that contracts and maths depend on
 (usually in **wei**).
 
-For example, a Wallet may specify the balance in ether, and
+For example, a Wallet may specify the balance in vapor, and
 gas prices in gwei for the User Interface, but when sending
 a transaction, both must be specified in wei.
 
 The [parseUnits](unit-conversion) will parse a string representing
-ether, such as ``1.1`` into a [BigNumber](BigNumber) in wei, and is
-useful when a user types in a value, such as sending 1.1 ether.
+vapor, such as ``1.1`` into a [BigNumber](BigNumber) in wei, and is
+useful when a user types in a value, such as sending 1.1 vapor.
 
 The [formatUnits](unit-conversion) will format a [BigNumberish](BigNumberish)
 into a string, which is useful when displaying a balance.
@@ -26,7 +26,7 @@ number of decimal places that should be used.
 
 **Examples:**
 
-- 1 ether in wei, has **18** decimal places (i.e. 1 ether represents 10^^18^^ wei)
+- 1 vapor in wei, has **18** decimal places (i.e. 1 vapor represents 10^^18^^ wei)
 - 1 bitcoin in Satoshi, has **8** decimal places (i.e. 1 bitcoin represents 10^^8^^ satoshi)
 
 _heading: Named Units @<display-logic--named-units>
@@ -43,7 +43,7 @@ _table: @STYLE<compact>
 |  //gwei//    |      9         |
 |  //szabo//   |     12         |
 |  //finney//  |     15         |
-|  //ether//   |     18         |
+|  //vapor//   |     18         |
 
 
 _subsection: Functions @<display-logic--functions>
@@ -56,17 +56,17 @@ Returns a string with value grouped by 3 digits, separated by ``,``.
 
 _heading: Conversion @<unit-conversion>
 
-_property: vapors.utils.formatUnits(value [ , unit = "ether" ] ) => string  @<utils-formatUnits> @SRC<units>
+_property: vapors.utils.formatUnits(value [ , unit = "vapor" ] ) => string  @<utils-formatUnits> @SRC<units>
 Returns a string representation of //value// formatted with //unit//
 digits (if it is a number) or to the unit specified (if a string).
 
-_property: vapors.utils.formatEther(value) => string  @<utils-formatEther> @SRC<units>
-The equivalent to calling ``formatUnits(value, "ether")``.
+_property: vapors.utils.formatVapor(value) => string  @<utils-formatVapor> @SRC<units>
+The equivalent to calling ``formatUnits(value, "vapor")``.
 
-_property: vapors.utils.parseUnits(value [ , unit = "ether" ] ) => [BigNumber](BigNumber)  @<utils-parseUnits> @SRC<units>
+_property: vapors.utils.parseUnits(value [ , unit = "vapor" ] ) => [BigNumber](BigNumber)  @<utils-parseUnits> @SRC<units>
 Returns a [BigNumber](BigNumber) representation of //value//, parsed with
 //unit// digits (if it is a number) or from the unit specified (if
 a string).
 
-_property: vapors.utils.parseEther(value) => [BigNumber](BigNumber)  @<utils-parseEther> @SRC<units>
-The equivalent to calling ``parseUnits(value, "ether")``.
+_property: vapors.utils.parseVapor(value) => [BigNumber](BigNumber)  @<utils-parseVapor> @SRC<units>
+The equivalent to calling ``parseUnits(value, "vapor")``.

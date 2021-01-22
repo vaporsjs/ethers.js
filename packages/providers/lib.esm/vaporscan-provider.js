@@ -213,10 +213,10 @@ export class VaporscanProvider extends BaseProvider {
             });
             switch (method) {
                 case "getBlockNumber":
-                    url += "?module=proxy&action=eth_blockNumber" + apiKey;
+                    url += "?module=proxy&action=vap_blockNumber" + apiKey;
                     return get(url, null);
                 case "getGasPrice":
-                    url += "?module=proxy&action=eth_gasPrice" + apiKey;
+                    url += "?module=proxy&action=vap_gasPrice" + apiKey;
                     return get(url, null);
                 case "getBalance":
                     // Returns base-10 result
@@ -224,22 +224,22 @@ export class VaporscanProvider extends BaseProvider {
                     url += "&tag=" + params.blockTag + apiKey;
                     return get(url, null, getResult);
                 case "getTransactionCount":
-                    url += "?module=proxy&action=eth_getTransactionCount&address=" + params.address;
+                    url += "?module=proxy&action=vap_getTransactionCount&address=" + params.address;
                     url += "&tag=" + params.blockTag + apiKey;
                     return get(url, null);
                 case "getCode":
-                    url += "?module=proxy&action=eth_getCode&address=" + params.address;
+                    url += "?module=proxy&action=vap_getCode&address=" + params.address;
                     url += "&tag=" + params.blockTag + apiKey;
                     return get(url, null);
                 case "getStorageAt":
-                    url += "?module=proxy&action=eth_getStorageAt&address=" + params.address;
+                    url += "?module=proxy&action=vap_getStorageAt&address=" + params.address;
                     url += "&position=" + params.position;
                     url += "&tag=" + params.blockTag + apiKey;
                     return get(url, null);
                 case "sendTransaction":
                     return get(url, {
                         module: "proxy",
-                        action: "eth_sendRawTransaction",
+                        action: "vap_sendRawTransaction",
                         hex: params.signedTransaction,
                         apikey: this.apiKey
                     }).catch((error) => {
@@ -247,7 +247,7 @@ export class VaporscanProvider extends BaseProvider {
                     });
                 case "getBlock":
                     if (params.blockTag) {
-                        url += "?module=proxy&action=eth_getBlockByNumber&tag=" + params.blockTag;
+                        url += "?module=proxy&action=vap_getBlockByNumber&tag=" + params.blockTag;
                         if (params.includeTransactions) {
                             url += "&boolean=true";
                         }
@@ -259,11 +259,11 @@ export class VaporscanProvider extends BaseProvider {
                     }
                     throw new Error("getBlock by blockHash not implemented");
                 case "getTransaction":
-                    url += "?module=proxy&action=eth_getTransactionByHash&txhash=" + params.transactionHash;
+                    url += "?module=proxy&action=vap_getTransactionByHash&txhash=" + params.transactionHash;
                     url += apiKey;
                     return get(url, null);
                 case "getTransactionReceipt":
-                    url += "?module=proxy&action=eth_getTransactionReceipt&txhash=" + params.transactionHash;
+                    url += "?module=proxy&action=vap_getTransactionReceipt&txhash=" + params.transactionHash;
                     url += apiKey;
                     return get(url, null);
                 case "call": {
@@ -272,7 +272,7 @@ export class VaporscanProvider extends BaseProvider {
                     }
                     const postData = getTransactionPostData(params.transaction);
                     postData.module = "proxy";
-                    postData.action = "eth_call";
+                    postData.action = "vap_call";
                     postData.apikey = this.apiKey;
                     try {
                         return yield get(url, postData);
@@ -284,7 +284,7 @@ export class VaporscanProvider extends BaseProvider {
                 case "estimateGas": {
                     const postData = getTransactionPostData(params.transaction);
                     postData.module = "proxy";
-                    postData.action = "eth_estimateGas";
+                    postData.action = "vap_estimateGas";
                     postData.apikey = this.apiKey;
                     try {
                         return yield get(url, postData);
@@ -337,11 +337,11 @@ export class VaporscanProvider extends BaseProvider {
                     }
                     return logs;
                 }
-                case "getEtherPrice":
+                case "getVaporPrice":
                     if (this.network.name !== "homestead") {
                         return 0.0;
                     }
-                    url += "?module=stats&action=ethprice";
+                    url += "?module=stats&action=vapprice";
                     url += apiKey;
                     return parseFloat((yield get(url, null, getResult)).vapusd);
                 default:

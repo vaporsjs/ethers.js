@@ -1,11 +1,11 @@
-_section: Vapory Naming Service @NAV<ENS>
+_section: Vapory Naming Service @NAV<VNS>
 
 _subsection: Help
 
 _code: @lang<text>
 
 Usage:
-   vapors-ens COMMAND [ ARGS ] [ OPTIONS ]
+   vapors-vns COMMAND [ ARGS ] [ OPTIONS ]
 
 COMMANDS
    lookup [ NAME | ADDRESS [ ... ] ]
@@ -43,7 +43,7 @@ ACCOUNT OPTIONS
   --account 'MNEMONIC'        Use a mnemonic (insecure *)
   --account -                 Use secure entry for a raw key or mnemonic
   --account-void ADDRESS      Use an address as a void signer
-  --account-void ENS_NAME     Add the resolved address as a void signer
+  --account-void VNS_NAME     Add the resolved address as a void signer
   --account-rpc ADDRESS       Add the address from a JSON-RPC provider
   --account-rpc INDEX         Add the index from a JSON-RPC provider
   --mnemonic-password         Prompt for a password for mnemonics

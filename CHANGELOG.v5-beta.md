@@ -73,7 +73,7 @@ vapors/v5.0.0-beta.185 (2020-05-04 22:54)
   - Added getWebSocketProvider static method to InfuraProvider. ([a6c1174](https://github.com/vaporsjs/vapors.js/commit/a6c1174dffe6dca1a3a64d1d472cec6e12372117))
   - Fix WebSocketProvider responses when message result is null. ([#813](https://github.com/vaporsjs/vapors.js/issues/813); [472e5b0](https://github.com/vaporsjs/vapors.js/commit/472e5b07eab180baa12185c8f00e5079ce4c671f))
   - Allow modifiers on Human-Readable ABI for tuples and arrays. ([83fba3d](https://github.com/vaporsjs/vapors.js/commit/83fba3de25b524cc48975b1952f4319d63874205))
-  - Added initial renew support to ENS CLI. ([54dfb75](https://github.com/vaporsjs/vapors.js/commit/54dfb757c4c88e4bcada1890c4016fadfb25581a))
+  - Added initial renew support to VNS CLI. ([54dfb75](https://github.com/vaporsjs/vapors.js/commit/54dfb757c4c88e4bcada1890c4016fadfb25581a))
   - Allow contract filters to include OR-ed values. ([#437](https://github.com/vaporsjs/vapors.js/issues/437); [28800d7](https://github.com/vaporsjs/vapors.js/commit/28800d7681f3bab08f6d30a22f0813e04feee18a))
 
 vapors/v5.0.0-beta.184 (2020-04-28 04:58)
@@ -92,11 +92,11 @@ vapors/v5.0.0-beta.183 (2020-04-23 23:28)
 -----------------------------------------
 
   - Fixed inconsistent log format in WebSocketProvider. ([#795](https://github.com/vaporsjs/vapors.js/issues/795); [8e7751f](https://github.com/vaporsjs/vapors.js/commit/8e7751f7dfb41e58f81c7918cf36c152c3209ae2))
-  - Added WebSocketProvider support for ENS names in filters. ([6707754](https://github.com/vaporsjs/vapors.js/commit/6707754580490c5a801d6205af0841794d20b3c9))
-  - Fixed provider filtering by ENS name. ([aeeb75f](https://github.com/vaporsjs/vapors.js/commit/aeeb75f74c3be11b9b3b2925fd73349070542e54))
+  - Added WebSocketProvider support for VNS names in filters. ([6707754](https://github.com/vaporsjs/vapors.js/commit/6707754580490c5a801d6205af0841794d20b3c9))
+  - Fixed provider filtering by VNS name. ([aeeb75f](https://github.com/vaporsjs/vapors.js/commit/aeeb75f74c3be11b9b3b2925fd73349070542e54))
   - Fixed ContractFactory.deploy ignoring overrides. ([#796](https://github.com/vaporsjs/vapors.js/issues/796); [8bb2a0f](https://github.com/vaporsjs/vapors.js/commit/8bb2a0fd08f6f128a80444e3fd90c29e4cd7edfb))
   - Fix median calculation for large block number deltas across FallbackProvider backends. ([fca5ccb](https://github.com/vaporsjs/vapors.js/commit/fca5ccbc2052569e700a96dbb1de1c9cef7c966f))
-  - Work-around for Cloudflare not offering eth_blockNumber. ([8cf4b3c](https://github.com/vaporsjs/vapors.js/commit/8cf4b3cf4598f4f3643d5ebe9c366466d398cb83))
+  - Work-around for Cloudflare not offering vap_blockNumber. ([8cf4b3c](https://github.com/vaporsjs/vapors.js/commit/8cf4b3cf4598f4f3643d5ebe9c366466d398cb83))
   - Added string spell-checking to library and fixed discovered typos. ([71d03c6](https://github.com/vaporsjs/vapors.js/commit/71d03c6e3cab1aacb3e4e74d3966fbaa7db2ee06))
   - Fixed getUrl for node 8. ([560adea](https://github.com/vaporsjs/vapors.js/commit/560adeabb06a2ab483bcad162f02ccef41ebc245))
   - Dependency security updates. ([da3b0bf](https://github.com/vaporsjs/vapors.js/commit/da3b0bf0786fe8a95c68485d130ca59c597ffe4d))
@@ -121,7 +121,7 @@ vapors/v5.0.0-beta.180 (2020-04-03 22:10)
 -----------------------------------------
 
   - Correctly return the Provider in NonceManager. ([6caf7c2](https://github.com/vaporsjs/vapors.js/commit/6caf7c292cd5f03741cd6b30053c3325c4f30a81))
-  - Fail earlier when resolving an ENS name that is not a string. ([2882546](https://github.com/vaporsjs/vapors.js/commit/28825463517f8821392464ec2283ee59c431d928))
+  - Fail earlier when resolving an VNS name that is not a string. ([2882546](https://github.com/vaporsjs/vapors.js/commit/28825463517f8821392464ec2283ee59c431d928))
   - Fixed mutabilityState calculation for function fragments. ([#762](https://github.com/vaporsjs/vapors.js/issues/762); [6526de0](https://github.com/vaporsjs/vapors.js/commit/6526de016fda5403474dad61ee59acc62ee25ebc), [d7c8b35](https://github.com/vaporsjs/vapors.js/commit/d7c8b355a049b36068b0525a357c6278639a8d58))
   - Force Log properties to be non-optional. ([#415](https://github.com/vaporsjs/vapors.js/issues/415); [da412f6](https://github.com/vaporsjs/vapors.js/commit/da412f660723d1c411484e74970ce4eb166374c2), [8ad26f0](https://github.com/vaporsjs/vapors.js/commit/8ad26f0ff42614a6c40e735cb6fffd36874da1a0))
   - Fixed Signer call not forwarding blockTag. ([#768](https://github.com/vaporsjs/vapors.js/issues/768); [053a2d7](https://github.com/vaporsjs/vapors.js/commit/053a2d7fcdb4ca4c9bfd0bee0f42e0187d3db477))
@@ -129,9 +129,9 @@ vapors/v5.0.0-beta.180 (2020-04-03 22:10)
 vapors/v5.0.0-beta.179 (2020-03-31 23:40)
 -----------------------------------------
 
-  - Fixed ENS CLI lookup for Website. ([0f144c6](https://github.com/vaporsjs/vapors.js/commit/0f144c6cc03082026080782356b940af3389b34e))
-  - Fixed getEtherPrice for VaporscanProvider. ([#776](https://github.com/vaporsjs/vapors.js/issues/776); [6c71b51](https://github.com/vaporsjs/vapors.js/commit/6c71b515126d8ef3cea5a1aec814c4cab56cc1a5))
-  - Fixed ENS CLI tool set-websites and added set-name. ([70cffb6](https://github.com/vaporsjs/vapors.js/commit/70cffb6a5166a79a54e02b03b6a7ec0085407e07))
+  - Fixed VNS CLI lookup for Website. ([0f144c6](https://github.com/vaporsjs/vapors.js/commit/0f144c6cc03082026080782356b940af3389b34e))
+  - Fixed getVaporPrice for VaporscanProvider. ([#776](https://github.com/vaporsjs/vapors.js/issues/776); [6c71b51](https://github.com/vaporsjs/vapors.js/commit/6c71b515126d8ef3cea5a1aec814c4cab56cc1a5))
+  - Fixed VNS CLI tool set-websites and added set-name. ([70cffb6](https://github.com/vaporsjs/vapors.js/commit/70cffb6a5166a79a54e02b03b6a7ec0085407e07))
 
 vapors/v5.0.0-beta.178 (2020-03-30 22:14)
 -----------------------------------------
@@ -220,7 +220,7 @@ vapors/v5.0.0-beta.171 (2020-01-29 21:41)
 -----------------------------------------
 
   - Better solc support in CLI; it will search the local pacakge for an existing solc version. ([7428776](https://github.com/vaporsjs/vapors.js/commit/7428776f75222d5c07282bc29c3dd8ed99f5d2cc))
-  - Update ENS registry address and lower default quorum for testnets. ([edb49da](https://github.com/vaporsjs/vapors.js/commit/edb49da15518f25b3d60813ebb84f54171e308f3))
+  - Update VNS registry address and lower default quorum for testnets. ([edb49da](https://github.com/vaporsjs/vapors.js/commit/edb49da15518f25b3d60813ebb84f54171e308f3))
   - Exposed isBytes and isBytesLike in vapors.utils. ([99329b0](https://github.com/vaporsjs/vapors.js/commit/99329b013ce7f3af301d40c41f7eb35bff288910))
 
 vapors/v5.0.0-beta.170 (2020-01-21 20:37)
@@ -369,7 +369,7 @@ vapors/v5.0.0-beta.156 (2019-09-06 17:56)
 vapors/v5.0.0-beta.155 (2019-08-22 17:11)
 -----------------------------------------
 
-  - Added Wrapped Ether and Token transfers to CLI. ([c031a13](https://github.com/vaporsjs/vapors.js/commit/c031a1336815923bae85d9982dba0985a79cfaed))
+  - Added Wrapped Vapor and Token transfers to CLI. ([c031a13](https://github.com/vaporsjs/vapors.js/commit/c031a1336815923bae85d9982dba0985a79cfaed))
   - Fixed sendTransaction and use median gas price in FallbackProvider. ([07e1599](https://github.com/vaporsjs/vapors.js/commit/07e15993ba181cfbff987778d158dbde6bb84de2))
   - Port optional Secret Storage wallet address to v5. ([#582](https://github.com/vaporsjs/vapors.js/issues/582); [a12d60d](https://github.com/vaporsjs/vapors.js/commit/a12d60d722dfcf998a2e06eba5e46390d7d442e5))
   - Updated flatworm docs output. ([8745a81](https://github.com/vaporsjs/vapors.js/commit/8745a81b11b710036ddb546308c13958be1affb9))
@@ -378,7 +378,7 @@ vapors/v5.0.0-beta.155 (2019-08-22 17:11)
 vapors/v5.0.0-beta.154 (2019-08-21 01:51)
 -----------------------------------------
 
-  - Use safe transfer for ENS in CLI. ([b7494d8](https://github.com/vaporsjs/vapors.js/commit/b7494d8618001797a4e856f3d1886273897e6ba4))
+  - Use safe transfer for VNS in CLI. ([b7494d8](https://github.com/vaporsjs/vapors.js/commit/b7494d8618001797a4e856f3d1886273897e6ba4))
   - Fixed quorum-matching logic for FallbackProvider. ([b304ec1](https://github.com/vaporsjs/vapors.js/commit/b304ec1f008ec5301c0dbd1a493d790fe3528512))
   - Added CloudflareProvider. ([#587](https://github.com/vaporsjs/vapors.js/issues/587); [621313d](https://github.com/vaporsjs/vapors.js/commit/621313d2a697bc6e1dd25eb5b08d67e832a28d05))
   - Added receipt to CALL_EXCEPTION errors. ([724c32e](https://github.com/vaporsjs/vapors.js/commit/724c32e8c08b55404594f263e52babb0550a15b8))
@@ -387,16 +387,16 @@ vapors/v5.0.0-beta.153 (2019-08-06 19:15)
 -----------------------------------------
 
   - Updated gas estimate failure messaging to include that the tx may simple be causing a revert. ([edb26b1](https://github.com/vaporsjs/vapors.js/commit/edb26b16354afd707e5d03e174c4cc809b951c4f))
-  - Additional sanity checks in vapors-ens. ([de4b2a4](https://github.com/vaporsjs/vapors.js/commit/de4b2a449ca3a49807c8bedb3e21e8e8d71e63fc))
+  - Additional sanity checks in vapors-vns. ([de4b2a4](https://github.com/vaporsjs/vapors.js/commit/de4b2a449ca3a49807c8bedb3e21e8e8d71e63fc))
   - Fix bug in --wait for CLI. ([9977c9f](https://github.com/vaporsjs/vapors.js/commit/9977c9f66a7007dcc1963128c88c584b6b6c064b))
-  - Added content-hash support to ENS CLI. ([7dfef46](https://github.com/vaporsjs/vapors.js/commit/7dfef463f83a9190d1b89cf81e0fb692da3dd813))
+  - Added content-hash support to VNS CLI. ([7dfef46](https://github.com/vaporsjs/vapors.js/commit/7dfef463f83a9190d1b89cf81e0fb692da3dd813))
 
 vapors/v5.0.0-beta.152 (2019-08-05 14:37)
 -----------------------------------------
 
-  - Using CLI --wait instead of custom Plugin flag for vapors-ens. ([19ee2b5](https://github.com/vaporsjs/vapors.js/commit/19ee2b516005b2c35b846f19457ec9bbfa0c283b))
+  - Using CLI --wait instead of custom Plugin flag for vapors-vns. ([19ee2b5](https://github.com/vaporsjs/vapors.js/commit/19ee2b516005b2c35b846f19457ec9bbfa0c283b))
   - Added --wait as a general flag to CLI. ([7640292](https://github.com/vaporsjs/vapors.js/commit/7640292ac8b7b9e6de3ad6699d23e2debf26cc1b))
-  - Added migrate-registrar and transfer to ENS CLI. ([31e8e1b](https://github.com/vaporsjs/vapors.js/commit/31e8e1b0520bc8be390fbf7e2b473c36a8649eb3))
+  - Added migrate-registrar and transfer to VNS CLI. ([31e8e1b](https://github.com/vaporsjs/vapors.js/commit/31e8e1b0520bc8be390fbf7e2b473c36a8649eb3))
   - Include data in the CLI transaction dump. ([53bd96a](https://github.com/vaporsjs/vapors.js/commit/53bd96a9f675233906033290f1e0c71ca4e9d389))
   - Better errors on gas estimation failure. ([0e6b810](https://github.com/vaporsjs/vapors.js/commit/0e6b810def390309240508a99b2cf0736848dedd))
 
@@ -425,7 +425,7 @@ vapors/v5.0.0-beta.149 (2019-08-03 00:45)
 vapors/v5.0.0-beta.148 (2019-07-27 18:56)
 -----------------------------------------
 
-  - Initial drop of new ENS CLI tool. ([c3c65b2](https://github.com/vaporsjs/vapors.js/commit/c3c65b2fa19e117d6433c2e0b3d20decfe506c74))
+  - Initial drop of new VNS CLI tool. ([c3c65b2](https://github.com/vaporsjs/vapors.js/commit/c3c65b2fa19e117d6433c2e0b3d20decfe506c74))
   - Added TypeScript tool support for functions with multiple outputs. ([6de4a5d](https://github.com/vaporsjs/vapors.js/commit/6de4a5d8a9d114c4c33c58f8a304b60e7370eeff))
   - Added CLI support for stand-alone (no sub-command) tools. ([b67b121](https://github.com/vaporsjs/vapors.js/commit/b67b12123996f1aaf7cbe3c8648fd85a22d6674e))
   - Make utils.resolveProperties preserve object parameter order. ([74dbc28](https://github.com/vaporsjs/vapors.js/commit/74dbc281ede042c5eeaa7b45150b215dea860a88))
@@ -517,7 +517,7 @@ vapors/v5.0.0-beta.136
 vapors/v5.0.0-beta.135
 ----------------------
 
-  - Better error message for unconfigured ENS names. ([#504](https://github.com/vaporsjs/vapors.js/issues/504); [3cbc4b4](https://github.com/vaporsjs/vapors.js/commit/3cbc4b462262ba61fa7d99a7a12e7bbf8049afb1))
+  - Better error message for unconfigured VNS names. ([#504](https://github.com/vaporsjs/vapors.js/issues/504); [3cbc4b4](https://github.com/vaporsjs/vapors.js/commit/3cbc4b462262ba61fa7d99a7a12e7bbf8049afb1))
   - Fixed contract events. ([#404](https://github.com/vaporsjs/vapors.js/issues/404); [8cdda37](https://github.com/vaporsjs/vapors.js/commit/8cdda37095df28f828ccd2ac5437ccb6541b16cc))
   - Updated license for BaseX to include original authors; was only included in the source. ([03c9725](https://github.com/vaporsjs/vapors.js/commit/03c97259c46de10dbe6ce62921de2f32ffff0522))
 

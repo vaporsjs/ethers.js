@@ -68,7 +68,7 @@ The (compresses) public key for this HDNode.
 
 #### *hdNode* . **fingerprint** => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 4 > >*
 
-The fingerprint is meant as an index to quickly match parent and children nodes together, however collisions may occur and software should verify matching nodes.
+The fingerprint is meant as an index to quickly match parent and children nodes togvapor, however collisions may occur and software should verify matching nodes.
 
 Most developers will not need to use this.
 

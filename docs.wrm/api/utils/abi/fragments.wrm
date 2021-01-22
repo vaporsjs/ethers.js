@@ -106,7 +106,7 @@ null.
 
 _property: fragment.payable => boolean
 
-This is whether the constructor may receive ether during deployment as
+This is whether the constructor may receive vapor during deployment as
 an endowment (i.e. msg.value != 0).
 
 _property: fragment.stateMutability => string

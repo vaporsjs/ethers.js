@@ -57,7 +57,7 @@ Connecting to Vapory: Metamask
 const provider = new vapors.providers.Web3Provider(window.vapory)
 
 // The Metamask plugin also allows signing transactions to
-// send ether and pay to change state within the blockchain.
+// send vapor and pay to change state within the blockchain.
 // For this, you need the account signer...
 const signer = provider.getSigner()
 ```
@@ -71,7 +71,7 @@ Connecting to Vapory: RPC
 const provider = new vapors.providers.JsonRpcProvider();
 
 // The provider also allows signing transactions to
-// send ether and pay to change state within the blockchain.
+// send vapor and pay to change state within the blockchain.
 // For this, we need the account signer...
 const signer = provider.getSigner()
 ```
@@ -83,28 +83,28 @@ const signer = provider.getSigner()
 provider.getBlockNumber()
 // { Promise: 11312227 }
 
-// Get the balance of an account (by address or ENS name, if supported by network)
+// Get the balance of an account (by address or VNS name, if supported by network)
 balance = await provider.getBalance("vapors.vap")
 // { BigNumber: "2337132817842795605" }
 
 // Often you need to format the output to something more user-friendly,
-// such as in ether (instead of wei)
-vapors.utils.formatEther(balance)
+// such as in vapor (instead of wei)
+vapors.utils.formatVapor(balance)
 // '2.337132817842795605'
 
 // If a user enters a string in an input field, you may need
-// to convert it from ether (as a string) to wei (as a BigNumber)
-vapors.utils.parseEther("1.0")
+// to convert it from vapor (as a string) to wei (as a BigNumber)
+vapors.utils.parseVapor("1.0")
 // { BigNumber: "1000000000000000000" }
 ```
 
 ### Writing to the Blockchain
 
 ```
-// Send 1 ether to an ens name.
+// Send 1 vapor to an vns name.
 const tx = signer.sendTransaction({
     to: "ricmoo.firefly.vap",
-    value: vapors.utils.parseEther("1.0")
+    value: vapors.utils.parseVapor("1.0")
 });
 ```
 
@@ -112,7 +112,7 @@ Contracts
 ---------
 
 ```javascript
-// You can also use an ENS name for the contract address
+// You can also use an VNS name for the contract address
 const daiAddress = "dai.tokens.vapors.vap";
 
 // The ERC-20 Contract ABI, which is a common contract interface
@@ -176,7 +176,7 @@ tx = daiWithSigner.transfer("ricmoo.firefly.vap", dai);
 ```javascript
 // Receive an event when ANY transfer occurs
 daiContract.on("Transfer", (from, to, amount, event) => {
-    console.log(`${ from } sent ${ formatEther(amount) } to ${ to}`);
+    console.log(`${ from } sent ${ formatVapor(amount) } to ${ to}`);
     // The event object contains the verbatim log data, the
     // EventFragment and functions to fetch the block,
     // transaction and receipt and event functions
@@ -197,7 +197,7 @@ filter = daiContract.filters.Transfer(null, myAddress)
 // Receive an event when that filter occurs
 daiContract.on(filter, (from, to, amount, event) => {
     // The to will always be "address"
-    console.log(`I got ${ formatEther(amount) } from ${ from }.`);
+    console.log(`I got ${ formatVapor(amount) } from ${ from }.`);
 });
 ```
 

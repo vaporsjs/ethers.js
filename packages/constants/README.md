@@ -26,7 +26,7 @@ const {
     One,
     Two,
 
-    WeiPerEther,
+    WeiPerVapor,
     MaxUint256
 
 } = require("@vaporsproject/constants");

@@ -50,7 +50,7 @@ var PocketProvider = /** @class */ (function (_super) {
         var host = null;
         switch (network ? network.name : "unknown") {
             case "homestead":
-                host = "eth-mainnet.gateway.pokt.network";
+                host = "vap-mainnet.gateway.pokt.network";
                 break;
             default:
                 logger.throwError("unsupported network", logger_1.Logger.errors.INVALID_ARGUMENT, {

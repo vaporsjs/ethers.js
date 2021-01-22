@@ -40,19 +40,19 @@ export class AlchemyProvider extends UrlJsonRpcProvider {
         let host = null;
         switch (network.name) {
             case "homestead":
-                host = "eth-mainnet.alchemyapi.io/v2/";
+                host = "vap-mainnet.alchemyapi.io/v2/";
                 break;
             case "ropsten":
-                host = "eth-ropsten.alchemyapi.io/v2/";
+                host = "vap-ropsten.alchemyapi.io/v2/";
                 break;
             case "rinkeby":
-                host = "eth-rinkeby.alchemyapi.io/v2/";
+                host = "vap-rinkeby.alchemyapi.io/v2/";
                 break;
             case "goerli":
-                host = "eth-goerli.alchemyapi.io/v2/";
+                host = "vap-goerli.alchemyapi.io/v2/";
                 break;
             case "kovan":
-                host = "eth-kovan.alchemyapi.io/v2/";
+                host = "vap-kovan.alchemyapi.io/v2/";
                 break;
             default:
                 logger.throwArgumentError("unsupported network", "network", arguments[0]);

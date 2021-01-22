@@ -10,7 +10,7 @@ const names = [
     "gwei",
     "szabo",
     "finney",
-    "ether",
+    "vapor",
 ];
 // Some environments have issues with RegEx that contain back-tracking, so we cannot
 // use them.
@@ -75,10 +75,10 @@ export function parseUnits(value, unitName) {
     }
     return parseFixed(value, (unitName != null) ? unitName : 18);
 }
-export function formatEther(wei) {
+export function formatVapor(wei) {
     return formatUnits(wei, 18);
 }
-export function parseEther(ether) {
-    return parseUnits(ether, 18);
+export function parseVapor(vapor) {
+    return parseUnits(vapor, 18);
 }
 //# sourceMappingURL=index.js.map

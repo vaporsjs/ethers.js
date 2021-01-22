@@ -21,8 +21,8 @@ const {
     formatUnits,
     parseUnits,
 
-    formatEther,
-    parseEther,
+    formatVapor,
+    parseVapor,
 
     commify
 

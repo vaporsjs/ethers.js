@@ -57,24 +57,24 @@ provider.getBlock(100004)
 provider.getBlockWithTransactions(100004)
 //!
 
-_subsection: Vapory Naming Service (ENS) Methods @<Provider--ens-methods>
+_subsection: Vapory Naming Service (VNS) Methods @<Provider--vns-methods>
 
-The [Vapory Naming Service](link-ens) (ENS) allows a short and
-easy-to-remember ENS Name to be attached to any set of keys
+The [Vapory Naming Service](link-vns) (VNS) allows a short and
+easy-to-remember VNS Name to be attached to any set of keys
 and values.
 
 One of the most common uses for this is to use a simple name to
 refer to an [Vapory Address](address).
 
 In the vapors API, nearly anywhere that accepts an address, an
-ENS name may be used instead, which can simplify code and make
+VNS name may be used instead, which can simplify code and make
 reading and debugging much simpler.
 
 The provider offers some basic operations to help resolve and
-work with ENS names.
+work with VNS names.
 
 _property: provider.lookupAddress(address) => Promise<string>  @<Provider-lookupAddress> @SRC<providers/base-provider>
-Performs a reverse lookup of the //address// in ENS using the
+Performs a reverse lookup of the //address// in VNS using the
 //Reverse Registrar//.  If the name does not exist, or the
 forward lookup does not match, ``null`` is returned.
 
@@ -83,13 +83,13 @@ Looks up the address of //name//. If the name is not owned, or
 does not have a //Resolver// configured, or the //Resolver// does
 not have an address configured, ``null`` is returned.
 
-_code: ENS Examples @lang<javascript>
+_code: VNS Examples @lang<javascript>
 
-// Reverse lookup of an ENS by address...
+// Reverse lookup of an VNS by address...
 provider.lookupAddress("0x6fC21092DA55B392b045eD78F4732bff3C580e2c");
 //!
 
-// Lookup an address of an ENS name...
+// Lookup an address of an VNS name...
 provider.resolveName("ricmoo.firefly.vap");
 //!
 
@@ -145,7 +145,7 @@ _subsection: Transactions Methods  @<Provider--transaction-methods>
 
 _property: provider.call(transaction [ , blockTag = latest ]) => Promise<string<[[DataHexString]]>>  @<Provider-call> @SRC<providers/base-provider>
 Returns the result of executing the //transaction//, using //call//. A call
-does not require any ether, but cannot change any state. This is useful
+does not require any vapor, but cannot change any state. This is useful
 for calling getters on Contracts.
 
 _property: provider.estimateGas(transaction) => Promise<[[BigNumber]]>  @<Provider-estimateGas> @SRC<providers/base-provider>

@@ -113,8 +113,8 @@ var Script = /** @class */ (function () {
             keccak256: vapors_1.vapors.utils.keccak256,
             namehash: vapors_1.vapors.utils.namehash,
             sha256: vapors_1.vapors.utils.sha256,
-            parseEther: vapors_1.vapors.utils.parseEther,
-            formatEther: vapors_1.vapors.utils.formatEther,
+            parseVapor: vapors_1.vapors.utils.parseVapor,
+            formatVapor: vapors_1.vapors.utils.formatVapor,
             parseUnits: vapors_1.vapors.utils.parseUnits,
             formatUnits: vapors_1.vapors.utils.formatUnits,
             randomBytes: function (length) {

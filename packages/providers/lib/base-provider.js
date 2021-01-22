@@ -232,9 +232,9 @@ var coinInfos = {
     "0": { symbol: "btc", p2pkh: 0x00, p2sh: 0x05, prefix: "bc" },
     "2": { symbol: "ltc", p2pkh: 0x30, p2sh: 0x32, prefix: "ltc" },
     "3": { symbol: "doge", p2pkh: 0x1e, p2sh: 0x16 },
-    "60": { symbol: "eth", ilk: "eth" },
-    "61": { symbol: "etc", ilk: "eth" },
-    "700": { symbol: "xdai", ilk: "eth" },
+    "60": { symbol: "vap", ilk: "vap" },
+    "61": { symbol: "etc", ilk: "vap" },
+    "700": { symbol: "xdai", ilk: "vap" },
 };
 function bytes32ify(value) {
     return bytes_1.hexZeroPad(bignumber_1.BigNumber.from(value).toHexString(), 32);
@@ -279,7 +279,7 @@ var Resolver = /** @class */ (function () {
                 operation: "getAddress(" + coinType + ")"
             });
         }
-        if (coinInfo.ilk === "eth") {
+        if (coinInfo.ilk === "vap") {
             return this.provider.formatter.address(hexBytes);
         }
         var bytes = bytes_1.arrayify(hexBytes);
@@ -1229,7 +1229,7 @@ var BaseProvider = /** @class */ (function (_super) {
                     case 1:
                         address = _a.sent();
                         if (address == null) {
-                            logger.throwError("ENS name not configured", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+                            logger.throwError("VNS name not configured", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                                 operation: "resolveName(" + JSON.stringify(addressOrName) + ")"
                             });
                         }
@@ -1415,7 +1415,7 @@ var BaseProvider = /** @class */ (function (_super) {
                                                 }
                                                 return [2 /*return*/, undefined];
                                             }
-                                            // "geth-etc" returns receipts before they are ready
+                                            // "gvap-etc" returns receipts before they are ready
                                             if (result.blockHash == null) {
                                                 return [2 /*return*/, undefined];
                                             }
@@ -1466,14 +1466,14 @@ var BaseProvider = /** @class */ (function (_super) {
             });
         });
     };
-    BaseProvider.prototype.getEtherPrice = function () {
+    BaseProvider.prototype.getVaporPrice = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, this.getNetwork()];
                     case 1:
                         _a.sent();
-                        return [2 /*return*/, this.perform("getEtherPrice", {})];
+                        return [2 /*return*/, this.perform("getVaporPrice", {})];
                 }
             });
         });
@@ -1527,12 +1527,12 @@ var BaseProvider = /** @class */ (function (_super) {
                     case 0: return [4 /*yield*/, this.getNetwork()];
                     case 1:
                         network = _c.sent();
-                        // No ENS...
-                        if (!network.ensAddress) {
-                            logger.throwError("network does not support ENS", logger_1.Logger.errors.UNSUPPORTED_OPERATION, { operation: "ENS", network: network.name });
+                        // No VNS...
+                        if (!network.vnsAddress) {
+                            logger.throwError("network does not support VNS", logger_1.Logger.errors.UNSUPPORTED_OPERATION, { operation: "VNS", network: network.name });
                         }
                         transaction = {
-                            to: network.ensAddress,
+                            to: network.vnsAddress,
                             data: ("0x0178b8bf" + hash_1.namehash(name).substring(2))
                         };
                         _b = (_a = this.formatter).callAddress;
@@ -1561,7 +1561,7 @@ var BaseProvider = /** @class */ (function (_super) {
                             }
                         }
                         if (typeof (name) !== "string") {
-                            logger.throwArgumentError("invalid ENS name", "name", name);
+                            logger.throwArgumentError("invalid VNS name", "name", name);
                         }
                         return [4 /*yield*/, this.getResolver(name)];
                     case 2:

@@ -294,7 +294,7 @@ var WrappedSigner = /** @class */ (function (_super) {
                         if (tx.from != null) {
                             info["From"] = tx.from;
                         }
-                        info["Value"] = (vapors_1.vapors.utils.formatEther(tx.value || 0) + " ether");
+                        info["Value"] = (vapors_1.vapors.utils.formatVapor(tx.value || 0) + " vapor");
                         if (tx.nonce != null) {
                             info["Nonce"] = tx.nonce;
                         }
@@ -348,7 +348,7 @@ var WrappedSigner = /** @class */ (function (_super) {
                         if (tx.from != null) {
                             info["From"] = tx.from;
                         }
-                        info["Value"] = (vapors_1.vapors.utils.formatEther(tx.value || 0) + " ether");
+                        info["Value"] = (vapors_1.vapors.utils.formatVapor(tx.value || 0) + " vapor");
                         if (tx.nonce != null) {
                             info["Nonce"] = tx.nonce;
                         }
@@ -378,7 +378,7 @@ var WrappedSigner = /** @class */ (function (_super) {
                             "Block Number": receipt.blockNumber,
                             "Block Hash": receipt.blockHash,
                             "Gas Used": vapors_1.vapors.utils.commify(receipt.gasUsed.toString()),
-                            "Fee": (vapors_1.vapors.utils.formatEther(receipt.gasUsed.mul(tx.gasPrice)) + " ether")
+                            "Fee": (vapors_1.vapors.utils.formatVapor(receipt.gasUsed.mul(tx.gasPrice)) + " vapor")
                         });
                         return [3 /*break*/, 10];
                     case 9:
@@ -784,7 +784,7 @@ var Plugin = /** @class */ (function () {
         catch (error) { }
         return this.provider.resolveName(addressOrName).then(function (address) {
             if (address == null) {
-                _this.throwError("ENS name not configured - " + addressOrName);
+                _this.throwError("VNS name not configured - " + addressOrName);
             }
             if (address === vapors_1.vapors.constants.AddressZero && !allowZero) {
                 _this.throwError(message || "cannot use the zero address");
@@ -950,7 +950,7 @@ var CLI = /** @class */ (function () {
             console.log("  --account 'MNEMONIC'        Use a mnemonic (insecure *)");
             console.log("  --account -                 Use secure entry for a raw key or mnemonic");
             console.log("  --account-void ADDRESS      Use an address as a void signer");
-            console.log("  --account-void ENS_NAME     Add the resolved address as a void signer");
+            console.log("  --account-void VNS_NAME     Add the resolved address as a void signer");
             console.log("  --account-rpc ADDRESS       Add the address from a JSON-RPC provider");
             console.log("  --account-rpc INDEX         Add the index from a JSON-RPC provider");
             console.log("  --mnemonic-password         Prompt for a password for mnemonics");

@@ -47,11 +47,11 @@ vapors.utils.bigNumberify(someValue);
 </span><span class="comment">// - Removed `bigNumberify`
 </span>vapors.BigNumber.from(someValue)
 </div><a name="migration-v4--contracts"></a><h2 class="show-anchors"><div>Contracts<div class="anchors"><a class="self" href="/v5/migration/vapors-v4/#migration-v4--contracts"></a></div></div></h2>
-<a name="migration-v4--contracts--ens-name-resolution"></a><h3 class="show-anchors"><div>ENS Name Resolution<div class="anchors"><a class="self" href="/v5/migration/vapors-v4/#migration-v4--contracts--ens-name-resolution"></a></div></div></h3><p>The name of the resolved address has changed. If the address passed into the constructor was an ENS name, the address will be resolved before any calls are made to the contract.</p>
+<a name="migration-v4--contracts--vns-name-resolution"></a><h3 class="show-anchors"><div>VNS Name Resolution<div class="anchors"><a class="self" href="/v5/migration/vapors-v4/#migration-v4--contracts--vns-name-resolution"></a></div></div></h3><p>The name of the resolved address has changed. If the address passed into the constructor was an VNS name, the address will be resolved before any calls are made to the contract.</p>
 
 <p>The name of the property where the resolved address has changed from <code class="inline">addressPromise</code> to <code class="inline">resolvedAddress</code>.</p>
 
-<div class="code-title"><div>Resolved ENS Names</div></div><div class="code"><span class="comment">// v4
+<div class="code-title"><div>Resolved VNS Names</div></div><div class="code"><span class="comment">// v4
 </span>contract.addressPromise
 
 <span class="comment">// v5

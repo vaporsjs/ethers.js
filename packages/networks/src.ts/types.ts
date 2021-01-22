@@ -3,7 +3,7 @@
 export type Network = {
     name: string,
     chainId: number,
-    ensAddress?: string,
+    vnsAddress?: string,
     _defaultProvider?: (providers: any, options?: any) => any
 }
 

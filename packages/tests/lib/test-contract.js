@@ -230,7 +230,7 @@ describe("Test Contract Transaction Population", function () {
             });
         });
     });
-    it("allows ENS 'from' overrides", function () {
+    it("allows VNS 'from' overrides", function () {
         return __awaiter(this, void 0, void 0, function () {
             var tx;
             return __generator(this, function (_a) {

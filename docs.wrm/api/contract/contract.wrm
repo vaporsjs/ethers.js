@@ -26,12 +26,12 @@ will act on behalf of that signer.
 _subsection: Properties  @<Contract--properties>
 
 _property: contract.address => string<[[address]]>
-This is the address (or ENS name) the contract was constructed with.
+This is the address (or VNS name) the contract was constructed with.
 
 _property: contract.resolvedAddress => string<[[address]]>
 This is a promise that will resolve to the address the **Contract**
 object is attached to. If an [[address]] was provided to the constructor,
-it will be equal to this; if an ENS name was provided, this will be the
+it will be equal to this; if an VNS name was provided, this will be the
 resolved address.
 
 _property: contract.deployTransaction => [[providers-TransactionResponse]]
@@ -94,10 +94,10 @@ at run-time during the **Contract** constructor.
 
 _heading: Read-Only Methods (constant)  @<Contract--readonly>
 
-A constant method is read-only and evaluates a small amount of EVM
+A constant method is read-only and evaluates a small amount of VVM
 code against the current blockchain state and can be computed by
 asking a single node, which can return a result. It is therefore
-free and does not require any ether, but **cannot make changes** to
+free and does not require any vapor, but **cannot make changes** to
 the blockchain state..
 
 _property: contract.METHOD_NAME(...args [, overrides ]) => Promise<any>  @<Contract-functionsCall>
@@ -139,7 +139,7 @@ miner who will compute the new state of the blockchain after executing
 it against the current state.
 
 It cannot return a result. If a result is required, it should be logged
-using a Solidity event (or EVM log), which can then be queried from the
+using a Solidity event (or VVM log), which can then be queried from the
 transaction receipt.
 
 _property: contract.METHOD_NAME(...args [ , overrides ]) => Promise<[[providers-TransactionResponse]]>  @<contract-functionsSend>

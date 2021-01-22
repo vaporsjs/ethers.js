@@ -74,7 +74,7 @@ function checkNetworks(networks) {
         if (result) {
             // Make sure the network matches the previous networks
             if (!(result.name === network.name && result.chainId === network.chainId &&
-                ((result.ensAddress === network.ensAddress) || (result.ensAddress == null && network.ensAddress == null)))) {
+                ((result.vnsAddress === network.vnsAddress) || (result.vnsAddress == null && network.vnsAddress == null)))) {
                 logger.throwArgumentError("provider mismatch", "networks", networks);
             }
         }
@@ -250,7 +250,7 @@ function getProcessFunc(provider, method, params) {
                 values.sort();
                 return values[Math.floor(values.length / 2)];
             };
-        case "getEtherPrice":
+        case "getVaporPrice":
             // Returns the median price. Malicious actors must compromise at
             // least 50% of the nodes to lie (in a meaningful way).
             return function (configs) {
@@ -350,7 +350,7 @@ function getRunner(config, currentBlockNumber, method, params) {
                     switch (_a) {
                         case "getBlockNumber": return [3 /*break*/, 1];
                         case "getGasPrice": return [3 /*break*/, 1];
-                        case "getEtherPrice": return [3 /*break*/, 2];
+                        case "getVaporPrice": return [3 /*break*/, 2];
                         case "getBalance": return [3 /*break*/, 3];
                         case "getTransactionCount": return [3 /*break*/, 3];
                         case "getCode": return [3 /*break*/, 3];
@@ -365,8 +365,8 @@ function getRunner(config, currentBlockNumber, method, params) {
                     return [3 /*break*/, 19];
                 case 1: return [2 /*return*/, provider[method]()];
                 case 2:
-                    if (provider.getEtherPrice) {
-                        return [2 /*return*/, provider.getEtherPrice()];
+                    if (provider.getVaporPrice) {
+                        return [2 /*return*/, provider.getVaporPrice()];
                     }
                     return [3 /*break*/, 19];
                 case 3:

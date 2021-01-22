@@ -123,7 +123,7 @@ export class JsonRpcSigner extends Signer {
         if (this._address) {
             return Promise.resolve(this._address);
         }
-        return this.provider.send("eth_accounts", []).then((accounts) => {
+        return this.provider.send("vap_accounts", []).then((accounts) => {
             if (accounts.length <= this._index) {
                 logger.throwError("unknown account #" + this._index, Logger.errors.UNSUPPORTED_OPERATION, {
                     operation: "getAddress"
@@ -140,7 +140,7 @@ export class JsonRpcSigner extends Signer {
             }
             return address;
         });
-        // The JSON-RPC for eth_sendTransaction uses 90000 gas; if the user
+        // The JSON-RPC for vap_sendTransaction uses 90000 gas; if the user
         // wishes to use this, it is easy to specify explicitly, otherwise
         // we look it up for them.
         if (transaction.gasLimit == null) {
@@ -161,7 +161,7 @@ export class JsonRpcSigner extends Signer {
                 tx.from = sender;
             }
             const hexTx = this.provider.constructor.hexlifyTransaction(tx, { from: true });
-            return this.provider.send("eth_sendTransaction", [hexTx]).then((hash) => {
+            return this.provider.send("vap_sendTransaction", [hexTx]).then((hash) => {
                 return hash;
             }, (error) => {
                 return checkError("sendTransaction", error, hexTx);
@@ -192,18 +192,18 @@ export class JsonRpcSigner extends Signer {
         return __awaiter(this, void 0, void 0, function* () {
             const data = ((typeof (message) === "string") ? toUtf8Bytes(message) : message);
             const address = yield this.getAddress();
-            // https://github.com/vaporyco/wiki/wiki/JSON-RPC#eth_sign
-            return yield this.provider.send("eth_sign", [address.toLowerCase(), hexlify(data)]);
+            // https://github.com/vaporyco/wiki/wiki/JSON-RPC#vap_sign
+            return yield this.provider.send("vap_sign", [address.toLowerCase(), hexlify(data)]);
         });
     }
     _signTypedData(domain, types, value) {
         return __awaiter(this, void 0, void 0, function* () {
-            // Populate any ENS names (in-place)
+            // Populate any VNS names (in-place)
             const populated = yield _TypedDataEncoder.resolveNames(domain, types, value, (name) => {
                 return this.provider.resolveName(name);
             });
             const address = yield this.getAddress();
-            return yield this.provider.send("eth_signTypedData_v4", [
+            return yield this.provider.send("vap_signTypedData_v4", [
                 address.toLowerCase(),
                 JSON.stringify(_TypedDataEncoder.getPayload(populated.domain, types, populated.value))
             ]);
@@ -277,7 +277,7 @@ export class JsonRpcProvider extends BaseProvider {
             yield timer(0);
             let chainId = null;
             try {
-                chainId = yield this.send("eth_chainId", []);
+                chainId = yield this.send("vap_chainId", []);
             }
             catch (error) {
                 try {
@@ -310,7 +310,7 @@ export class JsonRpcProvider extends BaseProvider {
         return this.getSigner(addressOrIndex).connectUnchecked();
     }
     listAccounts() {
-        return this.send("eth_accounts", []).then((accounts) => {
+        return this.send("vap_accounts", []).then((accounts) => {
             return accounts.map((a) => this.formatter.address(a));
         });
     }
@@ -347,44 +347,44 @@ export class JsonRpcProvider extends BaseProvider {
     prepareRequest(method, params) {
         switch (method) {
             case "getBlockNumber":
-                return ["eth_blockNumber", []];
+                return ["vap_blockNumber", []];
             case "getGasPrice":
-                return ["eth_gasPrice", []];
+                return ["vap_gasPrice", []];
             case "getBalance":
-                return ["eth_getBalance", [getLowerCase(params.address), params.blockTag]];
+                return ["vap_getBalance", [getLowerCase(params.address), params.blockTag]];
             case "getTransactionCount":
-                return ["eth_getTransactionCount", [getLowerCase(params.address), params.blockTag]];
+                return ["vap_getTransactionCount", [getLowerCase(params.address), params.blockTag]];
             case "getCode":
-                return ["eth_getCode", [getLowerCase(params.address), params.blockTag]];
+                return ["vap_getCode", [getLowerCase(params.address), params.blockTag]];
             case "getStorageAt":
-                return ["eth_getStorageAt", [getLowerCase(params.address), params.position, params.blockTag]];
+                return ["vap_getStorageAt", [getLowerCase(params.address), params.position, params.blockTag]];
             case "sendTransaction":
-                return ["eth_sendRawTransaction", [params.signedTransaction]];
+                return ["vap_sendRawTransaction", [params.signedTransaction]];
             case "getBlock":
                 if (params.blockTag) {
-                    return ["eth_getBlockByNumber", [params.blockTag, !!params.includeTransactions]];
+                    return ["vap_getBlockByNumber", [params.blockTag, !!params.includeTransactions]];
                 }
                 else if (params.blockHash) {
-                    return ["eth_getBlockByHash", [params.blockHash, !!params.includeTransactions]];
+                    return ["vap_getBlockByHash", [params.blockHash, !!params.includeTransactions]];
                 }
                 return null;
             case "getTransaction":
-                return ["eth_getTransactionByHash", [params.transactionHash]];
+                return ["vap_getTransactionByHash", [params.transactionHash]];
             case "getTransactionReceipt":
-                return ["eth_getTransactionReceipt", [params.transactionHash]];
+                return ["vap_getTransactionReceipt", [params.transactionHash]];
             case "call": {
                 const hexlifyTransaction = getStatic(this.constructor, "hexlifyTransaction");
-                return ["eth_call", [hexlifyTransaction(params.transaction, { from: true }), params.blockTag]];
+                return ["vap_call", [hexlifyTransaction(params.transaction, { from: true }), params.blockTag]];
             }
             case "estimateGas": {
                 const hexlifyTransaction = getStatic(this.constructor, "hexlifyTransaction");
-                return ["eth_estimateGas", [hexlifyTransaction(params.transaction, { from: true })]];
+                return ["vap_estimateGas", [hexlifyTransaction(params.transaction, { from: true })]];
             }
             case "getLogs":
                 if (params.filter && params.filter.address != null) {
                     params.filter.address = getLowerCase(params.filter.address);
                 }
-                return ["eth_getLogs", [params.filter]];
+                return ["vap_getLogs", [params.filter]];
             default:
                 break;
         }
@@ -415,11 +415,11 @@ export class JsonRpcProvider extends BaseProvider {
             return;
         }
         const self = this;
-        const pendingFilter = this.send("eth_newPendingTransactionFilter", []);
+        const pendingFilter = this.send("vap_newPendingTransactionFilter", []);
         this._pendingFilter = pendingFilter;
         pendingFilter.then(function (filterId) {
             function poll() {
-                self.send("eth_getFilterChanges", [filterId]).then(function (hashes) {
+                self.send("vap_getFilterChanges", [filterId]).then(function (hashes) {
                     if (self._pendingFilter != pendingFilter) {
                         return null;
                     }
@@ -439,7 +439,7 @@ export class JsonRpcProvider extends BaseProvider {
                     });
                 }).then(function () {
                     if (self._pendingFilter != pendingFilter) {
-                        self.send("eth_uninstallFilter", [filterId]);
+                        self.send("vap_uninstallFilter", [filterId]);
                         return;
                     }
                     setTimeout(function () { poll(); }, 0);

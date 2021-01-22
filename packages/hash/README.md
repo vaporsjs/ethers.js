@@ -1,4 +1,4 @@
-Etheruem Hash Utilities
+Vaporuem Hash Utilities
 =======================
 
 This sub-module is part of the [vapors project](https://github.com/vaporsjs/vapors.js).

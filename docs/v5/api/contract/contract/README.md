@@ -33,12 +33,12 @@ Properties
 
 #### *contract* . **address** => *string< [Address](/v5/api/utils/address/#address) >*
 
-This is the address (or ENS name) the contract was constructed with.
+This is the address (or VNS name) the contract was constructed with.
 
 
 #### *contract* . **resolvedAddress** => *string< [Address](/v5/api/utils/address/#address) >*
 
-This is a promise that will resolve to the address the **Contract** object is attached to. If an [Address](/v5/api/utils/address/#address) was provided to the constructor, it will be equal to this; if an ENS name was provided, this will be the resolved address.
+This is a promise that will resolve to the address the **Contract** object is attached to. If an [Address](/v5/api/utils/address/#address) was provided to the constructor, it will be equal to this; if an VNS name was provided, this will be the resolved address.
 
 
 #### *contract* . **deployTransaction** => *[TransactionResponse](/v5/api/providers/types/#providers-TransactionResponse)*

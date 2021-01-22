@@ -81,19 +81,19 @@ Any API that accept a [[providers-Networkish]] can be passed a common name (such
 ``"mainnet"`` or ``"ropsten"``) to use that network definition or may specify
 custom parameters.
 
-_heading: Custom ENS Contract
+_heading: Custom VNS Contract
 
 One common reason to specify custom properties for a [[providers-Network]] is to override
-the address of the root ENS registry, either on a common network to intercept
-the [ENS Methods](Provider--ens-methods) or to specify the ENS registry on a
-dev network (on most dev networks you must deploy the ENS contracts manually).
+the address of the root VNS registry, either on a common network to intercept
+the [VNS Methods](Provider--vns-methods) or to specify the VNS registry on a
+dev network (on most dev networks you must deploy the VNS contracts manually).
 
-_code: Example: Override the ENS registry @lang<script>
+_code: Example: Override the VNS registry @lang<script>
 
 const network = {
     name: "dev",
     chianId: 1337,
-    ensAddress: customEnsAddress
+    vnsAddress: customEnsAddress
 };
 
 _subsection: Provider Documentation

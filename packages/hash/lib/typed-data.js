@@ -386,37 +386,37 @@ var TypedDataEncoder = /** @class */ (function () {
     TypedDataEncoder.hash = function (domain, types, value) {
         return keccak256_1.keccak256(TypedDataEncoder.encode(domain, types, value));
     };
-    // Replaces all address types with ENS names with their looked up address
+    // Replaces all address types with VNS names with their looked up address
     TypedDataEncoder.resolveNames = function (domain, types, value, resolveName) {
         return __awaiter(this, void 0, void 0, function () {
-            var ensCache, encoder, _a, _b, _i, name_4, _c, _d;
+            var vnsCache, encoder, _a, _b, _i, name_4, _c, _d;
             return __generator(this, function (_e) {
                 switch (_e.label) {
                     case 0:
                         // Make a copy to isolate it from the object passed in
                         domain = properties_1.shallowCopy(domain);
-                        ensCache = {};
+                        vnsCache = {};
                         // Do we need to look up the domain's verifyingContract?
                         if (domain.verifyingContract && !bytes_1.isHexString(domain.verifyingContract, 20)) {
-                            ensCache[domain.verifyingContract] = "0x";
+                            vnsCache[domain.verifyingContract] = "0x";
                         }
                         encoder = TypedDataEncoder.from(types);
                         // Get a list of all the addresses
                         encoder.visit(value, function (type, value) {
                             if (type === "address" && !bytes_1.isHexString(value, 20)) {
-                                ensCache[value] = "0x";
+                                vnsCache[value] = "0x";
                             }
                             return value;
                         });
                         _a = [];
-                        for (_b in ensCache)
+                        for (_b in vnsCache)
                             _a.push(_b);
                         _i = 0;
                         _e.label = 1;
                     case 1:
                         if (!(_i < _a.length)) return [3 /*break*/, 4];
                         name_4 = _a[_i];
-                        _c = ensCache;
+                        _c = vnsCache;
                         _d = name_4;
                         return [4 /*yield*/, resolveName(name_4)];
                     case 2:
@@ -427,13 +427,13 @@ var TypedDataEncoder = /** @class */ (function () {
                         return [3 /*break*/, 1];
                     case 4:
                         // Replace the domain verifyingContract if needed
-                        if (domain.verifyingContract && ensCache[domain.verifyingContract]) {
-                            domain.verifyingContract = ensCache[domain.verifyingContract];
+                        if (domain.verifyingContract && vnsCache[domain.verifyingContract]) {
+                            domain.verifyingContract = vnsCache[domain.verifyingContract];
                         }
-                        // Replace all ENS names with their address
+                        // Replace all VNS names with their address
                         value = encoder.visit(value, function (type, value) {
-                            if (type === "address" && ensCache[value]) {
-                                return ensCache[value];
+                            if (type === "address" && vnsCache[value]) {
+                                return vnsCache[value];
                             }
                             return value;
                         });

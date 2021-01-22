@@ -1,6 +1,6 @@
 _section: Contract Interaction @<contracts>
 
-A **Contract** object is an abstraction of a contract (EVM bytecode)
+A **Contract** object is an abstraction of a contract (VVM bytecode)
 deployed on the Vapory network. It allows for a simple way to
 serialize calls and transactions to an on-chain contract and
 deserialize their results and emitted logs.

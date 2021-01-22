@@ -113,10 +113,10 @@ export class Wallet extends Signer {
     }
     _signTypedData(domain, types, value) {
         return __awaiter(this, void 0, void 0, function* () {
-            // Populate any ENS names
+            // Populate any VNS names
             const populated = yield _TypedDataEncoder.resolveNames(domain, types, value, (name) => {
                 if (this.provider == null) {
-                    logger.throwError("cannot resolve ENS names without a provider", Logger.errors.UNSUPPORTED_OPERATION, {
+                    logger.throwError("cannot resolve VNS names without a provider", Logger.errors.UNSUPPORTED_OPERATION, {
                         operation: "resolveName",
                         value: name
                     });

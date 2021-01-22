@@ -55,7 +55,7 @@ var basex_1 = require("@vaporsproject/basex");
 var cli_1 = require("../cli");
 var _version_1 = require("../_version");
 var logger = new vapors_1.vapors.utils.Logger(_version_1.version);
-var ensAbi = [
+var vnsAbi = [
     "function setOwner(bytes32 node, address owner) external @500000",
     "function setSubnodeOwner(bytes32 node, bytes32 label, address owner) external @500000",
     "function setResolver(bytes32 node, address resolver) external @500000",
@@ -66,11 +66,11 @@ var States = Object.freeze(["Open", "Auction", "Owned", "Forbidden", "Reveal", "
 var deedAbi = [
     "function owner() view returns (address)"
 ];
-var ethLegacyRegistrarAbi = [
+var vapLegacyRegistrarAbi = [
     "function entries(bytes32 _hash) view returns (uint8 state, address owner, uint registrationDate, uint value, uint highestBid)",
     "function transferRegistrars(bytes32 _hash) @500000",
 ];
-var ethControllerAbi = [
+var vapControllerAbi = [
     "function rentPrice(string memory name, uint duration) view public returns(uint)",
     "function available(string memory label) public view returns(bool)",
     "function makeCommitment(string memory name, address owner, bytes32 secret) pure public returns(bytes32)",
@@ -78,7 +78,7 @@ var ethControllerAbi = [
     "function register(string calldata name, address owner, uint duration, bytes32 secret) payable @500000",
     "function renew(string calldata name, uint duration) payable @500000",
 ];
-var ethRegistrarAbi = [
+var vapRegistrarAbi = [
     "function ownerOf(uint256 tokenId) view returns (address)",
     "function reclaim(uint256 id, address owner) @500000",
     "function safeTransferFrom(address from, address to, uint256 tokenId) @500000",
@@ -114,11 +114,11 @@ var EnsPlugin = /** @class */ (function (_super) {
     __extends(EnsPlugin, _super);
     function EnsPlugin() {
         var _this = _super.call(this) || this;
-        vapors_1.vapors.utils.defineReadOnly(_this, "_ethAddressCache", {});
+        vapors_1.vapors.utils.defineReadOnly(_this, "_vapAddressCache", {});
         return _this;
     }
     EnsPlugin.prototype.getEns = function () {
-        return new vapors_1.vapors.Contract(this.network.ensAddress, ensAbi, this.accounts[0] || this.provider);
+        return new vapors_1.vapors.Contract(this.network.vnsAddress, vnsAbi, this.accounts[0] || this.provider);
     };
     EnsPlugin.prototype.getResolver = function (nodehash) {
         return __awaiter(this, void 0, void 0, function () {
@@ -126,75 +126,75 @@ var EnsPlugin = /** @class */ (function (_super) {
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
-                        if (!!this._ethAddressCache[nodehash]) return [3 /*break*/, 2];
-                        _a = this._ethAddressCache;
+                        if (!!this._vapAddressCache[nodehash]) return [3 /*break*/, 2];
+                        _a = this._vapAddressCache;
                         _b = nodehash;
                         return [4 /*yield*/, this.getEns().resolver(nodehash)];
                     case 1:
                         _a[_b] = _c.sent();
                         _c.label = 2;
-                    case 2: return [2 /*return*/, new vapors_1.vapors.Contract(this._ethAddressCache[nodehash], resolverAbi, this.accounts[0] || this.provider)];
+                    case 2: return [2 /*return*/, new vapors_1.vapors.Contract(this._vapAddressCache[nodehash], resolverAbi, this.accounts[0] || this.provider)];
                 }
             });
         });
     };
-    EnsPlugin.prototype.getEthInterfaceAddress = function (interfaceId) {
+    EnsPlugin.prototype.getVapInterfaceAddress = function (interfaceId) {
         return __awaiter(this, void 0, void 0, function () {
-            var ethNodehash, resolver, _a, _b;
+            var vapNodehash, resolver, _a, _b;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
-                        ethNodehash = vapors_1.vapors.utils.namehash("eth");
-                        if (!!this._ethAddressCache[interfaceId]) return [3 /*break*/, 3];
-                        return [4 /*yield*/, this.getResolver(ethNodehash)];
+                        vapNodehash = vapors_1.vapors.utils.namehash("vap");
+                        if (!!this._vapAddressCache[interfaceId]) return [3 /*break*/, 3];
+                        return [4 /*yield*/, this.getResolver(vapNodehash)];
                     case 1:
                         resolver = _c.sent();
-                        _a = this._ethAddressCache;
+                        _a = this._vapAddressCache;
                         _b = interfaceId;
-                        return [4 /*yield*/, resolver.interfaceImplementer(ethNodehash, interfaceId)];
+                        return [4 /*yield*/, resolver.interfaceImplementer(vapNodehash, interfaceId)];
                     case 2:
                         _a[_b] = _c.sent();
                         _c.label = 3;
-                    case 3: return [2 /*return*/, this._ethAddressCache[interfaceId]];
+                    case 3: return [2 /*return*/, this._vapAddressCache[interfaceId]];
                 }
             });
         });
     };
-    EnsPlugin.prototype.getEthController = function () {
+    EnsPlugin.prototype.getVapController = function () {
         return __awaiter(this, void 0, void 0, function () {
             var address;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getEthInterfaceAddress(InterfaceID_Controller)];
+                    case 0: return [4 /*yield*/, this.getVapInterfaceAddress(InterfaceID_Controller)];
                     case 1:
                         address = _a.sent();
-                        return [2 /*return*/, new vapors_1.vapors.Contract(address, ethControllerAbi, this.accounts[0] || this.provider)];
+                        return [2 /*return*/, new vapors_1.vapors.Contract(address, vapControllerAbi, this.accounts[0] || this.provider)];
                 }
             });
         });
     };
-    EnsPlugin.prototype.getEthLegacyRegistrar = function () {
+    EnsPlugin.prototype.getVapLegacyRegistrar = function () {
         return __awaiter(this, void 0, void 0, function () {
             var address;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getEthInterfaceAddress(InterfaceID_Legacy)];
+                    case 0: return [4 /*yield*/, this.getVapInterfaceAddress(InterfaceID_Legacy)];
                     case 1:
                         address = _a.sent();
-                        return [2 /*return*/, new vapors_1.vapors.Contract(address, ethLegacyRegistrarAbi, this.accounts[0] || this.provider)];
+                        return [2 /*return*/, new vapors_1.vapors.Contract(address, vapLegacyRegistrarAbi, this.accounts[0] || this.provider)];
                 }
             });
         });
     };
-    EnsPlugin.prototype.getEthRegistrar = function () {
+    EnsPlugin.prototype.getVapRegistrar = function () {
         return __awaiter(this, void 0, void 0, function () {
             var address;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getEns().owner(vapors_1.vapors.utils.namehash("eth"))];
+                    case 0: return [4 /*yield*/, this.getEns().owner(vapors_1.vapors.utils.namehash("vap"))];
                     case 1:
                         address = _a.sent();
-                        return [2 /*return*/, new vapors_1.vapors.Contract(address, ethRegistrarAbi, this.accounts[0] || this.provider)];
+                        return [2 /*return*/, new vapors_1.vapors.Contract(address, vapRegistrarAbi, this.accounts[0] || this.provider)];
                 }
             });
         });
@@ -227,20 +227,20 @@ var LookupPlugin = /** @class */ (function (_super) {
     };
     LookupPlugin.prototype.run = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var ens, controller, registrar, legacyRegistrar, _loop_1, this_1, i;
+            var vns, controller, registrar, legacyRegistrar, _loop_1, this_1, i;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, _super.prototype.run.call(this)];
                     case 1:
                         _a.sent();
-                        ens = this.getEns();
-                        return [4 /*yield*/, this.getEthController()];
+                        vns = this.getEns();
+                        return [4 /*yield*/, this.getVapController()];
                     case 2:
                         controller = _a.sent();
-                        return [4 /*yield*/, this.getEthRegistrar()];
+                        return [4 /*yield*/, this.getVapRegistrar()];
                     case 3:
                         registrar = _a.sent();
-                        return [4 /*yield*/, this.getEthLegacyRegistrar()];
+                        return [4 /*yield*/, this.getVapLegacyRegistrar()];
                     case 4:
                         legacyRegistrar = _a.sent();
                         _loop_1 = function (i) {
@@ -253,7 +253,7 @@ var LookupPlugin = /** @class */ (function (_super) {
                                         details = {
                                             Nodehash: nodehash
                                         };
-                                        return [4 /*yield*/, ens.owner(nodehash)];
+                                        return [4 /*yield*/, vns.owner(nodehash)];
                                     case 1:
                                         owner = _f.sent();
                                         resolverAddress = null;
@@ -263,7 +263,7 @@ var LookupPlugin = /** @class */ (function (_super) {
                                     case 2:
                                         details.Controller = owner;
                                         _a = details;
-                                        return [4 /*yield*/, ens.resolver(nodehash).then(function (address) {
+                                        return [4 /*yield*/, vns.resolver(nodehash).then(function (address) {
                                                 if (address === vapors_1.vapors.constants.AddressZero) {
                                                     return "(not configured)";
                                                 }
@@ -275,7 +275,7 @@ var LookupPlugin = /** @class */ (function (_super) {
                                         _f.label = 4;
                                     case 4:
                                         comps = name_1.split(".");
-                                        if (!(comps.length === 2 && comps[1] === "eth")) return [3 /*break*/, 11];
+                                        if (!(comps.length === 2 && comps[1] === "vap")) return [3 /*break*/, 11];
                                         details.Labelhash = vapors_1.vapors.utils.id(comps[0].toLowerCase()); // @TODO: nameprep
                                         _b = details;
                                         return [4 /*yield*/, controller.available(comps[0])];
@@ -304,8 +304,8 @@ var LookupPlugin = /** @class */ (function (_super) {
                                     case 10:
                                         _c.Registrant = _f.sent();
                                         details.Registrar = "Legacy";
-                                        details["Deed Value"] = (vapors_1.vapors.utils.formatEther(entry.value) + " ether");
-                                        details["Highest Bid"] = (vapors_1.vapors.utils.formatEther(entry.highestBid) + " ether");
+                                        details["Deed Value"] = (vapors_1.vapors.utils.formatVapor(entry.value) + " vapor");
+                                        details["Highest Bid"] = (vapors_1.vapors.utils.formatVapor(entry.highestBid) + " vapor");
                                         return [3 /*break*/, 11];
                                     case 11:
                                         if (!resolverAddress) return [3 /*break*/, 16];
@@ -476,7 +476,7 @@ var ControllerPlugin = /** @class */ (function (_super) {
                     case 0:
                         if (!(key === "name")) return [3 /*break*/, 2];
                         comps = value.split(".");
-                        if (comps.length !== 2 || comps[1] !== "eth") {
+                        if (comps.length !== 2 || comps[1] !== "vap") {
                             this.throwError("Invalid NAME");
                         }
                         return [4 /*yield*/, _super.prototype._setValue.call(this, "label", comps[0])];
@@ -565,19 +565,19 @@ var CommitPlugin = /** @class */ (function (_super) {
     };
     CommitPlugin.prototype.run = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var ethController, commitment, fee;
+            var vapController, commitment, fee;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, _super.prototype.run.call(this)];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.getEthController()];
+                        return [4 /*yield*/, this.getVapController()];
                     case 2:
-                        ethController = _a.sent();
-                        return [4 /*yield*/, ethController.makeCommitment(this.label, this.owner, this.salt)];
+                        vapController = _a.sent();
+                        return [4 /*yield*/, vapController.makeCommitment(this.label, this.owner, this.salt)];
                     case 3:
                         commitment = _a.sent();
-                        return [4 /*yield*/, ethController.rentPrice(this.label, this.duration)];
+                        return [4 /*yield*/, vapController.rentPrice(this.label, this.duration)];
                     case 4:
                         fee = _a.sent();
                         this.dump("Commit: " + this.name, {
@@ -585,10 +585,10 @@ var CommitPlugin = /** @class */ (function (_super) {
                             Owner: this.owner,
                             Salt: this.salt,
                             Duration: (this.duration + " seconds (informational)"),
-                            Fee: vapors_1.vapors.utils.formatEther(fee) + " (informational)",
+                            Fee: vapors_1.vapors.utils.formatVapor(fee) + " (informational)",
                             Commitment: commitment
                         });
-                        return [4 /*yield*/, ethController.commit(commitment)];
+                        return [4 /*yield*/, vapController.commit(commitment)];
                     case 5:
                         _a.sent();
                         return [2 /*return*/];
@@ -612,16 +612,16 @@ var RevealPlugin = /** @class */ (function (_super) {
     };
     RevealPlugin.prototype.run = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var ethController, fee;
+            var vapController, fee;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, _super.prototype.run.call(this)];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.getEthController()];
+                        return [4 /*yield*/, this.getVapController()];
                     case 2:
-                        ethController = _a.sent();
-                        return [4 /*yield*/, ethController.rentPrice(this.label, this.duration)];
+                        vapController = _a.sent();
+                        return [4 /*yield*/, vapController.rentPrice(this.label, this.duration)];
                     case 3:
                         fee = _a.sent();
                         this.dump("Reveal: " + this.name, {
@@ -629,9 +629,9 @@ var RevealPlugin = /** @class */ (function (_super) {
                             Owner: this.owner,
                             Salt: this.salt,
                             Duration: (this.duration + " seconds"),
-                            Fee: vapors_1.vapors.utils.formatEther(fee),
+                            Fee: vapors_1.vapors.utils.formatVapor(fee),
                         });
-                        return [4 /*yield*/, ethController.register(this.label, this.owner, this.duration, this.salt, {
+                        return [4 /*yield*/, vapController.register(this.label, this.owner, this.duration, this.salt, {
                                 value: fee.mul(11).div(10)
                             })];
                     case 4:
@@ -1083,23 +1083,23 @@ var MigrateRegistrarPlugin = /** @class */ (function (_super) {
     };
     MigrateRegistrarPlugin.prototype.prepareArgs = function (args) {
         return __awaiter(this, void 0, void 0, function () {
-            var comps, ethLegacyRegistrar, entry, deed, owner, address;
+            var comps, vapLegacyRegistrar, entry, deed, owner, address;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, _super.prototype.prepareArgs.call(this, args)];
                     case 1:
                         _a.sent();
                         comps = this.name.split(".");
-                        if (comps.length !== 2 || comps[1] !== "eth") {
+                        if (comps.length !== 2 || comps[1] !== "vap") {
                             this.throwError("Not a top-level .vap name");
                         }
                         return [4 /*yield*/, _super.prototype._setValue.call(this, "label", comps[0])];
                     case 2:
                         _a.sent();
-                        return [4 /*yield*/, this.getEthLegacyRegistrar()];
+                        return [4 /*yield*/, this.getVapLegacyRegistrar()];
                     case 3:
-                        ethLegacyRegistrar = _a.sent();
-                        return [4 /*yield*/, ethLegacyRegistrar.entries(vapors_1.vapors.utils.id(comps[0]))];
+                        vapLegacyRegistrar = _a.sent();
+                        return [4 /*yield*/, vapLegacyRegistrar.entries(vapors_1.vapors.utils.id(comps[0]))];
                     case 4:
                         entry = _a.sent();
                         // Only owned names can be migrated
@@ -1138,10 +1138,10 @@ var MigrateRegistrarPlugin = /** @class */ (function (_super) {
                         _a.sent();
                         this.dump("Migrate Registrar: " + this.name, {
                             "Nodehash": this.nodehash,
-                            "Highest Bid": (vapors_1.vapors.utils.formatEther(this.highestBid) + " ether"),
-                            "Deed Value": (vapors_1.vapors.utils.formatEther(this.deedValue) + " ether"),
+                            "Highest Bid": (vapors_1.vapors.utils.formatVapor(this.highestBid) + " vapor"),
+                            "Deed Value": (vapors_1.vapors.utils.formatVapor(this.deedValue) + " vapor"),
                         });
-                        return [4 /*yield*/, this.getEthLegacyRegistrar()];
+                        return [4 /*yield*/, this.getVapLegacyRegistrar()];
                     case 2:
                         legacyRegistrar = _a.sent();
                         return [4 /*yield*/, legacyRegistrar.transferRegistrars(vapors_1.vapors.utils.id(this.label))];
@@ -1183,7 +1183,7 @@ var TransferPlugin = /** @class */ (function (_super) {
                     case 3:
                         if (!(key === "name")) return [3 /*break*/, 6];
                         comps = value.split(".");
-                        if (comps.length !== 2 || comps[1] !== "eth") {
+                        if (comps.length !== 2 || comps[1] !== "vap") {
                             this.throwError("Not a top-level .vap name");
                         }
                         return [4 /*yield*/, _super.prototype._setValue.call(this, "label", comps[0])];
@@ -1214,7 +1214,7 @@ var TransferPlugin = /** @class */ (function (_super) {
                             Nodehash: this.nodehash,
                             "New Owner": this.new_owner,
                         });
-                        return [4 /*yield*/, this.getEthRegistrar()];
+                        return [4 /*yield*/, this.getVapRegistrar()];
                     case 2:
                         registrar = _a.sent();
                         return [4 /*yield*/, registrar.safeTransferFrom(this.accounts[0].getAddress(), this.new_owner, vapors_1.vapors.utils.id(this.label))];
@@ -1247,13 +1247,13 @@ var ReclaimPlugin = /** @class */ (function (_super) {
                     case 0:
                         if (!(key === "name")) return [3 /*break*/, 8];
                         comps = value.split(".");
-                        if (comps.length !== 2 || comps[1] !== "eth") {
+                        if (comps.length !== 2 || comps[1] !== "vap") {
                             this.throwError("Not a top-level .vap name");
                         }
                         return [4 /*yield*/, this.accounts[0].getAddress()];
                     case 1:
                         account = _a.sent();
-                        return [4 /*yield*/, this.getEthRegistrar()];
+                        return [4 /*yield*/, this.getVapRegistrar()];
                     case 2:
                         registrar = _a.sent();
                         ownerOf = null;
@@ -1296,7 +1296,7 @@ var ReclaimPlugin = /** @class */ (function (_super) {
                             "Nodehash": this.nodehash,
                             "Address": this.address,
                         });
-                        return [4 /*yield*/, this.getEthRegistrar()];
+                        return [4 /*yield*/, this.getVapRegistrar()];
                     case 2:
                         registrar = _a.sent();
                         return [4 /*yield*/, registrar.reclaim(vapors_1.vapors.utils.id(this.label), this.address)];
@@ -1407,7 +1407,7 @@ var RenewPlugin = /** @class */ (function (_super) {
                         labels = [];
                         args.forEach(function (arg) {
                             var comps = arg.split(".");
-                            if (comps.length !== 2 || comps[1] !== "eth") {
+                            if (comps.length !== 2 || comps[1] !== "vap") {
                                 _this.throwError("name not supported " + JSON.stringify(arg));
                             }
                             labels.push(comps[0]);
@@ -1420,25 +1420,25 @@ var RenewPlugin = /** @class */ (function (_super) {
     };
     RenewPlugin.prototype.run = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var ethController, ethRegistrar, i, label, expiration, duration, fee;
+            var vapController, vapRegistrar, i, label, expiration, duration, fee;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, _super.prototype.run.call(this)];
                     case 1:
                         _a.sent();
-                        return [4 /*yield*/, this.getEthController()];
+                        return [4 /*yield*/, this.getVapController()];
                     case 2:
-                        ethController = _a.sent();
-                        return [4 /*yield*/, this.getEthRegistrar()];
+                        vapController = _a.sent();
+                        return [4 /*yield*/, this.getVapRegistrar()];
                     case 3:
-                        ethRegistrar = _a.sent();
+                        vapRegistrar = _a.sent();
                         i = 0;
                         _a.label = 4;
                     case 4:
                         if (!(i < this.labels.length)) return [3 /*break*/, 9];
                         label = this.labels[i];
                         console.log(label);
-                        return [4 /*yield*/, ethRegistrar.nameExpires(vapors_1.vapors.utils.id(label))];
+                        return [4 /*yield*/, vapRegistrar.nameExpires(vapors_1.vapors.utils.id(label))];
                     case 5:
                         expiration = (_a.sent()).toNumber();
                         if (expiration === 0) {
@@ -1448,16 +1448,16 @@ var RenewPlugin = /** @class */ (function (_super) {
                         if (duration < 0) {
                             this.throwError("bad duration: " + duration);
                         }
-                        return [4 /*yield*/, ethController.rentPrice(label, duration)];
+                        return [4 /*yield*/, vapController.rentPrice(label, duration)];
                     case 6:
                         fee = (_a.sent()).mul(11).div(10);
                         this.dump("Renew: " + label + ".vap", {
                             "Current Expiry": formatDate(new Date(expiration * 1000)),
                             "Duration": (duration / (24 * 60 * 60)) + " days",
                             "Until": formatDate(new Date((expiration + duration) * 1000)),
-                            "Fee": vapors_1.vapors.utils.formatEther(fee) + " (+10% buffer)",
+                            "Fee": vapors_1.vapors.utils.formatVapor(fee) + " (+10% buffer)",
                         });
-                        return [4 /*yield*/, ethController.renew(label, duration, {
+                        return [4 /*yield*/, vapController.renew(label, duration, {
                                 value: fee
                             })];
                     case 7:
@@ -1495,4 +1495,4 @@ cli.addPlugin("renew", RenewPlugin);
  *    reclaim NAME --address OWNER
  */
 cli.run(process.argv.slice(2));
-//# sourceMappingURL=vapors-ens.js.map
+//# sourceMappingURL=vapors-vns.js.map

@@ -48,7 +48,7 @@ provider = new VaporscanProvider(4);
 const network = vapors.providers.getNetwork("rinkeby");
 // {
 //   chainId: 4,
-//   ensAddress: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
+//   vnsAddress: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
 //   name: 'rinkeby'
 // }
 

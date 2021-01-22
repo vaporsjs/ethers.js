@@ -25,7 +25,7 @@ Strings
 
 #### *vapors* . *constants* . **VaporSymbol** => *string*
 
-The Ether symbol, **Xi**.
+The Vapor symbol, **Xi**.
 
 
 BigNumber
@@ -51,9 +51,9 @@ The BigNumber value representing `"1"`.
 The BigNumber value representing `"2"`.
 
 
-#### *vapors* . *constants* . **WeiPerEther** => *[BigNumber](/v5/api/utils/bignumber/)*
+#### *vapors* . *constants* . **WeiPerVapor** => *[BigNumber](/v5/api/utils/bignumber/)*
 
-The BigNumber value representing `"1000000000000000000"`, which is the number of Wei per Ether.
+The BigNumber value representing `"1000000000000000000"`, which is the number of Wei per Vapor.
 
 
 #### *vapors* . *constants* . **MaxUint256** => *[BigNumber](/v5/api/utils/bignumber/)*

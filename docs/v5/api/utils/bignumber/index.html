@@ -140,9 +140,9 @@ a.mul(b);
 <span class="result ok">// { BigNumber: "3822" }
 </span></div><a name="BigNumber--notes"></a><a name="BigNumber--BigNumber--notes"></a><h2 class="show-anchors"><div>Notes<div class="anchors"><a class="self" href="/v5/api/utils/bignumber/#BigNumber--notes"></a></div></div></h2><p>This section is a for a couple of questions that come up frequently.</p>
 
-<a name="BigNumber--notes-safenumbers"></a><a name="BigNumber--BigNumber--notes--BigNumber--notes-safenumbers"></a><h3 class="show-anchors"><div>Why can't I just use numbers?<div class="anchors"><a class="self" href="/v5/api/utils/bignumber/#BigNumber--notes-safenumbers"></a></div></div></h3><p>The first problem many encounter when dealing with Vapory is the concept of numbers. Most common currencies are broken down with very little granularity. For example, there are only 100 cents in a single dollar. However, there are 10<sup>18</sup> <b>wei</b> in a single <b>ether</b>.</p>
+<a name="BigNumber--notes-safenumbers"></a><a name="BigNumber--BigNumber--notes--BigNumber--notes-safenumbers"></a><h3 class="show-anchors"><div>Why can't I just use numbers?<div class="anchors"><a class="self" href="/v5/api/utils/bignumber/#BigNumber--notes-safenumbers"></a></div></div></h3><p>The first problem many encounter when dealing with Vapory is the concept of numbers. Most common currencies are broken down with very little granularity. For example, there are only 100 cents in a single dollar. However, there are 10<sup>18</sup> <b>wei</b> in a single <b>vapor</b>.</p>
 
-<p>JavaScript uses <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">IEEE 754 double-precision binary floating point</a> numbers to represent numeric values. As a result, there are <i>holes</i> in the integer set after 9,007,199,254,740,991; which is problematic for <i>Vapory</i> because that is only around 0.009 ether (in wei), which means any value over that will begin to experience rounding errors.</p>
+<p>JavaScript uses <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format">IEEE 754 double-precision binary floating point</a> numbers to represent numeric values. As a result, there are <i>holes</i> in the integer set after 9,007,199,254,740,991; which is problematic for <i>Vapory</i> because that is only around 0.009 vapor (in wei), which means any value over that will begin to experience rounding errors.</p>
 
 <p>To demonstrate how this may be an issue in your code, consider:</p>
 
@@ -150,7 +150,7 @@ a.mul(b);
 <span class="result ok">// false
 </span></div><p>To remedy this, all numbers (which can be large) are stored and manipulated as <a href="/v5/api/utils/bignumber/">Big Numbers</a>.</p>
 
-<p>The functions <a href="/v5/api/utils/display-logic/#utils-parseEther">parseEther( vaporString )</a> and <a href="/v5/api/utils/display-logic/#utils-formatEther">formatEther( wei )</a> can be used to convert between string representations, which are displayed to or entered by the user and Big Number representations which can have mathematical operations handled safely.</p>
+<p>The functions <a href="/v5/api/utils/display-logic/#utils-parseVapor">parseVapor( vaporString )</a> and <a href="/v5/api/utils/display-logic/#utils-formatVapor">formatVapor( wei )</a> can be used to convert between string representations, which are displayed to or entered by the user and Big Number representations which can have mathematical operations handled safely.</p>
 
 <a name="BigNumber--BigNumber--notes--why-not-bignumber-js-bn-js-bigdecimal-etc"></a><h3 class="show-anchors"><div>Why not BigNumber.js, BN.js, BigDecimal, etc?<div class="anchors"><a class="self" href="/v5/api/utils/bignumber/#BigNumber--BigNumber--notes--why-not-bignumber-js-bn-js-bigdecimal-etc"></a></div></div></h3><p>Everyone has their own favourite Big Number library, and once someone has chosen one, it becomes part of their identity, like their editor, vi vs emacs. There are over 100 Big Number libraries on <a href="https://www.npmjs.com/search?q=bignumber">npm</a>.</p>
 

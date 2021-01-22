@@ -36,7 +36,7 @@
 </span>    "event Transfer(address indexed from, address indexed to, uint amount)"
 ];
 
-<span class="comment">// This can be an address or an ENS name
+<span class="comment">// This can be an address or an VNS name
 </span>const address = "dai.tokens.vapors.vap";
 
 <span class="comment">// An example Provider
@@ -61,9 +61,9 @@
 <div class="property show-anchors"><div class="signature"><span class="modifier">new </span><span class="path">vapors</span><span class="symbol">.</span><span class="method">Contract</span><span class="symbol">(</span> <span class="param">address</span> <span class="symbol">,</span> <span class="param">abi</span> <span class="symbol">,</span> <span class="param">providerOrSigner</span> <span class="symbol">)</span><div class="anchors"></div></div><div class="body"><p>See the above code example for creating an Instance which will (in addition to the Contact methods and properties) automatically add the additional properties defined in <i>abi</i> to a <b>Contract</b> connected to <i>address</i> using the <i>providerOrSigner</i>.</p>
 
 </div></div><a name="example-erc-20-contract--properties"></a><h2 class="show-anchors"><div>Properties<span class="inherits">(inheritted from <a href="/v5/api/contract/contract/">Contract</a>)</span><div class="anchors"><a class="self" href="/v5/api/contract/example/#example-erc-20-contract--properties"></a></div></div></h2>
-<div class="property show-anchors"><div class="signature"><span class="path">erc20</span><span class="symbol">.</span><span class="method">address</span> <span class="arrow">&rArr;</span> <span class="returns">string&lt; <a href="/v5/api/utils/address/#address">Address</a> &gt;</span><div class="anchors"></div></div><div class="body"><p>This is the address (or ENS name) the contract was constructed with.</p>
+<div class="property show-anchors"><div class="signature"><span class="path">erc20</span><span class="symbol">.</span><span class="method">address</span> <span class="arrow">&rArr;</span> <span class="returns">string&lt; <a href="/v5/api/utils/address/#address">Address</a> &gt;</span><div class="anchors"></div></div><div class="body"><p>This is the address (or VNS name) the contract was constructed with.</p>
 
-</div></div><div class="property show-anchors"><div class="signature"><span class="path">erc20</span><span class="symbol">.</span><span class="method">resolvedAddress</span> <span class="arrow">&rArr;</span> <span class="returns">string&lt; <a href="/v5/api/utils/address/#address">Address</a> &gt;</span><div class="anchors"></div></div><div class="body"><p>This is a promise that will resolve to the address the <b>Contract</b> object is attached to. If an <a href="/v5/api/utils/address/#address">Address</a> was provided to the constructor, it will be equal to this; if an ENS name was provided, this will be the resolved address.</p>
+</div></div><div class="property show-anchors"><div class="signature"><span class="path">erc20</span><span class="symbol">.</span><span class="method">resolvedAddress</span> <span class="arrow">&rArr;</span> <span class="returns">string&lt; <a href="/v5/api/utils/address/#address">Address</a> &gt;</span><div class="anchors"></div></div><div class="body"><p>This is a promise that will resolve to the address the <b>Contract</b> object is attached to. If an <a href="/v5/api/utils/address/#address">Address</a> was provided to the constructor, it will be equal to this; if an VNS name was provided, this will be the resolved address.</p>
 
 </div></div><div class="property show-anchors"><div class="signature"><span class="path">erc20</span><span class="symbol">.</span><span class="method">deployTransaction</span> <span class="arrow">&rArr;</span> <span class="returns"><a href="/v5/api/providers/types/#providers-TransactionResponse">TransactionResponse</a></span><div class="anchors"></div></div><div class="body"><p>If the <b>Contract</b> object is the result of a ContractFactory deployment, this is the transaction which was used to deploy the contract.</p>
 

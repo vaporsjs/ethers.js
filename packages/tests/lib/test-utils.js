@@ -171,11 +171,11 @@ describe('Test Unit Conversion', function () {
     var tests = testcases_1.loadTests('units');
     tests.forEach(function (test) {
         var wei = vapors_1.vapors.BigNumber.from(test.wei);
-        it(('parses ' + test.vaper + ' ether'), function () {
-            assert_1.default.ok(vapors_1.vapors.utils.parseEther(test.vaper.replace(/,/g, '')).eq(wei), 'parsing ether failed - ' + test.name);
+        it(('parses ' + test.vaper + ' vapor'), function () {
+            assert_1.default.ok(vapors_1.vapors.utils.parseVapor(test.vaper.replace(/,/g, '')).eq(wei), 'parsing vapor failed - ' + test.name);
         });
-        it(('formats ' + wei.toString() + ' wei to ether'), function () {
-            var actual = vapors_1.vapors.utils.formatEther(wei);
+        it(('formats ' + wei.toString() + ' wei to vapor'), function () {
+            var actual = vapors_1.vapors.utils.formatVapor(wei);
             assert_1.default.equal(actual, test.vaper_format, 'formatting wei failed - ' + test.name);
         });
     });
@@ -430,7 +430,7 @@ describe('Test UTF-8 coder', function () {
 });
 describe('Test Bytes32String coder', function () {
     // @TODO: a LOT more test cases; generated from Solidity
-    it("encodes an ens name", function () {
+    it("encodes an vns name", function () {
         var str = "ricmoo.firefly.vap";
         var bytes32 = vapors_1.vapors.utils.formatBytes32String(str);
         var str2 = vapors_1.vapors.utils.parseBytes32String(bytes32);
@@ -662,7 +662,7 @@ describe("Base58 Coder", function () {
 /*
 describe("Web Fetch", function() {
     it("fetches JSON", async function() {
-        const url = "https:/\/api.vaporscan.io/api?module=stats&action=ethprice&apikey=9D13ZE7XSBTJ94N9BNJ2MA33VMAY2YPIRB";
+        const url = "https:/\/api.vaporscan.io/api?module=stats&action=vapprice&apikey=9D13ZE7XSBTJ94N9BNJ2MA33VMAY2YPIRB";
         const getData = vapors.utils.fetchJson(url)
     });
 });

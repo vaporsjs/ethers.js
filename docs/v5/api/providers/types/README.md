@@ -30,7 +30,7 @@ The Chain ID of the network.
 
 #### *network* . **ensAddress** => *string< [Address](/v5/api/utils/address/#address) >*
 
-The address at which the ENS registry is deployed on this network.
+The address at which the VNS registry is deployed on this network.
 
 
 Block
@@ -201,7 +201,7 @@ Transactions
 
 #### *transactionRequest* . **to** => *string | Promise< string >*
 
-The address (or ENS name) this transaction it to.
+The address (or VNS name) this transaction it to.
 
 
 #### *transactionRequest* . **from** => *string< [Address](/v5/api/utils/address/#address) > | Promise< string< [Address](/v5/api/utils/address/#address) > >*

@@ -29,7 +29,7 @@ export class _Eip1193Bridge extends EventEmitter {
 
      async send(method: string, params?: Array<any>): Promise<any> {
          function throwUnsupported(message: string): never {
-             return logger.throwError("eth_sign requires a signer", vapors.utils.Logger.errors.UNSUPPORTED_OPERATION, {
+             return logger.throwError("vap_sign requires a signer", vapors.utils.Logger.errors.UNSUPPORTED_OPERATION, {
                  method: method,
                  params: params
              });
@@ -38,11 +38,11 @@ export class _Eip1193Bridge extends EventEmitter {
          let coerce = (value: any) => value;
 
          switch (method) {
-             case "eth_gasPrice": {
+             case "vap_gasPrice": {
                   const result = await this.provider.getGasPrice();
                   return result.toHexString();
              }
-             case "eth_accounts": {
+             case "vap_accounts": {
                  const result = [ ];
                  if (this.signer) {
                      const address = await this.signer.getAddress();
@@ -50,37 +50,37 @@ export class _Eip1193Bridge extends EventEmitter {
                  }
                  return result;
              }
-             case "eth_blockNumber": {
+             case "vap_blockNumber": {
                  return await this.provider.getBlockNumber();
              }
-             case "eth_chainId": {
+             case "vap_chainId": {
                  const result = await this.provider.getNetwork();
                  return result.chainId;
              }
-             case "eth_getBalance": {
+             case "vap_getBalance": {
                  const result = await this.provider.getBalance(params[0], params[1]);
                  return result.toHexString();
              }
-             case "eth_getStorageAt": {
+             case "vap_getStorageAt": {
                  return this.provider.getStorageAt(params[0], params[1], params[2]);
              }
-             case "eth_getTransactionCount": {
+             case "vap_getTransactionCount": {
                  const result = await this.provider.getTransactionCount(params[0], params[1]);
                  return vapors.utils.hexValue(result);
              }
-             case "eth_getBlockTransactionCountByHash":
-             case "eth_getBlockTransactionCountByNumber": {
+             case "vap_getBlockTransactionCountByHash":
+             case "vap_getBlockTransactionCountByNumber": {
                  const result = await this.provider.getBlock(params[0]);
                  return vapors.utils.hexValue(result.transactions.length);
              }
-             case "eth_getCode": {
+             case "vap_getCode": {
                  const result = await this.provider.getBlock(params[0]);
                  return result;
              }
-             case "eth_sendRawTransaction": {
+             case "vap_sendRawTransaction": {
                  return await this.provider.sendTransaction(params[0]);
              }
-             case "eth_call": {
+             case "vap_call": {
                  const req = vapors.providers.JsonRpcProvider.hexlifyTransaction(params[0]);
                  return await this.provider.call(req, params[1]);
              }
@@ -95,24 +95,24 @@ export class _Eip1193Bridge extends EventEmitter {
              }
 
              // @TOOD: Transform? No uncles?
-             case "eth_getBlockByHash":
-             case "eth_getBlockByNumber": {
+             case "vap_getBlockByHash":
+             case "vap_getBlockByNumber": {
                  if (params[1]) {
                      return await this.provider.getBlockWithTransactions(params[0]);
                  } else {
                      return await this.provider.getBlock(params[0]);
                  }
              }
-             case "eth_getTransactionByHash": {
+             case "vap_getTransactionByHash": {
                  return await this.provider.getTransaction(params[0]);
              }
-             case "eth_getTransactionReceipt": {
+             case "vap_getTransactionReceipt": {
                  return await this.provider.getTransactionReceipt(params[0]);
              }
 
-             case "eth_sign": {
+             case "vap_sign": {
                  if (!this.signer) {
-                     return throwUnsupported("eth_sign requires an account");
+                     return throwUnsupported("vap_sign requires an account");
                  }
 
                  const address = await this.signer.getAddress();
@@ -123,9 +123,9 @@ export class _Eip1193Bridge extends EventEmitter {
                  return this.signer.signMessage(vapors.utils.arrayify(params[1]));
              }
 
-             case "eth_sendTransaction": {
+             case "vap_sendTransaction": {
                  if (!this.signer) {
-                     return throwUnsupported("eth_sign requires an account");
+                     return throwUnsupported("vap_sign requires an account");
                  }
 
                  const req = vapors.providers.JsonRpcProvider.hexlifyTransaction(params[0]);
@@ -133,24 +133,24 @@ export class _Eip1193Bridge extends EventEmitter {
                  return tx.hash;
              }
 
-             case "eth_getUncleCountByBlockHash":
-             case "eth_getUncleCountByBlockNumber":
+             case "vap_getUncleCountByBlockHash":
+             case "vap_getUncleCountByBlockNumber":
              {
                  coerce = vapors.utils.hexValue;
                  break;
              }
 
-             case "eth_getTransactionByBlockHashAndIndex":
-             case "eth_getTransactionByBlockNumberAndIndex":
-             case "eth_getUncleByBlockHashAndIndex":
-             case "eth_getUncleByBlockNumberAndIndex":
-             case "eth_newFilter":
-             case "eth_newBlockFilter":
-             case "eth_newPendingTransactionFilter":
-             case "eth_uninstallFilter":
-             case "eth_getFilterChanges":
-             case "eth_getFilterLogs":
-             case "eth_getLogs":
+             case "vap_getTransactionByBlockHashAndIndex":
+             case "vap_getTransactionByBlockNumberAndIndex":
+             case "vap_getUncleByBlockHashAndIndex":
+             case "vap_getUncleByBlockNumberAndIndex":
+             case "vap_newFilter":
+             case "vap_newBlockFilter":
+             case "vap_newPendingTransactionFilter":
+             case "vap_uninstallFilter":
+             case "vap_getFilterChanges":
+             case "vap_getFilterLogs":
+             case "vap_getLogs":
                  break;
          }
 

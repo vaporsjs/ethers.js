@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const eth_sig_util_1 = require("eth-sig-util");
+const vap_sig_util_1 = require("vap-sig-util");
 const abi_test_1 = require("./abi-test");
 const test_1 = require("./test");
 function fill(testcase) {
@@ -26,8 +26,8 @@ function fill(testcase) {
     for (const key in testcase.types) {
         typesWithDomain[key] = testcase.types[key];
     }
-    testcase.encoded = "0x" + eth_sig_util_1.TypedDataUtils.encodeData(testcase.primaryType, testcase.data, testcase.types).toString("hex");
-    testcase.digest = "0x" + eth_sig_util_1.TypedDataUtils.sign({
+    testcase.encoded = "0x" + vap_sig_util_1.TypedDataUtils.encodeData(testcase.primaryType, testcase.data, testcase.types).toString("hex");
+    testcase.digest = "0x" + vap_sig_util_1.TypedDataUtils.sign({
         types: typesWithDomain,
         domain: testcase.domain,
         primaryType: testcase.primaryType,
@@ -91,7 +91,7 @@ if (require.main === module) {
     tests.push({
         name: "EIP712 example",
         domain: {
-            name: 'Ether Mail',
+            name: 'Vapor Mail',
             version: '1',
             chainId: 1,
             verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC'

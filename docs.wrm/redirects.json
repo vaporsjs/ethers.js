@@ -128,7 +128,7 @@
   "vapors.js/html/api-providers.html#contract-state":
     { "tag": "Provider--account-methods" },
   "vapors.js/html/api-providers.html#vapory-naming-service":
-    { "tag": "Provider--ens-methods" },
+    { "tag": "Provider--vns-methods" },
   "vapors.js/html/api-providers.html#vaporscan":
     { "tag": "VaporscanProvider" },
   "vapors.js/html/api-providers.html#vaporscanprovider-inherits-from-provider":
@@ -225,9 +225,9 @@
     { "tag": "cryptographic-hash-functions" },
   "vapors.js/html/api-utils.html#elliptic-curve":
     { "tag": "SigningKey" },
-  "vapors.js/html/api-utils.html#ether-strings-and-wei":
+  "vapors.js/html/api-utils.html#vapor-strings-and-wei":
     { "tag": "unit-conversion" },
-  "vapors.js/html/api-utils.html#formatether":
+  "vapors.js/html/api-utils.html#formatvapor":
     { "tag": "utils-formatUnits" },
   "vapors.js/html/api-utils.html#hash-function-helpers":
     { "tag": "utils--hashing-helpers" },
@@ -241,7 +241,7 @@
     { "tag": "utils--hashing-helpers" },
   "vapors.js/html/api-utils.html#namehash":
     { "tag": "utils-namehash" },
-  "vapors.js/html/api-utils.html#parseether":
+  "vapors.js/html/api-utils.html#parsevapor":
     { "tag": "utils-parseUnits" },
   "vapors.js/html/api-utils.html#random":
     { "tag": "utils-randomBytes" },
@@ -689,9 +689,9 @@
     { "tag": "" },
   "vapors.js/v5-beta/api-utils.html#elliptic-curve":
     { "tag": "" },
-  "vapors.js/v5-beta/api-utils.html#ether-strings-and-wei":
+  "vapors.js/v5-beta/api-utils.html#vapor-strings-and-wei":
     { "tag": "" },
-  "vapors.js/v5-beta/api-utils.html#formatether":
+  "vapors.js/v5-beta/api-utils.html#formatvapor":
     { "tag": "" },
   "vapors.js/v5-beta/api-utils.html#hash-function-helpers":
     { "tag": "" },
@@ -705,7 +705,7 @@
     { "tag": "" },
   "vapors.js/v5-beta/api-utils.html#namehash":
     { "tag": "" },
-  "vapors.js/v5-beta/api-utils.html#parseether":
+  "vapors.js/v5-beta/api-utils.html#parsevapor":
     { "tag": "" },
   "vapors.js/v5-beta/api-utils.html#random":
     { "tag": "" },

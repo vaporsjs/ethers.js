@@ -166,14 +166,14 @@ utils.hashMessage(utils.arrayify("0x42"))
 
 
 _property: vapors.utils.namehash(name) => string<[[DataHexString]]<32>>  @<utils-namehash> @SRC<hash>
-Returns the [ENS Namehash](link-namehash) of //name//.
+Returns the [VNS Namehash](link-namehash) of //name//.
 
 _code: Namehash  @lang<javascript>
 
 utils.namehash("")
 //!
 
-utils.namehash("eth")
+utils.namehash("vap")
 //!
 
 utils.namehash("ricmoo.firefly.vap")
@@ -217,7 +217,7 @@ Encodes the Returns the hashed [[link-eip-712]] domain.
 
 _property: TypedDataEncoder.getPayload(domain, types, value) => any @<TypedDataEncoder-getPayload> @SRC<hash:TypedDataEncoder.getPayload>
 
-Returns the standard payload used by various JSON-RPC ``eth_signTypedData*``
+Returns the standard payload used by various JSON-RPC ``vap_signTypedData*``
 calls.
 
 All domain values and entries in value are normalized and the types are
@@ -249,7 +249,7 @@ TypedDataEncoder = vapors.utils._TypedDataEncoder
 // </hide>
 
 const domain = {
-    name: 'Ether Mail',
+    name: 'Vapor Mail',
     version: '1',
     chainId: 1,
     verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC'

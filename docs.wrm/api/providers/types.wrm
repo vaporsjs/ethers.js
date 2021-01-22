@@ -38,8 +38,8 @@ name is unknown, this will be ``"unknown"``.
 _property: network.chainId => number
 The Chain ID of the network.
 
-_property: network.ensAddress => string<[[address]]>
-The address at which the ENS registry is deployed on this network.
+_property: network.vnsAddress => string<[[address]]>
+The address at which the VNS registry is deployed on this network.
 
 
 _subsection: Block @<providers-Block>
@@ -177,7 +177,7 @@ All fields are optional and may be a promise which resolves
 to the required type.
 
 _property: transactionRequest.to => string | Promise<string>
-The address (or ENS name) this transaction it to.
+The address (or VNS name) this transaction it to.
 
 _property: transactionRequest.from => string<[[address]]> | Promise<string<[[address]]>>
 The address this transaction is from.

@@ -344,7 +344,7 @@ export class Formatter {
         } else {
             let chainId = transaction.networkId;
 
-            // geth-etc returns chainId
+            // gvap-etc returns chainId
             if (chainId == null && result.v == null) {
                 chainId = transaction.chainId;
             }

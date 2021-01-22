@@ -49,16 +49,16 @@ vapors.BigNumber.from(someValue)
 
 _subsection: Contracts
 
-_heading: ENS Name Resolution
+_heading: VNS Name Resolution
 
 The name of the resolved address has changed. If the address passed into the
-constructor was an ENS name, the address will be resolved before any calls
+constructor was an VNS name, the address will be resolved before any calls
 are made to the contract.
 
 The name of the property where the resolved address has changed from ``addressPromise``
 to ``resolvedAddress``.
 
-_code: Resolved ENS Names @lang<script>
+_code: Resolved VNS Names @lang<script>
 
 // v4
 contract.addressPromise

@@ -211,7 +211,7 @@ transactions and prove ownership on the Vapory network.</p>
 the random source (make sure this wallet is stored somewhere safe; if lost there
 is no way to recover it)</dd>
 <dt><sup>vapors . Wallet</sup> . fromEncryptedWallet ( json, password [ , progressCallback ] )</dt>
-<dd>Decrypt an encrypted Secret Storage JSON Wallet (from Geth, or that was
+<dd>Decrypt an encrypted Secret Storage JSON Wallet (from Gvap, or that was
 created using <em>prototype.encrypt</em> )</dd>
 <dt><sup>vapors . Wallet</sup> . fromMnemonic ( mnemonic [ , path ] )</dt>
 <dd><p class="first">Generate a BIP39 + BIP32 wallet from a <em>mnemonic</em> deriving path</p>
@@ -236,7 +236,7 @@ created using <em>prototype.encrypt</em> )</dd>
 <span class="o">//</span> <span class="s2">&quot;Address: ... this will be different every time ...&quot;</span>
 </pre></div>
 </div>
-<p><strong>Secret Storage Wallet</strong> (e.g. Geth or Parity)</p>
+<p><strong>Secret Storage Wallet</strong> (e.g. Gvap or Parity)</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nb">id</span><span class="p">:</span> <span class="s2">&quot;fb1280c0-d646-4e40-9550-7026b1be504a&quot;</span><span class="p">,</span>
     <span class="n">address</span><span class="p">:</span> <span class="s2">&quot;88a5c2d9919e46f883eb62f7b8dd9d0cc45bc290&quot;</span><span class="p">,</span>
@@ -330,7 +330,7 @@ See <a class="reference internal" href="api-providers.html#transactionrequest"><
 
     <span class="n">to</span><span class="p">:</span> <span class="s2">&quot;0x88a5C2d9919e46F883EB62F7b8Dd9d0CC45bc290&quot;</span><span class="p">,</span>
 
-    <span class="n">value</span><span class="p">:</span> <span class="n">utils</span><span class="o">.</span><span class="n">parseEther</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">),</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">utils</span><span class="o">.</span><span class="n">parseVapor</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">),</span>
     <span class="n">data</span><span class="p">:</span> <span class="s2">&quot;0x&quot;</span><span class="p">,</span>
 
     <span class="o">//</span> <span class="n">This</span> <span class="n">ensures</span> <span class="n">the</span> <span class="n">transaction</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">replayed</span> <span class="n">on</span> <span class="n">different</span> <span class="n">networks</span>
@@ -416,14 +416,14 @@ transaction details.</dd>
 <span class="p">});</span>
 </pre></div>
 </div>
-<p><strong>Transfer Ether</strong></p>
+<p><strong>Transfer Vapor</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">privateKey</span> <span class="o">=</span> <span class="s1">&#39;0x0123456789012345678901234567890123456789012345678901234567890123&#39;</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">wallet</span> <span class="o">=</span> <span class="n">new</span> <span class="n">vapors</span><span class="o">.</span><span class="n">Wallet</span><span class="p">(</span><span class="n">privateKey</span><span class="p">);</span>
 <span class="n">wallet</span><span class="o">.</span><span class="n">provider</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">getDefaultProvider</span><span class="p">();</span>
 
-<span class="o">//</span> <span class="n">We</span> <span class="n">must</span> <span class="k">pass</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">amount</span> <span class="k">as</span> <span class="n">wei</span> <span class="p">(</span><span class="mi">1</span> <span class="n">ether</span> <span class="o">=</span> <span class="mf">1e18</span> <span class="n">wei</span><span class="p">),</span> <span class="n">so</span> <span class="n">we</span> <span class="n">use</span>
-<span class="o">//</span> <span class="n">this</span> <span class="n">convenience</span> <span class="n">function</span> <span class="n">to</span> <span class="n">convert</span> <span class="n">ether</span> <span class="n">to</span> <span class="n">wei</span><span class="o">.</span>
-<span class="n">var</span> <span class="n">amount</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">parseEther</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">We</span> <span class="n">must</span> <span class="k">pass</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">amount</span> <span class="k">as</span> <span class="n">wei</span> <span class="p">(</span><span class="mi">1</span> <span class="n">vapor</span> <span class="o">=</span> <span class="mf">1e18</span> <span class="n">wei</span><span class="p">),</span> <span class="n">so</span> <span class="n">we</span> <span class="n">use</span>
+<span class="o">//</span> <span class="n">this</span> <span class="n">convenience</span> <span class="n">function</span> <span class="n">to</span> <span class="n">convert</span> <span class="n">vapor</span> <span class="n">to</span> <span class="n">wei</span><span class="o">.</span>
+<span class="n">var</span> <span class="n">amount</span> <span class="o">=</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">parseVapor</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">);</span>
 
 <span class="n">var</span> <span class="n">address</span> <span class="o">=</span> <span class="s1">&#39;0x88a5c2d9919e46f883eb62f7b8dd9d0cc45bc290&#39;</span><span class="p">;</span>
 <span class="n">var</span> <span class="n">sendPromise</span> <span class="o">=</span> <span class="n">wallet</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">amount</span><span class="p">);</span>
@@ -455,7 +455,7 @@ transaction details.</dd>
     <span class="o">//</span> <span class="n">Recommendation</span><span class="p">:</span> <span class="n">omit</span> <span class="n">nonce</span><span class="p">;</span> <span class="n">the</span> <span class="n">provider</span> <span class="n">will</span> <span class="n">query</span> <span class="n">the</span> <span class="n">network</span>
     <span class="o">//</span> <span class="n">nonce</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
 
-    <span class="o">//</span> <span class="n">Gas</span> <span class="n">Limit</span><span class="p">;</span> <span class="mi">21000</span> <span class="n">will</span> <span class="n">send</span> <span class="n">ether</span> <span class="n">to</span> <span class="n">another</span> <span class="n">use</span><span class="p">,</span> <span class="n">but</span> <span class="n">to</span> <span class="n">execute</span> <span class="n">contracts</span>
+    <span class="o">//</span> <span class="n">Gas</span> <span class="n">Limit</span><span class="p">;</span> <span class="mi">21000</span> <span class="n">will</span> <span class="n">send</span> <span class="n">vapor</span> <span class="n">to</span> <span class="n">another</span> <span class="n">use</span><span class="p">,</span> <span class="n">but</span> <span class="n">to</span> <span class="n">execute</span> <span class="n">contracts</span>
     <span class="o">//</span> <span class="n">larger</span> <span class="n">limits</span> <span class="n">are</span> <span class="n">required</span><span class="o">.</span> <span class="n">The</span> <span class="n">provider</span><span class="o">.</span><span class="n">estimateGas</span> <span class="n">can</span> <span class="n">be</span> <span class="n">used</span> <span class="k">for</span> <span class="n">this</span><span class="o">.</span>
     <span class="n">gasLimit</span><span class="p">:</span> <span class="mi">1000000</span><span class="p">,</span>
 
@@ -469,7 +469,7 @@ transaction details.</dd>
     <span class="n">data</span><span class="p">:</span> <span class="s2">&quot;0x&quot;</span><span class="p">,</span>
 
     <span class="o">//</span> <span class="n">Optional</span>
-    <span class="n">value</span><span class="p">:</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">parseEther</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">),</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">vapors</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">parseVapor</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">),</span>
 
     <span class="o">//</span> <span class="n">Recommendation</span><span class="p">:</span> <span class="n">omit</span> <span class="n">chainId</span><span class="p">;</span> <span class="n">the</span> <span class="n">provider</span> <span class="n">will</span> <span class="n">populate</span> <span class="n">this</span>
     <span class="o">//</span> <span class="n">chaindId</span><span class="p">:</span> <span class="n">providers</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">homestead</span><span class="o">.</span><span class="n">chainId</span>
@@ -519,7 +519,7 @@ transaction details.</dd>
 
     <span class="n">to</span><span class="p">:</span> <span class="s2">&quot;0xc149Be1bcDFa69a94384b46A1F91350E5f81c1AB&quot;</span><span class="p">,</span>
 
-    <span class="n">value</span><span class="p">:</span> <span class="n">utils</span><span class="o">.</span><span class="n">parseEther</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">),</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">utils</span><span class="o">.</span><span class="n">parseVapor</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">),</span>
     <span class="n">data</span><span class="p">:</span> <span class="s2">&quot;0x&quot;</span><span class="p">,</span>
 
     <span class="o">//</span> <span class="n">This</span> <span class="n">ensures</span> <span class="n">the</span> <span class="n">transaction</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">replayed</span> <span class="n">on</span> <span class="n">different</span> <span class="n">networks</span>

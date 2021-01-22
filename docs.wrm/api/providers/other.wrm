@@ -60,7 +60,7 @@ The weight a response from this provider provides. This can be used if a given
 _subsection: IpcProvider  @<IpcProvider> @INHERIT<[[JsonRpcProvider]]> @SRC<providers:class.IpcProvider>
 
 The **IpcProvider** allows the JSON-RPC API to be used over a local
-filename on the file system, exposed by Geth, Parity and other nodes.
+filename on the file system, exposed by Gvap, Parity and other nodes.
 
 This is only available in //node.js// (as it requires file system access,
 and may have additional complications due to file permissions. See any

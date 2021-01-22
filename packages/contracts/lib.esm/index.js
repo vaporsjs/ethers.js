@@ -34,18 +34,18 @@ function resolveName(resolver, nameOrPromise) {
         }
         catch (error) { }
         if (!resolver) {
-            logger.throwError("a provider or signer is needed to resolve ENS names", Logger.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("a provider or signer is needed to resolve VNS names", Logger.errors.UNSUPPORTED_OPERATION, {
                 operation: "resolveName"
             });
         }
         const address = yield resolver.resolveName(name);
         if (address == null) {
-            logger.throwArgumentError("resolver or addr is not configured for ENS name", "name", name);
+            logger.throwArgumentError("resolver or addr is not configured for VNS name", "name", name);
         }
         return address;
     });
 }
-// Recursively replaces ENS names with promises to resolve the name and resolves all properties
+// Recursively replaces VNS names with promises to resolve the name and resolves all properties
 function resolveAddresses(resolver, value, paramType) {
     return __awaiter(this, void 0, void 0, function* () {
         if (Array.isArray(paramType)) {
@@ -499,8 +499,8 @@ export class Contract {
                 defineReadOnly(this, "resolvedAddress", Promise.resolve(getAddress(addressOrName)));
             }
             catch (error) {
-                // Without a provider, we cannot use ENS names
-                logger.throwError("provider is required to use ENS name as contract address", Logger.errors.UNSUPPORTED_OPERATION, {
+                // Without a provider, we cannot use VNS names
+                logger.throwError("provider is required to use VNS name as contract address", Logger.errors.UNSUPPORTED_OPERATION, {
                     operation: "new Contract"
                 });
             }
@@ -914,7 +914,7 @@ export class ContractFactory {
             }
             // Make sure the call matches the constructor signature
             logger.checkArgumentCount(args.length, this.interface.deploy.inputs.length, " in Contract constructor");
-            // Resolve ENS names and promises in the arguments
+            // Resolve VNS names and promises in the arguments
             const params = yield resolveAddresses(this.signer, args, this.interface.deploy.inputs);
             params.push(overrides);
             // Get the deployment transaction (with optional overrides)
@@ -945,8 +945,8 @@ export class ContractFactory {
         if (compilerOutput.bytecode) {
             bytecode = compilerOutput.bytecode;
         }
-        else if (compilerOutput.evm && compilerOutput.evm.bytecode) {
-            bytecode = compilerOutput.evm.bytecode;
+        else if (compilerOutput.vvm && compilerOutput.vvm.bytecode) {
+            bytecode = compilerOutput.vvm.bytecode;
         }
         return new this(abi, bytecode, signer);
     }

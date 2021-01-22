@@ -108,7 +108,7 @@ export declare class BaseProvider extends Provider implements EnsProvider {
     getTransaction(transactionHash: string | Promise<string>): Promise<TransactionResponse>;
     getTransactionReceipt(transactionHash: string | Promise<string>): Promise<TransactionReceipt>;
     getLogs(filter: Filter | FilterByBlockHash | Promise<Filter | FilterByBlockHash>): Promise<Array<Log>>;
-    getEtherPrice(): Promise<number>;
+    getVaporPrice(): Promise<number>;
     _getBlockTag(blockTag: BlockTag | Promise<BlockTag>): Promise<BlockTag>;
     getResolver(name: string): Promise<Resolver>;
     _getResolver(name: string): Promise<string>;

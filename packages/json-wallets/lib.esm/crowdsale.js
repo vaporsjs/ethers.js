@@ -15,12 +15,12 @@ export class CrowdsaleAccount extends Description {
         return !!(value && value._isCrowdsaleAccount);
     }
 }
-// See: https://github.com/vaporyco/pyethsaletool
+// See: https://github.com/vaporyco/pyvapsaletool
 export function decrypt(json, password) {
     const data = JSON.parse(json);
     password = getPassword(password);
     // Vapory Address
-    const ethaddr = getAddress(searchPath(data, "ethaddr"));
+    const vapaddr = getAddress(searchPath(data, "vapaddr"));
     // Encrypted Seed
     const encseed = looseArrayify(searchPath(data, "encseed"));
     if (!encseed || (encseed.length % 16) !== 0) {
@@ -41,7 +41,7 @@ export function decrypt(json, password) {
     const privateKey = keccak256(seedHexBytes);
     return new CrowdsaleAccount({
         _isCrowdsaleAccount: true,
-        address: ethaddr,
+        address: vapaddr,
         privateKey: privateKey
     });
 }

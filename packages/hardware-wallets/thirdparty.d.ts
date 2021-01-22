@@ -1,4 +1,4 @@
-declare module "@ledgerhq/hw-app-eth" {
+declare module "@ledgerhq/hw-app-vap" {
     export type PublicAccount = {
         publicKey: string;
         address: string;
@@ -18,7 +18,7 @@ declare module "@ledgerhq/hw-app-eth" {
 
     export class Transport { }
 
-    export class Eth {
+    export class Vap {
         constructor(transport: Transport);
         getAppConfiguration(): Promise<Config>;
         getAddress(path: string): Promise<PublicAccount>;
@@ -26,7 +26,7 @@ declare module "@ledgerhq/hw-app-eth" {
         signTransaction(path: string, unsignedTx: string): Promise<Signature>;
     }
 
-    export default Eth;
+    export default Vap;
 }
 
 declare module "@ledgerhq/hw-transport-node-hid" {

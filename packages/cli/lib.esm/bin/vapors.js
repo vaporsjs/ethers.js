@@ -70,9 +70,9 @@ function setupContext(path, context, plugin) {
     context.keccak256 = vapors.utils.keccak256;
     context.namehash = vapors.utils.namehash;
     context.sha256 = vapors.utils.sha256;
-    context.parseEther = vapors.utils.parseEther;
+    context.parseVapor = vapors.utils.parseVapor;
     context.parseUnits = vapors.utils.parseUnits;
-    context.formatEther = vapors.utils.formatEther;
+    context.formatVapor = vapors.utils.formatVapor;
     context.formatUnits = vapors.utils.formatUnits;
     context.randomBytes = vapors.utils.randomBytes;
     context.constants = vapors.constants;
@@ -281,7 +281,7 @@ class FundPlugin extends Plugin {
     static getHelp() {
         return {
             name: "fund TARGET",
-            help: "Fund TARGET with testnet ether"
+            help: "Fund TARGET with testnet vapor"
         };
     }
     prepareArgs(args) {
@@ -318,7 +318,7 @@ class InfoPlugin extends Plugin {
     static getHelp() {
         return {
             name: "info [ TARGET ... ]",
-            help: "Dump info for accounts, addresses and ENS names"
+            help: "Dump info for accounts, addresses and VNS names"
         };
     }
     prepareArgs(args) {
@@ -338,7 +338,7 @@ class InfoPlugin extends Plugin {
                     this.queries.push(`Address: ${arg}`);
                 }
                 else {
-                    this.queries.push(`ENS Name: ${arg}`);
+                    this.queries.push(`VNS Name: ${arg}`);
                 }
                 runners.push(this.provider.resolveName(arg));
             });
@@ -357,7 +357,7 @@ class InfoPlugin extends Plugin {
                 });
                 let info = {
                     "Address": address,
-                    "Balance": (vapors.utils.formatEther(balance) + " ether"),
+                    "Balance": (vapors.utils.formatVapor(balance) + " vapor"),
                     "Transaction Count": nonce
                 };
                 if (code != "0x") {
@@ -375,8 +375,8 @@ cli.addPlugin("info", InfoPlugin);
 class SendPlugin extends Plugin {
     static getHelp() {
         return {
-            name: "send TARGET ETHER",
-            help: "Send ETHER ether to TARGET form accounts[0]"
+            name: "send TARGET VAPOR",
+            help: "Send VAPOR vapor to TARGET form accounts[0]"
         };
     }
     static getOptionHelp() {
@@ -414,7 +414,7 @@ class SendPlugin extends Plugin {
                 this.throwUsageError("send requires exactly ADDRESS and AMOUNT");
             }
             this.toAddress = yield this.getAddress(args[0], "Cannot send to the zero address (use --allow-zero to override)", this.allowZero);
-            this.value = vapors.utils.parseEther(args[1]);
+            this.value = vapors.utils.parseVapor(args[1]);
         });
     }
     run() {
@@ -433,7 +433,7 @@ class SweepPlugin extends Plugin {
     static getHelp() {
         return {
             name: "sweep TARGET",
-            help: "Send all ether from accounts[0] to TARGET"
+            help: "Send all vapor from accounts[0] to TARGET"
         };
     }
     prepareOptions(argParser) {
@@ -630,16 +630,16 @@ class WaitPlugin extends Plugin {
     }
 }
 cli.addPlugin("wait", WaitPlugin);
-const WethAddress = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
-const WethAbi = [
+const WvapAddress = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
+const WvapAbi = [
     "function deposit() payable",
     "function withdraw(uint wad)"
 ];
-class WrapEtherPlugin extends Plugin {
+class WrapVaporPlugin extends Plugin {
     static getHelp() {
         return {
-            name: "wrap-ether VALUE",
-            help: "Deposit VALUE into Wrapped Ether (WETH)"
+            name: "wrap-vapor VALUE",
+            help: "Deposit VALUE into Wrapped Vapor (WVAP)"
         };
     }
     prepareArgs(args) {
@@ -649,37 +649,37 @@ class WrapEtherPlugin extends Plugin {
         return __awaiter(this, void 0, void 0, function* () {
             yield _super.prepareArgs.call(this, args);
             if (this.accounts.length !== 1) {
-                this.throwError("wrap-ether requires exactly one account");
+                this.throwError("wrap-vapor requires exactly one account");
             }
             if (args.length !== 1) {
-                this.throwError("wrap-ether requires exactly VALUE");
+                this.throwError("wrap-vapor requires exactly VALUE");
             }
-            this.value = vapors.utils.parseEther(args[0]);
+            this.value = vapors.utils.parseVapor(args[0]);
             const address = yield this.accounts[0].getAddress();
             const balance = yield this.provider.getBalance(address);
             if (balance.lt(this.value)) {
-                this.throwError("insufficient ether to wrap");
+                this.throwError("insufficient vapor to wrap");
             }
         });
     }
     run() {
         return __awaiter(this, void 0, void 0, function* () {
             let address = yield this.accounts[0].getAddress();
-            this.dump("Wrapping ether", {
+            this.dump("Wrapping vapor", {
                 "From": address,
-                "Value": vapors.utils.formatEther(this.value)
+                "Value": vapors.utils.formatVapor(this.value)
             });
-            let contract = new vapors.Contract(WethAddress, WethAbi, this.accounts[0]);
+            let contract = new vapors.Contract(WvapAddress, WvapAbi, this.accounts[0]);
             yield contract.deposit({ value: this.value });
         });
     }
 }
-cli.addPlugin("wrap-ether", WrapEtherPlugin);
-class UnwrapEtherPlugin extends Plugin {
+cli.addPlugin("wrap-vapor", WrapVaporPlugin);
+class UnwrapVaporPlugin extends Plugin {
     static getHelp() {
         return {
-            name: "unwrap-ether VALUE",
-            help: "Withdraw VALUE from Wrapped Ether (WETH)"
+            name: "unwrap-vapor VALUE",
+            help: "Withdraw VALUE from Wrapped Vapor (WVAP)"
         };
     }
     prepareArgs(args) {
@@ -689,12 +689,12 @@ class UnwrapEtherPlugin extends Plugin {
         return __awaiter(this, void 0, void 0, function* () {
             yield _super.prepareArgs.call(this, args);
             if (this.accounts.length !== 1) {
-                this.throwError("unwrap-ether requires exactly one account");
+                this.throwError("unwrap-vapor requires exactly one account");
             }
             if (args.length !== 1) {
-                this.throwError("unwrap-ether requires exactly VALUE");
+                this.throwError("unwrap-vapor requires exactly VALUE");
             }
-            this.value = vapors.utils.parseEther(args[0]);
+            this.value = vapors.utils.parseVapor(args[0]);
         });
     }
     run() {
@@ -704,16 +704,16 @@ class UnwrapEtherPlugin extends Plugin {
         return __awaiter(this, void 0, void 0, function* () {
             yield _super.run.call(this);
             let address = yield this.accounts[0].getAddress();
-            this.dump("Withdrawing Wrapped Ether", {
+            this.dump("Withdrawing Wrapped Vapor", {
                 "To": address,
-                "Value": vapors.utils.formatEther(this.value)
+                "Value": vapors.utils.formatVapor(this.value)
             });
-            let contract = new vapors.Contract(WethAddress, WethAbi, this.accounts[0]);
+            let contract = new vapors.Contract(WvapAddress, WvapAbi, this.accounts[0]);
             yield contract.withdraw(this.value);
         });
     }
 }
-cli.addPlugin("unwrap-ether", UnwrapEtherPlugin);
+cli.addPlugin("unwrap-vapor", UnwrapVaporPlugin);
 const Erc20Abi = [
     "function decimals() view returns (uint8)",
     "function symbol() view returns (string)",

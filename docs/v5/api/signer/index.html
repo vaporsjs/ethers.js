@@ -87,7 +87,7 @@
 
 </div></div><div class="code-title"><div>Typed Data Example</div></div><div class="code"><span class="comment">// All properties on a domain are optional
 </span>const domain = {
-    name: 'Ether Mail',
+    name: 'Vapor Mail',
     version: '1',
     chainId: 1,
     verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC'
@@ -122,7 +122,7 @@
 
 const signature = await signer._signTypedData(domain, types, value);
 <span class="result ok">// '0x463b9c9971d1a144507d2e905f4e98becd159139421a4bb8d3c9c2ed04eb401057dd0698d504fd6ca48829a3c8a7a98c1c961eae617096cb54264bbdd082e13d1c'
-</span></div><a name="Signer--subclassing"></a><a name="signers--Signer--Signer--subclassing"></a><h3 class="show-anchors"><div>Sub-Classes<div class="anchors"><a class="self" href="/v5/api/signer/#Signer--subclassing"></a></div></div></h3><p>It is very important that all important properties of a <b>Signer</b> are <b>immutable</b>. Since Vapory is very asynchronous and deals with critical data (such as ether and other potentially valuable crypto assets), keeping properties such as the <i>provider</i> and <i>address</i> static throughout the life-cycle of the Signer helps prevent serious issues and many other classes and libraries make this assumption.</p>
+</span></div><a name="Signer--subclassing"></a><a name="signers--Signer--Signer--subclassing"></a><h3 class="show-anchors"><div>Sub-Classes<div class="anchors"><a class="self" href="/v5/api/signer/#Signer--subclassing"></a></div></div></h3><p>It is very important that all important properties of a <b>Signer</b> are <b>immutable</b>. Since Vapory is very asynchronous and deals with critical data (such as vapor and other potentially valuable crypto assets), keeping properties such as the <i>provider</i> and <i>address</i> static throughout the life-cycle of the Signer helps prevent serious issues and many other classes and libraries make this assumption.</p>
 
 <p>A sub-class <b>must</b> extend Signer and <b>must</b> call <code class="inline">super()</code>.</p>
 
@@ -138,7 +138,7 @@ const signature = await signer._signTypedData(domain, types, value);
 
 <p>This should return a <b>copy</b> of <i>transactionRequest</i>, follow the same procedure as <code class="inline">checkTransaction</code> and fill in any properties required for sending a transaction. The result should have all promises resolved; if needed the <a href="/v5/api/utils/properties/#utils-resolveproperties">resolveProperties</a> utility function can be used for this.</p>
 
-<p>The default implementation calls <code class="inline">checkTransaction</code> and resolves to if it is an ENS name, adds <code class="inline">gasPrice</code>, <code class="inline">nonce</code>, <code class="inline">gasLimit</code> and <code class="inline">chainId</code> based on the related operations on Signer.</p>
+<p>The default implementation calls <code class="inline">checkTransaction</code> and resolves to if it is an VNS name, adds <code class="inline">gasPrice</code>, <code class="inline">nonce</code>, <code class="inline">gasLimit</code> and <code class="inline">chainId</code> based on the related operations on Signer.</p>
 
 </div></div><a name="Wallet"></a><a name="signers--Wallet"></a><h2 class="show-anchors"><div>Wallet<span class="inherits"> inherits <a href="/v5/api/signer/#ExternallyOwnedAccount">ExternallyOwnedAccount</a> and <a href="/v5/api/signer/#Signer">Signer</a></span><div class="anchors"><a class="self" href="/v5/api/signer/#Wallet"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/wallet/src.ts/index.ts#L30">source</a></div></div></h2><p>The Wallet class inherits <a href="/v5/api/signer/#Signer">Signer</a> and can sign transactions and messages using a private key as a standard Externally Owned Account (EOA).</p>
 
@@ -219,7 +219,7 @@ walletMnemonic.address === walletPrivateKey.address
 </span>
 tx = {
   to: "0x8ba1f109551bD432803012645Ac136ddd64DBA72",
-  value: utils.parseEther("1.0")
+  value: utils.parseVapor("1.0")
 }
 
 <span class="comment">// Signing a transaction
@@ -236,7 +236,7 @@ tx = {
 </span>wallet.getTransactionCount();
 <span class="result ok">// { Promise: 0 }
 </span>
-<span class="comment">// Sending ether
+<span class="comment">// Sending vapor
 </span>wallet.sendTransaction(tx)
 </div><a name="VoidSigner"></a><a name="signers--VoidSigner"></a><h2 class="show-anchors"><div>VoidSigner<span class="inherits"> inherits <a href="/v5/api/signer/#Signer">Signer</a></span><div class="anchors"><a class="self" href="/v5/api/signer/#VoidSigner"></a><a class="source" href="https://github.com/vaporsjs/vapors.js/blob/master/packages/abstract-signer/src.ts/index.ts#L243">source</a></div></div></h2><p>A <b>VoidSigner</b> is a simple Signer which cannot sign.</p>
 

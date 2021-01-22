@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { vapors } from "vapors";
 import { version } from "./_version";
 const logger = new vapors.utils.Logger(version);
-import Eth from "@ledgerhq/hw-app-eth";
+import Vap from "@ledgerhq/hw-app-vap";
 // We store these in a separated import so it is easier to swap them out
 // at bundle time; browsers do not get HID, for example. This maps a string
 // "type" to a Transport with create.
@@ -38,10 +38,10 @@ export class LedgerSigner extends vapors.Signer {
         if (!transport) {
             logger.throwArgumentError("unknown or unsupported type", "type", type);
         }
-        vapors.utils.defineReadOnly(this, "_eth", transport.create().then((transport) => {
-            const eth = new Eth(transport);
+        vapors.utils.defineReadOnly(this, "_vap", transport.create().then((transport) => {
+            const vap = new Vap(transport);
             return vap.getAppConfiguration().then((config) => {
-                return eth;
+                return vap;
             }, (error) => {
                 return Promise.reject(error);
             });
@@ -54,11 +54,11 @@ export class LedgerSigner extends vapors.Signer {
             if (timeout && timeout > 0) {
                 setTimeout(() => { reject(new Error("timeout")); }, timeout);
             }
-            const eth = yield this._eth;
+            const vap = yield this._vap;
             // Wait up to 5 seconds
             for (let i = 0; i < 50; i++) {
                 try {
-                    const result = yield callback(eth);
+                    const result = yield callback(vap);
                     return resolve(result);
                 }
                 catch (error) {
@@ -73,7 +73,7 @@ export class LedgerSigner extends vapors.Signer {
     }
     getAddress() {
         return __awaiter(this, void 0, void 0, function* () {
-            const account = yield this._retry((eth) => vap.getAddress(this.path));
+            const account = yield this._retry((vap) => vap.getAddress(this.path));
             return vapors.utils.getAddress(account.address);
         });
     }
@@ -83,7 +83,7 @@ export class LedgerSigner extends vapors.Signer {
                 message = vapors.utils.toUtf8Bytes(message);
             }
             const messageHex = vapors.utils.hexlify(message).substring(2);
-            const sig = yield this._retry((eth) => vap.signPersonalMessage(this.path, messageHex));
+            const sig = yield this._retry((vap) => vap.signPersonalMessage(this.path, messageHex));
             sig.r = '0x' + sig.r;
             sig.s = '0x' + sig.s;
             return vapors.utils.joinSignature(sig);
@@ -102,7 +102,7 @@ export class LedgerSigner extends vapors.Signer {
                 value: (tx.value || undefined),
             };
             const unsignedTx = vapors.utils.serializeTransaction(baseTx).substring(2);
-            const sig = yield this._retry((eth) => vap.signTransaction(this.path, unsignedTx));
+            const sig = yield this._retry((vap) => vap.signTransaction(this.path, unsignedTx));
             return vapors.utils.serializeTransaction(baseTx, {
                 v: vapors.BigNumber.from("0x" + sig.v).toNumber(),
                 r: ("0x" + sig.r),

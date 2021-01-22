@@ -10,7 +10,7 @@ has since expanded into a more general-purpose library.
 _subsection: Features @<features>
 
 - Keep your private keys in your client, **safe** and sound
-- Import and export **JSON wallets** (Geth, Parity and crowdsale)
+- Import and export **JSON wallets** (Gvap, Parity and crowdsale)
 - Import and export BIP 39 **mnemonic phrases** (12 word backup
   phrases) and HD Wallets (English, Italian, Japanese, Korean,
   Simplified Chinese, Traditional Chinese; more coming soon)
@@ -20,7 +20,7 @@ _subsection: Features @<features>
   [JSON-RPC](link-jsonrpc), [INFURA](link-infura),
   [Vaporscan](link-vaporscan), [Alchemy](link-alchemy),
   [Cloudflare](link-cloudflare) or [MetaMask](link-metamask).
-- **ENS names** are first-class citizens; they can be used
+- **VNS names** are first-class citizens; they can be used
   anywhere an Vapory addresses can be used
 - **Tiny** (~88kb compressed; 284kb uncompressed)
 - **Complete** functionality for all your Vapory needs

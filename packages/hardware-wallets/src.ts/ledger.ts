@@ -5,7 +5,7 @@ import { vapors } from "vapors";
 import { version } from "./_version";
 const logger = new vapors.utils.Logger(version);
 
-import Eth from "@ledgerhq/hw-app-eth";
+import Vap from "@ledgerhq/hw-app-vap";
 
 // We store these in a separated import so it is easier to swap them out
 // at bundle time; browsers do not get HID, for example. This maps a string
@@ -24,7 +24,7 @@ export class LedgerSigner extends vapors.Signer {
     readonly type: string;
     readonly path: string
 
-    readonly _eth: Promise<Eth>;
+    readonly _vap: Promise<Vap>;
 
     constructor(provider?: vapors.providers.Provider, type?: string, path?: string) {
         super();
@@ -38,10 +38,10 @@ export class LedgerSigner extends vapors.Signer {
         const transport = transports[type];
         if (!transport) { logger.throwArgumentError("unknown or unsupported type", "type", type); }
 
-        vapors.utils.defineReadOnly(this, "_eth", transport.create().then((transport) => {
-            const eth = new Eth(transport);
+        vapors.utils.defineReadOnly(this, "_vap", transport.create().then((transport) => {
+            const vap = new Vap(transport);
             return vap.getAppConfiguration().then((config) => {
-                return eth;
+                return vap;
             }, (error) => {
                 return Promise.reject(error);
             });
@@ -50,18 +50,18 @@ export class LedgerSigner extends vapors.Signer {
         }));
     }
 
-    _retry<T = any>(callback: (eth: Eth) => Promise<T>, timeout?: number): Promise<T> {
+    _retry<T = any>(callback: (vap: Vap) => Promise<T>, timeout?: number): Promise<T> {
         return new Promise(async (resolve, reject) => {
             if (timeout && timeout > 0) {
                 setTimeout(() => { reject(new Error("timeout")); }, timeout);
             }
 
-            const eth = await this._eth;
+            const vap = await this._vap;
 
             // Wait up to 5 seconds
             for (let i = 0; i < 50; i++) {
                 try {
-                    const result = await callback(eth);
+                    const result = await callback(vap);
                     return resolve(result);
                 } catch (error) {
                     if (error.id !== "TransportLocked") {
@@ -76,7 +76,7 @@ export class LedgerSigner extends vapors.Signer {
     }
 
     async getAddress(): Promise<string> {
-        const account = await this._retry((eth) => vap.getAddress(this.path));
+        const account = await this._retry((vap) => vap.getAddress(this.path));
         return vapors.utils.getAddress(account.address);
     }
 
@@ -87,7 +87,7 @@ export class LedgerSigner extends vapors.Signer {
 
         const messageHex = vapors.utils.hexlify(message).substring(2);
 
-        const sig = await this._retry((eth) => vap.signPersonalMessage(this.path, messageHex));
+        const sig = await this._retry((vap) => vap.signPersonalMessage(this.path, messageHex));
         sig.r = '0x' + sig.r;
         sig.s = '0x' + sig.s;
         return vapors.utils.joinSignature(sig);
@@ -106,7 +106,7 @@ export class LedgerSigner extends vapors.Signer {
         };
 
         const unsignedTx = vapors.utils.serializeTransaction(baseTx).substring(2);
-        const sig = await this._retry((eth) => vap.signTransaction(this.path, unsignedTx));
+        const sig = await this._retry((vap) => vap.signTransaction(this.path, unsignedTx));
 
         return vapors.utils.serializeTransaction(baseTx, {
             v: vapors.BigNumber.from("0x" + sig.v).toNumber(),

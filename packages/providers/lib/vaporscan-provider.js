@@ -284,14 +284,14 @@ var VaporscanProvider = /** @class */ (function (_super) {
                             case "call": return [3 /*break*/, 11];
                             case "estimateGas": return [3 /*break*/, 15];
                             case "getLogs": return [3 /*break*/, 19];
-                            case "getEtherPrice": return [3 /*break*/, 26];
+                            case "getVaporPrice": return [3 /*break*/, 26];
                         }
                         return [3 /*break*/, 28];
                     case 1:
-                        url += "?module=proxy&action=eth_blockNumber" + apiKey;
+                        url += "?module=proxy&action=vap_blockNumber" + apiKey;
                         return [2 /*return*/, get(url, null)];
                     case 2:
-                        url += "?module=proxy&action=eth_gasPrice" + apiKey;
+                        url += "?module=proxy&action=vap_gasPrice" + apiKey;
                         return [2 /*return*/, get(url, null)];
                     case 3:
                         // Returns base-10 result
@@ -299,21 +299,21 @@ var VaporscanProvider = /** @class */ (function (_super) {
                         url += "&tag=" + params.blockTag + apiKey;
                         return [2 /*return*/, get(url, null, getResult)];
                     case 4:
-                        url += "?module=proxy&action=eth_getTransactionCount&address=" + params.address;
+                        url += "?module=proxy&action=vap_getTransactionCount&address=" + params.address;
                         url += "&tag=" + params.blockTag + apiKey;
                         return [2 /*return*/, get(url, null)];
                     case 5:
-                        url += "?module=proxy&action=eth_getCode&address=" + params.address;
+                        url += "?module=proxy&action=vap_getCode&address=" + params.address;
                         url += "&tag=" + params.blockTag + apiKey;
                         return [2 /*return*/, get(url, null)];
                     case 6:
-                        url += "?module=proxy&action=eth_getStorageAt&address=" + params.address;
+                        url += "?module=proxy&action=vap_getStorageAt&address=" + params.address;
                         url += "&position=" + params.position;
                         url += "&tag=" + params.blockTag + apiKey;
                         return [2 /*return*/, get(url, null)];
                     case 7: return [2 /*return*/, get(url, {
                             module: "proxy",
-                            action: "eth_sendRawTransaction",
+                            action: "vap_sendRawTransaction",
                             hex: params.signedTransaction,
                             apikey: this.apiKey
                         }).catch(function (error) {
@@ -321,7 +321,7 @@ var VaporscanProvider = /** @class */ (function (_super) {
                         })];
                     case 8:
                         if (params.blockTag) {
-                            url += "?module=proxy&action=eth_getBlockByNumber&tag=" + params.blockTag;
+                            url += "?module=proxy&action=vap_getBlockByNumber&tag=" + params.blockTag;
                             if (params.includeTransactions) {
                                 url += "&boolean=true";
                             }
@@ -333,11 +333,11 @@ var VaporscanProvider = /** @class */ (function (_super) {
                         }
                         throw new Error("getBlock by blockHash not implemented");
                     case 9:
-                        url += "?module=proxy&action=eth_getTransactionByHash&txhash=" + params.transactionHash;
+                        url += "?module=proxy&action=vap_getTransactionByHash&txhash=" + params.transactionHash;
                         url += apiKey;
                         return [2 /*return*/, get(url, null)];
                     case 10:
-                        url += "?module=proxy&action=eth_getTransactionReceipt&txhash=" + params.transactionHash;
+                        url += "?module=proxy&action=vap_getTransactionReceipt&txhash=" + params.transactionHash;
                         url += apiKey;
                         return [2 /*return*/, get(url, null)];
                     case 11:
@@ -346,7 +346,7 @@ var VaporscanProvider = /** @class */ (function (_super) {
                         }
                         postData = getTransactionPostData(params.transaction);
                         postData.module = "proxy";
-                        postData.action = "eth_call";
+                        postData.action = "vap_call";
                         postData.apikey = this.apiKey;
                         _c.label = 12;
                     case 12:
@@ -359,7 +359,7 @@ var VaporscanProvider = /** @class */ (function (_super) {
                     case 15:
                         postData = getTransactionPostData(params.transaction);
                         postData.module = "proxy";
-                        postData.action = "eth_estimateGas";
+                        postData.action = "vap_estimateGas";
                         postData.apikey = this.apiKey;
                         _c.label = 16;
                     case 16:
@@ -425,7 +425,7 @@ var VaporscanProvider = /** @class */ (function (_super) {
                         if (this.network.name !== "homestead") {
                             return [2 /*return*/, 0.0];
                         }
-                        url += "?module=stats&action=ethprice";
+                        url += "?module=stats&action=vapprice";
                         url += apiKey;
                         _b = parseFloat;
                         return [4 /*yield*/, get(url, null, getResult)];

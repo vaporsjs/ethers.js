@@ -18,7 +18,7 @@ const abi = [
     "event Transfer(address indexed from, address indexed to, uint amount)"
 ];
 
-// This can be an address or an ENS name
+// This can be an address or an VNS name
 const address = "dai.tokens.vapors.vap";
 
 // An example Provider
@@ -53,12 +53,12 @@ connected to //address// using the //providerOrSigner//.
 _subsection: Properties @NOTE<(inheritted from [[Contract]])>
 
 _property: erc20.address => string<[[address]]>
-This is the address (or ENS name) the contract was constructed with.
+This is the address (or VNS name) the contract was constructed with.
 
 _property: erc20.resolvedAddress => string<[[address]]>
 This is a promise that will resolve to the address the **Contract**
 object is attached to. If an [[address]] was provided to the constructor,
-it will be equal to this; if an ENS name was provided, this will be the
+it will be equal to this; if an VNS name was provided, this will be the
 resolved address.
 
 _property: erc20.deployTransaction => [[providers-TransactionResponse]]

@@ -169,7 +169,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
         if (this._address) {
             return Promise.resolve(this._address);
         }
-        return this.provider.send("eth_accounts", []).then(function (accounts) {
+        return this.provider.send("vap_accounts", []).then(function (accounts) {
             if (accounts.length <= _this._index) {
                 logger.throwError("unknown account #" + _this._index, logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                     operation: "getAddress"
@@ -187,7 +187,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
             }
             return address;
         });
-        // The JSON-RPC for eth_sendTransaction uses 90000 gas; if the user
+        // The JSON-RPC for vap_sendTransaction uses 90000 gas; if the user
         // wishes to use this, it is easy to specify explicitly, otherwise
         // we look it up for them.
         if (transaction.gasLimit == null) {
@@ -209,7 +209,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
                 tx.from = sender;
             }
             var hexTx = _this.provider.constructor.hexlifyTransaction(tx, { from: true });
-            return _this.provider.send("eth_sendTransaction", [hexTx]).then(function (hash) {
+            return _this.provider.send("vap_sendTransaction", [hexTx]).then(function (hash) {
                 return hash;
             }, function (error) {
                 return checkError("sendTransaction", error, hexTx);
@@ -247,9 +247,9 @@ var JsonRpcSigner = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.getAddress()];
                     case 1:
                         address = _a.sent();
-                        return [4 /*yield*/, this.provider.send("eth_sign", [address.toLowerCase(), bytes_1.hexlify(data)])];
+                        return [4 /*yield*/, this.provider.send("vap_sign", [address.toLowerCase(), bytes_1.hexlify(data)])];
                     case 2: 
-                    // https://github.com/vaporyco/wiki/wiki/JSON-RPC#eth_sign
+                    // https://github.com/vaporyco/wiki/wiki/JSON-RPC#vap_sign
                     return [2 /*return*/, _a.sent()];
                 }
             });
@@ -269,7 +269,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.getAddress()];
                     case 2:
                         address = _a.sent();
-                        return [4 /*yield*/, this.provider.send("eth_signTypedData_v4", [
+                        return [4 /*yield*/, this.provider.send("vap_signTypedData_v4", [
                                 address.toLowerCase(),
                                 JSON.stringify(hash_1._TypedDataEncoder.getPayload(populated.domain, types, populated.value))
                             ])];
@@ -373,7 +373,7 @@ var JsonRpcProvider = /** @class */ (function (_super) {
                         _a.label = 2;
                     case 2:
                         _a.trys.push([2, 4, , 9]);
-                        return [4 /*yield*/, this.send("eth_chainId", [])];
+                        return [4 /*yield*/, this.send("vap_chainId", [])];
                     case 3:
                         chainId = _a.sent();
                         return [3 /*break*/, 9];
@@ -419,7 +419,7 @@ var JsonRpcProvider = /** @class */ (function (_super) {
     };
     JsonRpcProvider.prototype.listAccounts = function () {
         var _this = this;
-        return this.send("eth_accounts", []).then(function (accounts) {
+        return this.send("vap_accounts", []).then(function (accounts) {
             return accounts.map(function (a) { return _this.formatter.address(a); });
         });
     };
@@ -457,44 +457,44 @@ var JsonRpcProvider = /** @class */ (function (_super) {
     JsonRpcProvider.prototype.prepareRequest = function (method, params) {
         switch (method) {
             case "getBlockNumber":
-                return ["eth_blockNumber", []];
+                return ["vap_blockNumber", []];
             case "getGasPrice":
-                return ["eth_gasPrice", []];
+                return ["vap_gasPrice", []];
             case "getBalance":
-                return ["eth_getBalance", [getLowerCase(params.address), params.blockTag]];
+                return ["vap_getBalance", [getLowerCase(params.address), params.blockTag]];
             case "getTransactionCount":
-                return ["eth_getTransactionCount", [getLowerCase(params.address), params.blockTag]];
+                return ["vap_getTransactionCount", [getLowerCase(params.address), params.blockTag]];
             case "getCode":
-                return ["eth_getCode", [getLowerCase(params.address), params.blockTag]];
+                return ["vap_getCode", [getLowerCase(params.address), params.blockTag]];
             case "getStorageAt":
-                return ["eth_getStorageAt", [getLowerCase(params.address), params.position, params.blockTag]];
+                return ["vap_getStorageAt", [getLowerCase(params.address), params.position, params.blockTag]];
             case "sendTransaction":
-                return ["eth_sendRawTransaction", [params.signedTransaction]];
+                return ["vap_sendRawTransaction", [params.signedTransaction]];
             case "getBlock":
                 if (params.blockTag) {
-                    return ["eth_getBlockByNumber", [params.blockTag, !!params.includeTransactions]];
+                    return ["vap_getBlockByNumber", [params.blockTag, !!params.includeTransactions]];
                 }
                 else if (params.blockHash) {
-                    return ["eth_getBlockByHash", [params.blockHash, !!params.includeTransactions]];
+                    return ["vap_getBlockByHash", [params.blockHash, !!params.includeTransactions]];
                 }
                 return null;
             case "getTransaction":
-                return ["eth_getTransactionByHash", [params.transactionHash]];
+                return ["vap_getTransactionByHash", [params.transactionHash]];
             case "getTransactionReceipt":
-                return ["eth_getTransactionReceipt", [params.transactionHash]];
+                return ["vap_getTransactionReceipt", [params.transactionHash]];
             case "call": {
                 var hexlifyTransaction = properties_1.getStatic(this.constructor, "hexlifyTransaction");
-                return ["eth_call", [hexlifyTransaction(params.transaction, { from: true }), params.blockTag]];
+                return ["vap_call", [hexlifyTransaction(params.transaction, { from: true }), params.blockTag]];
             }
             case "estimateGas": {
                 var hexlifyTransaction = properties_1.getStatic(this.constructor, "hexlifyTransaction");
-                return ["eth_estimateGas", [hexlifyTransaction(params.transaction, { from: true })]];
+                return ["vap_estimateGas", [hexlifyTransaction(params.transaction, { from: true })]];
             }
             case "getLogs":
                 if (params.filter && params.filter.address != null) {
                     params.filter.address = getLowerCase(params.filter.address);
                 }
-                return ["eth_getLogs", [params.filter]];
+                return ["vap_getLogs", [params.filter]];
             default:
                 break;
         }
@@ -534,11 +534,11 @@ var JsonRpcProvider = /** @class */ (function (_super) {
             return;
         }
         var self = this;
-        var pendingFilter = this.send("eth_newPendingTransactionFilter", []);
+        var pendingFilter = this.send("vap_newPendingTransactionFilter", []);
         this._pendingFilter = pendingFilter;
         pendingFilter.then(function (filterId) {
             function poll() {
-                self.send("eth_getFilterChanges", [filterId]).then(function (hashes) {
+                self.send("vap_getFilterChanges", [filterId]).then(function (hashes) {
                     if (self._pendingFilter != pendingFilter) {
                         return null;
                     }
@@ -558,7 +558,7 @@ var JsonRpcProvider = /** @class */ (function (_super) {
                     });
                 }).then(function () {
                     if (self._pendingFilter != pendingFilter) {
-                        self.send("eth_uninstallFilter", [filterId]);
+                        self.send("vap_uninstallFilter", [filterId]);
                         return;
                     }
                     setTimeout(function () { poll(); }, 0);

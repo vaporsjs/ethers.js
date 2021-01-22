@@ -46,7 +46,7 @@ Developer Documentation
     * [Provider](api/providers/provider)
       * [Accounts Methods](api/providers/provider)
       * [Blocks Methods](api/providers/provider)
-      * [Vapory Naming Service (ENS) Methods](api/providers/provider)
+      * [Vapory Naming Service (VNS) Methods](api/providers/provider)
       * [Logs Methods](api/providers/provider)
       * [Network Status Methods](api/providers/provider)
       * [Transactions Methods](api/providers/provider)

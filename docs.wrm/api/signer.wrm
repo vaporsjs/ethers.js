@@ -132,7 +132,7 @@ signer = new Wallet("0x123456789012345678901234567890123456789012345678901234567
 
 // All properties on a domain are optional
 const domain = {
-    name: 'Ether Mail',
+    name: 'Vapor Mail',
     version: '1',
     chainId: 1,
     verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC'
@@ -173,7 +173,7 @@ _heading: Sub-Classes @<Signer--subclassing>
 
 It is very important that all important properties of a **Signer** are
 **immutable**. Since Vapory is very asynchronous and deals with critical
-data (such as ether and other potentially valuable crypto assets), keeping
+data (such as vapor and other potentially valuable crypto assets), keeping
 properties such as the //provider// and //address// static throughout the
 life-cycle of the Signer helps prevent serious issues and many other classes
 and libraries make this assumption.
@@ -203,7 +203,7 @@ The result should have all promises resolved; if needed the [resolveProperties](
 utility function can be used for this.
 
 The default implementation calls ``checkTransaction`` and resolves to if it is an
-ENS name, adds ``gasPrice``, ``nonce``, ``gasLimit`` and ``chainId`` based on the
+VNS name, adds ``gasPrice``, ``nonce``, ``gasLimit`` and ``chainId`` based on the
 related operations on Signer.
 
 
@@ -313,7 +313,7 @@ walletMnemonic.signMessage("Hello World")
 
 tx = {
   to: "0x8ba1f109551bD432803012645Ac136ddd64DBA72",
-  value: utils.parseEther("1.0")
+  value: utils.parseVapor("1.0")
 }
 
 // Signing a transaction
@@ -330,7 +330,7 @@ wallet.getBalance();
 wallet.getTransactionCount();
 //!
 
-// Sending ether
+// Sending vapor
 wallet.sendTransaction(tx)
 // <hide>
 //! error

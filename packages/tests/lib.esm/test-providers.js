@@ -520,7 +520,7 @@ Object.keys(blockchainData).forEach((network) => {
     // - balance
     // - code
     // - storage
-    // - ENS name
+    // - VNS name
     tests.addresses.forEach((test) => {
         if (test.balance) {
             addSimpleTest(`fetches account balance: ${test.address}`, (provider) => {
@@ -540,7 +540,7 @@ Object.keys(blockchainData).forEach((network) => {
             });
         }
         if (test.name) {
-            addSimpleTest(`fetches ENS name: ${test.address}`, (provider) => {
+            addSimpleTest(`fetches VNS name: ${test.address}`, (provider) => {
                 return provider.resolveName(test.name);
             }, test.address);
         }
@@ -627,7 +627,7 @@ Object.keys(blockchainData).forEach((network) => {
     }));
     addErrorTest(vapors.utils.Logger.errors.UNPREDICTABLE_GAS_LIMIT, (provider) => __awaiter(this, void 0, void 0, function* () {
         return provider.estimateGas({
-            to: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e" // ENS contract
+            to: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e" // VNS contract
         });
     }));
 })();
@@ -656,7 +656,7 @@ describe("Test Provider Methods", function () {
     before(function () {
         return __awaiter(this, void 0, void 0, function* () {
             this.timeout(300000);
-            // Get some ether from the faucet
+            // Get some vapor from the faucet
             const provider = new vapors.providers.InfuraProvider("ropsten", ApiKeys.infura);
             const funder = yield vapors.utils.fetchJson(`https:/\/api.vapors.io/api/v1/?action=fundAccount&address=${fundWallet.address.toLowerCase()}`);
             fundReceipt = provider.waitForTransaction(funder.hash);
@@ -670,7 +670,7 @@ describe("Test Provider Methods", function () {
             this.timeout(300000);
             // Wait until the funding is complete
             yield fundReceipt;
-            // Refund all unused ether to the faucet
+            // Refund all unused vapor to the faucet
             const provider = new vapors.providers.InfuraProvider("ropsten", ApiKeys.infura);
             const gasPrice = yield provider.getGasPrice();
             const balance = yield provider.getBalance(fundWallet.address);
@@ -753,9 +753,9 @@ describe("Extra tests", function () {
 /*
 describe("Test extra Vaporscan operations", function() {
     let provider = new providers.VaporscanProvider();
-    it("fethces the current price of ether", function() {
+    it("fethces the current price of vapor", function() {
         this.timeout(20000);
-        return provider.getEtherPrice().then(function(price) {
+        return provider.getVaporPrice().then(function(price) {
             assert.ok(typeof(price) === "number", "Vaporscan price returns a number");
             assert.ok(price > 0.0, "Vaporscan price returns non-zero");
         });

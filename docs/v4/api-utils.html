@@ -109,7 +109,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#solidity">Solidity</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#ether-strings-and-wei">Ether Strings and Wei</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vapor-strings-and-wei">Vapor Strings and Wei</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hex-strings">Hex Strings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#namehash">Namehash</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#signatures">Signatures</a></li>
@@ -416,10 +416,10 @@ be multiple bytes long.</p>
 <dd>The <a class="reference internal" href="#bignumber"><span class="std std-ref">BigNumber</span></a> <code class="docutils literal notranslate"><span class="pre">bigNumberify(1)</span></code>.</dd>
 <dt><sup>vapors . constants</sup> . Two</dt>
 <dd>The <a class="reference internal" href="#bignumber"><span class="std std-ref">BigNumber</span></a> <code class="docutils literal notranslate"><span class="pre">bigNumberify(2)</span></code>.</dd>
-<dt><sup>vapors . constants</sup> . WeiPerEther</dt>
+<dt><sup>vapors . constants</sup> . WeiPerVapor</dt>
 <dd>The <a class="reference internal" href="#bignumber"><span class="std std-ref">BigNumber</span></a> <code class="docutils literal notranslate"><span class="pre">bigNumberify(&quot;1000000000000000000&quot;)</span></code>.</dd>
 <dt><sup>vapors . constants</sup> . VaporSymbol</dt>
-<dd>The Greek character Xi, used as the symbol for <em>ether</em>.</dd>
+<dd>The Greek character Xi, used as the symbol for <em>vapor</em>.</dd>
 </dl>
 </div>
 <hr class="docutils" />
@@ -489,7 +489,7 @@ often Vapory documentation refers to this, <strong>incorrectly</strong>, as SHA3
 <dt><sup>utils</sup> . hashMessage ( stringOrArrayish ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>hex</sup></dt>
 <dd>Compute the prefixed message hash of a stringOrArrayish, by converting the
 message to bytes (as necessary) and prefixing with <code class="docutils literal notranslate"><span class="pre">\x19Vapory</span> <span class="pre">Signed</span> <span class="pre">Message\n</span></code>
-and the length of the message. See the <a class="reference external" href="https://github.com/vaporyco/wiki/wiki/JSON-RPC#eth_sign">eth_sign</a> JSON-RPC method for more information.</dd>
+and the length of the message. See the <a class="reference external" href="https://github.com/vaporyco/wiki/wiki/JSON-RPC#vap_sign">vap_sign</a> JSON-RPC method for more information.</dd>
 <dt><sup>utils</sup> . id ( utf8String ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>hex</sup></dt>
 <dd>Compute the keccak256 cryptographic hash of a UTF-8 string, returned as a hex string.</dd>
 </dl>
@@ -582,20 +582,20 @@ packed data for <em>values</em> given the <em>types</em>.</dd>
 </div>
 </div>
 <hr class="docutils" />
-<div class="section" id="ether-strings-and-wei">
-<h2>Ether Strings and Wei<a class="headerlink" href="#ether-strings-and-wei" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="vapor-strings-and-wei">
+<h2>Vapor Strings and Wei<a class="headerlink" href="#vapor-strings-and-wei" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt><sup>utils</sup> . vaporSymbol</dt>
 <dd>The vapory symbol (the Greek letter <em>Xi</em> )</dd>
 </dl>
-<dl class="docutils" id="parseether">
-<dt><sup>utils</sup> . parseEther ( vaporString ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>BigNumber</sup></dt>
-<dd>Parse the <em>vaporString</em> representation of ether into a BigNumber instance
+<dl class="docutils" id="parsevapor">
+<dt><sup>utils</sup> . parseVapor ( vaporString ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>BigNumber</sup></dt>
+<dd>Parse the <em>vaporString</em> representation of vapor into a BigNumber instance
 of the amount of wei.</dd>
 </dl>
-<dl class="docutils" id="formatether">
-<dt><sup>utils</sup> . formatEther ( wei ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>string</sup></dt>
-<dd>Format an amount of <em>wei</em> into a decimal string representing the amount of ether.
+<dl class="docutils" id="formatvapor">
+<dt><sup>utils</sup> . formatVapor ( wei ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>string</sup></dt>
+<dd>Format an amount of <em>wei</em> into a decimal string representing the amount of vapor.
 The output will always include at least one whole number and at least one decimal
 place, otherwise leading and trailing 0’s will be trimmed.</dd>
 </dl>
@@ -619,25 +619,25 @@ then the output will also not contain a decimal.</dd>
 </dl>
 <div class="literal-block-wrapper docutils container" id="id14">
 <div class="code-block-caption"><span class="caption-text"><em>examples</em></span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">wei</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">parseEther</span><span class="p">(</span><span class="s1">&#39;1000.0&#39;</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span> <span class="nx">wei</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">parseVapor</span><span class="p">(</span><span class="s1">&#39;1000.0&#39;</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">wei</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
 <span class="c1">// &quot;1000000000000000000000&quot;</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatEther</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatVapor</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
 <span class="c1">// &quot;0.0&quot;</span>
 
 <span class="kd">let</span> <span class="nx">wei</span> <span class="o">=</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">bigNumberify</span><span class="p">(</span><span class="s2">&quot;1000000000000000000000&quot;</span><span class="p">);</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatEther</span><span class="p">(</span><span class="nx">wei</span><span class="p">));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatVapor</span><span class="p">(</span><span class="nx">wei</span><span class="p">));</span>
 <span class="c1">// &quot;1000.0&quot;</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatEther</span><span class="p">(</span><span class="nx">wei</span><span class="p">,</span> <span class="p">{</span><span class="nx">commify</span><span class="o">:</span> <span class="kc">true</span><span class="p">}));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatVapor</span><span class="p">(</span><span class="nx">wei</span><span class="p">,</span> <span class="p">{</span><span class="nx">commify</span><span class="o">:</span> <span class="kc">true</span><span class="p">}));</span>
 <span class="c1">// &quot;1,000.0&quot;</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatEther</span><span class="p">(</span><span class="nx">wei</span><span class="p">,</span> <span class="p">{</span><span class="nx">pad</span><span class="o">:</span> <span class="kc">true</span><span class="p">}));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatVapor</span><span class="p">(</span><span class="nx">wei</span><span class="p">,</span> <span class="p">{</span><span class="nx">pad</span><span class="o">:</span> <span class="kc">true</span><span class="p">}));</span>
 <span class="c1">// &quot;1000.000000000000000000&quot;       (18 decimal places)</span>
 
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatEther</span><span class="p">(</span><span class="nx">wei</span><span class="p">,</span> <span class="p">{</span><span class="nx">commify</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">pad</span><span class="o">:</span> <span class="kc">true</span><span class="p">}));</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">utils</span><span class="p">.</span><span class="nx">formatVapor</span><span class="p">(</span><span class="nx">wei</span><span class="p">,</span> <span class="p">{</span><span class="nx">commify</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">pad</span><span class="o">:</span> <span class="kc">true</span><span class="p">}));</span>
 <span class="c1">// &quot;1,000.000000000000000000&quot;      (18 decimal places)</span>
 </pre></div>
 </div>
@@ -673,7 +673,7 @@ byte is two nibbles).</dd>
 <div class="section" id="namehash">
 <h2>Namehash<a class="headerlink" href="#namehash" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
-<dt><sup>utils</sup> . namehash ( ensName ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>hex</sup></dt>
+<dt><sup>utils</sup> . namehash ( vnsName ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>hex</sup></dt>
 <dd>Compute the namehash of <em>ensName</em>. Currently only supports the
 characters <code class="docutils literal notranslate"><span class="pre">[a-z0-9.-]</span></code>. The concerns with fully supporting UTF-8
 are largely security releated, but <a class="reference external" href="https://github.com/vaporsjs/vapors.js/issues/42">are open for discussion</a>.</dd>

@@ -38,7 +38,7 @@ vapors.BigNumber.from(someValue)
 Contracts
 ---------
 
-### ENS Name Resolution
+### VNS Name Resolution
 
 ```
 // v4

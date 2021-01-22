@@ -91,7 +91,7 @@ This is the gas limit that should be used during deployment. It may be null.
 
 #### *fragment* . **payable** => *boolean*
 
-This is whether the constructor may receive ether during deployment as an endowment (i.e. msg.value != 0).
+This is whether the constructor may receive vapor during deployment as an endowment (i.e. msg.value != 0).
 
 
 #### *fragment* . **stateMutability** => *string*

@@ -1,4 +1,4 @@
-import { TypedDataUtils } from "eth-sig-util";
+import { TypedDataUtils } from "vap-sig-util";
 
 import { AbstractAbiTest, AbiType } from "./abi-test";
 import { saveTests, TestCase } from "./test";
@@ -101,7 +101,7 @@ if (require.main === module) {
     tests.push({
         name: "EIP712 example",
         domain: {
-            name: 'Ether Mail',
+            name: 'Vapor Mail',
             version: '1',
             chainId: 1,
             verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC'

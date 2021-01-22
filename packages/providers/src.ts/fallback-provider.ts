@@ -31,7 +31,7 @@ function checkNetworks(networks: Array<Network>): Network {
         if (result) {
             // Make sure the network matches the previous networks
             if (!(result.name === network.name && result.chainId === network.chainId &&
-                ((result.ensAddress === network.ensAddress) || (result.ensAddress == null && network.ensAddress == null)))) {
+                ((result.vnsAddress === network.vnsAddress) || (result.vnsAddress == null && network.vnsAddress == null)))) {
 
                 logger.throwArgumentError("provider mismatch", "networks", networks);
            }
@@ -259,7 +259,7 @@ function getProcessFunc(provider: FallbackProvider, method: string, params: { [ 
                 return values[Math.floor(values.length / 2)];
             }
 
-        case "getEtherPrice":
+        case "getVaporPrice":
             // Returns the median price. Malicious actors must compromise at
             // least 50% of the nodes to lie (in a meaningful way).
             return function(configs: Array<RunningConfig>): number {
@@ -354,9 +354,9 @@ async function getRunner(config: RunningConfig, currentBlockNumber: number, meth
         case "getBlockNumber":
         case "getGasPrice":
             return provider[method]();
-        case "getEtherPrice":
-            if ((<any>provider).getEtherPrice) {
-                return (<any>provider).getEtherPrice();
+        case "getVaporPrice":
+            if ((<any>provider).getVaporPrice) {
+                return (<any>provider).getVaporPrice();
             }
             break;
         case "getBalance":

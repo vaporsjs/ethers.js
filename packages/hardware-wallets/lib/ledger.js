@@ -55,7 +55,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var vapors_1 = require("vapors");
 var _version_1 = require("./_version");
 var logger = new vapors_1.vapors.utils.Logger(_version_1.version);
-var hw_app_eth_1 = __importDefault(require("@ledgerhq/hw-app-eth"));
+var hw_app_vap_1 = __importDefault(require("@ledgerhq/hw-app-vap"));
 // We store these in a separated import so it is easier to swap them out
 // at bundle time; browsers do not get HID, for example. This maps a string
 // "type" to a Transport with create.
@@ -83,10 +83,10 @@ var LedgerSigner = /** @class */ (function (_super) {
         if (!transport) {
             logger.throwArgumentError("unknown or unsupported type", "type", type);
         }
-        vapors_1.vapors.utils.defineReadOnly(_this, "_eth", transport.create().then(function (transport) {
-            var eth = new hw_app_eth_1.default(transport);
+        vapors_1.vapors.utils.defineReadOnly(_this, "_vap", transport.create().then(function (transport) {
+            var vap = new hw_app_vap_1.default(transport);
             return vap.getAppConfiguration().then(function (config) {
-                return eth;
+                return vap;
             }, function (error) {
                 return Promise.reject(error);
             });
@@ -98,16 +98,16 @@ var LedgerSigner = /** @class */ (function (_super) {
     LedgerSigner.prototype._retry = function (callback, timeout) {
         var _this = this;
         return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-            var eth, i, result, error_1;
+            var vap, i, result, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         if (timeout && timeout > 0) {
                             setTimeout(function () { reject(new Error("timeout")); }, timeout);
                         }
-                        return [4 /*yield*/, this._eth];
+                        return [4 /*yield*/, this._vap];
                     case 1:
-                        eth = _a.sent();
+                        vap = _a.sent();
                         i = 0;
                         _a.label = 2;
                     case 2:
@@ -115,7 +115,7 @@ var LedgerSigner = /** @class */ (function (_super) {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 5, , 6]);
-                        return [4 /*yield*/, callback(eth)];
+                        return [4 /*yield*/, callback(vap)];
                     case 4:
                         result = _a.sent();
                         return [2 /*return*/, resolve(result)];
@@ -143,7 +143,7 @@ var LedgerSigner = /** @class */ (function (_super) {
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this._retry(function (eth) { return vap.getAddress(_this.path); })];
+                    case 0: return [4 /*yield*/, this._retry(function (vap) { return vap.getAddress(_this.path); })];
                     case 1:
                         account = _a.sent();
                         return [2 /*return*/, vapors_1.vapors.utils.getAddress(account.address)];
@@ -162,7 +162,7 @@ var LedgerSigner = /** @class */ (function (_super) {
                             message = vapors_1.vapors.utils.toUtf8Bytes(message);
                         }
                         messageHex = vapors_1.vapors.utils.hexlify(message).substring(2);
-                        return [4 /*yield*/, this._retry(function (eth) { return vap.signPersonalMessage(_this.path, messageHex); })];
+                        return [4 /*yield*/, this._retry(function (vap) { return vap.signPersonalMessage(_this.path, messageHex); })];
                     case 1:
                         sig = _a.sent();
                         sig.r = '0x' + sig.r;
@@ -191,7 +191,7 @@ var LedgerSigner = /** @class */ (function (_super) {
                             value: (tx.value || undefined),
                         };
                         unsignedTx = vapors_1.vapors.utils.serializeTransaction(baseTx).substring(2);
-                        return [4 /*yield*/, this._retry(function (eth) { return vap.signTransaction(_this.path, unsignedTx); })];
+                        return [4 /*yield*/, this._retry(function (vap) { return vap.signTransaction(_this.path, unsignedTx); })];
                     case 2:
                         sig = _a.sent();
                         return [2 /*return*/, vapors_1.vapors.utils.serializeTransaction(baseTx, {

@@ -47,7 +47,7 @@ export class PocketProvider extends UrlJsonRpcProvider {
         let host: string = null;
         switch (network ? network.name : "unknown") {
             case "homestead":
-                host = "eth-mainnet.gateway.pokt.network";
+                host = "vap-mainnet.gateway.pokt.network";
                 break;
             default:
                 logger.throwError("unsupported network", Logger.errors.INVALID_ARGUMENT, {

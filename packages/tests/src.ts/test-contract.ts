@@ -189,7 +189,7 @@ describe("Test Contract Transaction Population", function() {
         assert.equal((<any>tx).from, testAddressCheck, "from address matches");
     });
 
-    it("allows ENS 'from' overrides", async function() {
+    it("allows VNS 'from' overrides", async function() {
         this.timeout(20000);
 
         const tx = await contractConnected.populateTransaction.balanceOf(testAddress, {
@@ -293,7 +293,7 @@ describe("Test Contract Transaction Population", function() {
 });
 
 /*
-// Test Contract interaction inside Grid-deployed Geth
+// Test Contract interaction inside Grid-deployed Gvap
 describe("Test Contract Life-Cycle", function() {
     this.timeout(10000);
 

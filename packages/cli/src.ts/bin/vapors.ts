@@ -69,9 +69,9 @@ function setupContext(path: string, context: any, plugin: Plugin) {
     context.namehash = vapors.utils.namehash;
     context.sha256 = vapors.utils.sha256;
 
-    context.parseEther = vapors.utils.parseEther;
+    context.parseVapor = vapors.utils.parseVapor;
     context.parseUnits = vapors.utils.parseUnits;
-    context.formatEther = vapors.utils.formatEther;
+    context.formatVapor = vapors.utils.formatVapor;
     context.formatUnits = vapors.utils.formatUnits;
 
     context.randomBytes = vapors.utils.randomBytes;
@@ -296,7 +296,7 @@ class FundPlugin extends Plugin {
     static getHelp(): Help {
         return {
            name: "fund TARGET",
-           help: "Fund TARGET with testnet ether"
+           help: "Fund TARGET with testnet vapor"
         }
     }
 
@@ -333,7 +333,7 @@ class InfoPlugin extends Plugin {
     static getHelp(): Help {
         return {
            name: "info [ TARGET ... ]",
-           help: "Dump info for accounts, addresses and ENS names"
+           help: "Dump info for accounts, addresses and VNS names"
         }
     }
 
@@ -352,7 +352,7 @@ class InfoPlugin extends Plugin {
             if (vapors.utils.isAddress(arg)) {
                 this.queries.push(`Address: ${arg}`);
             } else {
-                this.queries.push(`ENS Name: ${arg}`);
+                this.queries.push(`VNS Name: ${arg}`);
             }
             runners.push(this.provider.resolveName(arg));
         })
@@ -372,7 +372,7 @@ class InfoPlugin extends Plugin {
 
             let info: any = {
                 "Address": address,
-                "Balance": (vapors.utils.formatEther(balance) + " ether"),
+                "Balance": (vapors.utils.formatVapor(balance) + " vapor"),
                 "Transaction Count": nonce
             }
 
@@ -399,8 +399,8 @@ class SendPlugin extends Plugin {
 
     static getHelp(): Help {
         return {
-           name: "send TARGET ETHER",
-           help: "Send ETHER ether to TARGET form accounts[0]"
+           name: "send TARGET VAPOR",
+           help: "Send VAPOR vapor to TARGET form accounts[0]"
         }
     }
 
@@ -436,7 +436,7 @@ class SendPlugin extends Plugin {
         }
 
         this.toAddress = await this.getAddress(args[0], "Cannot send to the zero address (use --allow-zero to override)", this.allowZero);
-        this.value = vapors.utils.parseEther(args[1]);
+        this.value = vapors.utils.parseVapor(args[1]);
     }
 
     async run(): Promise<void> {
@@ -456,7 +456,7 @@ class SweepPlugin extends Plugin {
     static getHelp(): Help {
         return {
            name: "sweep TARGET",
-           help: "Send all ether from accounts[0] to TARGET"
+           help: "Send all vapor from accounts[0] to TARGET"
         }
     }
 
@@ -660,19 +660,19 @@ class WaitPlugin extends Plugin {
 }
 cli.addPlugin("wait", WaitPlugin);
 
-const WethAddress = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
-const WethAbi = [
+const WvapAddress = "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2";
+const WvapAbi = [
     "function deposit() payable",
     "function withdraw(uint wad)"
 ];
 
-class WrapEtherPlugin extends Plugin {
+class WrapVaporPlugin extends Plugin {
     value: vapors.BigNumber;
 
     static getHelp(): Help {
         return {
-           name: "wrap-ether VALUE",
-           help: "Deposit VALUE into Wrapped Ether (WETH)"
+           name: "wrap-vapor VALUE",
+           help: "Deposit VALUE into Wrapped Vapor (WVAP)"
         }
     }
 
@@ -680,44 +680,44 @@ class WrapEtherPlugin extends Plugin {
         await super.prepareArgs(args);
 
         if (this.accounts.length !== 1) {
-            this.throwError("wrap-ether requires exactly one account");
+            this.throwError("wrap-vapor requires exactly one account");
         }
 
         if (args.length !== 1) {
-            this.throwError("wrap-ether requires exactly VALUE");
+            this.throwError("wrap-vapor requires exactly VALUE");
         }
 
-        this.value = vapors.utils.parseEther(args[0]);
+        this.value = vapors.utils.parseVapor(args[0]);
 
         const address = await this.accounts[0].getAddress();
         const balance = await this.provider.getBalance(address);
 
         if (balance.lt(this.value)) {
-            this.throwError("insufficient ether to wrap");
+            this.throwError("insufficient vapor to wrap");
         }
     }
 
     async run(): Promise<void> {
         let address = await this.accounts[0].getAddress();
 
-        this.dump("Wrapping ether", {
+        this.dump("Wrapping vapor", {
             "From": address,
-            "Value": vapors.utils.formatEther(this.value)
+            "Value": vapors.utils.formatVapor(this.value)
         });
 
-        let contract = new vapors.Contract(WethAddress, WethAbi, this.accounts[0]);
+        let contract = new vapors.Contract(WvapAddress, WvapAbi, this.accounts[0]);
         await contract.deposit({ value: this.value });
     }
 }
-cli.addPlugin("wrap-ether", WrapEtherPlugin);
+cli.addPlugin("wrap-vapor", WrapVaporPlugin);
 
-class UnwrapEtherPlugin extends Plugin {
+class UnwrapVaporPlugin extends Plugin {
     value: vapors.BigNumber;
 
     static getHelp(): Help {
         return {
-           name: "unwrap-ether VALUE",
-           help: "Withdraw VALUE from Wrapped Ether (WETH)"
+           name: "unwrap-vapor VALUE",
+           help: "Withdraw VALUE from Wrapped Vapor (WVAP)"
         }
     }
 
@@ -725,30 +725,30 @@ class UnwrapEtherPlugin extends Plugin {
         await super.prepareArgs(args);
 
         if (this.accounts.length !== 1) {
-            this.throwError("unwrap-ether requires exactly one account");
+            this.throwError("unwrap-vapor requires exactly one account");
         }
 
         if (args.length !== 1) {
-            this.throwError("unwrap-ether requires exactly VALUE");
+            this.throwError("unwrap-vapor requires exactly VALUE");
         }
 
-        this.value = vapors.utils.parseEther(args[0]);
+        this.value = vapors.utils.parseVapor(args[0]);
     }
 
     async run(): Promise<void> {
         await super.run();
 
         let address = await this.accounts[0].getAddress();
-        this.dump("Withdrawing Wrapped Ether", {
+        this.dump("Withdrawing Wrapped Vapor", {
             "To": address,
-            "Value": vapors.utils.formatEther(this.value)
+            "Value": vapors.utils.formatVapor(this.value)
         });
 
-        let contract = new vapors.Contract(WethAddress, WethAbi, this.accounts[0]);
+        let contract = new vapors.Contract(WvapAddress, WvapAbi, this.accounts[0]);
         await contract.withdraw(this.value);
     }
 }
-cli.addPlugin("unwrap-ether", UnwrapEtherPlugin);
+cli.addPlugin("unwrap-vapor", UnwrapVaporPlugin);
 
 const Erc20Abi = [
     "function decimals() view returns (uint8)",

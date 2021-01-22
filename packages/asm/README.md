@@ -5,7 +5,7 @@ ASM Utilities
 
 -----
 
-A semi-advanced EVM assembler.
+A semi-advanced VVM assembler.
 
 **Features**
 

@@ -106,7 +106,7 @@ async function resolveName(resolver: Signer | Provider, nameOrPromise: string | 
     } catch (error) { }
 
     if (!resolver) {
-        logger.throwError("a provider or signer is needed to resolve ENS names", Logger.errors.UNSUPPORTED_OPERATION, {
+        logger.throwError("a provider or signer is needed to resolve VNS names", Logger.errors.UNSUPPORTED_OPERATION, {
             operation: "resolveName"
         });
     }
@@ -114,13 +114,13 @@ async function resolveName(resolver: Signer | Provider, nameOrPromise: string | 
     const address = await resolver.resolveName(name);
 
     if (address == null) {
-        logger.throwArgumentError("resolver or addr is not configured for ENS name", "name", name);
+        logger.throwArgumentError("resolver or addr is not configured for VNS name", "name", name);
     }
 
     return address;
 }
 
-// Recursively replaces ENS names with promises to resolve the name and resolves all properties
+// Recursively replaces VNS names with promises to resolve the name and resolves all properties
 async function resolveAddresses(resolver: Signer | Provider, value: any, paramType: ParamType | Array<ParamType>): Promise<any> {
     if (Array.isArray(paramType)) {
         return await Promise.all(paramType.map((paramType, index) => {
@@ -590,7 +590,7 @@ export class Contract {
     readonly [ key: string ]: ContractFunction | any;
 
     // This will always be an address. This will only differ from
-    // address if an ENS name was used in the constructor
+    // address if an VNS name was used in the constructor
     readonly resolvedAddress: Promise<string>;
 
     // This is only set if the contract was created with a call to deploy
@@ -665,8 +665,8 @@ export class Contract {
             try {
                 defineReadOnly(this, "resolvedAddress", Promise.resolve(getAddress(addressOrName)));
             } catch (error) {
-                // Without a provider, we cannot use ENS names
-                logger.throwError("provider is required to use ENS name as contract address", Logger.errors.UNSUPPORTED_OPERATION, {
+                // Without a provider, we cannot use VNS names
+                logger.throwError("provider is required to use VNS name as contract address", Logger.errors.UNSUPPORTED_OPERATION, {
                     operation: "new Contract"
                 });
             }
@@ -1153,7 +1153,7 @@ export class ContractFactory {
         // Make sure the call matches the constructor signature
         logger.checkArgumentCount(args.length, this.interface.deploy.inputs.length, " in Contract constructor");
 
-        // Resolve ENS names and promises in the arguments
+        // Resolve VNS names and promises in the arguments
         const params = await resolveAddresses(this.signer, args, this.interface.deploy.inputs);
         params.push(overrides);
 
@@ -1191,8 +1191,8 @@ export class ContractFactory {
         let bytecode: any = null;
         if (compilerOutput.bytecode) {
             bytecode = compilerOutput.bytecode;
-        } else if (compilerOutput.evm && compilerOutput.evm.bytecode) {
-            bytecode = compilerOutput.evm.bytecode;
+        } else if (compilerOutput.vvm && compilerOutput.vvm.bytecode) {
+            bytecode = compilerOutput.vvm.bytecode;
         }
 
         return new this(abi, bytecode, signer);

@@ -178,14 +178,14 @@ utils.hashMessage(utils.arrayify("0x42"))
 
 #### *vapors* . *utils* . **namehash**( name ) => *string< [DataHexString](/v5/api/utils/bytes/#DataHexString)< 32 > >*
 
-Returns the [ENS Namehash](https://docs.ens.domains/contract-api-reference/name-processing#hashing-names) of *name*.
+Returns the [VNS Namehash](https://docs.vns.domains/contract-api-reference/name-processing#hashing-names) of *name*.
 
 
 ```javascript
 utils.namehash("")
 // '0x0000000000000000000000000000000000000000000000000000000000000000'
 
-utils.namehash("eth")
+utils.namehash("vap")
 // '0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae'
 
 utils.namehash("ricmoo.firefly.vap")
@@ -216,7 +216,7 @@ Encodes the Returns the hashed [EIP-712](https://eips.vapory.org/EIPS/eip-712) d
 
 #### *TypedDataEncoder* . **getPayload**( domain , types , value ) => *any*
 
-Returns the standard payload used by various JSON-RPC `eth_signTypedData*` calls.
+Returns the standard payload used by various JSON-RPC `vap_signTypedData*` calls.
 
 All domain values and entries in value are normalized and the types are verified.
 
@@ -243,7 +243,7 @@ Returns a copy of value, where any leaf value with a type of `address` will have
 
 ```javascript
 const domain = {
-    name: 'Ether Mail',
+    name: 'Vapor Mail',
     version: '1',
     chainId: 1,
     verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC'
@@ -283,7 +283,7 @@ TypedDataEncoder.getPayload(domain, types, value)
 // {
 //   domain: {
 //     chainId: '1',
-//     name: 'Ether Mail',
+//     name: 'Vapor Mail',
 //     verifyingContract: '0xcccccccccccccccccccccccccccccccccccccccc',
 //     version: '1'
 //   },

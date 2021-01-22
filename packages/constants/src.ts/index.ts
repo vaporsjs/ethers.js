@@ -6,7 +6,7 @@ export {
     Zero,
     One,
     Two,
-    WeiPerEther,
+    WeiPerVapor,
     MaxUint256
 } from "./bignumbers";
 export { HashZero } from "./hashes";

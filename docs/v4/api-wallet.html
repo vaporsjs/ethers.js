@@ -206,7 +206,7 @@ lost there is <strong>NO way to recover it</strong>.</p>
 </dl>
 <dl class="docutils" id="fromencryptedjson">
 <dt><sup>Wallet</sup> . fromEncryptedJson ( json, password [ , progressCallback ] ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>Wallet</sup></dt>
-<dd>Decrypt an encrypted Secret Storage <a class="reference external" href="https://medium.com/&#64;julien.maffre/what-is-an-vapory-keystore-file-86c8c5917b97">JSON Wallet</a> (from Geth, parity, Crowdsale
+<dd>Decrypt an encrypted Secret Storage <a class="reference external" href="https://medium.com/&#64;julien.maffre/what-is-an-vapory-keystore-file-86c8c5917b97">JSON Wallet</a> (from Gvap, parity, Crowdsale
 tools, or that was created using <em>prototype.encrypt</em> )</dd>
 <dt><sup>Wallet</sup> . fromMnemonic ( mnemonic [ , path <sup>= “m/44’/60’/0’/0/0”</sup> [ , wordlist ] ] ) &nbsp; <sup>=&gt;</sup> &nbsp; <sup>Wallet</sup></dt>
 <dd><p class="first">Generate a <a class="reference external" href="https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki">BIP-039</a> + <a class="reference external" href="https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki">BIP-044</a> wallet from <em>mnemonic</em> deriving <em>path</em> using
@@ -397,10 +397,10 @@ preserved as a binary representation of the <a class="reference internal" href="
     <span class="nx">gasPrice</span><span class="o">:</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">bigNumberify</span><span class="p">(</span><span class="s2">&quot;20000000000&quot;</span><span class="p">),</span>
 
     <span class="nx">to</span><span class="o">:</span> <span class="s2">&quot;0x88a5C2d9919e46F883EB62F7b8Dd9d0CC45bc290&quot;</span><span class="p">,</span>
-    <span class="c1">// ... or supports ENS names</span>
+    <span class="c1">// ... or supports VNS names</span>
     <span class="c1">// to: &quot;ricmoo.firefly.vap&quot;,</span>
 
-    <span class="nx">value</span><span class="o">:</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">parseEther</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">),</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">parseVapor</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">),</span>
     <span class="nx">data</span><span class="o">:</span> <span class="s2">&quot;0x&quot;</span><span class="p">,</span>
 
     <span class="c1">// This ensures the transaction cannot be replayed on different networks</span>
@@ -530,23 +530,23 @@ provided will be populated from the network.</dd>
 </div>
 </div>
 <div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-text"><em>transfer ether</em></span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-text"><em>transfer vapor</em></span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// We require a provider to send transactions</span>
 <span class="kd">let</span> <span class="nx">provider</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">getDefaultProvider</span><span class="p">();</span>
 
 <span class="kd">let</span> <span class="nx">privateKey</span> <span class="o">=</span> <span class="s2">&quot;0x3141592653589793238462643383279502884197169399375105820974944592&quot;</span>
 <span class="kd">let</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">Wallet</span><span class="p">(</span><span class="nx">privateKey</span><span class="p">,</span> <span class="nx">provider</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseEther</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">amount</span> <span class="o">=</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseVapor</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">tx</span> <span class="o">=</span> <span class="p">{</span>
     <span class="nx">to</span><span class="o">:</span> <span class="s2">&quot;0x88a5c2d9919e46f883eb62f7b8dd9d0cc45bc290&quot;</span><span class="p">,</span>
-    <span class="c1">// ... or supports ENS names</span>
+    <span class="c1">// ... or supports VNS names</span>
     <span class="c1">// to: &quot;ricmoo.firefly.vap&quot;,</span>
 
-    <span class="c1">// We must pass in the amount as wei (1 ether = 1e18 wei), so we</span>
-    <span class="c1">// use this convenience function to convert ether to wei.</span>
-    <span class="nx">value</span><span class="o">:</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseEther</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span>
+    <span class="c1">// We must pass in the amount as wei (1 vapor = 1e18 wei), so we</span>
+    <span class="c1">// use this convenience function to convert vapor to wei.</span>
+    <span class="nx">value</span><span class="o">:</span> <span class="nx">vapors</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">parseVapor</span><span class="p">(</span><span class="s1">&#39;1.0&#39;</span><span class="p">)</span>
 <span class="p">};</span>
 
 <span class="kd">let</span> <span class="nx">sendPromise</span> <span class="o">=</span> <span class="nx">wallet</span><span class="p">.</span><span class="nx">sendTransaction</span><span class="p">(</span><span class="nx">tx</span><span class="p">);</span>

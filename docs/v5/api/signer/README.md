@@ -61,7 +61,7 @@ Returns the result of calling using the *transactionRequest*, with this account 
 Returns the result of estimating the cost to send the *transactionRequest*, with this account address being used as the `from` field.
 
 
-#### *signer* . **resolveName**( ensName ) => *Promise< string< [Address](/v5/api/utils/address/#address) > >*
+#### *signer* . **resolveName**( vnsName ) => *Promise< string< [Address](/v5/api/utils/address/#address) > >*
 
 Returns the address associated with the *ensName*.
 
@@ -116,7 +116,7 @@ This is still an experimental feature. If using it, please specify the **exact**
 ```javascript
 // All properties on a domain are optional
 const domain = {
-    name: 'Ether Mail',
+    name: 'Vapor Mail',
     version: '1',
     chainId: 1,
     verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC'
@@ -172,7 +172,7 @@ This is generally not required to be overridden, but may be needed to provide cu
 
 This should return a **copy** of *transactionRequest*, follow the same procedure as `checkTransaction` and fill in any properties required for sending a transaction. The result should have all promises resolved; if needed the [resolveProperties](/v5/api/utils/properties/#utils-resolveproperties) utility function can be used for this.
 
-The default implementation calls `checkTransaction` and resolves to if it is an ENS name, adds `gasPrice`, `nonce`, `gasLimit` and `chainId` based on the related operations on Signer.
+The default implementation calls `checkTransaction` and resolves to if it is an VNS name, adds `gasPrice`, `nonce`, `gasLimit` and `chainId` based on the related operations on Signer.
 
 
 Wallet
@@ -288,7 +288,7 @@ walletMnemonic.signMessage("Hello World")
 
 tx = {
   to: "0x8ba1f109551bD432803012645Ac136ddd64DBA72",
-  value: utils.parseEther("1.0")
+  value: utils.parseVapor("1.0")
 }
 
 // Signing a transaction
@@ -305,7 +305,7 @@ wallet.getBalance();
 wallet.getTransactionCount();
 // { Promise: 0 }
 
-// Sending ether
+// Sending vapor
 wallet.sendTransaction(tx)
 ```
 
