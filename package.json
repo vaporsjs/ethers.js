@@ -86,7 +86,6 @@
   "dependencies": {
     "@babel/parser": "7.8.4",
     "@babel/types": "7.8.3",
-    "@ledgerhq/hw-app-vap": "5.27.2",
     "@ledgerhq/hw-transport": "5.26.0",
     "@ledgerhq/hw-transport-u2f": "5.26.0",
     "@types/mocha": "^5.2.0",
@@ -95,6 +94,7 @@
     "bn.js": "^4.4.0",
     "elliptic": "6.5.3",
     "hash.js": "1.1.3",
+    "hw-app-vap": "5.27.2",
     "js-sha3": "0.5.7",
     "scrypt-js": "3.0.1",
     "solc": "0.7.1",

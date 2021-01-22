@@ -1,5 +1,5 @@
 import { vapors } from "vapors";
-import Vap from "@ledgerhq/hw-app-vap";
+import Vap from "hw-app-vap";
 export declare class LedgerSigner extends vapors.Signer {
     readonly type: string;
     readonly path: string;

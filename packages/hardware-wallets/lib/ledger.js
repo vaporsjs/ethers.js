@@ -55,7 +55,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var vapors_1 = require("vapors");
 var _version_1 = require("./_version");
 var logger = new vapors_1.vapors.utils.Logger(_version_1.version);
-var hw_app_vap_1 = __importDefault(require("@ledgerhq/hw-app-vap"));
+var hw_app_vap_1 = __importDefault(require("hw-app-vap"));
 // We store these in a separated import so it is easier to swap them out
 // at bundle time; browsers do not get HID, for example. This maps a string
 // "type" to a Transport with create.

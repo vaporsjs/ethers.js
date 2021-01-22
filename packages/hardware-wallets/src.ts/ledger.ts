@@ -5,7 +5,7 @@ import { vapors } from "vapors";
 import { version } from "./_version";
 const logger = new vapors.utils.Logger(version);
 
-import Vap from "@ledgerhq/hw-app-vap";
+import Vap from "hw-app-vap";
 
 // We store these in a separated import so it is easier to swap them out
 // at bundle time; browsers do not get HID, for example. This maps a string

@@ -1,4 +1,4 @@
-declare module "@ledgerhq/hw-app-vap" {
+declare module "hw-app-vap" {
     export type PublicAccount = {
         publicKey: string;
         address: string;
