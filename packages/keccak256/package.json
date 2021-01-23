@@ -5,7 +5,6 @@
     "js-sha3": "0.5.7"
   },
   "description": "The keccak256 hash function for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -36,7 +35,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x4a2af5bda795727a239a3d441907e673ee4d7e1ffe488afbee570958a113d1b1",
+  "tarballHash": "0x6ee0c63bfd3b36e905d3e453a3a95e8d803ca47748a84d3af0afecd42799a81d",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.6"
 }

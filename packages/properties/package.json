@@ -4,7 +4,6 @@
     "@vaporsproject/logger": "^5.0.5"
   },
   "description": "Properties utility functions for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -37,7 +36,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x5ba1d6f10ec9f22f5390fb18112ed02612628c5fea67991a40e106d94503b935",
+  "tarballHash": "0x5c6a46d5fcb6f7bf1d6454ce0a3dfdca95d456a15c1d2e3628c7d0e3bcd6b80a",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.6"
 }

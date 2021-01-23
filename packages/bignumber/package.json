@@ -6,7 +6,6 @@
     "bn.js": "^4.4.0"
   },
   "description": "BigNumber library used in vapors.js.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -38,7 +37,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x988db7b6fa319a70ba68f176e674bee80e0e7f85d82109153bb8f7cd8957f2e3",
+  "tarballHash": "0x5b15bf403b1aa64a95f28b5fbb579d091767e0f3530092f0e218ecd68c04a082",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.12"
 }

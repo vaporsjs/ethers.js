@@ -15736,12 +15736,12 @@ class CrowdsaleAccount extends Description {
         return !!(value && value._isCrowdsaleAccount);
     }
 }
-// See: https://github.com/vaporyco/pyethsaletool
+// See: https://github.com/vaporyco/pyvapsaletool
 function decrypt(json, password) {
     const data = JSON.parse(json);
     password = getPassword(password);
     // Vapory Address
-    const vapaddr = getAddress(searchPath(data, "ethaddr"));
+    const vapaddr = getAddress(searchPath(data, "vapaddr"));
     // Encrypted Seed
     const encseed = looseArrayify(searchPath(data, "encseed"));
     if (!encseed || (encseed.length % 16) !== 0) {
@@ -21949,5 +21949,5 @@ try {
 }
 catch (error) { }
 
-export { BigNumber, Contract, ContractFactory, FixedNumber, Signer, VoidSigner, Wallet, Wordlist, index$1 as constants, ErrorCode as errors, vapors, getDefaultProvider, logger$H as logger, index$3 as providers, utils$1 as utils, version$o as version, wordlists };
+export { BigNumber, Contract, ContractFactory, FixedNumber, Signer, VoidSigner, Wallet, Wordlist, index$1 as constants, ErrorCode as errors, getDefaultProvider, logger$H as logger, index$3 as providers, utils$1 as utils, vapors, version$o as version, wordlists };
 //# sourceMappingURL=vapors.esm.js.map

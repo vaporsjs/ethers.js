@@ -6,7 +6,6 @@
     "@vaporsproject/logger": "^5.0.5"
   },
   "description": "String utility functions.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -39,7 +38,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x42ffa49083b4547b2b55ac72ff5149dda38f5eac3ecbd1a1456713f418f9a04c",
+  "tarballHash": "0xe6b076377aa02d3e8169f4fb986d37fa46a4cf9081a2ddca66e5c5e633bcf312",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.7"
 }

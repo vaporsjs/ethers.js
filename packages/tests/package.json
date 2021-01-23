@@ -1,13 +1,12 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
+    "@types/mocha": "^5.2.0",
     "@vaporsproject/cli": "^5.0.4",
     "@vaporsproject/testcases": "^5.0.5",
-    "@types/mocha": "^5.2.0",
     "vapors": "^5.0.13"
   },
   "description": "Testing package for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -37,7 +36,8 @@
   "scripts": {
     "test": "exit 1"
   },
-  "tarballHash": "0xfe392b338988484b70479f3c89ba233cba024292deeecbae1ea66aa2aa4546b1",
+  "tarballHash": "0x10f175a83c091e0f73469a2f31a96ec8f23a8ad893ee666d05973f15c526ee55",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.15"
 }

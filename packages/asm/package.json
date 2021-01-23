@@ -4,7 +4,6 @@
     "vapors": "^5.0.13"
   },
   "description": "ASM libraries and tools for the Vapory VVM.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -36,7 +35,8 @@
     "generate": "node ./generate.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "tarballHash": "0x83d6934a78956b083ea22841ce0c1595a344cd0d6ed8a0de8e702da9e826b757",
+  "tarballHash": "0x430369fdb4fe8a37d7a3fb1446062c0ba57c85ecaf7e7760624e4d80f3af5638",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.8"
 }

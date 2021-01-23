@@ -36,6 +36,10 @@ recommended recovered redacted remaining replaced required reverted
 serializes shared signed signing skipped stored supported tagging targetted
 throttled transactions typed uninstall unstake unsubscribe using verifies verifying website
 
+// Vapory related words
+ko VNS vns Coder coder bool SIG Param aes mac doge fallback div bodyless
+io pow pic unhandled hup modulo AST ast
+
 // Overly Specific Words
 bech BIP BIP39 BIP44 btc bzz crypto eip etc hashes hmac icap
 keccak ltc namehash ripemd RLP scrypt secp sha xdai

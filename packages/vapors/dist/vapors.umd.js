@@ -17443,12 +17443,12 @@
 	    return CrowdsaleAccount;
 	}(lib$3.Description));
 	exports.CrowdsaleAccount = CrowdsaleAccount;
-	// See: https://github.com/vaporyco/pyethsaletool
+	// See: https://github.com/vaporyco/pyvapsaletool
 	function decrypt(json, password) {
 	    var data = JSON.parse(json);
 	    password = utils$1.getPassword(password);
 	    // Vapory Address
-	    var vapaddr = lib$6.getAddress(utils$1.searchPath(data, "ethaddr"));
+	    var vapaddr = lib$6.getAddress(utils$1.searchPath(data, "vapaddr"));
 	    // Encrypted Seed
 	    var encseed = utils$1.looseArrayify(utils$1.searchPath(data, "encseed"));
 	    if (!encseed || (encseed.length % 16) !== 0) {

@@ -7,13 +7,12 @@
     "./lib/ledger-transport.js": "./lib/browser-ledger-transport.js"
   },
   "dependencies": {
-    "hw-app-vap": "5.27.2",
     "@ledgerhq/hw-transport": "5.26.0",
     "@ledgerhq/hw-transport-u2f": "5.26.0",
+    "hw-app-vap": "5.27.2",
     "vapors": "^5.0.13"
   },
   "description": "Hardware Wallet support for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -48,7 +47,8 @@
     "test": "exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0xa0aa3a1b351d2c457227777643bfc25e24e5ebb5f5d06f539bfd8326eb15a8f4",
+  "tarballHash": "0x92d92ecebe887bfcbbf2d4b1ba1659127b94ca809f6cd7f5c5a1cd3bee59dfd8",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.11"
 }

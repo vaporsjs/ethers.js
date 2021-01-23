@@ -18,7 +18,6 @@
     "@vaporsproject/wordlists": "^5.0.4"
   },
   "description": "Classes for managing, encrypting and decrypting Vapory private keys as a Signer for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -49,7 +48,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x5a20d69b99052391b9cf659f97f9993e8a1a4ce96758afd05a184df1ecf6c30f",
+  "tarballHash": "0xb1a37fcfc0224a54748d1880c53819e34e32d2eb5cc5012b24e24d73eee89025",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.9"
 }

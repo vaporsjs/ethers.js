@@ -2,11 +2,10 @@
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
     "@vaporsproject/web": "^5.0.6",
-    "vapors": "^5.0.13",
-    "scrypt-js": "3.0.1"
+    "scrypt-js": "3.0.1",
+    "vapors": "^5.0.13"
   },
   "description": "Experimental libraries for vapors. These should not be considered stable.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -37,7 +36,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x1dae55c33ec27af2df99f78f786587e79bf6c10c528a27ee9f346ecb368ee1b5",
+  "tarballHash": "0x050387adea2f14d4faa0ec8dbd3ca0187af2fd1732c1dbf607c0820449274309",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.7"
 }

@@ -3,7 +3,6 @@
   "author": "Richard Moore <me@ricmoo.com>",
   "browser": "./dist/index.min.js",
   "description": "Shims required for vapors in constrained environments.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -32,7 +31,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "tarballHash": "0x533d308926d3d1946b4d41c8902cc203cc06ac205f1b4df68314fb0402a5b50d",
+  "tarballHash": "0x3ad2d1db0294272f7d933c9ec1e4a62e0908bf5b736324eab756116a8c0f0e94",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.10"
 }

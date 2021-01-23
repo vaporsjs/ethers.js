@@ -5,7 +5,6 @@
     "@vaporsproject/logger": "^5.0.5"
   },
   "description": "Recursive-Length Prefix (RLP) coder.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -37,7 +36,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x44314b6d4a44956662d022b90027f4947102d565702d7172f0aa9dc068fb86c0",
+  "tarballHash": "0x6cb50d430edeb560a947a4654fda9754ada0a1e99ab949109cbd4c9dbaa42a8c",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.6"
 }

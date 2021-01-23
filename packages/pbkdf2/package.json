@@ -11,7 +11,6 @@
     "@vaporsproject/sha2": "^5.0.3"
   },
   "description": "The PBKDF2 password-pbased key derivation function for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -43,7 +42,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x8b2c2a44858cc3d1798c0b2d56a3af2295ca91f887b1940efdc1bff966c1836e",
+  "tarballHash": "0x89cc37c87591b5cc301cf8a296bc88fd388bcfaa28d88a1377df983effd7fc2e",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.6"
 }

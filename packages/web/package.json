@@ -14,7 +14,6 @@
     "@vaporsproject/strings": "^5.0.4"
   },
   "description": "Utility fucntions for managing web requests for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -45,7 +44,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x7de77f0ace641d8867db27d73e04c9166fa9ff1517dab66393b9e00aeed720a2",
+  "tarballHash": "0x0616ec51ac5b9b94f5a0c2e3dd6dfa39c29ddf16992799778d43cf700c3ce82c",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.11"
 }

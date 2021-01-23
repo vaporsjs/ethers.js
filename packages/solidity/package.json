@@ -8,7 +8,6 @@
     "@vaporsproject/strings": "^5.0.4"
   },
   "description": "Solidity coder for non-standard (tight) packing.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -39,7 +38,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x47d5e5f7aab97654edb5dddcdf5173cc19709590a9a33042602e212146a11088",
+  "tarballHash": "0x3ca3e2649503f09724e3b63854a4fdedee57d5ecccd1763077581ce8c620501b",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.7"
 }

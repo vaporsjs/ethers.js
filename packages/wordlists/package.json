@@ -14,7 +14,6 @@
     "@vaporsproject/strings": "^5.0.4"
   },
   "description": "Word lists for BIP39 wallets.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -45,7 +44,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x24ff13ad968fa0820463de3ca244565d674295ae12e20370ecd1d4b835dbc322",
+  "tarballHash": "0x2c54b60db3759e6101786ac39b1a7ed9e69b78b973899807e88145d5f0d44a33",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.7"
 }

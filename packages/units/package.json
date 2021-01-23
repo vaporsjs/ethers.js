@@ -6,7 +6,6 @@
     "@vaporsproject/logger": "^5.0.5"
   },
   "description": "Unit conversion functions for Vapory.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -39,7 +38,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x0e97134b16933789136b7597531d2facd2cdbbaf79f25452a6fdac3d72d65b3a",
+  "tarballHash": "0x352f3438aa162d55b446171c53b4e05426f3caa399c4053c25b370bea622141b",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.8"
 }

@@ -156,14 +156,14 @@ describe('Test Unit Conversion', function () {
     tests.forEach((test) => {
         let wei = vapors.BigNumber.from(test.wei);
 
-        it (('parses ' + test.vaper + ' vapor'), function() {
-            assert.ok(vapors.utils.parseVapor(test.vaper.replace(/,/g, '')).eq(wei),
+        it (('parses ' + test.vapor + ' vapor'), function() {
+            assert.ok(vapors.utils.parseVapor(test.vapor.replace(/,/g, '')).eq(wei),
                 'parsing vapor failed - ' + test.name);
         });
 
         it (('formats ' + wei.toString() + ' wei to vapor'), function() {
             let actual = vapors.utils.formatVapor(wei);
-            assert.equal(actual, test.vaper_format,
+            assert.equal(actual, test.vapor_format,
                    'formatting wei failed - ' + test.name);
         });
     });

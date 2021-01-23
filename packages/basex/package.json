@@ -5,7 +5,6 @@
     "@vaporsproject/properties": "^5.0.3"
   },
   "description": "Base-X without Buffer.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -36,7 +35,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x329cc06e27c00836bfbfbb871fe2f601e1532b2a85a3ef79aa48706338264b84",
+  "tarballHash": "0x4909ce99e123632bec85a302014529a88d471754b9d059ecc63a7c6cb0b91fc9",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.6"
 }

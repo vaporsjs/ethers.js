@@ -4,7 +4,6 @@
     "@vaporsproject/logger": "^5.0.5"
   },
   "description": "Network definitions for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -35,7 +34,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x231d7ac65c30d31eaae4d912e639ac45c3a34fc0a947f0251edeb62cbd079c43",
+  "tarballHash": "0x463b0cebd5559b702d77980724292b072c866f313116e3172ea778abc6a29242",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.6"
 }

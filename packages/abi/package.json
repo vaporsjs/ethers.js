@@ -12,7 +12,6 @@
     "@vaporsproject/strings": "^5.0.4"
   },
   "description": "Utilities and Classes for parsing, formatting and managing Vapory ABIs.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -43,7 +42,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0xff31d43d9c97aa55fb2980106be2e4ffbe77ad4c6efcba95263c70f86239e8e0",
+  "tarballHash": "0x03a4347d1dcab3729b1dc82b35b39e68953e3ed79b9dc89f523a7c4f65f37e25",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.9"
 }

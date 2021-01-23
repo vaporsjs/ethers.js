@@ -34,7 +34,6 @@
     "ws": "7.2.3"
   },
   "description": "Vapory Providers for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -65,7 +64,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0xee60faa5694b163be934b5998c15e53fe50963d6ab645d135062d04c851041a3",
+  "tarballHash": "0x98a6783028eda248b437599d0d87844d29b812a28d91329c1a0b2577b75d9a66",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.17"
 }

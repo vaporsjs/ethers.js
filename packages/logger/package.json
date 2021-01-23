@@ -1,7 +1,6 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "description": "Logger utility functions for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -32,7 +31,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x5017c8da7b7d8467daee3cc7b637d9e30727756d541cb32523362b701ef0dd36",
+  "tarballHash": "0xb9eac4670982665a71455b710e0b00cdb841cd57985e98197dbb0bc8ed155216",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.8"
 }

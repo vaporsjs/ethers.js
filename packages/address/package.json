@@ -8,7 +8,6 @@
     "@vaporsproject/rlp": "^5.0.3"
   },
   "description": "Utilities for handling Vapory Addresses for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -39,7 +38,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0xf6189bba1f1db944f730756c375fe0a198f97aa1a6993ed69b1069b68b3b127e",
+  "tarballHash": "0xb1564e6ad729ba6b3d90f0e926762076994592c6fd7e41305b1362f497f4b9b3",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.8"
 }

@@ -11,7 +11,6 @@
     "@vaporsproject/logger": "^5.0.5"
   },
   "description": "Random utility functions for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -43,7 +42,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x25597a4c4e6b33b6f7b7da1604e5eab48d5ad9cecb6ec1baf713e2af890f9b63",
+  "tarballHash": "0x281c98d9f7ccaac2cc8116f1050b7eee9da002f449f34f4f0c767f3eacaec844",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.6"
 }

@@ -10,7 +10,6 @@
     "@vaporsproject/bytes": "^5.0.4"
   },
   "description": "Base64 coder.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -41,7 +40,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x0b21de3d1f836a61564b43b95d9272c0034c20b70eae82bbe99538676a1f9780",
+  "tarballHash": "0xe5283da0ba46641e0c8bbd0fbc62d3bbea7656f5dda405976169d19757822886",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.6"
 }

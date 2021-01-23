@@ -10,7 +10,6 @@
     "elliptic": "6.5.3"
   },
   "description": "Elliptic curve library functions for the secp256k1 curve.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -41,7 +40,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0xaec083b8dfc51cc0e1b79437e605b47762c22de76019e15df5daa3662e173f04",
+  "tarballHash": "0xde7152a78d3b9cd422510985e6a2b738558b07602d361509c357006b5b6faa62",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.7"
 }

@@ -15,7 +15,6 @@
     "@vaporsproject/wordlists": "^5.0.4"
   },
   "description": "BIP32 Hierarchal Deterministic Node operations.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -46,7 +45,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0xe1c03cc121b1d3f9b231bcd8543141bf5d905aacbc793d435f792fbcc47ac972",
+  "tarballHash": "0xfa5669292f59403cacc31418f1ec06f8c4c8e8394503844f9fca82f3080604d9",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.7"
 }

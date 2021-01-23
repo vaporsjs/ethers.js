@@ -171,12 +171,12 @@ describe('Test Unit Conversion', function () {
     var tests = testcases_1.loadTests('units');
     tests.forEach(function (test) {
         var wei = vapors_1.vapors.BigNumber.from(test.wei);
-        it(('parses ' + test.vaper + ' vapor'), function () {
-            assert_1.default.ok(vapors_1.vapors.utils.parseVapor(test.vaper.replace(/,/g, '')).eq(wei), 'parsing vapor failed - ' + test.name);
+        it(('parses ' + test.vapor + ' vapor'), function () {
+            assert_1.default.ok(vapors_1.vapors.utils.parseVapor(test.vapor.replace(/,/g, '')).eq(wei), 'parsing vapor failed - ' + test.name);
         });
         it(('formats ' + wei.toString() + ' wei to vapor'), function () {
             var actual = vapors_1.vapors.utils.formatVapor(wei);
-            assert_1.default.equal(actual, test.vaper_format, 'formatting wei failed - ' + test.name);
+            assert_1.default.equal(actual, test.vapor_format, 'formatting wei failed - ' + test.name);
         });
     });
     tests.forEach(function (test) {

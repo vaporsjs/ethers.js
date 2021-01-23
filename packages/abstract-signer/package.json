@@ -8,7 +8,6 @@
     "@vaporsproject/properties": "^5.0.3"
   },
   "description": "An Abstract Class for desribing an Vapory Signer for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -39,7 +38,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0xf30b173e3bee012c273e09ae94387f410714faa640b9dc27213a192db77a0303",
+  "tarballHash": "0x121940cdd14f96cca1ea2d7fc52029a21dcc2664b501a07103df396219fc46a1",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.9"
 }

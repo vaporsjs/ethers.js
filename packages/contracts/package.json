@@ -12,7 +12,6 @@
     "@vaporsproject/properties": "^5.0.3"
   },
   "description": "Contract abstraction meta-class for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -43,7 +42,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0xce5f076317986cd03fab0e8ca2eaf969ec5c05f4d4b89d89e05542c24249caa3",
+  "tarballHash": "0x65e3a3e9bab7b076a0a279112f6b23a14d732ccbd658539b302fa6cda5779c91",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.8"
 }

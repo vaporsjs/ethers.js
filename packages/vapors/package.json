@@ -34,7 +34,6 @@
     "@vaporsproject/wordlists": "5.0.7"
   },
   "description": "Umbrella package for most common Vapors libraries.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -62,7 +61,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x29af40c513a6ae9f1f3d3b9281e9dab348f682dd7cc6a69f4f8977a03eb651eb",
+  "tarballHash": "0x57701606aee7247a1f463860a245a883036852819d4d654a88e837abaf63795a",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.24"
 }

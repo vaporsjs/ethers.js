@@ -10,7 +10,6 @@
     "@vaporsproject/web": "^5.0.6"
   },
   "description": "An Abstract Class for describing an Vapory Provider for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -41,7 +40,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x3b3b910e4ef4f0b9361ff266b98e1fa415387e1d349122d215ee5ffe8110e397",
+  "tarballHash": "0x0ac41641d5c4a3a95e8817d8448d996e83b0cb02545a24291a23341a5eae6598",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.7"
 }

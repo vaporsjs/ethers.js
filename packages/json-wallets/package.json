@@ -16,7 +16,6 @@
     "scrypt-js": "3.0.1"
   },
   "description": "Wallet management utilities for KeyStore and Crowdsale JSON wallets.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -47,7 +46,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0xedee0adfa5943550e36bcf5123c329d91db7edf6a9bfe2f654e4d252ef127651",
+  "tarballHash": "0xd1ca6a39355a14d6b47488e5be61c5f2ac1de9e7c22197bdc450af0aec5d1dd6",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.9"
 }

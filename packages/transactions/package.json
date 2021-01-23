@@ -12,7 +12,6 @@
     "@vaporsproject/signing-key": "^5.0.4"
   },
   "description": "Utilities for decoding and encoding Vapory transaction for vapors.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -43,7 +42,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x37e396bcba1ca2e17cb4b7344ab63f282e3732affda2f9528e11ea62187af0da",
+  "tarballHash": "0x767cc107b34c07fa3e799111ec8a2b4e193c8189c2bb59f72722df8deacbe6c1",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.8"
 }

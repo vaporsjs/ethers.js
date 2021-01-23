@@ -11,7 +11,6 @@
     "@vaporsproject/strings": "^5.0.4"
   },
   "description": "Hash utility functions for Vapory.",
-  "vapory": "donations.vapors.vap",
   "funding": [
     {
       "type": "individual",
@@ -42,7 +41,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "sideEffects": false,
-  "tarballHash": "0x72b13ce70dea4b43cf8a67527084e8947d2a0d73db1d76178986e4eaa0196774",
+  "tarballHash": "0x71a5e5bbf8459f8b0b6ce318264f708967863ab55cf2e1fb005e4a29a513a62e",
   "types": "./lib/index.d.ts",
+  "vapory": "donations.vapors.vap",
   "version": "5.0.9"
 }
